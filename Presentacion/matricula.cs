@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class main : Form
+    public partial class matricula : Form
     {
-        public main()
+        public matricula()
         {
             InitializeComponent();
-        }
-
-        private void main_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

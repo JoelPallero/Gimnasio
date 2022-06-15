@@ -10,16 +10,12 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class main : Form
+    public partial class mainEmpleados : Form
     {
-        public main()
+        public mainEmpleados()
         {
             InitializeComponent();
         }
 
-        private void main_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
