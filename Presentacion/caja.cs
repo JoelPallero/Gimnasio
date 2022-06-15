@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class matricula : Form
+    public partial class caja : Form
     {
-        public matricula()
+        public caja()
         {
             InitializeComponent();
         }

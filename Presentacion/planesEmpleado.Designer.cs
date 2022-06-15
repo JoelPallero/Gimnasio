@@ -1,7 +1,7 @@
 ﻿
 namespace Presentacion
 {
-    partial class matricula
+    partial class planesEmpleado
     {
         /// <summary>
         /// Required designer variable.
@@ -31,14 +31,14 @@ namespace Presentacion
         {
             this.SuspendLayout();
             // 
-            // matricula
+            // planesEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 650);
+            this.ClientSize = new System.Drawing.Size(700, 600);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "matricula";
-            this.Text = "matricula";
+            this.Name = "planesEmpleado";
+            this.Text = "planesEmpleado";
             this.ResumeLayout(false);
 
         }
