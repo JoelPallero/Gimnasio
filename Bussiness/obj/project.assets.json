@@ -2,22 +2,6 @@
   "version": 3,
   "targets": {
     "net5.0-windows7.0": {
-      "DataAccess/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Entities": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DataAccess.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccess.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WindowsForms"
-        ]
-      },
       "Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -34,11 +18,6 @@
     }
   },
   "libraries": {
-    "DataAccess/1.0.0": {
-      "type": "project",
-      "path": "../DataAccess/DataAccess.csproj",
-      "msbuildProject": "../DataAccess/DataAccess.csproj"
-    },
     "Entities/1.0.0": {
       "type": "project",
       "path": "../Entities/Entities.csproj",
@@ -47,7 +26,6 @@
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
-      "DataAccess >= 1.0.0",
       "Entities >= 1.0.0"
     ]
   },
@@ -83,9 +61,6 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "G:\\Programacion\\GitHub\\Gym\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "G:\\Programacion\\GitHub\\Gym\\DataAccess\\DataAccess.csproj"
-            },
             "G:\\Programacion\\GitHub\\Gym\\Entities\\Entities.csproj": {
               "projectPath": "G:\\Programacion\\GitHub\\Gym\\Entities\\Entities.csproj"
             }
