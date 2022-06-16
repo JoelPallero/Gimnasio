@@ -13,6 +13,11 @@ namespace Presentacion
 {
     public partial class mainEmpleados : Form
     {
+        #region Call of Class
+
+        commonClass _commonClass = new commonClass();
+
+        #endregion
         public mainEmpleados()
         {
             InitializeComponent();

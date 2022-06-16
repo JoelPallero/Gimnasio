@@ -29,4 +29,4 @@ G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.pl
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.planesEncargado.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.login.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.registro.resources
-G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.registroEmpleados.resources
+G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.Properties.Resources.resources

@@ -1,0 +1,5 @@
+Entrevista. 									Listo
+Pantallas – interfaces.
+Identificar las historias de Usuarios, para identificar los autores. 		Listo.
+Huella, tarjeta.
+Diagrama de persistencia

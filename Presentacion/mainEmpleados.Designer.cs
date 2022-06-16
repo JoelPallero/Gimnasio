@@ -29,6 +29,7 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainEmpleados));
             this.windowbox = new System.Windows.Forms.PictureBox();
             this.titlebox = new System.Windows.Forms.PictureBox();
             this.menubox = new System.Windows.Forms.PictureBox();
@@ -88,20 +89,27 @@ namespace Presentacion
             // logo
             // 
             this.logo.BackColor = System.Drawing.Color.Transparent;
-            this.logo.Location = new System.Drawing.Point(15, 14);
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(0, 0);
             this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(220, 76);
+            this.logo.Size = new System.Drawing.Size(250, 140);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logo.TabIndex = 30;
             this.logo.TabStop = false;
+            this.logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebox_MouseDown);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(258, 8);
+            this.label1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(267, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 20);
+            this.label1.Size = new System.Drawing.Size(123, 23);
             this.label1.TabIndex = 34;
-            this.label1.Text = "Empleados";
+            this.label1.Text = "Usuario XXXXX";
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebox_MouseDown);
             // 
             // btnAsistencia
             // 
@@ -217,14 +225,14 @@ namespace Presentacion
             this.btnminimize.FlatAppearance.BorderSize = 0;
             this.btnminimize.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
             this.btnminimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnminimize.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnminimize.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnminimize.ForeColor = System.Drawing.Color.Maroon;
             this.btnminimize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnminimize.Location = new System.Drawing.Point(844, 0);
             this.btnminimize.Name = "btnminimize";
             this.btnminimize.Size = new System.Drawing.Size(50, 50);
             this.btnminimize.TabIndex = 41;
-            this.btnminimize.Text = "--";
+            this.btnminimize.Text = "-";
             this.btnminimize.UseVisualStyleBackColor = false;
             this.btnminimize.Click += new System.EventHandler(this.btnminimize_Click);
             // 
