@@ -12,6 +12,8 @@ namespace Presentacion
     {
         //Poner el arrastre del form
         //y todos los botones o eventos comunes en cada formulario
+
+        public bool CajaAbierta = true;
         
     }
 }

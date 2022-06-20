@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class planesEmpleado : Form
+    public partial class cerrarCaja : Form
     {
-        public planesEmpleado()
+        commonClass _commonClass = new commonClass();
+        public cerrarCaja()
         {
             InitializeComponent();
+        }
+
+        private void btnCerrarCaja_Click(object sender, EventArgs e)
+        {
+            _commonClass.CajaAbierta = false;
+            this.Close();
         }
     }
 }

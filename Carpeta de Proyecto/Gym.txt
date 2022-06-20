@@ -1,5 +1,5 @@
 Entrevista. 									Listo
 Pantallas – interfaces.
-Identificar las historias de Usuarios, para identificar los autores. 		Listo.
+Identificar las historias de Usuarios, para identificar los actores. 		Listo.
 Huella, tarjeta.
 Diagrama de persistencia

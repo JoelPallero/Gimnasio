@@ -7,6 +7,9 @@
     <Compile Update="caja.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="cerrarCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="empleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -22,10 +25,7 @@
     <Compile Update="pagos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="planesEmpleado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="planesEncargado.cs">
+    <Compile Update="planes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="registro.cs">

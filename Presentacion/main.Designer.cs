@@ -89,7 +89,7 @@ namespace Presentacion
             // btnLogout
             // 
             this.btnLogout.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -102,13 +102,14 @@ namespace Presentacion
             this.btnLogout.TabIndex = 47;
             this.btnLogout.Text = "Cerrar Sesión";
             this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnCaja
             // 
             this.btnCaja.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnCaja.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnCaja.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnCaja.FlatAppearance.BorderSize = 0;
-            this.btnCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCaja.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCaja.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -124,9 +125,9 @@ namespace Presentacion
             // btnPlanes
             // 
             this.btnPlanes.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnPlanes.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnPlanes.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnPlanes.FlatAppearance.BorderSize = 0;
-            this.btnPlanes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnPlanes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnPlanes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlanes.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnPlanes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -142,9 +143,9 @@ namespace Presentacion
             // btnPagos
             // 
             this.btnPagos.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnPagos.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnPagos.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnPagos.FlatAppearance.BorderSize = 0;
-            this.btnPagos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnPagos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPagos.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnPagos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -160,9 +161,9 @@ namespace Presentacion
             // btnRegistro
             // 
             this.btnRegistro.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnRegistro.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnRegistro.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnRegistro.FlatAppearance.BorderSize = 0;
-            this.btnRegistro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnRegistro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnRegistro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistro.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnRegistro.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -178,9 +179,9 @@ namespace Presentacion
             // btnAsistencia
             // 
             this.btnAsistencia.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnAsistencia.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnAsistencia.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnAsistencia.FlatAppearance.BorderSize = 0;
-            this.btnAsistencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnAsistencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAsistencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAsistencia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -196,9 +197,9 @@ namespace Presentacion
             // btnEmpleados
             // 
             this.btnEmpleados.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnEmpleados.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnEmpleados.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnEmpleados.FlatAppearance.BorderSize = 0;
-            this.btnEmpleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnEmpleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmpleados.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEmpleados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -297,7 +298,7 @@ namespace Presentacion
             this.btnminimize.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
             this.btnminimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnminimize.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnminimize.ForeColor = System.Drawing.Color.Maroon;
+            this.btnminimize.ForeColor = System.Drawing.Color.White;
             this.btnminimize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnminimize.Location = new System.Drawing.Point(844, 0);
             this.btnminimize.Name = "btnminimize";
@@ -306,6 +307,8 @@ namespace Presentacion
             this.btnminimize.Text = "-";
             this.btnminimize.UseVisualStyleBackColor = false;
             this.btnminimize.Click += new System.EventHandler(this.btnminimize_Click);
+            this.btnminimize.MouseLeave += new System.EventHandler(this.btnminimize_MouseLeave);
+            this.btnminimize.MouseHover += new System.EventHandler(this.btnminimize_MouseHover);
             // 
             // btnclose
             // 
@@ -315,7 +318,7 @@ namespace Presentacion
             this.btnclose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnclose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnclose.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnclose.ForeColor = System.Drawing.Color.Maroon;
+            this.btnclose.ForeColor = System.Drawing.Color.White;
             this.btnclose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnclose.Location = new System.Drawing.Point(900, 0);
             this.btnclose.Name = "btnclose";
@@ -324,6 +327,8 @@ namespace Presentacion
             this.btnclose.Text = "X";
             this.btnclose.UseVisualStyleBackColor = false;
             this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
+            this.btnclose.MouseLeave += new System.EventHandler(this.btnclose_MouseLeave);
+            this.btnclose.MouseHover += new System.EventHandler(this.btnclose_MouseHover);
             // 
             // main
             // 

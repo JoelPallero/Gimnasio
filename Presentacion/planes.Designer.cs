@@ -1,7 +1,7 @@
 ﻿
 namespace Presentacion
 {
-    partial class empleados
+    partial class planes
     {
         /// <summary>
         /// Required designer variable.
@@ -29,18 +29,9 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.components = new System.ComponentModel.Container();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
@@ -61,139 +52,39 @@ namespace Presentacion
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dgvPlanes = new System.Windows.Forms.DataGridView();
+            this.Clase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Profesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Horarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuPlanes = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.edit = new System.Windows.Forms.ToolStripMenuItem();
+            this.detele = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).BeginInit();
+            this.menuPlanes.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox1.Location = new System.Drawing.Point(440, 403);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(243, 27);
-            this.textBox1.TabIndex = 64;
-            this.textBox1.Text = "Buscar";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 436);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(666, 205);
-            this.dataGridView1.TabIndex = 63;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.textBox9);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Location = new System.Drawing.Point(17, 11);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(666, 386);
-            this.groupBox1.TabIndex = 62;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos de Empleado";
             // 
             // textBox3
             // 
-            this.textBox3.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox3.Location = new System.Drawing.Point(92, 77);
+            this.textBox3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.textBox3.Location = new System.Drawing.Point(371, 287);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(211, 27);
-            this.textBox3.TabIndex = 66;
-            this.textBox3.Text = "N° documento";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(17, 76);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(69, 28);
-            this.comboBox2.TabIndex = 65;
-            this.comboBox2.Text = "Tipo";
-            // 
-            // textBox9
-            // 
-            this.textBox9.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox9.Location = new System.Drawing.Point(17, 255);
-            this.textBox9.Multiline = true;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(286, 114);
-            this.textBox9.TabIndex = 64;
-            this.textBox9.Text = "Observaciones y/o consideraciones";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Encargado",
-            "Profesor"});
-            this.comboBox1.Location = new System.Drawing.Point(333, 37);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(307, 28);
-            this.comboBox1.TabIndex = 61;
-            this.comboBox1.Text = "Tipo de empleado";
-            // 
-            // textBox6
-            // 
-            this.textBox6.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox6.Location = new System.Drawing.Point(17, 206);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(286, 27);
-            this.textBox6.TabIndex = 60;
-            this.textBox6.Text = "Mail";
-            // 
-            // textBox5
-            // 
-            this.textBox5.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox5.Location = new System.Drawing.Point(17, 162);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(286, 27);
-            this.textBox5.TabIndex = 59;
-            this.textBox5.Text = "Alternativo";
-            // 
-            // textBox4
-            // 
-            this.textBox4.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox4.Location = new System.Drawing.Point(17, 117);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(286, 27);
-            this.textBox4.TabIndex = 58;
-            this.textBox4.Text = "Teléfono";
+            this.textBox3.Size = new System.Drawing.Size(317, 27);
+            this.textBox3.TabIndex = 77;
+            this.textBox3.Text = "Buscar Clase";
             // 
             // textBox2
             // 
-            this.textBox2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox2.Location = new System.Drawing.Point(17, 37);
+            this.textBox2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.textBox2.Location = new System.Drawing.Point(37, 35);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(286, 27);
-            this.textBox2.TabIndex = 56;
-            this.textBox2.Text = "Nombre y Apellido";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(333, 328);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(307, 41);
-            this.button2.TabIndex = 53;
-            this.button2.Text = "Guardar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.textBox2.Size = new System.Drawing.Size(317, 27);
+            this.textBox2.TabIndex = 76;
+            this.textBox2.Text = "Nombre de clase";
             // 
             // groupBox2
             // 
@@ -216,10 +107,10 @@ namespace Presentacion
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.textBox8);
             this.groupBox2.Controls.Add(this.textBox7);
-            this.groupBox2.Location = new System.Drawing.Point(333, 71);
+            this.groupBox2.Location = new System.Drawing.Point(381, 21);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(307, 249);
-            this.groupBox2.TabIndex = 67;
+            this.groupBox2.TabIndex = 75;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Días y horarios";
             // 
@@ -401,22 +292,135 @@ namespace Presentacion
             this.textBox7.TabIndex = 88;
             this.textBox7.Text = "Desde";
             // 
-            // empleados
+            // textBox1
+            // 
+            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.textBox1.Location = new System.Drawing.Point(37, 145);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(317, 27);
+            this.textBox1.TabIndex = 74;
+            this.textBox1.Text = "$$";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(37, 89);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(317, 28);
+            this.comboBox1.TabIndex = 73;
+            this.comboBox1.Text = "Seleccionar Profesor";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(65, 205);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(248, 50);
+            this.button2.TabIndex = 72;
+            this.button2.Text = "Guardar Clase";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // dgvPlanes
+            // 
+            this.dgvPlanes.AllowUserToAddRows = false;
+            this.dgvPlanes.AllowUserToDeleteRows = false;
+            this.dgvPlanes.AllowUserToOrderColumns = true;
+            this.dgvPlanes.AllowUserToResizeColumns = false;
+            this.dgvPlanes.AllowUserToResizeRows = false;
+            this.dgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPlanes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Clase,
+            this.Profesor,
+            this.Dias,
+            this.Horarios});
+            this.dgvPlanes.ContextMenuStrip = this.menuPlanes;
+            this.dgvPlanes.Location = new System.Drawing.Point(12, 320);
+            this.dgvPlanes.Name = "dgvPlanes";
+            this.dgvPlanes.ReadOnly = true;
+            this.dgvPlanes.RowHeadersVisible = false;
+            this.dgvPlanes.RowHeadersWidth = 51;
+            this.dgvPlanes.RowTemplate.Height = 29;
+            this.dgvPlanes.Size = new System.Drawing.Size(676, 310);
+            this.dgvPlanes.TabIndex = 71;
+            // 
+            // Clase
+            // 
+            this.Clase.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Clase.FillWeight = 150F;
+            this.Clase.HeaderText = "Clase";
+            this.Clase.MinimumWidth = 170;
+            this.Clase.Name = "Clase";
+            this.Clase.ReadOnly = true;
+            this.Clase.Width = 170;
+            // 
+            // Profesor
+            // 
+            this.Profesor.HeaderText = "Profesor";
+            this.Profesor.MinimumWidth = 200;
+            this.Profesor.Name = "Profesor";
+            this.Profesor.ReadOnly = true;
+            this.Profesor.Width = 200;
+            // 
+            // Dias
+            // 
+            this.Dias.HeaderText = "Dias";
+            this.Dias.MinimumWidth = 150;
+            this.Dias.Name = "Dias";
+            this.Dias.ReadOnly = true;
+            this.Dias.Width = 150;
+            // 
+            // Horarios
+            // 
+            this.Horarios.HeaderText = "Horarios";
+            this.Horarios.MinimumWidth = 6;
+            this.Horarios.Name = "Horarios";
+            this.Horarios.ReadOnly = true;
+            this.Horarios.Width = 150;
+            // 
+            // menuPlanes
+            // 
+            this.menuPlanes.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuPlanes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.edit,
+            this.detele});
+            this.menuPlanes.Name = "contextMenuStrip1";
+            this.menuPlanes.Size = new System.Drawing.Size(133, 52);
+            // 
+            // edit
+            // 
+            this.edit.Name = "edit";
+            this.edit.Size = new System.Drawing.Size(132, 24);
+            this.edit.Text = "Editar";
+            // 
+            // detele
+            // 
+            this.detele.Name = "detele";
+            this.detele.Size = new System.Drawing.Size(132, 24);
+            this.detele.Text = "Eliminar";
+            // 
+            // planes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 650);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.dgvPlanes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "empleados";
-            this.Text = "empleados";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Name = "planes";
+            this.Text = "planes";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).EndInit();
+            this.menuPlanes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,18 +428,8 @@ namespace Presentacion
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.TextBox textBox18;
@@ -456,5 +450,16 @@ namespace Presentacion
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dgvPlanes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clase;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Profesor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dias;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Horarios;
+        private System.Windows.Forms.ContextMenuStrip menuPlanes;
+        private System.Windows.Forms.ToolStripMenuItem edit;
+        private System.Windows.Forms.ToolStripMenuItem detele;
     }
 }

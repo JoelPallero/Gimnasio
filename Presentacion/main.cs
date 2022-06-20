@@ -15,7 +15,7 @@ namespace Presentacion
     {
         #region Call of Class
 
-        //commonClass _commonClass = new commonClass();
+        commonClass _commonClass = new commonClass();
 
         #endregion
         public main()
@@ -50,6 +50,7 @@ namespace Presentacion
             focoPagos.Visible = false;
             focoPlanes.Visible = false;
             focoCaja.Visible = false;
+            focoEmpleados.Visible = false;
         }
         private void focusRegistro()
         {
@@ -58,6 +59,7 @@ namespace Presentacion
             focoPagos.Visible = false;
             focoPlanes.Visible = false;
             focoCaja.Visible = false;
+            focoEmpleados.Visible = false;
         }
         private void focusPagos()
         {
@@ -66,6 +68,7 @@ namespace Presentacion
             focoPagos.Visible = true;
             focoPlanes.Visible = false;
             focoCaja.Visible = false;
+            focoEmpleados.Visible = false;
         }
         private void focusPlanes()
         {
@@ -74,6 +77,7 @@ namespace Presentacion
             focoPagos.Visible = false;
             focoPlanes.Visible = true;
             focoCaja.Visible = false;
+            focoEmpleados.Visible = false;
         }
         private void focusCaja()
         {
@@ -82,6 +86,7 @@ namespace Presentacion
             focoPagos.Visible = false;
             focoPlanes.Visible = false;
             focoCaja.Visible = true;
+            focoEmpleados.Visible = false;
         }
         private void focusEmpleados()
         {
@@ -89,18 +94,53 @@ namespace Presentacion
             focoRegistro.Visible = false;
             focoPagos.Visible = false;
             focoPlanes.Visible = false;
-            focoCaja.Visible = true;
+            focoCaja.Visible = false;
+            focoEmpleados.Visible = true;
         }
         #endregion
 
         #region Cerrar y minimizar
         private void btnclose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
         private void btnminimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+        private void btnclose_MouseHover(object sender, EventArgs e)
+        {
+            btnclose.ForeColor = Color.White;
+        }
+
+        private void btnclose_MouseLeave(object sender, EventArgs e)
+        {
+            btnclose.ForeColor = Color.Red;
+        }
+        private void btnminimize_MouseHover(object sender, EventArgs e)
+        {
+            btnminimize.ForeColor = Color.White;
+        }
+
+        private void btnminimize_MouseLeave(object sender, EventArgs e)
+        {
+            btnminimize.ForeColor = Color.Red;
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            if (_commonClass.CajaAbierta == false) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
+            {
+                //deslogueamos la sesión abierta
+                this.Hide();
+                login frm = new login();
+                frm.Show();
+            }
+            else
+            {
+                //Si la caja está abierta, no se puede cerrar sesión hasta cerrar la caja primero.
+                cerrarCaja _cerrarCaja = new cerrarCaja();
+                _cerrarCaja.Show();
+            }
         }
 
         #endregion
@@ -145,13 +185,22 @@ namespace Presentacion
 
         private void btnPlanes_Click(object sender, EventArgs e)
         {
-            CallOfForms(new planesEncargado());
+            CallOfForms(new planes());
             focusPlanes();
         }
 
         private void btnCaja_Click(object sender, EventArgs e)
         {
-            CallOfForms(new caja());
+            if (_commonClass.CajaAbierta == false)
+            {
+                caja _caja = new caja();
+                _caja.Show();
+            }
+            else
+            {
+                cerrarCaja _cerrarCaja = new cerrarCaja();
+                _cerrarCaja.Show();
+            }
             focusCaja();
         }
 
@@ -162,5 +211,6 @@ namespace Presentacion
         }
 
         #endregion
+
     }
 }

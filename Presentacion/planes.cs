@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class planesEncargado : Form
+    public partial class planes : Form
     {
-        public planesEncargado()
+        public planes()
         {
             InitializeComponent();
         }

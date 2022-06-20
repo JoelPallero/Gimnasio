@@ -12,9 +12,16 @@ namespace Presentacion
 {
     public partial class caja : Form
     {
+        commonClass _commonClass = new commonClass();
         public caja()
         {
             InitializeComponent();
+        }
+
+        private void btnAbrirCaja_Click(object sender, EventArgs e)
+        {
+            _commonClass.CajaAbierta = true;
+            this.Close();
         }
     }
 }

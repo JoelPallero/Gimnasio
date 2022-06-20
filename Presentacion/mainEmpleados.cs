@@ -105,13 +105,22 @@ namespace Presentacion
 
         private void btnPlanes_Click(object sender, EventArgs e)
         {
-            CallOfForms(new planesEmpleado());
+            CallOfForms(new planes());
             focusPlanes();
         }
 
         private void btnCaja_Click(object sender, EventArgs e)
         {
-            CallOfForms(new caja());
+            if (_commonClass.CajaAbierta == false)
+            {
+                caja _caja = new caja();
+                _caja.Show();
+            }
+            else
+            {
+                cerrarCaja _cerrarCaja = new cerrarCaja();
+                _cerrarCaja.Show();
+            }
             focusCaja();
         }
 
@@ -121,14 +130,46 @@ namespace Presentacion
 
         private void btnclose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
-
         private void btnminimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        private void btnclose_MouseHover(object sender, EventArgs e)
+        {
+            btnclose.ForeColor = Color.White;
+        }
 
+        private void btnclose_MouseLeave(object sender, EventArgs e)
+        {
+            btnclose.ForeColor = Color.Red;
+        }
+        private void btnminimize_MouseHover(object sender, EventArgs e)
+        {
+            btnminimize.ForeColor = Color.White;
+        }
+
+        private void btnminimize_MouseLeave(object sender, EventArgs e)
+        {
+            btnminimize.ForeColor = Color.Red;
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            if (_commonClass.CajaAbierta == false) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
+            {
+                //deslogueamos la sesión abierta
+                this.Hide();
+                login frm = new login();
+                frm.Show();
+            }
+            else
+            {
+                //Si la caja está abierta, no se puede cerrar sesión hasta cerrar la caja primero.
+                caja _caja = new caja();
+                _caja.Show();
+            }
+        }
 
         #endregion
 
@@ -148,7 +189,6 @@ namespace Presentacion
         }
 
         #endregion
-
 
     }
 }
