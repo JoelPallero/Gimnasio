@@ -6,6 +6,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Datos": "1.0.0",
           "Entities": "1.0.0"
         },
         "compile": {
@@ -17,6 +18,15 @@
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WindowsForms"
         ]
+      },
+      "Datos/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Datos.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Datos.dll": {}
+        }
       },
       "Entities/1.0.0": {
         "type": "project",
@@ -38,6 +48,11 @@
       "type": "project",
       "path": "../Bussiness/Bussiness.csproj",
       "msbuildProject": "../Bussiness/Bussiness.csproj"
+    },
+    "Datos/1.0.0": {
+      "type": "project",
+      "path": "../Gym/Datos/Datos.csproj",
+      "msbuildProject": "../Gym/Datos/Datos.csproj"
     },
     "Entities/1.0.0": {
       "type": "project",

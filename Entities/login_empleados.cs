@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class login_empleados
+    public class login_empleados
     {
+        public int id { get; set; }
+        public string usuario { get; set; }
+        public string clave { get; set; }
+        public int estado_login { get; set; }
+        public int open_session { get; set; }
     }
 }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class concepto_pago
+    public class concepto_pago
     {
+        public int id { get; set; }
+        public string concepto { get; set; }
     }
 }

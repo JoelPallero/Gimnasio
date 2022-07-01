@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net5.0-windows7.0": {
+      "Datos/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Datos.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Datos.dll": {}
+        }
+      },
       "Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -18,6 +27,11 @@
     }
   },
   "libraries": {
+    "Datos/1.0.0": {
+      "type": "project",
+      "path": "../Gym/Datos/Datos.csproj",
+      "msbuildProject": "../Gym/Datos/Datos.csproj"
+    },
     "Entities/1.0.0": {
       "type": "project",
       "path": "../Entities/Entities.csproj",
@@ -26,6 +40,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
+      "Datos >= 1.0.0",
       "Entities >= 1.0.0"
     ]
   },
@@ -63,6 +78,9 @@
           "projectReferences": {
             "G:\\Programacion\\GitHub\\Gym\\Entities\\Entities.csproj": {
               "projectPath": "G:\\Programacion\\GitHub\\Gym\\Entities\\Entities.csproj"
+            },
+            "G:\\Programacion\\GitHub\\Gym\\Gym\\Datos\\Datos.csproj": {
+              "projectPath": "G:\\Programacion\\GitHub\\Gym\\Gym\\Datos\\Datos.csproj"
             }
           }
         }

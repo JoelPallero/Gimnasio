@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class planes
+    public class planes
     {
+        public int id { get; set; }
+        public string nombre_plan { get; set; }
+        public decimal importe { get; set; }
+        public int jornada_id { get; set; }
+        public int estado_plan_id { get; set; }
+        public int empleado_id { get; set; }
     }
 }

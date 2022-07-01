@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class estado_login
+    public class estado_login
     {
+        public int id { get; set; }
+        public string estado { get; set; }
+
     }
 }

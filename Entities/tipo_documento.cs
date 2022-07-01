@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class tipo_documento
+    public class Tipo_Documento
     {
+        public int id { get; set; }
+        public string tipo_documento { get; set; }
     }
 }

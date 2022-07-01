@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities
+namespace Bussiness
 {
-    public class Tipos_empleado
+    class empleadosBussinessLayer
     {
-        public int id { get; set; }
-        public string tipo { get; set; }
     }
 }
