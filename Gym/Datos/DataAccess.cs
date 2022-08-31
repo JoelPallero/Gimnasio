@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    class DataAccess
+    public class DataAccess
     {
+        
     }
 }

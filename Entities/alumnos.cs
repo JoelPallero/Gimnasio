@@ -10,17 +10,17 @@ namespace Entities
     {
         public int id { get; set; }
         public string nombre { get; set; }
-        public int tipo_docuimento { get; set; }
+        public int tipo_docuimento_id { get; set; }
         public string num_dni { get; set; }
         public string telefono { get; set; }
         public string alternativo { get; set; }
         public string mail { get; set; }
-        public string observaciones { get; set; }
         public DateTime fecha_inscripcion { get; set; }
-        public int jornada_id { get; set; }
+        public string observaciones { get; set; }
         public int plan_id { get; set; }
         public int estado_alumno_id { get; set; }
         public int estado_facturacion_id { get; set; }
-        public int empleado_id { get; set; }
+        public int login_id { get; set; }
+        public int jornada_id { get; set; }
     }
 }

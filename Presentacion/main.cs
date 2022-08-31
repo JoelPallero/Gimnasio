@@ -206,7 +206,7 @@ namespace Presentacion
 
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
-            CallOfForms(new empleados());
+            CallOfForms(new AltaEmpleados());
             focusEmpleados();
         }
 

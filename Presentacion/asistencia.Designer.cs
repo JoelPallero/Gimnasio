@@ -41,6 +41,7 @@ namespace Presentacion
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -70,15 +71,16 @@ namespace Presentacion
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(54, 136);
+            this.groupBox1.Location = new System.Drawing.Point(54, 119);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(589, 150);
+            this.groupBox1.Size = new System.Drawing.Size(589, 182);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
@@ -95,16 +97,16 @@ namespace Presentacion
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(320, 104);
+            this.label8.Location = new System.Drawing.Point(320, 67);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 20);
+            this.label8.Size = new System.Drawing.Size(125, 20);
             this.label8.TabIndex = 12;
-            this.label8.Text = "Cuotas:";
+            this.label8.Text = "Estado de cuotas:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(320, 67);
+            this.label7.Location = new System.Drawing.Point(320, 33);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 20);
             this.label7.TabIndex = 11;
@@ -113,7 +115,7 @@ namespace Presentacion
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(320, 33);
+            this.label6.Location = new System.Drawing.Point(19, 138);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(85, 20);
             this.label6.TabIndex = 10;
@@ -140,7 +142,7 @@ namespace Presentacion
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(54, 353);
+            this.dataGridView1.Location = new System.Drawing.Point(54, 363);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
@@ -150,7 +152,7 @@ namespace Presentacion
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 320);
+            this.label2.Location = new System.Drawing.Point(54, 341);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 20);
             this.label2.TabIndex = 5;
@@ -159,11 +161,24 @@ namespace Presentacion
             // textBox2
             // 
             this.textBox2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox2.Location = new System.Drawing.Point(431, 320);
+            this.textBox2.Location = new System.Drawing.Point(431, 330);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(212, 27);
             this.textBox2.TabIndex = 6;
             this.textBox2.Text = "Buscar";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(320, 118);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(173, 40);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Confirmar Asistencia";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // asistencia
             // 
@@ -202,5 +217,6 @@ namespace Presentacion
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button2;
     }
 }

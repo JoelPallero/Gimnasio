@@ -1,12 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entities;
+using System.Data;
+using DataAccess;
 
 namespace Bussiness
 {
-    class empleadosBussinessLayer
+    public class empleadosBussinessLayer
     {
+        private readonly DataEmpleado _dataEmpleado;
+
+        public empleadosBussinessLayer()
+        {
+            _dataEmpleado = new DataEmpleado();
+        }
+        public empleados SaveEmployee(empleados _empleado)
+        {
+            if (_empleado.id == 0)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
     }
 }

@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entities\Entities.csproj" />
-    <ProjectReference Include="..\Gym\Datos\Datos.csproj" />
+    <ProjectReference Include="..\Gym\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\Gym\Entities\Entities.csproj" />
   </ItemGroup>
 
 </Project>
