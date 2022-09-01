@@ -12,16 +12,16 @@ namespace Bussiness
         {
             _dataEmpleado = new DataEmpleado();
         }
-        public empleados SaveEmployee(empleados _empleado)
-        {
-            if (_empleado.id == 0)
-            {
+        //public empleados CreatingEmployee(empleados _empleado)
+        //{
+        //    if (_empleado.id == 0)
+        //    {
 
-            }
-            else
-            {
+        //    }
+        //    else
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 }

@@ -14,3 +14,4 @@ G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.Ge
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.AssemblyInfoInputs.cache
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.AssemblyInfo.cs
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.csproj.CoreCompileInputs.cache
+G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.csproj.AssemblyReference.cache

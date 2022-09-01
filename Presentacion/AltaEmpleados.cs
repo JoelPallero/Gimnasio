@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Bussiness;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,22 +15,22 @@ namespace Presentacion
     public partial class AltaEmpleados : Form
     {
         #region llamada a las entidades
+        //entidades
         empleados _empleado;
         login_empleado _login_Empleado;
         jornada _jornada;
         Tipo_Documento _tipo_documento;
         tipo_empleado _tipo_empleado;
-        
+
+        //Negocio
+
+        private loginBussinessLayer _loginBussinessLayer;
 
         #endregion
         public AltaEmpleados()
         {
             InitializeComponent();
-            _empleado = new empleados();
-            _login_Empleado = new login_empleado();
-            _jornada = new jornada();
-            _tipo_documento = new Tipo_Documento();
-            _tipo_empleado = new tipo_empleado();
+            _loginBussinessLayer = new loginBussinessLayer();
         }
 
         #region Encapsulamiento de Métodos generales
@@ -44,11 +45,12 @@ namespace Presentacion
 
         private void CrearLogin()
         {
+            _login_Empleado = new login_empleado();
             _login_Empleado.usuario = txtDocument.Text;
             _login_Empleado.clave = "emp" + txtDocument.Text;
             _login_Empleado.estado_login = 1; //1 es vigente y 2 es baja (dado de baja del sistema)
 
-            
+            _loginBussinessLayer.SaveLogin(_login_Empleado);
         }
 
         #endregion

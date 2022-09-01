@@ -1,0 +1,10 @@
+G:\Programacion\GitHub\Gym\Gym\Entities\bin\Debug\netcoreapp3.1\Entities.deps.json
+G:\Programacion\GitHub\Gym\Gym\Entities\bin\Debug\netcoreapp3.1\Entities.dll
+G:\Programacion\GitHub\Gym\Gym\Entities\bin\Debug\netcoreapp3.1\Entities.pdb
+G:\Programacion\GitHub\Gym\Gym\Entities\obj\Debug\netcoreapp3.1\Entities.csproj.AssemblyReference.cache
+G:\Programacion\GitHub\Gym\Gym\Entities\obj\Debug\netcoreapp3.1\Entities.GeneratedMSBuildEditorConfig.editorconfig
+G:\Programacion\GitHub\Gym\Gym\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfoInputs.cache
+G:\Programacion\GitHub\Gym\Gym\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfo.cs
+G:\Programacion\GitHub\Gym\Gym\Entities\obj\Debug\netcoreapp3.1\Entities.csproj.CoreCompileInputs.cache
+G:\Programacion\GitHub\Gym\Gym\Entities\obj\Debug\netcoreapp3.1\Entities.dll
+G:\Programacion\GitHub\Gym\Gym\Entities\obj\Debug\netcoreapp3.1\Entities.pdb
