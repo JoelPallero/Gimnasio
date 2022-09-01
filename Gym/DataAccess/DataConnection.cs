@@ -7,7 +7,7 @@ namespace DataAccess
     public class DataConnection 
     {
         public SqlConnection conexion;
-        public string CadenaDeConexion = @"Server=(local);DataBase= gym_bdd; integrated security= true";
+        public string CadenaDeConexion = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=gym_bdd;Data Source=DESKTOP-94J33F0";
         public DataConnection()
         {
             conexion = new SqlConnection(CadenaDeConexion);

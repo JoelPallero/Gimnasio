@@ -11,7 +11,6 @@ namespace Entities
         public int id { get; set; }
         public string nombre { get; set; }
         public int tipo_documento_id { get; set; }
-
         public string num_dni { get; set; }
         public string telefono { get; set; }
         public string alternativo { get; set; }
