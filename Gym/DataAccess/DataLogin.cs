@@ -14,7 +14,7 @@ namespace DataAccess
             {
                 conexion.Open();
                 string query = @"insert into login_empleado (usuario, clave, estado_login)
-                                 values (@usuario, @clave, @estado_login)";
+                                 values (@usuario, HASHBYTES('SHA2_512', @clave), @estado_login)";
 
                 SqlParameter usuario = new SqlParameter("@usuario", _login.usuario);
                 SqlParameter clave = new SqlParameter("@clave", _login.clave);

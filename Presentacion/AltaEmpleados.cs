@@ -69,20 +69,20 @@ namespace Presentacion
 
             //luego guardar el resto de datos.
 
-            _empleado.nombre = txtName.Text;
-            _empleado.tipo_documento_id = cmbTipoDocumento.SelectedIndex + 1;
-            _empleado.num_dni = txtDocument.Text;
-            _empleado.telefono = txtPhone.Text;
-            if (!string.IsNullOrEmpty(txtAlternative.Text))
-            {
-                _empleado.alternativo = txtAlternative.Text;
-            }
-            if (!string.IsNullOrEmpty(txtcomments.Text))
-            {
-                _empleado.observaciones = txtcomments.Text;
-            }
-            _empleado.mail = txtMail.Text;
-            _empleado.tipo_empleado_id = cmbTipoEmployee.SelectedIndex;
+            //_empleado.nombre = txtName.Text;
+            //_empleado.tipo_documento_id = cmbTipoDocumento.SelectedIndex + 1;
+            //_empleado.num_dni = txtDocument.Text;
+            //_empleado.telefono = txtPhone.Text;
+            //if (!string.IsNullOrEmpty(txtAlternative.Text))
+            //{
+            //    _empleado.alternativo = txtAlternative.Text;
+            //}
+            //if (!string.IsNullOrEmpty(txtcomments.Text))
+            //{
+            //    _empleado.observaciones = txtcomments.Text;
+            //}
+            //_empleado.mail = txtMail.Text;
+            //_empleado.tipo_empleado_id = cmbTipoEmployee.SelectedIndex;
         }
 
 
