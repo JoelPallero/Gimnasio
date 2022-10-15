@@ -1,7 +1,7 @@
 ﻿
 namespace Presentacion
 {
-    partial class mainEmpleados
+    partial class MainBoss
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainEmpleados));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainBoss));
             this.windowbox = new System.Windows.Forms.PictureBox();
             this.titlebox = new System.Windows.Forms.PictureBox();
             this.menubox = new System.Windows.Forms.PictureBox();

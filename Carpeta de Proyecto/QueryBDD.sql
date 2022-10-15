@@ -46,9 +46,8 @@ estado nvarchar (20) not null
 
 go
 
-insert into estado_plan (estado) values ('Actual')
-insert into estado_plan (estado) values ('Modificado')
-insert into estado_plan (estado) values ('Baja')
+insert into estado_plan (estado) values ('Vigente')
+insert into estado_plan (estado) values ('Caducado')
 
 go
 
@@ -109,7 +108,7 @@ go
 create table estado_facturacion_alumno(
 id int primary key identity (1, 1),
 estado nvarchar (20) not null
-) /* Estados de la facturación en general, si está todo pago o no */
+) /* Estados de la facturación en general, si está todo cuota o no */
 
 go
 
@@ -118,7 +117,7 @@ insert into estado_facturacion_alumno (estado) values ('Moroso')
 
 go
 
-create table concepto_pago(
+create table concepto_cuota(
 id int primary key identity (1, 1),
 concepto nvarchar (20) not null
 -- el concepto "cancelado" es para las cuotas que se quedan sin efecto,
@@ -127,9 +126,9 @@ concepto nvarchar (20) not null
 
 go
 
-insert into concepto_pago (concepto) values ('Cuota Mensual')
-insert into concepto_pago (concepto) values ('Matricula')
-insert into concepto_pago (concepto) values ('Cancelado')
+insert into concepto_cuota (concepto) values ('Cuota Mensual')
+insert into concepto_cuota (concepto) values ('Matricula')
+insert into concepto_cuota (concepto) values ('Cancelado')
 
 go
 
@@ -172,7 +171,7 @@ insert into tipo_jornada (tipo) values ('Master')
 insert into tipo_jornada (tipo) values ('Jefe')
 insert into tipo_jornada (tipo) values ('Empleado')
 insert into tipo_jornada (tipo) values ('Alumno')
-insert into tipo_jornada (tipo) values ('Clases')
+insert into tipo_jornada (tipo) values ('Clase')
 
 go
 
@@ -193,6 +192,7 @@ domingo nvarchar (13) null,
 tipo_jornada int not null
 )
 
+select * from jornada
 
 go
 
@@ -258,24 +258,26 @@ go
 create table planes(
 id int primary key identity (1, 1) not null,
 nombre_plan nvarchar (30) null,
-importe decimal (18, 2) null,
+costo decimal (18, 2) null,
+cupo_total int not null,
+cupo_restante int null,
 estado_plan_id int not null,
-login_id int not null, -- login de quien cargó el plan
+usuario_id int not null,
 jornada_id int not null
 )
 
 go
 
-create table pago(
+create table cuota(
 id int primary key identity (1, 1) not null,
 importe decimal (18, 2) not null,
 fecha_emision datetime not null, -- mes al que corresponde la cuota
 fecha_vencimiento datetime not null,
-fecha_pago datetime null,
+fecha_cuota datetime null,
 concepto_id int not null,
 estado_cuota_id int not null,
 alumno_id int not null,
-login_id int not null -- el login de quien tomó el pago
+login_id int not null -- el login de quien tomó el cuota
 )
 
 go
@@ -299,13 +301,28 @@ jornada_id int not null
 
 go
 
-create table apertura_caja(
+create table caja(
 id int primary key identity (1, 1) not null,
-caja_abierta bit not null, -- 0 para falso y 1 para verdadero que la caja está abierta
+abierta Bit not null, -- 0 para falso y 1 para verdadero que la caja está abierta
 monto_apertura_efectivo decimal (18, 2) null,
 fecha_apertura datetime not null,
 login_id int not null
 )
+
+/*  Datos de la apertura de caja
+
+id
+abierta         para identificar la apertura
+monto_apertura  para el cambio
+fecha_apertura  
+login_id        del usuario que la abrió
+fecha_cierre    para el cierre de la caja de cada turno
+
+
+
+*/
+
+
 
 go
 
@@ -422,28 +439,28 @@ go
 	  
 	  go
 
-	  /*fk pago*/
+	  /*fk cuota*/
 	  	   
-	  alter table pago
-   add constraint fk_concepto_pago foreign key (concepto_id)
-      references concepto_pago (id)
+	  alter table cuota
+   add constraint fk_concepto_cuota foreign key (concepto_id)
+      references concepto_cuota (id)
 
 	  go
 
-	  alter table pago
+	  alter table cuota
    add constraint fk_estado_cuota foreign key (estado_cuota_id)
       references estado_cuota_alumno (id)
 
 	  go
 
-	  alter table pago
-   add constraint fk_alumno_pago foreign key (alumno_id)
+	  alter table cuota
+   add constraint fk_alumno_cuota foreign key (alumno_id)
       references alumno (id)
 
 	  go
 
-	  alter table pago
-   add constraint fk_login_pago foreign key (login_id)
+	  alter table cuota
+   add constraint fk_login_cuota foreign key (login_id)
       references login_empleado (id)
 
 	  go
@@ -486,3 +503,54 @@ go
    add constraint fk_tipo_jornada foreign key (tipo_jornada)
       references tipo_jornada (id)
 	  
+
+	  /*procedimientos almacenados para consultas rápidas*/
+
+	GO
+
+	use gym_bdd
+
+	CREATE PROCEDURE sp_bringLastLogin  
+	AS 
+    select id from login_empleado where id = (select max(id) from login_empleado) 
+	GO  
+
+	exec sp_bringLasLogin
+
+	  /**/
+
+
+use gym_bdd
+
+go
+
+create procedure sp2_cargar_tipo_empleado
+as
+select * from tipo_empleado
+go
+
+exec sp2_cargar_tipo_empleado
+
+select tipo from tipo_empleado
+
+go
+
+create procedure sp_cargar_tipo_documento
+as
+select * from tipo_documento
+go
+
+exec sp_cargar_tipo_document
+
+select * from empleado
+
+select * from jornada
+
+/*
+
+crear un procedimiento almacenado, donde se pueda consultar por un login,
+y que lo traiga si este empleado sigue de alta, o sigue vigente
+No puede traerlo si está de vacaciones, o si está de licencia médica, psiquiátrica
+o si ya no forma parte del equipo del gym (desempleado)
+
+*/

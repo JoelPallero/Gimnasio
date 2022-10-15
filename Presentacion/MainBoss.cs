@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class mainEmpleados : Form
+    public partial class MainBoss : Form
     {
         #region Call of Class
 
         commonClass _commonClass = new commonClass();
 
         #endregion
-        public mainEmpleados()
+        public MainBoss()
         {
             InitializeComponent();
         }

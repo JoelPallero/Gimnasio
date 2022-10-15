@@ -4,11 +4,11 @@ using DataAccess;
 
 namespace Bussiness
 {
-    public class empleadosBussinessLayer
+    public class EmpleadosBusinessLayer
     {
         private readonly DataEmpleado _dataEmpleado;
 
-        public empleadosBussinessLayer()
+        public EmpleadosBusinessLayer()
         {
             _dataEmpleado = new DataEmpleado();
         }

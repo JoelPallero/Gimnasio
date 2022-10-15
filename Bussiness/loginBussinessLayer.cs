@@ -16,17 +16,25 @@ namespace Bussiness
         {
             _dataLogin = new DataLogin();
         }
-        public login_empleado SaveLogin(login_empleado login_empleado)
+
+        //Registrar nuevo login
+        public login_empleado SaveLogin(login_empleado _login_empleado)
         {
-            if (login_empleado.id == 0)
+            if (_login_empleado.id == 0)
             {
-                _dataLogin.CreatingLogin(login_empleado);
+                _dataLogin.CreatingLogin(_login_empleado);
             }
             else
             {
 
             }
-            return login_empleado;
+            return _login_empleado;
+        }
+
+        //Consultar último login
+        public login_empleado ShowLastLogin(login_empleado _login_Empleado)
+        {
+            return _dataLogin.ConsultarLogin(_login_Empleado);
         }
 
     }

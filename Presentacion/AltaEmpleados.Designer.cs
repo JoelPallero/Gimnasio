@@ -238,9 +238,9 @@ namespace Presentacion
             this.chkSaturday.AutoSize = true;
             this.chkSaturday.Location = new System.Drawing.Point(10, 216);
             this.chkSaturday.Name = "chkSaturday";
-            this.chkSaturday.Size = new System.Drawing.Size(88, 24);
+            this.chkSaturday.Size = new System.Drawing.Size(82, 24);
             this.chkSaturday.TabIndex = 95;
-            this.chkSaturday.Text = "Sábados";
+            this.chkSaturday.Text = "Sábado";
             this.chkSaturday.UseVisualStyleBackColor = true;
             // 
             // chkFriday
@@ -319,6 +319,7 @@ namespace Presentacion
             this.txtDocument.Size = new System.Drawing.Size(211, 27);
             this.txtDocument.TabIndex = 66;
             this.txtDocument.Text = "N° documento";
+            this.txtDocument.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocument_KeyPress);
             // 
             // cmbTipoDocumento
             // 
@@ -344,9 +345,6 @@ namespace Presentacion
             // 
             this.cmbTipoEmployee.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.cmbTipoEmployee.FormattingEnabled = true;
-            this.cmbTipoEmployee.Items.AddRange(new object[] {
-            "Encargado",
-            "Profesor"});
             this.cmbTipoEmployee.Location = new System.Drawing.Point(333, 37);
             this.cmbTipoEmployee.Name = "cmbTipoEmployee";
             this.cmbTipoEmployee.Size = new System.Drawing.Size(307, 28);
@@ -370,6 +368,7 @@ namespace Presentacion
             this.txtAlternative.Size = new System.Drawing.Size(286, 27);
             this.txtAlternative.TabIndex = 59;
             this.txtAlternative.Text = "Alternativo";
+            this.txtAlternative.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocument_KeyPress);
             // 
             // txtPhone
             // 
@@ -379,6 +378,7 @@ namespace Presentacion
             this.txtPhone.Size = new System.Drawing.Size(286, 27);
             this.txtPhone.TabIndex = 58;
             this.txtPhone.Text = "Teléfono";
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocument_KeyPress);
             // 
             // txtName
             // 

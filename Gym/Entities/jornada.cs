@@ -15,7 +15,7 @@ namespace Entities
         public string miercoles { get; set; }
         public string jueves { get; set; }
         public string viernes { get; set; }
-        public string sabados { get; set; }
+        public string sabado { get; set; }
         public string domingo { get; set; }
         public int tipo_jornada { get; set; }
     }
