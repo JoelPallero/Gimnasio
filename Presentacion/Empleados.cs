@@ -12,19 +12,19 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class AltaEmpleados : Form
+    public partial class Empleados : Form
     {
         #region llamada a las entidades
         //entidades
         empleados _empleado;
         login_empleado _login_Empleado;
-        jornada _jornada;
+        Jornada _jornada;
         Tipo_Documento _tipo_documento;
         tipo_empleado _tipo_empleado;
 
         //Negocio
 
-        private loginBussinessLayer _loginBussinessLayer;
+        private LoginBussinessLayer _loginBussinessLayer;
         private JornadaBusiness _jornadaBusiness;
         private Tipo_EmpleadoBusiness _tipo_EmpleadoBusiness;
         private Tipo_documentoBusiness _tipoDocumentoBusiness;
@@ -41,10 +41,10 @@ namespace Presentacion
         int chkConteo = 0;
 
         #endregion
-        public AltaEmpleados()
+        public Empleados()
         {
             InitializeComponent();
-            _loginBussinessLayer = new loginBussinessLayer();
+            _loginBussinessLayer = new LoginBussinessLayer();
             _jornadaBusiness = new JornadaBusiness();
             _tipo_EmpleadoBusiness = new Tipo_EmpleadoBusiness();
             _tipoDocumentoBusiness = new Tipo_documentoBusiness();
@@ -63,65 +63,67 @@ namespace Presentacion
 
         private void All()
         {
-            if (chkAll.Checked == false)
+            if (ChkTodos.Checked == false)
             {
-                foreach (Control chk in this.gbJournalTIme.Controls)
+                foreach (Control chk in this.GbJornadaEmpleado.Controls)
                 {
-                    if (chk is CheckBox)
+                    if (chk is CheckBox box)
                     {
                         CheckBox c;
-                        c = (CheckBox)chk;
+                        c = box;
                         c.Checked = false;
-                        habilitarTxt();
+                        HabilitarTxt();
                     }
                 }
             }
             else
             {
-                foreach (Control chk in this.gbJournalTIme.Controls)
+                foreach (Control chk in this.GbJornadaEmpleado.Controls)
                 {
-                    if (chk is CheckBox)
+                    if (chk is CheckBox box)
                     {
                         CheckBox c;
-                        c = (CheckBox)chk;
+                        c = box;
                         c.Checked = true;
-                        deshabilitarTxt();
+                        DeshabilitarTxt();
                     }
                 }
             }
         }
 
-        private void deshabilitarTxt()
+        private void DeshabilitarTxt()
         {
-            foreach (Control txt in this.gbJournalTIme.Controls)
+            foreach (Control txt in this.GbJornadaEmpleado.Controls)
             {
-                if (txt is TextBox && txt != txtFromMonday && txt != txtToMonday)
+                if (txt is TextBox box && txt != TxtDesdeLunes && txt != TxtHastaLunes)
                 {
                     TextBox t;
-                    t = (TextBox)txt;
+                    t = box;
                     t.Enabled = false;
                 }
             }
         }
 
-        private void habilitarTxt()
+        private void HabilitarTxt()
         {
-            foreach (Control txt in this.gbJournalTIme.Controls)
+            foreach (Control txt in this.GbJornadaEmpleado.Controls)
             {
-                if (txt is TextBox)
+                if (txt is TextBox box)
                 {
                     TextBox t;
-                    t = (TextBox)txt;
+                    t = box;
                     t.Enabled = true;
                 }
             }
         }
         private void CrearLogin()
         {
-            _login_Empleado = new login_empleado();
-            _login_Empleado.usuario = txtDocument.Text;
-            _login_Empleado.clave = "emp" + txtDocument.Text;
-            _login_Empleado.estado_login = 1; //1 es vigente y 2 es baja (dado de baja del sistema)
+            _login_Empleado = new login_empleado
+            {
+                usuario = txtDocument.Text,
+                clave = "emp" + txtDocument.Text,
+                estado_login = 1 //1 es vigente y 2 es baja (dado de baja del sistema)
+            };
 
             _loginBussinessLayer.SaveLogin(_login_Empleado);
 
@@ -135,12 +137,12 @@ namespace Presentacion
 
         private void RevisarChk()
         {
-            foreach (Control chk in this.gbJournalTIme.Controls)
+            foreach (Control chk in this.GbJornadaEmpleado.Controls)
             {
-                if (chk is CheckBox)
+                if (chk is CheckBox box)
                 {
                     CheckBox c;
-                    c = (CheckBox)chk;
+                    c = box;
                     if (c.Checked)
                     {
                         check++;
@@ -154,21 +156,21 @@ namespace Presentacion
             }
         }
 
-        private void crearJornada()
+        private void CrearJornada()
         {
-            _jornada = new jornada();
-            if (chkAll.Checked)
+            _jornada = new Jornada();
+            if (ChkTodos.Checked)
             {
                 //voy a recorrer todos los textbox del control que los tiene
                 //y ahí voy a verificar si hay horarios. Todos pueden ser null en la bdd
                 //así que no importa si no tienen datos.
                 bool empty = true;
-                foreach (Control txt in this.gbJournalTIme.Controls)
+                foreach (Control txt in this.GbJornadaEmpleado.Controls)
                 {
-                    if (txt is TextBox)
+                    if (txt is TextBox box)
                     {
                         TextBox t;
-                        t = (TextBox)txt;
+                        t = box;
                         if (string.IsNullOrEmpty(t.Text))
                         {
                             empty = true;
@@ -182,24 +184,24 @@ namespace Presentacion
 
                 if (empty)
                 {
-                    _jornada.tipo_jornada = 3;
+                    _jornada.Tipo_Jornada = 3;
                 }
                 else
                 {
-                    _jornada.todos = txtFromMonday.Text + "a" + txtToMonday.Text;
-                    _jornada.tipo_jornada = 3;
+                    _jornada.Todos = TxtDesdeLunes.Text + "a" + TxtHastaLunes.Text;
+                    _jornada.Tipo_Jornada = 3;
                 }
                 _jornadaBusiness.CreateJornadaAll(_jornada);
             }
             else
             {
                 bool txtVacio = true;
-                foreach (Control txt in this.gbJournalTIme.Controls)
+                foreach (Control txt in this.GbJornadaEmpleado.Controls)
                 {
-                    if (txt is TextBox)
+                    if (txt is TextBox box)
                     {
                         TextBox t;
-                        t = (TextBox)txt;
+                        t = box;
                         if (string.IsNullOrEmpty(t.Text))
                         {
                             txtVacio = true;
@@ -217,12 +219,12 @@ namespace Presentacion
                 }
                 else
                 {
-                    foreach (Control chk in this.gbJournalTIme.Controls)
+                    foreach (Control chk in this.GbJornadaEmpleado.Controls)
                     {
-                        if (chk is CheckBox)
+                        if (chk is CheckBox box)
                         {
                             CheckBox c;
-                            c = (CheckBox)chk;
+                            c = box;
                             if (c.Checked)
                             {
                                 chkSelected[chkConteo] = c.Text;
@@ -241,75 +243,75 @@ namespace Presentacion
                             switch (chkSelected[i])
                             {
                                 case "Lunes":
-                                    if (chkSelected[i] == chkMonday.Text
-                                        && !string.IsNullOrEmpty(txtFromMonday.Text)
-                                        && !string.IsNullOrEmpty(txtToMonday.Text))
+                                    if (chkSelected[i] == ChkLunes.Text
+                                        && !string.IsNullOrEmpty(TxtDesdeLunes.Text)
+                                        && !string.IsNullOrEmpty(TxtHastaLunes.Text))
                                     {
-                                        _jornada.lunes = txtFromMonday.Text + " a " + txtToMonday.Text;
+                                        _jornada.Lunes = TxtDesdeLunes.Text + " a " + TxtHastaLunes.Text;
                                     }
                                     else
                                     {
-                                        _jornada.lunes = "-";
+                                        _jornada.Lunes = "-";
                                     }
                                     break;
                                 case "Martes":
-                                    if (chkSelected[i] == chkTuesday.Text
-                                        && !string.IsNullOrEmpty(txtFromTuesday.Text)
-                                        && !string.IsNullOrEmpty(txtToTuesday.Text))
+                                    if (chkSelected[i] == ChkMartes.Text
+                                        && !string.IsNullOrEmpty(TxtDesdeMartes.Text)
+                                        && !string.IsNullOrEmpty(TxtHastaMartes.Text))
                                     {
-                                        _jornada.martes = txtFromTuesday.Text + " a " + txtToTuesday.Text;
+                                        _jornada.Martes = TxtDesdeMartes.Text + " a " + TxtHastaMartes.Text;
                                     }
                                     else
                                     {
-                                        _jornada.martes = "-";
+                                        _jornada.Martes = "-";
                                     }
                                     break;
                                 case "Miércoles":
-                                    if (chkSelected[i] == chkWednesday.Text
-                                        && !string.IsNullOrEmpty(txtFromWednesday.Text)
-                                        && !string.IsNullOrEmpty(txtToWednesday.Text))
+                                    if (chkSelected[i] == ChkMiercoles.Text
+                                        && !string.IsNullOrEmpty(TxtDesdeMiercoles.Text)
+                                        && !string.IsNullOrEmpty(TxtHastaMiercoles.Text))
                                     {
-                                        _jornada.miercoles = txtFromWednesday.Text + " a " + txtToWednesday.Text;
+                                        _jornada.Miercoles = TxtDesdeMiercoles.Text + " a " + TxtHastaMiercoles.Text;
                                     }
                                     else
                                     {
-                                        _jornada.miercoles = "-";
+                                        _jornada.Miercoles = "-";
                                     }
                                     break;
                                 case "Jueves":
-                                    if (chkSelected[i] == chkThursday.Text
-                                        && !string.IsNullOrEmpty(txtFromThursday.Text)
-                                        && !string.IsNullOrEmpty(txtToThursday.Text))
+                                    if (chkSelected[i] == ChkJueves.Text
+                                        && !string.IsNullOrEmpty(TxtDesdeJueves.Text)
+                                        && !string.IsNullOrEmpty(TxtHastaJueves.Text))
                                     {
-                                        _jornada.jueves = txtFromThursday.Text + " a " + txtToThursday.Text;
+                                        _jornada.Jueves = TxtDesdeJueves.Text + " a " + TxtHastaJueves.Text;
                                     }
                                     else
                                     {
-                                        _jornada.jueves = "-";
+                                        _jornada.Jueves = "-";
                                     }
                                     break;
                                 case "Viernes":
-                                    if (chkSelected[i] == chkFriday.Text
-                                        && !string.IsNullOrEmpty(txtFromFriday.Text)
-                                        && !string.IsNullOrEmpty(txtToFriday.Text))
+                                    if (chkSelected[i] == ChkViernes.Text
+                                        && !string.IsNullOrEmpty(TxtDesdeViernes.Text)
+                                        && !string.IsNullOrEmpty(TxtHastaViernes.Text))
                                     {
-                                        _jornada.viernes = txtFromFriday.Text + " a " + txtToFriday.Text;
+                                        _jornada.Viernes = TxtDesdeViernes.Text + " a " + TxtHastaViernes.Text;
                                     }
                                     else
                                     {
-                                        _jornada.viernes = "-";
+                                        _jornada.Viernes = "-";
                                     }
                                     break;
                                 case "Sábado":
-                                    if (chkSelected[i] == chkSaturday.Text
-                                        && !string.IsNullOrEmpty(txtFromSaturday.Text)
-                                        && !string.IsNullOrEmpty(txtToSaturday.Text))
+                                    if (chkSelected[i] == ChkSabado.Text
+                                        && !string.IsNullOrEmpty(TxtDesdeSabado.Text)
+                                        && !string.IsNullOrEmpty(TxtHastaSabado.Text))
                                     {
-                                        _jornada.sabado = txtFromSaturday.Text + " a " + txtToSaturday.Text;
+                                        _jornada.Sabado = TxtDesdeSabado.Text + " a " + TxtHastaSabado.Text;
                                     }
                                     else
                                     {
-                                        _jornada.sabado = "-";
+                                        _jornada.Sabado = "-";
                                     }
                                     break;
                             }
@@ -323,13 +325,13 @@ namespace Presentacion
         private void CargarTipoEmpleado()
         {
             _tipo_empleado = new tipo_empleado();
-            DsTipoEmpleados = _tipo_EmpleadoBusiness.BringTipo();
+            //DsTipoEmpleados = _tipo_EmpleadoBusiness.BringTipo();
 
             if (DsTipoEmpleados.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dr in DsTipoEmpleados.Tables[0].Rows)
                 {
-                    cmbTipoEmployee.Items.Add(dr[1].ToString());
+                    CmbTipoEmpleado.Items.Add(dr[1].ToString());
                 }
             }
         }
@@ -342,7 +344,7 @@ namespace Presentacion
             {
                 foreach (DataRow dr in DsTipoDocumento.Tables[0].Rows)
                 {
-                    cmbTipoDocumento.Items.Add(dr[1].ToString());
+                    cmbTipoDocumentoEmpleado.Items.Add(dr[1].ToString());
                 }
             }
         }
@@ -352,7 +354,7 @@ namespace Presentacion
         #endregion
 
         #region Save Empleado
-        private void btnSaveEmployee_Click(object sender, EventArgs e)
+        private void BtnSaveEmployee_Click(object sender, EventArgs e)
         {
             _empleado = new empleados();
             //Primero necesito crear las tablas que necesitamos
@@ -367,36 +369,36 @@ namespace Presentacion
 
             if (check > 0)
             {
-                crearJornada();
+                CrearJornada();
 
 
                 //luego guardar el resto de datos.
 
-                _empleado.nombre = txtName.Text;
-                _empleado.tipo_documento_id = cmbTipoDocumento.SelectedIndex++;
+                _empleado.nombre = TxtNombreEmpleado.Text;
+                _empleado.tipo_documento_id = cmbTipoDocumentoEmpleado.SelectedIndex++;
                 _empleado.num_dni = txtDocument.Text;
-                _empleado.telefono = txtPhone.Text;
+                _empleado.telefono = TxtTelefonoEmpleado.Text;
 
-                if (!string.IsNullOrEmpty(txtAlternative.Text))
+                if (!string.IsNullOrEmpty(TxtAlternativoEmpleado.Text))
                 {
-                    _empleado.alternativo = txtAlternative.Text;
+                    _empleado.alternativo = TxtAlternativoEmpleado.Text;
                 }
 
-                _empleado.mail = txtMail.Text;
+                _empleado.mail = TxtMailEmpleado.Text;
 
-                if (!string.IsNullOrEmpty(txtcomments.Text))
+                if (!string.IsNullOrEmpty(TxtObservacionesEmpleado.Text))
                 {
-                    _empleado.observaciones = txtcomments.Text;
+                    _empleado.observaciones = TxtObservacionesEmpleado.Text;
                 }
 
-                _empleado.tipo_empleado_id = cmbTipoEmployee.SelectedIndex++;
+                _empleado.tipo_empleado_id = CmbTipoEmpleado.SelectedIndex++;
                 _empleado.estado_empleado_id = 1; //Siempre va a ser 1 al dar el alta.
-                _empleado.jornada_id = _jornada.id;
+                _empleado.jornada_id = _jornada.Id;
             }
         }
 
 
-        private void chkAll_CheckedChanged(object sender, EventArgs e)
+        private void ChkAll_CheckedChanged(object sender, EventArgs e)
         {
             All();
         }
@@ -404,7 +406,7 @@ namespace Presentacion
 
         #endregion
 
-        private void txtDocument_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtDocument_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Solo se teclean los digitos
             if (Char.IsDigit(e.KeyChar))

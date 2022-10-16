@@ -8,10 +8,15 @@ using System.Runtime.InteropServices;
 
 namespace Presentacion
 {
-    public class commonClass
+    public class CommonClass
     {
         //Poner el arrastre del form
         //y todos los botones o eventos comunes en cada formulario
+
+        /*tareas*/
+        
+        //Asignar el ID del usuario´con el login abierto para utilizarlo
+        //como huella en los distintos registros.
 
         public bool CajaAbierta = true;
         

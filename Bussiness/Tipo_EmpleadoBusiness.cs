@@ -11,17 +11,17 @@ namespace Bussiness
 {
     public class Tipo_EmpleadoBusiness
     {
-        private DataTipoEmpleado _dataTipoEmpleado;
+        //private DataTipoEmpleado _dataTipoEmpleado;
 
 
         public Tipo_EmpleadoBusiness()
         {
-            _dataTipoEmpleado = new DataTipoEmpleado();
+            //_dataTipoEmpleado = new DataTipoEmpleado();
         }
 
-        public DataSet BringTipo()
-        {
-            return _dataTipoEmpleado.BringTipoEmpleado();
-        }
+        //public DataSet BringTipo()
+        //{
+        //    //return _dataTipoEmpleado.BringTipoEmpleado();
+        //}
     }
 }

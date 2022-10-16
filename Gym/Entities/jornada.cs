@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class jornada
+    public class Jornada
     {
-        public int id { get; set; }
-        public string todos { get; set; }
-        public string lunes { get; set; }
-        public string martes { get; set; }
-        public string miercoles { get; set; }
-        public string jueves { get; set; }
-        public string viernes { get; set; }
-        public string sabado { get; set; }
-        public string domingo { get; set; }
-        public int tipo_jornada { get; set; }
+        public int Id { get; set; }
+        public string Todos { get; set; }
+        public string Lunes { get; set; }
+        public string Martes { get; set; }
+        public string Miercoles { get; set; }
+        public string Jueves { get; set; }
+        public string Viernes { get; set; }
+        public string Sabado { get; set; }
+        public string Domingo { get; set; }
+        public int Tipo_Jornada { get; set; }
     }
 }

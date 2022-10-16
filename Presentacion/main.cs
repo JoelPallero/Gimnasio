@@ -15,7 +15,7 @@ namespace Presentacion
     {
         #region Call of Class
 
-        commonClass _commonClass = new commonClass();
+        CommonClass _commonClass = new();
 
         #endregion
         public main()
@@ -43,7 +43,7 @@ namespace Presentacion
 
         #region Foco Menu
 
-        private void focusAsistencia()
+        private void FocusAsistencia()
         {
             focoAsistencia.Visible = true;
             focoRegistro.Visible = false;
@@ -52,7 +52,7 @@ namespace Presentacion
             focoCaja.Visible = false;
             focoEmpleados.Visible = false;
         }
-        private void focusRegistro()
+        private void FocusRegistro()
         {
             focoAsistencia.Visible = false;
             focoRegistro.Visible = true;
@@ -61,7 +61,7 @@ namespace Presentacion
             focoCaja.Visible = false;
             focoEmpleados.Visible = false;
         }
-        private void focusPagos()
+        private void FocusPagos()
         {
             focoAsistencia.Visible = false;
             focoRegistro.Visible = false;
@@ -70,7 +70,7 @@ namespace Presentacion
             focoCaja.Visible = false;
             focoEmpleados.Visible = false;
         }
-        private void focusPlanes()
+        private void FocusPlanes()
         {
             focoAsistencia.Visible = false;
             focoRegistro.Visible = false;
@@ -79,7 +79,7 @@ namespace Presentacion
             focoCaja.Visible = false;
             focoEmpleados.Visible = false;
         }
-        private void focusCaja()
+        private void FocusCaja()
         {
             focoAsistencia.Visible = false;
             focoRegistro.Visible = false;
@@ -88,7 +88,7 @@ namespace Presentacion
             focoCaja.Visible = true;
             focoEmpleados.Visible = false;
         }
-        private void focusEmpleados()
+        private void FocusEmpleados()
         {
             focoAsistencia.Visible = false;
             focoRegistro.Visible = false;
@@ -100,45 +100,45 @@ namespace Presentacion
         #endregion
 
         #region Cerrar y minimizar
-        private void btnclose_Click(object sender, EventArgs e)
+        private void Btnclose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-        private void btnminimize_Click(object sender, EventArgs e)
+        private void Btnminimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void btnclose_MouseHover(object sender, EventArgs e)
+        private void Btnclose_MouseHover(object sender, EventArgs e)
         {
             btnclose.ForeColor = Color.White;
         }
 
-        private void btnclose_MouseLeave(object sender, EventArgs e)
+        private void Btnclose_MouseLeave(object sender, EventArgs e)
         {
             btnclose.ForeColor = Color.Red;
         }
-        private void btnminimize_MouseHover(object sender, EventArgs e)
+        private void Btnminimize_MouseHover(object sender, EventArgs e)
         {
             btnminimize.ForeColor = Color.White;
         }
 
-        private void btnminimize_MouseLeave(object sender, EventArgs e)
+        private void Btnminimize_MouseLeave(object sender, EventArgs e)
         {
             btnminimize.ForeColor = Color.Red;
         }
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void BtnLogout_Click(object sender, EventArgs e)
         {
             if (_commonClass.CajaAbierta == false) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
             {
                 //deslogueamos la sesión abierta
                 this.Hide();
-                login frm = new login();
+                login frm = new();
                 frm.Show();
             }
             else
             {
                 //Si la caja está abierta, no se puede cerrar sesión hasta cerrar la caja primero.
-                cerrarCaja _cerrarCaja = new cerrarCaja();
+                cerrarCaja _cerrarCaja = new();
                 _cerrarCaja.Show();
             }
         }
@@ -154,7 +154,7 @@ namespace Presentacion
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-        private void titleboxMain_MouseDown(object sender, MouseEventArgs e)
+        private void TitleboxMain_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
@@ -165,49 +165,49 @@ namespace Presentacion
 
         #region Menu
 
-        private void btnAsistencia_Click(object sender, EventArgs e)
+        private void BtnAsistencia_Click(object sender, EventArgs e)
         {
             CallOfForms(new asistencia());
-            focusAsistencia();
+            FocusAsistencia();
         }
 
-        private void btnRegistro_Click(object sender, EventArgs e)
+        private void BtnRegistro_Click(object sender, EventArgs e)
         {
-            CallOfForms(new registro());
-            focusRegistro();
+            CallOfForms(new Clientes());
+            FocusRegistro();
         }
 
-        private void btnPagos_Click(object sender, EventArgs e)
+        private void BtnPagos_Click(object sender, EventArgs e)
         {
             CallOfForms(new pagos());
-            focusPagos();
+            FocusPagos();
         }
 
-        private void btnPlanes_Click(object sender, EventArgs e)
+        private void BtnPlanes_Click(object sender, EventArgs e)
         {
             CallOfForms(new planes());
-            focusPlanes();
+            FocusPlanes();
         }
 
-        private void btnCaja_Click(object sender, EventArgs e)
+        private void BtnCaja_Click(object sender, EventArgs e)
         {
             if (_commonClass.CajaAbierta == false)
             {
-                caja _caja = new caja();
+                caja _caja = new();
                 _caja.Show();
             }
             else
             {
-                cerrarCaja _cerrarCaja = new cerrarCaja();
+                cerrarCaja _cerrarCaja = new();
                 _cerrarCaja.Show();
             }
-            focusCaja();
+            FocusCaja();
         }
 
-        private void btnEmpleados_Click(object sender, EventArgs e)
+        private void BtnEmpleados_Click(object sender, EventArgs e)
         {
-            CallOfForms(new AltaEmpleados());
-            focusEmpleados();
+            CallOfForms(new Empleados());
+            FocusEmpleados();
         }
 
         #endregion

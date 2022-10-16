@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Bussiness
 {
-    public class loginBussinessLayer
+    public class LoginBussinessLayer
     {
         private readonly DataLogin _dataLogin;
 
-        public loginBussinessLayer()
+        public LoginBussinessLayer()
         {
             _dataLogin = new DataLogin();
         }

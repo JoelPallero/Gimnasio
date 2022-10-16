@@ -29,61 +29,74 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtDatoClienteAsistencia = new System.Windows.Forms.TextBox();
+            this.BtnBuscarClienteAsistencia = new System.Windows.Forms.Button();
+            this.GbClienteAsistencia = new System.Windows.Forms.GroupBox();
+            this.BtnAltaAsistencia = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DtgvClienteAsistencia = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.TxtBuscarClienteAsistencia = new System.Windows.Forms.TextBox();
+            this.GbClienteAsistencia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DtgvClienteAsistencia)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // TxtDatoClienteAsistencia
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox1.Location = new System.Drawing.Point(54, 76);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(396, 30);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Nombre o DNI";
+            this.TxtDatoClienteAsistencia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtDatoClienteAsistencia.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtDatoClienteAsistencia.Location = new System.Drawing.Point(54, 76);
+            this.TxtDatoClienteAsistencia.Name = "TxtDatoClienteAsistencia";
+            this.TxtDatoClienteAsistencia.Size = new System.Drawing.Size(396, 27);
+            this.TxtDatoClienteAsistencia.TabIndex = 0;
+            this.TxtDatoClienteAsistencia.Text = "Nombre o DNI";
             // 
-            // button1
+            // BtnBuscarClienteAsistencia
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(502, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 40);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnBuscarClienteAsistencia.BackColor = System.Drawing.SystemColors.Highlight;
+            this.BtnBuscarClienteAsistencia.FlatAppearance.BorderSize = 0;
+            this.BtnBuscarClienteAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscarClienteAsistencia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnBuscarClienteAsistencia.Location = new System.Drawing.Point(502, 73);
+            this.BtnBuscarClienteAsistencia.Name = "BtnBuscarClienteAsistencia";
+            this.BtnBuscarClienteAsistencia.Size = new System.Drawing.Size(141, 40);
+            this.BtnBuscarClienteAsistencia.TabIndex = 2;
+            this.BtnBuscarClienteAsistencia.Text = "Buscar";
+            this.BtnBuscarClienteAsistencia.UseVisualStyleBackColor = false;
             // 
-            // groupBox1
+            // GbClienteAsistencia
             // 
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(54, 119);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(589, 182);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Personales";
+            this.GbClienteAsistencia.Controls.Add(this.BtnAltaAsistencia);
+            this.GbClienteAsistencia.Controls.Add(this.label4);
+            this.GbClienteAsistencia.Controls.Add(this.label8);
+            this.GbClienteAsistencia.Controls.Add(this.label7);
+            this.GbClienteAsistencia.Controls.Add(this.label6);
+            this.GbClienteAsistencia.Controls.Add(this.label5);
+            this.GbClienteAsistencia.Controls.Add(this.label3);
+            this.GbClienteAsistencia.Location = new System.Drawing.Point(54, 119);
+            this.GbClienteAsistencia.Name = "GbClienteAsistencia";
+            this.GbClienteAsistencia.Size = new System.Drawing.Size(589, 182);
+            this.GbClienteAsistencia.TabIndex = 3;
+            this.GbClienteAsistencia.TabStop = false;
+            this.GbClienteAsistencia.Text = "Datos Personales";
+            // 
+            // BtnAltaAsistencia
+            // 
+            this.BtnAltaAsistencia.BackColor = System.Drawing.SystemColors.Highlight;
+            this.BtnAltaAsistencia.FlatAppearance.BorderSize = 0;
+            this.BtnAltaAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAltaAsistencia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnAltaAsistencia.Location = new System.Drawing.Point(320, 118);
+            this.BtnAltaAsistencia.Name = "BtnAltaAsistencia";
+            this.BtnAltaAsistencia.Size = new System.Drawing.Size(173, 40);
+            this.BtnAltaAsistencia.TabIndex = 7;
+            this.BtnAltaAsistencia.Text = "Confirmar Asistencia";
+            this.BtnAltaAsistencia.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
@@ -139,15 +152,15 @@ namespace Presentacion
             this.label3.TabIndex = 7;
             this.label3.Text = "Nombre:";
             // 
-            // dataGridView1
+            // DtgvClienteAsistencia
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(54, 363);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(589, 256);
-            this.dataGridView1.TabIndex = 4;
+            this.DtgvClienteAsistencia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DtgvClienteAsistencia.Location = new System.Drawing.Point(54, 363);
+            this.DtgvClienteAsistencia.Name = "DtgvClienteAsistencia";
+            this.DtgvClienteAsistencia.RowHeadersWidth = 51;
+            this.DtgvClienteAsistencia.RowTemplate.Height = 29;
+            this.DtgvClienteAsistencia.Size = new System.Drawing.Size(589, 256);
+            this.DtgvClienteAsistencia.TabIndex = 4;
             // 
             // label2
             // 
@@ -158,27 +171,14 @@ namespace Presentacion
             this.label2.TabIndex = 5;
             this.label2.Text = "Asistencia diaria";
             // 
-            // textBox2
+            // TxtBuscarClienteAsistencia
             // 
-            this.textBox2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox2.Location = new System.Drawing.Point(431, 330);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(212, 27);
-            this.textBox2.TabIndex = 6;
-            this.textBox2.Text = "Buscar";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(320, 118);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 40);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Confirmar Asistencia";
-            this.button2.UseVisualStyleBackColor = false;
+            this.TxtBuscarClienteAsistencia.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtBuscarClienteAsistencia.Location = new System.Drawing.Point(431, 330);
+            this.TxtBuscarClienteAsistencia.Name = "TxtBuscarClienteAsistencia";
+            this.TxtBuscarClienteAsistencia.Size = new System.Drawing.Size(212, 27);
+            this.TxtBuscarClienteAsistencia.TabIndex = 6;
+            this.TxtBuscarClienteAsistencia.Text = "Buscar";
             // 
             // asistencia
             // 
@@ -186,18 +186,18 @@ namespace Presentacion
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(700, 650);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.TxtBuscarClienteAsistencia);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.DtgvClienteAsistencia);
+            this.Controls.Add(this.GbClienteAsistencia);
+            this.Controls.Add(this.BtnBuscarClienteAsistencia);
+            this.Controls.Add(this.TxtDatoClienteAsistencia);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "asistencia";
             this.Text = "asistencia";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.GbClienteAsistencia.ResumeLayout(false);
+            this.GbClienteAsistencia.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DtgvClienteAsistencia)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,18 +205,18 @@ namespace Presentacion
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox TxtDatoClienteAsistencia;
+        private System.Windows.Forms.Button BtnBuscarClienteAsistencia;
+        private System.Windows.Forms.GroupBox GbClienteAsistencia;
+        private System.Windows.Forms.DataGridView DtgvClienteAsistencia;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TxtBuscarClienteAsistencia;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnAltaAsistencia;
     }
 }

@@ -116,6 +116,7 @@ idTipoEmpleado int not null,   --
 idEstadoEmpleado int not null, 
 usuario varchar(255) null, -- con algún hash para encriptar claves
 clave varbinary(128) null, -- Si no es Usuario, no hace falta que tenga clave para acceder al sistema.
+idJornada int not null -- jornada laboral
 )
 
 go
@@ -155,7 +156,7 @@ observaciones nvarchar (200) null,
 fechaAlta datetime not null,
 fechaBaja datetime null,
 idEstadoCliente int not null, 
-idUsuario int not null -- quien registró al cliente
+idUsuario int not null -- quien registró al cliente (la huella)
 )
 go
 
@@ -188,6 +189,7 @@ fecha datetime not null,
 estado varchar(1) not null, --Una sola letra para el Presente (P), Ausente (A), o tarde (T)
 idCliente int not null,
 idPlanAsig int not null,    --Para saber a qué clase o plan pertenece, en caso de ser clases con horarios específicos
+idUsuario int not null
 )
 
 go
@@ -268,12 +270,7 @@ importePlan decimal (18,0) not null,
 idUsuario int not null,
 duración int not null,   -- en cantidad de meses
 cupoTotal int null,
-lunes varchar (13) null,
-martes varchar (13) null,
-miercoles varchar (13) null,
-jueves varchar (13) null,
-viernes varchar (13) null,
-sabado varchar (13) null
+idJornada int not null -- se asigna la jornada correspondiente.
 )
 go
 
@@ -358,10 +355,9 @@ go
 
 --Tabla Jornada Semanal de clases
 
-create table jornadaSemanal(
+create table jornada(
 id int primary key identity (0, 1),
-hDesde int not null,
-hHasta int not null,
+Todos varchar (20) null,
 lunes varchar (20) null,
 martes varchar (20) null,
 miercoles varchar (20) null,

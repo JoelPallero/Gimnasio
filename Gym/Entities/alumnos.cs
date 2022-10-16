@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class alumnos
+    public class Alumnos
     {
-        public int id { get; set; }
-        public string nombre { get; set; }
-        public int tipo_documento_id { get; set; }
-        public string num_dni { get; set; }
-        public string telefono { get; set; }
-        public string alternativo { get; set; }
-        public string mail { get; set; }
-        public DateTime fecha_inscripcion { get; set; }
-        public string observaciones { get; set; }
-        public int plan_id { get; set; }
-        public int estado_alumno_id { get; set; }
-        public int estado_facturacion_id { get; set; }
-        public int login_id { get; set; }
-        public int jornada_id { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public int Tipo_Documento_Id { get; set; }
+        public string Num_Dni { get; set; }
+        public string Telefono { get; set; }
+        public string Alternativo { get; set; }
+        public string Mail { get; set; }
+        public DateTime Fecha_Inscripcion { get; set; }
+        public string Observaciones { get; set; }
+        public int Plan_Id { get; set; }
+        public int Estado_Alumno_Id { get; set; }
+        public int Estado_Facturacion_Id { get; set; }
+        public int Login_Id { get; set; }
+        public int Jornada_Id { get; set; }
     }
 }

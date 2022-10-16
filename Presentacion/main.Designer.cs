@@ -64,7 +64,7 @@ namespace Presentacion
             this.menuboxMain.Size = new System.Drawing.Size(250, 700);
             this.menuboxMain.TabIndex = 0;
             this.menuboxMain.TabStop = false;
-            this.menuboxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titleboxMain_MouseDown);
+            this.menuboxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleboxMain_MouseDown);
             // 
             // titleboxMain
             // 
@@ -75,7 +75,7 @@ namespace Presentacion
             this.titleboxMain.Size = new System.Drawing.Size(700, 50);
             this.titleboxMain.TabIndex = 1;
             this.titleboxMain.TabStop = false;
-            this.titleboxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titleboxMain_MouseDown);
+            this.titleboxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleboxMain_MouseDown);
             // 
             // windowboxMain
             // 
@@ -102,7 +102,7 @@ namespace Presentacion
             this.btnLogout.TabIndex = 47;
             this.btnLogout.Text = "Cerrar Sesión";
             this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
             // 
             // btnCaja
             // 
@@ -120,7 +120,7 @@ namespace Presentacion
             this.btnCaja.TabIndex = 46;
             this.btnCaja.Text = "Caja";
             this.btnCaja.UseVisualStyleBackColor = false;
-            this.btnCaja.Click += new System.EventHandler(this.btnCaja_Click);
+            this.btnCaja.Click += new System.EventHandler(this.BtnCaja_Click);
             // 
             // btnPlanes
             // 
@@ -138,7 +138,7 @@ namespace Presentacion
             this.btnPlanes.TabIndex = 45;
             this.btnPlanes.Text = "Planes";
             this.btnPlanes.UseVisualStyleBackColor = false;
-            this.btnPlanes.Click += new System.EventHandler(this.btnPlanes_Click);
+            this.btnPlanes.Click += new System.EventHandler(this.BtnPlanes_Click);
             // 
             // btnPagos
             // 
@@ -156,7 +156,7 @@ namespace Presentacion
             this.btnPagos.TabIndex = 44;
             this.btnPagos.Text = "Pagos";
             this.btnPagos.UseVisualStyleBackColor = false;
-            this.btnPagos.Click += new System.EventHandler(this.btnPagos_Click);
+            this.btnPagos.Click += new System.EventHandler(this.BtnPagos_Click);
             // 
             // btnRegistro
             // 
@@ -172,9 +172,9 @@ namespace Presentacion
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.Size = new System.Drawing.Size(245, 50);
             this.btnRegistro.TabIndex = 43;
-            this.btnRegistro.Text = "Registro";
+            this.btnRegistro.Text = "Clientes";
             this.btnRegistro.UseVisualStyleBackColor = false;
-            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
+            this.btnRegistro.Click += new System.EventHandler(this.BtnRegistro_Click);
             // 
             // btnAsistencia
             // 
@@ -192,7 +192,7 @@ namespace Presentacion
             this.btnAsistencia.TabIndex = 42;
             this.btnAsistencia.Text = "Asistencia";
             this.btnAsistencia.UseVisualStyleBackColor = false;
-            this.btnAsistencia.Click += new System.EventHandler(this.btnAsistencia_Click);
+            this.btnAsistencia.Click += new System.EventHandler(this.BtnAsistencia_Click);
             // 
             // btnEmpleados
             // 
@@ -210,7 +210,7 @@ namespace Presentacion
             this.btnEmpleados.TabIndex = 51;
             this.btnEmpleados.Text = "Empleados";
             this.btnEmpleados.UseVisualStyleBackColor = false;
-            this.btnEmpleados.Click += new System.EventHandler(this.btnEmpleados_Click);
+            this.btnEmpleados.Click += new System.EventHandler(this.BtnEmpleados_Click);
             // 
             // logo
             // 
@@ -222,7 +222,7 @@ namespace Presentacion
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logo.TabIndex = 52;
             this.logo.TabStop = false;
-            this.logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titleboxMain_MouseDown);
+            this.logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleboxMain_MouseDown);
             // 
             // focoRegistro
             // 
@@ -306,9 +306,9 @@ namespace Presentacion
             this.btnminimize.TabIndex = 60;
             this.btnminimize.Text = "-";
             this.btnminimize.UseVisualStyleBackColor = false;
-            this.btnminimize.Click += new System.EventHandler(this.btnminimize_Click);
-            this.btnminimize.MouseLeave += new System.EventHandler(this.btnminimize_MouseLeave);
-            this.btnminimize.MouseHover += new System.EventHandler(this.btnminimize_MouseHover);
+            this.btnminimize.Click += new System.EventHandler(this.Btnminimize_Click);
+            this.btnminimize.MouseLeave += new System.EventHandler(this.Btnminimize_MouseLeave);
+            this.btnminimize.MouseHover += new System.EventHandler(this.Btnminimize_MouseHover);
             // 
             // btnclose
             // 
@@ -326,9 +326,9 @@ namespace Presentacion
             this.btnclose.TabIndex = 59;
             this.btnclose.Text = "X";
             this.btnclose.UseVisualStyleBackColor = false;
-            this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
-            this.btnclose.MouseLeave += new System.EventHandler(this.btnclose_MouseLeave);
-            this.btnclose.MouseHover += new System.EventHandler(this.btnclose_MouseHover);
+            this.btnclose.Click += new System.EventHandler(this.Btnclose_Click);
+            this.btnclose.MouseLeave += new System.EventHandler(this.Btnclose_MouseLeave);
+            this.btnclose.MouseHover += new System.EventHandler(this.Btnclose_MouseHover);
             // 
             // main
             // 

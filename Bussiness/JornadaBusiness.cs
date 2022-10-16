@@ -16,9 +16,9 @@ namespace Bussiness
             _dataJornada = new DataJornada();
         }
 
-        public jornada CreateJornadaAll(jornada _jornada)
+        public Jornada CreateJornadaAll(Jornada _jornada)
         {
-            if (_jornada.id == 0)
+            if (_jornada.Id == 0)
             {
                 _dataJornada.CreatingJornadaUnica(_jornada);
             }
@@ -29,9 +29,9 @@ namespace Bussiness
             return _jornada;
         }
 
-        public jornada CreateJornada(jornada _jornada)
+        public Jornada CreateJornada(Jornada _jornada)
         {
-            if (_jornada.id == 0)
+            if (_jornada.Id == 0)
             {
                 _dataJornada.CreatingJornada(_jornada);
             }

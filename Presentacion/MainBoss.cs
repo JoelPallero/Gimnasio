@@ -15,7 +15,7 @@ namespace Presentacion
     {
         #region Call of Class
 
-        commonClass _commonClass = new commonClass();
+        CommonClass _commonClass = new();
 
         #endregion
         public MainBoss()
@@ -94,7 +94,7 @@ namespace Presentacion
         }
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            CallOfForms(new registro());
+            CallOfForms(new Clientes());
             focusRegistro();
         }
         private void btnPagos_Click(object sender, EventArgs e)
@@ -113,12 +113,12 @@ namespace Presentacion
         {
             if (_commonClass.CajaAbierta == false)
             {
-                caja _caja = new caja();
+                caja _caja = new();
                 _caja.Show();
             }
             else
             {
-                cerrarCaja _cerrarCaja = new cerrarCaja();
+                cerrarCaja _cerrarCaja = new();
                 _cerrarCaja.Show();
             }
             focusCaja();

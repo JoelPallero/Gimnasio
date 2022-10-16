@@ -4,7 +4,6 @@ G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.ca
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.cerrarCaja.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.login.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.main.resources
-G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.mainEmpleados.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.pagos.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.planes.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.Properties.Resources.resources
@@ -39,3 +38,4 @@ G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.dl
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\ref\Presentacion.dll
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.pdb
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.genruntimeconfig.cache
+G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.MainBoss.resources

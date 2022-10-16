@@ -9,13 +9,13 @@ namespace DataAccess
     public class DataJornada : DataConnection
     {
 
-        public int CreatingJornadaUnica(jornada _jornada)
+        public int CreatingJornadaUnica(Jornada _jornada)
         {
             int resultado = 0;
 
             string query = "insert into jornada (tipo_jornada) values (@tipo_jornada)";
 
-            SqlParameter tipo_jornada = new SqlParameter("@tipo_jornada", _jornada.tipo_jornada);
+            SqlParameter tipo_jornada = new SqlParameter("@tipo_jornada", _jornada.Tipo_Jornada);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
             cmd.Parameters.Add(tipo_jornada);
@@ -41,20 +41,20 @@ namespace DataAccess
             return resultado;
         }
 
-        public int CreatingJornada(jornada _jornada)
+        public int CreatingJornada(Jornada _jornada)
         {
             int resultado = 0;
 
             string query = "insert into jornada (lunes, martes, miercoles, jueves, viernes, sabado, tipo_jornada) " +
                 "values (@lunes, @martes, @miercoles, @jueves, @viernes, @sabado, @tipo_jornada)";
 
-            SqlParameter lunes = new SqlParameter("@lunes", _jornada.lunes);
-            SqlParameter martes = new SqlParameter("@martes", _jornada.martes);
-            SqlParameter miercoles = new SqlParameter("@miercoles", _jornada.miercoles);
-            SqlParameter jueves = new SqlParameter("@jueves", _jornada.jueves);
-            SqlParameter viernes = new SqlParameter("@viernes", _jornada.viernes);
-            SqlParameter sabado = new SqlParameter("@sabado", _jornada.sabado);
-            SqlParameter tipo_jornada = new SqlParameter("@tipo_jornada", _jornada.tipo_jornada);
+            SqlParameter lunes = new SqlParameter("@lunes", _jornada.Lunes);
+            SqlParameter martes = new SqlParameter("@martes", _jornada.Martes);
+            SqlParameter miercoles = new SqlParameter("@miercoles", _jornada.Miercoles);
+            SqlParameter jueves = new SqlParameter("@jueves", _jornada.Jueves);
+            SqlParameter viernes = new SqlParameter("@viernes", _jornada.Viernes);
+            SqlParameter sabado = new SqlParameter("@sabado", _jornada.Sabado);
+            SqlParameter tipo_jornada = new SqlParameter("@tipo_jornada", _jornada.Tipo_Jornada);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
             

@@ -12,7 +12,7 @@ namespace Presentacion
 {
     public partial class caja : Form
     {
-        commonClass _commonClass = new commonClass();
+        CommonClass _commonClass = new CommonClass();
         public caja()
         {
             InitializeComponent();
