@@ -1,7 +1,7 @@
 ﻿
 namespace Presentacion
 {
-    partial class planes
+    partial class Planes
     {
         /// <summary>
         /// Required designer variable.

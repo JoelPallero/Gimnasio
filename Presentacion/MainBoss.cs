@@ -15,7 +15,7 @@ namespace Presentacion
     {
         #region Call of Class
 
-        CommonClass _commonClass = new();
+        commonClass _commonClass = new();
 
         #endregion
         public MainBoss()
@@ -89,7 +89,7 @@ namespace Presentacion
         #region Menu Buttons
         private void btnAsistencia_Click(object sender, EventArgs e)
         {
-            CallOfForms(new asistencia());
+            CallOfForms(new Asistencia());
             focusAsistencia();
         }
         private void btnRegistro_Click(object sender, EventArgs e)
@@ -99,28 +99,19 @@ namespace Presentacion
         }
         private void btnPagos_Click(object sender, EventArgs e)
         {
-            CallOfForms(new pagos());
+            CallOfForms(new Pagos());
             focusPagos();
         }
 
         private void btnPlanes_Click(object sender, EventArgs e)
         {
-            CallOfForms(new planes());
+            CallOfForms(new Planes());
             focusPlanes();
         }
 
         private void btnCaja_Click(object sender, EventArgs e)
         {
-            if (_commonClass.CajaAbierta == false)
-            {
-                caja _caja = new();
-                _caja.Show();
-            }
-            else
-            {
-                cerrarCaja _cerrarCaja = new();
-                _cerrarCaja.Show();
-            }
+            CallOfForms(new Caja());
             focusCaja();
         }
 
@@ -160,13 +151,13 @@ namespace Presentacion
             {
                 //deslogueamos la sesión abierta
                 this.Hide();
-                login frm = new login();
+                Login frm = new Login();
                 frm.Show();
             }
             else
             {
                 //Si la caja está abierta, no se puede cerrar sesión hasta cerrar la caja primero.
-                caja _caja = new caja();
+                Caja _caja = new Caja();
                 _caja.Show();
             }
         }

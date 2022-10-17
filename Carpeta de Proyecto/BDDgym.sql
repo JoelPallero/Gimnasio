@@ -218,8 +218,7 @@ id int primary key identity (0, 1),
 fecha datetime not null,
 idUsuario int not null,
 importeInicial decimal(18, 0) not null,
-importeFinal decimal(18, 0) null,
-cajaAbierta bit not null  --booleano en modo de bit(1, 0)
+importeFinal decimal(18, 0) null
 )
 go
 
@@ -239,6 +238,7 @@ create table detalleCaja(
 id int primary key identity (0, 1),
 idCaja int not null,
 idPlanAsignado int not null,
+idUsuario int not null,    --quien registro todo.
 Motivo varchar (100) not null, --zumba, pase libre, o al plan que se haya anotado podría ser
 importeIngreso decimal (18, 0) null, --importe del dinero que ingresa
 importeEgreso decimal (18, 0) null,
@@ -270,6 +270,7 @@ importePlan decimal (18,0) not null,
 idUsuario int not null,
 duración int not null,   -- en cantidad de meses
 cupoTotal int null,
+cupoRestante int null,
 idJornada int not null -- se asigna la jornada correspondiente.
 )
 go
@@ -282,6 +283,12 @@ add constraint fk_planes_empleado foreign key (idUsuario)
 
 go
 
+alter table planes
+add constraint fk_planes_jornada foreign key (idJornada)
+      references jornada (id)
+
+go
+
 /*  Fin de sus FK */
 
 --Tabla Plan Asignado
@@ -290,11 +297,14 @@ create table planAsignado(
 id int primary key identity (0, 1),
 idPlan int not null,    --
 idCliente int not null, --
+idUsuario int not null,
 fechaInicio datetime not null,
 fechaFin datetime null,
-importePlan decimal (18, 0),
-Saldo decimal (18, 0)
+importePlan decimal (18, 0) not null,
+saldo decimal (18, 0) not null,
+vigencia varchar(1) not null,
 )
+
 go
 
 /* Sus Fk */
@@ -322,8 +332,11 @@ vtoCuota datetime null,
 importeCuota decimal (18, 0) not null, --No hace falta tener el id del detalle, 
 									   --porque las claves foráneas no pueden ser null
 									   --Si son asociadas a claves primarias
-Saldo decimal (18, 0),
-idDetalle int null,
+saldo decimal (18, 0),
+idDetalle int null, --No se crea como FK porque cuando se creen las cuotas, el sistema
+							  --va a requerir los id del detalle de cuotas y no van a estar porque
+							  --no están realizados aún.
+idUsuario int not null
 )
 go
 

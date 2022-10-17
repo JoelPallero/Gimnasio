@@ -11,14 +11,14 @@ using System.Runtime.InteropServices;
 
 namespace Presentacion
 {
-    public partial class main : Form
+    public partial class Main : Form
     {
         #region Call of Class
 
-        CommonClass _commonClass = new();
+        commonClass _commonClass = new();
 
         #endregion
-        public main()
+        public Main()
         {
             InitializeComponent();            
         }
@@ -132,7 +132,7 @@ namespace Presentacion
             {
                 //deslogueamos la sesión abierta
                 this.Hide();
-                login frm = new();
+                Login frm = new();
                 frm.Show();
             }
             else
@@ -167,7 +167,7 @@ namespace Presentacion
 
         private void BtnAsistencia_Click(object sender, EventArgs e)
         {
-            CallOfForms(new asistencia());
+            CallOfForms(new Asistencia());
             FocusAsistencia();
         }
 
@@ -179,28 +179,19 @@ namespace Presentacion
 
         private void BtnPagos_Click(object sender, EventArgs e)
         {
-            CallOfForms(new pagos());
+            CallOfForms(new Pagos());
             FocusPagos();
         }
 
         private void BtnPlanes_Click(object sender, EventArgs e)
         {
-            CallOfForms(new planes());
+            CallOfForms(new Planes());
             FocusPlanes();
         }
 
         private void BtnCaja_Click(object sender, EventArgs e)
         {
-            if (_commonClass.CajaAbierta == false)
-            {
-                caja _caja = new();
-                _caja.Show();
-            }
-            else
-            {
-                cerrarCaja _cerrarCaja = new();
-                _cerrarCaja.Show();
-            }
+            CallOfForms(new Planes());
             FocusCaja();
         }
 

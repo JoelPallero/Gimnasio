@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 namespace Presentacion
 {
-    public class CommonClass
+    public class commonClass
     {
         //Poner el arrastre del form
         //y todos los botones o eventos comunes en cada formulario

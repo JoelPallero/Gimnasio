@@ -1,8 +1,3 @@
-G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.csproj.AssemblyReference.cache
-G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.GeneratedMSBuildEditorConfig.editorconfig
-G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.AssemblyInfoInputs.cache
-G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.AssemblyInfo.cs
-G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.csproj.CoreCompileInputs.cache
 G:\Programacion\GitHub\Gym\Bussiness\bin\Debug\net5.0-windows\Bussiness.deps.json
 G:\Programacion\GitHub\Gym\Bussiness\bin\Debug\net5.0-windows\Bussiness.dll
 G:\Programacion\GitHub\Gym\Bussiness\bin\Debug\net5.0-windows\ref\Bussiness.dll
@@ -11,6 +6,11 @@ G:\Programacion\GitHub\Gym\Bussiness\bin\Debug\net5.0-windows\DataAccess.dll
 G:\Programacion\GitHub\Gym\Bussiness\bin\Debug\net5.0-windows\Entities.dll
 G:\Programacion\GitHub\Gym\Bussiness\bin\Debug\net5.0-windows\DataAccess.pdb
 G:\Programacion\GitHub\Gym\Bussiness\bin\Debug\net5.0-windows\Entities.pdb
+G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.csproj.AssemblyReference.cache
+G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.GeneratedMSBuildEditorConfig.editorconfig
+G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.AssemblyInfoInputs.cache
+G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.AssemblyInfo.cs
+G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.csproj.CoreCompileInputs.cache
 G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.csproj.CopyComplete
 G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\Bussiness.dll
 G:\Programacion\GitHub\Gym\Bussiness\obj\Debug\net5.0-windows\ref\Bussiness.dll

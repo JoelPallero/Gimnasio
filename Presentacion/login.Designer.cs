@@ -1,7 +1,7 @@
 ﻿
 namespace Presentacion
 {
-    partial class login
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();

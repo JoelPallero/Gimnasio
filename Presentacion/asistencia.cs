@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class asistencia : Form
+    public partial class Asistencia : Form
     {
-        public asistencia()
+        public Asistencia()
         {
             InitializeComponent();
         }
