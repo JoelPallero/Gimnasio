@@ -18,7 +18,7 @@ namespace Bussiness
         }
 
         //Registrar nuevo login
-        public login_empleado SaveLogin(login_empleado _login_empleado)
+        public Login_empleado SaveLogin(Login_empleado _login_empleado)
         {
             if (_login_empleado.id == 0)
             {
@@ -32,7 +32,7 @@ namespace Bussiness
         }
 
         //Consultar último login
-        public login_empleado ShowLastLogin(login_empleado _login_Empleado)
+        public Login_empleado ShowLastLogin(Login_empleado _login_Empleado)
         {
             return _dataLogin.ConsultarLogin(_login_Empleado);
         }

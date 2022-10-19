@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bussiness
 {
-    class cajaBussinessLayer
+    public class CajaBussinessLayer
     {
     }
 }

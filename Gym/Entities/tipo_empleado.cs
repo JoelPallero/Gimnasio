@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class tipo_empleado
+    public class Tipo_empleado
     {
         public int id { get; set; }
         public string tipo { get; set; }

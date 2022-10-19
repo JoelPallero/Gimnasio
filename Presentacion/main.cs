@@ -138,8 +138,7 @@ namespace Presentacion
             else
             {
                 //Si la caja está abierta, no se puede cerrar sesión hasta cerrar la caja primero.
-                cerrarCaja _cerrarCaja = new();
-                _cerrarCaja.Show();
+                
             }
         }
 

@@ -16,11 +16,12 @@ namespace Presentacion
     {
         #region llamada a las entidades
         //entidades
-        empleados _empleado;
-        login_empleado _login_Empleado;
+        Empleado _empleado;
+        Login_empleado _login_Empleado;
         Jornada _jornada;
         Tipo_Documento _tipo_documento;
-        tipo_empleado _tipo_empleado;
+        Tipo_empleado _tipo_empleado;
+        Restricciones _restricciones;
 
         //Negocio
 
@@ -44,14 +45,15 @@ namespace Presentacion
         public Empleados()
         {
             InitializeComponent();
-            _loginBussinessLayer = new LoginBussinessLayer();
-            _jornadaBusiness = new JornadaBusiness();
-            _tipo_EmpleadoBusiness = new Tipo_EmpleadoBusiness();
-            _tipoDocumentoBusiness = new Tipo_documentoBusiness();
-            _tipo_empleado = new tipo_empleado();
-            _tipo_documento = new Tipo_Documento();
-            DsTipoEmpleados = new DataSet();
-            DsTipoDocumento = new DataSet();
+            _loginBussinessLayer = new();
+            _jornadaBusiness = new();
+            _tipo_EmpleadoBusiness = new();
+            _tipoDocumentoBusiness = new();
+            _tipo_empleado = new();
+            _tipo_documento = new();
+            _empleado = new();
+            DsTipoEmpleados = new();
+            DsTipoDocumento = new();
 
             //Inicializo los campos que necesito traer de la bdd
             CargarTipoEmpleado();
@@ -118,7 +120,7 @@ namespace Presentacion
         }
         private void CrearLogin()
         {
-            _login_Empleado = new login_empleado
+            _login_Empleado = new Login_empleado
             {
                 usuario = txtDocument.Text,
                 clave = "emp" + txtDocument.Text,
@@ -324,29 +326,29 @@ namespace Presentacion
 
         private void CargarTipoEmpleado()
         {
-            _tipo_empleado = new tipo_empleado();
+            _tipo_empleado = new();
             //DsTipoEmpleados = _tipo_EmpleadoBusiness.BringTipo();
 
-            if (DsTipoEmpleados.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in DsTipoEmpleados.Tables[0].Rows)
-                {
-                    CmbTipoEmpleado.Items.Add(dr[1].ToString());
-                }
-            }
+            //if (DsTipoEmpleados.Tables[0].Rows.Count > 0)
+            //{
+            //    foreach (DataRow dr in DsTipoEmpleados.Tables[0].Rows)
+            //    {
+            //        CmbTipoEmpleado.Items.Add(dr[1].ToString());
+            //    }
+            //}
         }
 
         private void CargarTipoDocumento()
         {
-            DsTipoDocumento = _tipoDocumentoBusiness.BringTipoDocumento();
+            //DsTipoDocumento = _tipoDocumentoBusiness.BringTipoDocumento();
 
-            if (DsTipoDocumento.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in DsTipoDocumento.Tables[0].Rows)
-                {
-                    cmbTipoDocumentoEmpleado.Items.Add(dr[1].ToString());
-                }
-            }
+            //if (DsTipoDocumento.Tables[0].Rows.Count > 0)
+            //{
+            //    foreach (DataRow dr in DsTipoDocumento.Tables[0].Rows)
+            //    {
+            //        cmbTipoDocumentoEmpleado.Items.Add(dr[1].ToString());
+            //    }
+            //}
         }
 
         
@@ -356,7 +358,6 @@ namespace Presentacion
         #region Save Empleado
         private void BtnSaveEmployee_Click(object sender, EventArgs e)
         {
-            _empleado = new empleados();
             //Primero necesito crear las tablas que necesitamos
             //para luego utilizarlas como claves foráneas en la tabla empleados
 
@@ -376,7 +377,7 @@ namespace Presentacion
 
                 _empleado.nombre = TxtNombreEmpleado.Text;
                 _empleado.tipo_documento_id = cmbTipoDocumentoEmpleado.SelectedIndex++;
-                _empleado.num_dni = txtDocument.Text;
+                _empleado.num_dni = TxtDocument.Text;
                 _empleado.telefono = TxtTelefonoEmpleado.Text;
 
                 if (!string.IsNullOrEmpty(TxtAlternativoEmpleado.Text))
@@ -408,50 +409,8 @@ namespace Presentacion
 
         private void TxtDocument_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Solo se teclean los digitos
-            if (Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-
-            //permitir teclas de control como retroceso
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsPunctuation(e.KeyChar))
-            {
-                if (txtDocument.Text.Contains("/") ||
-                         txtDocument.Text.Contains("*") ||
-                         txtDocument.Text.Contains("-"))
-                {
-                    e.Handled = true;
-                }
-                else if (txtDocument.Text.Contains(",") 
-                    || txtDocument.Text.Contains("."))
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            else if (Char.IsSymbol(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-
-            else if (Char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            
-            else
-            {
-                //con esto se desactivan todas las otras teclas no contempladas en las líneas anteriores
-                e.Handled = true;
-            }
+            string documento = TxtDocument.Text;
+            _restricciones.SoloNumeros(sender, e, documento);
         }
     }
 }

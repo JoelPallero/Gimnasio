@@ -32,6 +32,7 @@ namespace Presentacion
             this.TxtBuscarEmpleado = new System.Windows.Forms.TextBox();
             this.DtgvEmpleado = new System.Windows.Forms.DataGridView();
             this.GbEmpleado = new System.Windows.Forms.GroupBox();
+            this.TxtApellidoEmpleado = new System.Windows.Forms.TextBox();
             this.GbJornadaEmpleado = new System.Windows.Forms.GroupBox();
             this.ChkTodos = new System.Windows.Forms.CheckBox();
             this.TxtHastaSabado = new System.Windows.Forms.TextBox();
@@ -52,19 +53,21 @@ namespace Presentacion
             this.ChkLunes = new System.Windows.Forms.CheckBox();
             this.TxtHastaLunes = new System.Windows.Forms.TextBox();
             this.TxtDesdeLunes = new System.Windows.Forms.TextBox();
-            this.txtDocument = new System.Windows.Forms.TextBox();
             this.cmbTipoDocumentoEmpleado = new System.Windows.Forms.ComboBox();
             this.TxtObservacionesEmpleado = new System.Windows.Forms.TextBox();
             this.CmbTipoEmpleado = new System.Windows.Forms.ComboBox();
             this.TxtMailEmpleado = new System.Windows.Forms.TextBox();
-            this.TxtAlternativoEmpleado = new System.Windows.Forms.TextBox();
-            this.TxtTelefonoEmpleado = new System.Windows.Forms.TextBox();
             this.TxtNombreEmpleado = new System.Windows.Forms.TextBox();
             this.BtnAltaEmpleado = new System.Windows.Forms.Button();
-            this.TxtApellidoEmpleado = new System.Windows.Forms.TextBox();
+            this.TxtDocument = new System.Windows.Forms.NumericUpDown();
+            this.TxtTelefonoEmpleado = new System.Windows.Forms.NumericUpDown();
+            this.TxtAlternativoEmpleado = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.DtgvEmpleado)).BeginInit();
             this.GbEmpleado.SuspendLayout();
             this.GbJornadaEmpleado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtDocument)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtTelefonoEmpleado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtAlternativoEmpleado)).BeginInit();
             this.SuspendLayout();
             // 
             // TxtBuscarEmpleado
@@ -88,15 +91,15 @@ namespace Presentacion
             // 
             // GbEmpleado
             // 
+            this.GbEmpleado.Controls.Add(this.TxtAlternativoEmpleado);
+            this.GbEmpleado.Controls.Add(this.TxtTelefonoEmpleado);
+            this.GbEmpleado.Controls.Add(this.TxtDocument);
             this.GbEmpleado.Controls.Add(this.TxtApellidoEmpleado);
             this.GbEmpleado.Controls.Add(this.GbJornadaEmpleado);
-            this.GbEmpleado.Controls.Add(this.txtDocument);
             this.GbEmpleado.Controls.Add(this.cmbTipoDocumentoEmpleado);
             this.GbEmpleado.Controls.Add(this.TxtObservacionesEmpleado);
             this.GbEmpleado.Controls.Add(this.CmbTipoEmpleado);
             this.GbEmpleado.Controls.Add(this.TxtMailEmpleado);
-            this.GbEmpleado.Controls.Add(this.TxtAlternativoEmpleado);
-            this.GbEmpleado.Controls.Add(this.TxtTelefonoEmpleado);
             this.GbEmpleado.Controls.Add(this.TxtNombreEmpleado);
             this.GbEmpleado.Controls.Add(this.BtnAltaEmpleado);
             this.GbEmpleado.Location = new System.Drawing.Point(17, 11);
@@ -105,6 +108,15 @@ namespace Presentacion
             this.GbEmpleado.TabIndex = 62;
             this.GbEmpleado.TabStop = false;
             this.GbEmpleado.Text = "Datos de Empleado";
+            // 
+            // TxtApellidoEmpleado
+            // 
+            this.TxtApellidoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtApellidoEmpleado.Location = new System.Drawing.Point(17, 74);
+            this.TxtApellidoEmpleado.Name = "TxtApellidoEmpleado";
+            this.TxtApellidoEmpleado.Size = new System.Drawing.Size(286, 27);
+            this.TxtApellidoEmpleado.TabIndex = 68;
+            this.TxtApellidoEmpleado.Text = "Apellido";
             // 
             // GbJornadaEmpleado
             // 
@@ -313,16 +325,6 @@ namespace Presentacion
             this.TxtDesdeLunes.TabIndex = 88;
             this.TxtDesdeLunes.Text = "Desde";
             // 
-            // txtDocument
-            // 
-            this.txtDocument.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtDocument.Location = new System.Drawing.Point(92, 111);
-            this.txtDocument.Name = "txtDocument";
-            this.txtDocument.Size = new System.Drawing.Size(211, 27);
-            this.txtDocument.TabIndex = 66;
-            this.txtDocument.Text = "N° documento";
-            this.txtDocument.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDocument_KeyPress);
-            // 
             // cmbTipoDocumentoEmpleado
             // 
             this.cmbTipoDocumentoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
@@ -362,26 +364,6 @@ namespace Presentacion
             this.TxtMailEmpleado.TabIndex = 60;
             this.TxtMailEmpleado.Text = "Mail";
             // 
-            // TxtAlternativoEmpleado
-            // 
-            this.TxtAlternativoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtAlternativoEmpleado.Location = new System.Drawing.Point(17, 182);
-            this.TxtAlternativoEmpleado.Name = "TxtAlternativoEmpleado";
-            this.TxtAlternativoEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.TxtAlternativoEmpleado.TabIndex = 59;
-            this.TxtAlternativoEmpleado.Text = "Alternativo";
-            this.TxtAlternativoEmpleado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDocument_KeyPress);
-            // 
-            // TxtTelefonoEmpleado
-            // 
-            this.TxtTelefonoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtTelefonoEmpleado.Location = new System.Drawing.Point(17, 148);
-            this.TxtTelefonoEmpleado.Name = "TxtTelefonoEmpleado";
-            this.TxtTelefonoEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.TxtTelefonoEmpleado.TabIndex = 58;
-            this.TxtTelefonoEmpleado.Text = "Teléfono";
-            this.TxtTelefonoEmpleado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDocument_KeyPress);
-            // 
             // TxtNombreEmpleado
             // 
             this.TxtNombreEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
@@ -405,14 +387,45 @@ namespace Presentacion
             this.BtnAltaEmpleado.UseVisualStyleBackColor = false;
             this.BtnAltaEmpleado.Click += new System.EventHandler(this.BtnSaveEmployee_Click);
             // 
-            // TxtApellidoEmpleado
+            // TxtDocument
             // 
-            this.TxtApellidoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtApellidoEmpleado.Location = new System.Drawing.Point(17, 74);
-            this.TxtApellidoEmpleado.Name = "TxtApellidoEmpleado";
-            this.TxtApellidoEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.TxtApellidoEmpleado.TabIndex = 68;
-            this.TxtApellidoEmpleado.Text = "Apellido";
+            this.TxtDocument.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.TxtDocument.InterceptArrowKeys = false;
+            this.TxtDocument.Location = new System.Drawing.Point(92, 111);
+            this.TxtDocument.Name = "TxtDocument";
+            this.TxtDocument.Size = new System.Drawing.Size(211, 27);
+            this.TxtDocument.TabIndex = 69;
+            this.TxtDocument.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDocument_KeyPress);
+            // 
+            // TxtTelefonoEmpleado
+            // 
+            this.TxtTelefonoEmpleado.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.TxtTelefonoEmpleado.InterceptArrowKeys = false;
+            this.TxtTelefonoEmpleado.Location = new System.Drawing.Point(17, 148);
+            this.TxtTelefonoEmpleado.Name = "TxtTelefonoEmpleado";
+            this.TxtTelefonoEmpleado.Size = new System.Drawing.Size(286, 27);
+            this.TxtTelefonoEmpleado.TabIndex = 70;
+            // 
+            // TxtAlternativoEmpleado
+            // 
+            this.TxtAlternativoEmpleado.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.TxtAlternativoEmpleado.InterceptArrowKeys = false;
+            this.TxtAlternativoEmpleado.Location = new System.Drawing.Point(17, 185);
+            this.TxtAlternativoEmpleado.Name = "TxtAlternativoEmpleado";
+            this.TxtAlternativoEmpleado.Size = new System.Drawing.Size(286, 27);
+            this.TxtAlternativoEmpleado.TabIndex = 71;
             // 
             // Empleados
             // 
@@ -430,6 +443,9 @@ namespace Presentacion
             this.GbEmpleado.PerformLayout();
             this.GbJornadaEmpleado.ResumeLayout(false);
             this.GbJornadaEmpleado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtDocument)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtTelefonoEmpleado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtAlternativoEmpleado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,13 +456,10 @@ namespace Presentacion
         private System.Windows.Forms.TextBox TxtBuscarEmpleado;
         private System.Windows.Forms.DataGridView DtgvEmpleado;
         private System.Windows.Forms.GroupBox GbEmpleado;
-        private System.Windows.Forms.TextBox txtDocument;
         private System.Windows.Forms.ComboBox cmbTipoDocumentoEmpleado;
         private System.Windows.Forms.TextBox TxtObservacionesEmpleado;
         private System.Windows.Forms.ComboBox CmbTipoEmpleado;
         private System.Windows.Forms.TextBox TxtMailEmpleado;
-        private System.Windows.Forms.TextBox TxtAlternativoEmpleado;
-        private System.Windows.Forms.TextBox TxtTelefonoEmpleado;
         private System.Windows.Forms.TextBox TxtNombreEmpleado;
         private System.Windows.Forms.Button BtnAltaEmpleado;
         private System.Windows.Forms.GroupBox GbJornadaEmpleado;
@@ -470,5 +483,8 @@ namespace Presentacion
         private System.Windows.Forms.TextBox TxtHastaLunes;
         private System.Windows.Forms.TextBox TxtDesdeLunes;
         private System.Windows.Forms.TextBox TxtApellidoEmpleado;
+        private System.Windows.Forms.NumericUpDown TxtAlternativoEmpleado;
+        private System.Windows.Forms.NumericUpDown TxtTelefonoEmpleado;
+        private System.Windows.Forms.NumericUpDown TxtDocument;
     }
 }

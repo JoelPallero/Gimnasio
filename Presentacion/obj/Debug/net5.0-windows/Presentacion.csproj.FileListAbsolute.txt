@@ -1,7 +1,6 @@
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.csproj.AssemblyReference.cache
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.asistencia.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.Caja.resources
-G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.cerrarCaja.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.Clientes.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.Empleados.resources
 G:\Programacion\GitHub\Gym\Presentacion\obj\Debug\net5.0-windows\Presentacion.login.resources

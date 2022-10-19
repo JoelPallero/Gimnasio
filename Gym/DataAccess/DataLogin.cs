@@ -8,7 +8,7 @@ namespace DataAccess
 {
     public class DataLogin : DataConnection
     {
-        public int CreatingLogin(login_empleado _login)
+        public int CreatingLogin(Login_empleado _login)
         {
             int resultado = -1;
 
@@ -47,7 +47,7 @@ namespace DataAccess
 
 
         //Vamos a traer el último id del loguin registrado recientemente
-        public login_empleado ConsultarLogin(login_empleado _login_Empleado)
+        public Login_empleado ConsultarLogin(Login_empleado _login_Empleado)
         {
             string query = @"select id from login_empleado where id = 
                                 (select max(id) from login_empleado)";
