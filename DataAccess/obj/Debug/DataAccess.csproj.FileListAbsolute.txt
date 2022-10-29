@@ -1,0 +1,2 @@
+G:\Programacion\GitHub\Gimnasio\Gimnasio\DataAccess\obj\Debug\DataAccess.csproj.AssemblyReference.cache
+G:\Programacion\GitHub\Gimnasio\Gimnasio\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache

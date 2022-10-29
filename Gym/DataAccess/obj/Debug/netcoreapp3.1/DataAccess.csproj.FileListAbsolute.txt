@@ -1,5 +1,0 @@
-G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.AssemblyReference.cache
-G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
-G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfoInputs.cache
-G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfo.cs
-G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CoreCompileInputs.cache

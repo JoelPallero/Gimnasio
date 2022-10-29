@@ -1,0 +1,1 @@
+G:\Programacion\GitHub\Gimnasio\Gimnasio\Business\obj\Debug\Business.csproj.CoreCompileInputs.cache
