@@ -143,7 +143,6 @@ namespace Gym
             this.cmbTipoDocumentoCliente.Name = "cmbTipoDocumentoCliente";
             this.cmbTipoDocumentoCliente.Size = new System.Drawing.Size(69, 28);
             this.cmbTipoDocumentoCliente.TabIndex = 65;
-            this.cmbTipoDocumentoCliente.Text = "Tipo";
             // 
             // txtObservacionesCliente
             // 
@@ -219,6 +218,7 @@ namespace Gym
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Clientes";
+            this.Load += new System.EventHandler(this.Clientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DtgvCliente)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

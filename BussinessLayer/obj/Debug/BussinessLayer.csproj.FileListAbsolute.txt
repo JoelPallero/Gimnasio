@@ -1,0 +1,11 @@
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\BussinessLayer.dll
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\BussinessLayer.pdb
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\AccesoDatos.dll
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\Entities.dll
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\AccesoDatos.pdb
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\Entities.pdb
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.csproj.AssemblyReference.cache
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.csproj.CoreCompileInputs.cache
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.csproj.CopyComplete
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.dll
+G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.pdb

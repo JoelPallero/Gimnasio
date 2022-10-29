@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BussinessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,11 +17,14 @@ namespace Gym
         {
             InitializeComponent();
             _restricciones = new Restricciones();
+            _metodosGenerales = new MetodosGenerales();
+            //Tipos_Documentos();
         }
 
-        #region Call a clases públicas
+        #region Instancias
 
         private readonly Restricciones _restricciones;
+        private readonly MetodosGenerales _metodosGenerales;
 
         #endregion
 
@@ -30,7 +34,18 @@ namespace Gym
 
         #region Métodos Encapsulados
 
-
+        private void Tipos_Documentos()
+        {
+            _metodosGenerales.Bring_Tipos_Documentos();
+            cmbTipoDocumentoCliente.DataSource = _metodosGenerales.DsTipos_Documentos;
+            if (_metodosGenerales.DsTipos_Documentos.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in _metodosGenerales.DsTipos_Documentos.Tables[0].Rows)
+                {
+                    cmbTipoDocumentoCliente.DisplayMember = dr[1].ToString();                    
+                }
+            }            
+        }
 
         #endregion
 
@@ -164,5 +179,11 @@ namespace Gym
 
         #endregion
 
+        private void Clientes_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'gymDs.Tipos_Documentos' Puede moverla o quitarla según sea necesario.
+            this.tipos_DocumentosTableAdapter.Fill(this.gymDs.Tipos_Documentos);
+
+        }
     }
 }

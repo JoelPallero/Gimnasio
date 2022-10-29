@@ -22,6 +22,7 @@ namespace Gym
         {
             InitializeComponent();
             _metodosGenerales = new MetodosGenerales();
+            //*metodosGenerales.Bring_Tipos_Documentos();*/
         }
 
         #region Call of Forms
@@ -147,13 +148,16 @@ namespace Gym
 
         #region Arrastrar Form
 
+        /* No he logrado encapsularlo en una clase separada*/
+
         //Se importan archivos DLL para poder realizar la captura de la acción del mouse
         //y poder arrastrar los formularios desde donde se realiza la captura
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
+        public extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        public extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         private void TitleboxMain_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -167,7 +171,7 @@ namespace Gym
 
         private void BtnAsistencia_Click(object sender, EventArgs e)
         {
-            CallOfForms(new Asistencia());
+            CallOfForms(new Asistencias());
             FocusAsistencia();
         }
 
@@ -202,5 +206,10 @@ namespace Gym
         }
 
         #endregion
+
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

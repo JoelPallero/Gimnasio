@@ -29,6 +29,7 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainJefe));
             this.windowbox = new System.Windows.Forms.PictureBox();
             this.titlebox = new System.Windows.Forms.PictureBox();
             this.menubox = new System.Windows.Forms.PictureBox();
@@ -92,6 +93,8 @@ namespace Gym
             // logo
             // 
             this.logo.BackColor = System.Drawing.Color.Transparent;
+            this.logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("logo.BackgroundImage")));
+            this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.logo.Location = new System.Drawing.Point(0, 0);
             this.logo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logo.Name = "logo";
@@ -324,6 +327,7 @@ namespace Gym
             // btnConfiguracion
             // 
             this.btnConfiguracion.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnConfiguracion.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConfiguracion.BackgroundImage")));
             this.btnConfiguracion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConfiguracion.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnConfiguracion.FlatAppearance.BorderSize = 0;

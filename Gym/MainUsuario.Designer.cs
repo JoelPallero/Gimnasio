@@ -29,6 +29,7 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUsuario));
             this.menuboxMain = new System.Windows.Forms.PictureBox();
             this.titleboxMain = new System.Windows.Forms.PictureBox();
             this.windowboxMain = new System.Windows.Forms.PictureBox();
@@ -225,6 +226,8 @@ namespace Gym
             // logo
             // 
             this.logo.BackColor = System.Drawing.Color.Transparent;
+            this.logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("logo.BackgroundImage")));
+            this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.logo.Location = new System.Drawing.Point(0, 0);
             this.logo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logo.Name = "logo";
@@ -345,6 +348,7 @@ namespace Gym
             // btnConfiguracion
             // 
             this.btnConfiguracion.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnConfiguracion.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConfiguracion.BackgroundImage")));
             this.btnConfiguracion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConfiguracion.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnConfiguracion.FlatAppearance.BorderSize = 0;
@@ -359,6 +363,7 @@ namespace Gym
             this.btnConfiguracion.Size = new System.Drawing.Size(50, 50);
             this.btnConfiguracion.TabIndex = 61;
             this.btnConfiguracion.UseVisualStyleBackColor = false;
+            this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
             // MainUsuario
             // 

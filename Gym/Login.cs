@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Gym
@@ -53,7 +46,7 @@ namespace Gym
 
         private void lblGenerarPrimerUsuario_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            RegistroPrimeraVez registroPrimeraVez = new();
+            RegistroPrimeraVez registroPrimeraVez = new RegistroPrimeraVez();
             registroPrimeraVez.ShowDialog();
         }
 

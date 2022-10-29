@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace Gym
     {
         #region Call of Class
 
-        //commonClass _commonClass = new();
+        MetodosGenerales _metodosGenerales = new MetodosGenerales();
 
         #endregion
         public MainJefe()
@@ -163,7 +164,7 @@ namespace Gym
         }
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (_commonClass.CajaAbierta == false) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
+            if (_metodosGenerales.CajaAbierta == false) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
             {
                 //deslogueamos la sesión abierta
                 this.Close();
@@ -173,7 +174,7 @@ namespace Gym
             else
             {
                 //Si la caja está abierta, no se puede cerrar sesión hasta cerrar la caja primero.
-                Caja _caja = new Caja();
+                Cajas _caja = new Cajas();
                 _caja.Show();
             }
         }
@@ -197,5 +198,4 @@ namespace Gym
         #endregion
 
     }
-}
 }
