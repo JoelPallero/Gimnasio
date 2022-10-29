@@ -1,0 +1,417 @@
+create database gym
+
+go
+
+use gym
+
+go
+
+/* Tablas Tipo Generales */
+
+create table tipoDocumento(
+id int primary key identity (0, 1),
+tipo varchar(20) not null,
+)
+go
+
+insert into tipoDocumento (tipo) values ('DNI')
+insert into tipoDocumento (tipo) values ('LE')
+insert into tipoDocumento (tipo) values ('LC')
+insert into tipoDocumento (tipo) values ('CI')
+insert into tipoDocumento (tipo) values ('Pasaporte')
+insert into tipoDocumento (tipo) values ('Extranjero')
+
+go
+
+/*Tabla para el sexo*/
+
+create table tipoSexo(
+id int primary key identity (0, 1),
+tipo varchar(20) not null,
+)
+go
+
+insert into tipoSexo (tipo) values ('Masculino')
+insert into tipoSexo (tipo) values ('Femenino')
+insert into tipoSexo (tipo) values ('Otro')
+
+go
+
+/* Tablas Tipo para Empleados */
+
+create table tipoEmpleado(
+id int primary key identity (0, 1),
+tipo varchar(20) not null,
+acceso varchar(1) not null
+)
+go
+
+insert into tipoEmpleado (tipo) values ('Usuario', 'S')
+insert into tipoEmpleado (tipo) values ('Profesor', 'N')
+insert into tipoEmpleado (tipo) values ('Jefe', 'S')
+insert into tipoEmpleado (tipo) values ('Admin', 'S')
+
+go
+
+create table estadoEmpleado(
+id int primary key identity (0, 1),
+estado varchar(30) not null
+)
+
+go
+
+insert into estadoEmpleado (estado) values ('Activo')
+insert into estadoEmpleado (estado) values ('Baja')
+insert into estadoEmpleado (estado) values ('Carpeta Medica')
+insert into estadoEmpleado (estado) values ('Vacaciones')
+insert into estadoEmpleado (estado) values ('Suspendido')
+
+go
+
+/* Tablas tipo para Clientes */
+
+--insert into estadoCliente (estado) values ('Activo')
+--insert into estadoCliente (estado) values ('Inactivo')
+--insert into estadoCliente (estado) values ('Baja')
+
+
+/*Fin tablas Tipo */
+
+go
+
+/* Fin tablas Tipo*/
+
+/* Tablas maestras */
+
+create table empleados(
+id int primary key identity (0, 1),
+nombre nvarchar(50) not null,
+apellido nvarchar (50) not null,
+idTipoDocumento int not null,  
+numDocumento varchar(24) not null,
+idTipoSexo int not null,
+telefono nvarchar (20) not null,
+alternativo nvarchar (20) null,
+mail nvarchar (50) null,
+usuario varchar(255) null, -- con algún hash para encriptar claves
+clave varbinary(255) null, -- Si no es Usuario, no hace falta que tenga clave para acceder al sistema.
+observaciones nvarchar (200) null,
+idTipoEmpleado int not null,   
+idEstadoEmpleado int not null
+)
+
+go
+/* Sus FK */
+
+alter table empleados
+add constraint fk_empleado_tipoSexo foreign key (idTipoSexo)
+      references tipoSexo (id)
+go
+
+alter table empleados
+add constraint fk_empleado_tipoDoc foreign key (idTipoDocumento)
+      references tipoDocumento (id)
+go
+
+alter table empleados
+add constraint fk_empleado_tipoEmpleado foreign key (idTipoEmpleado)
+      references tipoEmpleado (id)
+
+go
+
+alter table empleados
+add constraint fk_empleado_estadoEmpleado foreign key (idEstadoEmpleado)
+      references estadoEmpleado (id)
+
+go
+
+/*  Fin de sus FK */
+
+
+-- Tabla registro de movimientos de Login
+
+create table registroLogin(
+id int primary key identity (0, 1),
+idEmpleado int not null,
+fechaLogin datetime not null,
+fechaLogout datetime not null
+)
+
+go
+
+/* Su FK */
+
+alter table registroLogin
+add constraint fk_registro_usuario foreign key (idEmpleado)
+      references empleados (id)
+
+go
+
+/* Fin de su FK */
+
+
+--Tabla clientes
+
+create table clientes(
+id int primary key identity (0, 1),
+nombre nvarchar(50) not null,
+apellido nvarchar (50) not null,
+idTipoDocumento int not null,
+numDocumeto varchar(15) not null,
+idTipoSexo int not null,
+telefono nvarchar (20) not null,
+alternativo nvarchar (20) null,
+mail nvarchar (50) null,
+observaciones nvarchar (200) null,
+fechaAlta datetime not null,
+fechaBaja datetime null,
+estadoCliente int not null, 
+idEmpleado int not null -- quien registró al cliente (la huella)
+)
+go
+
+/* Sus Fk */
+
+alter table clientes
+add constraint fk_cliente_tipoDoc foreign key (idTipoDocumento)
+      references tipoDocumento (id)
+go
+
+alter table clientes
+add constraint fk_clientes_tipoSexo foreign key (idTipoSexo)
+      references tipoSexo (id)
+
+go
+
+alter table clientes
+add constraint fk_clientes_estadoCliente foreign key (idEstadoCliente)
+      references estadoCliente (id)
+
+go
+
+alter table clientes
+add constraint fk_clientes_empleado foreign key (idEmpleado)
+      references empleados (id)
+
+go
+
+/*  Fin de sus FK */
+
+
+--Tabla Caja
+
+create table caja(
+id int primary key identity (0, 1),
+fecha datetime not null,
+idEmpleado int not null,
+importeInicial decimal(18, 0) not null,
+importeFinal decimal(18, 0) null
+)
+go
+
+/* Sus FK */
+
+ alter table caja
+   add constraint fk_caja_empleado foreign key (idEmpleado)
+      references empleados (id)
+
+go
+
+/* Fin de sus FK*/
+
+--Tabla Jornada Semanal de clases
+
+create table jornada(
+id int primary key identity (0, 1),
+Todos varchar (20) null,
+lunes varchar (20) null,
+martes varchar (20) null,
+miercoles varchar (20) null,
+jueves varchar (20) null,
+viernes varchar (20) null,
+sabado varchar (20) null,
+idEmpleado int null
+)
+
+go
+
+--Tabla Plan
+
+create table planes(
+id int primary key identity (0, 1),
+nombre varchar(50) not null,
+importePlan decimal (18,0) not null,
+idEmpleado int not null,
+duracion int null,   -- en cantidad de meses
+cupoTotal int null,
+cupoRestante int null,
+idJornada int not null -- se asigna la jornada correspondiente.
+)
+go
+
+/* Sus FK */
+
+alter table planes
+add constraint fk_planes_jornada foreign key (idJornada)
+      references jornada (id)
+
+go
+
+alter table planes
+add constraint fk_planes_empleado foreign key (idEmpleado)
+      references empleados (id)
+
+go
+
+/*  Fin de sus FK */
+
+--Tabla Plan Asignado
+
+create table planAsignado(
+id int primary key identity (0, 1),
+idPlan int not null,    --
+idCliente int not null, --
+idEmpleado int not null,
+fechaInicio datetime not null,
+fechaFin datetime null,
+saldo decimal (18, 0) not null,
+vigente varchar(1) not null -- para saber si el plan sigue vigente.
+)
+
+go
+
+/* Sus Fk */
+
+alter table planAsignado
+add constraint fk_planAsignado_idPlan foreign key (idPlan)
+      references planes (id)
+go
+
+alter table planAsignado
+add constraint fk_planAsignado_idCliente foreign key (idCliente)
+      references clientes (id)
+
+go
+
+alter table planAsignado
+add constraint fk_planAsignadoa_empleado foreign key (idEmpleado)
+      references empleados (id)
+
+go
+
+/*  Fin de sus FK */
+
+--Tabla Detalles de caja
+
+create table detalleCaja(
+id int primary key identity (0, 1),
+idCaja int not null,
+idPlanAsig int not null,
+idEmpleado int not null,    --quien registro todo.
+Motivo varchar (50) not null, --zumba, pase libre, o al plan que se haya anotado podría ser
+importeIngreso decimal (18, 0) null, --importe del dinero que ingresa
+importeEgreso decimal (18, 0) null,
+observaciones varchar(200) not null
+)
+go
+
+/* Sus FK */
+
+alter table detalleCaja
+add constraint fk_detalleCaja_idCaja foreign key (idCaja)
+      references caja (id)
+go
+
+alter table detalleCaja
+add constraint fk_detalleCaja_idPlanAsignado foreign key (idPlanAsig)
+      references planAsignado (id)
+
+go
+
+alter table detalleCaja
+add constraint fk_detalleCaja_empleado foreign key (idEmpleado)
+      references empleados (id)
+
+go
+
+/*  Fin de sus FK */
+
+
+--Tabla Cuotas
+--Para cuando un pago se haga en varias cuotas
+
+create table cuotas(
+id int primary key identity (0, 1),
+idPlanAsig int not null,
+vtoCuota datetime null,
+importeCuota decimal (18, 0) not null, --No hace falta tener el id del detalle, 
+									   --porque las claves foráneas no pueden ser null
+									   --Si son asociadas a claves primarias
+saldo decimal (18, 0),
+idDetalleCaja int null, --No se crea como FK porque cuando se creen las cuotas, el sistema
+							  --va a requerir los id del detalle de cuotas y no van a estar porque
+							  --no están realizados aún.
+idEmpleado int not null
+)
+go
+
+/* Sus FK */
+
+alter table cuotas
+add constraint fk_cuotas_planAsignado foreign key (idPlanAsig)
+      references planAsignado (id)
+
+go
+
+alter table cuotas
+add constraint fk_cuotas_detalleCaja foreign key (idDetalleCaja)
+      references detalleCaja (id)
+
+go
+
+alter table cuotas
+add constraint fk_cuotas_empleado foreign key (idEmpleado)
+      references empleados (id)
+
+go
+/*  Fin de sus FK */
+
+
+-- Tabla Asistencia
+
+create table asistencia(
+id int primary key identity (1, 1) not null,
+fecha datetime not null,
+estado varchar(1) not null, --Una sola letra para el Presente (P), Ausente (A), o tarde (T)
+idCliente int not null,
+idPlanAsig int not null,    --Para saber a qué clase o plan pertenece, en caso de ser clases con horarios específicos
+idEmpleado int not null -- usuario clave
+)
+
+go
+
+/* Sus FK */
+
+ alter table asistencia
+   add constraint fk_asistencia_cliente foreign key (idCliente)
+      references clientes (id)
+
+go
+
+ alter table asistencia
+   add constraint fk_asistencia_planAsign foreign key (idPlanAsig)
+      references planAsignado (id)
+
+go
+
+ alter table asistencia
+   add constraint fk_asistencia_empleado foreign key (idEmpleado)
+      references empleados (id)
+
+go
+
+/* Fin de sus FK */
+
+/* Procedures */
+
+/* */

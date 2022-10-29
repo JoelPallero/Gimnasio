@@ -48,6 +48,7 @@ namespace Presentacion
             this.focoPagos = new System.Windows.Forms.Label();
             this.focoPlanes = new System.Windows.Forms.Label();
             this.focoCaja = new System.Windows.Forms.Label();
+            this.btnConfiguracion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.windowbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.titlebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menubox)).BeginInit();
@@ -143,7 +144,7 @@ namespace Presentacion
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.Size = new System.Drawing.Size(245, 55);
             this.btnRegistro.TabIndex = 35;
-            this.btnRegistro.Text = "Registro";
+            this.btnRegistro.Text = "Clientes";
             this.btnRegistro.UseVisualStyleBackColor = false;
             this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
             // 
@@ -188,14 +189,14 @@ namespace Presentacion
             this.btnLogout.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnLogout.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLogout.Location = new System.Drawing.Point(0, 645);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(250, 55);
+            this.btnLogout.Size = new System.Drawing.Size(194, 55);
             this.btnLogout.TabIndex = 39;
             this.btnLogout.Text = "Cerrar Sesión";
             this.btnLogout.UseVisualStyleBackColor = false;
@@ -218,8 +219,6 @@ namespace Presentacion
             this.btnclose.Text = "X";
             this.btnclose.UseVisualStyleBackColor = false;
             this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
-            this.btnclose.MouseLeave += new System.EventHandler(this.btnclose_MouseLeave);
-            this.btnclose.MouseHover += new System.EventHandler(this.btnclose_MouseHover);
             // 
             // btnminimize
             // 
@@ -238,8 +237,6 @@ namespace Presentacion
             this.btnminimize.Text = "-";
             this.btnminimize.UseVisualStyleBackColor = false;
             this.btnminimize.Click += new System.EventHandler(this.btnminimize_Click);
-            this.btnminimize.MouseLeave += new System.EventHandler(this.btnminimize_MouseLeave);
-            this.btnminimize.MouseHover += new System.EventHandler(this.btnminimize_MouseHover);
             // 
             // focoAsistencia
             // 
@@ -314,11 +311,31 @@ namespace Presentacion
             this.focoCaja.TabIndex = 51;
             this.focoCaja.Visible = false;
             // 
-            // mainEmpleados
+            // btnConfiguracion
+            // 
+            this.btnConfiguracion.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnConfiguracion.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConfiguracion.BackgroundImage")));
+            this.btnConfiguracion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfiguracion.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnConfiguracion.FlatAppearance.BorderSize = 0;
+            this.btnConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguracion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnConfiguracion.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConfiguracion.Location = new System.Drawing.Point(200, 650);
+            this.btnConfiguracion.Name = "btnConfiguracion";
+            this.btnConfiguracion.Size = new System.Drawing.Size(50, 50);
+            this.btnConfiguracion.TabIndex = 52;
+            this.btnConfiguracion.UseVisualStyleBackColor = false;
+            this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
+            // 
+            // MainBoss
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 700);
+            this.Controls.Add(this.btnConfiguracion);
             this.Controls.Add(this.focoCaja);
             this.Controls.Add(this.focoPlanes);
             this.Controls.Add(this.focoPagos);
@@ -338,7 +355,7 @@ namespace Presentacion
             this.Controls.Add(this.titlebox);
             this.Controls.Add(this.menubox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "mainEmpleados";
+            this.Name = "MainBoss";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mainEmpleados";
             ((System.ComponentModel.ISupportInitialize)(this.windowbox)).EndInit();
@@ -370,5 +387,6 @@ namespace Presentacion
         private System.Windows.Forms.Label focoPagos;
         private System.Windows.Forms.Label focoPlanes;
         private System.Windows.Forms.Label focoCaja;
+        private System.Windows.Forms.Button btnConfiguracion;
     }
 }

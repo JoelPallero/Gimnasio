@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class planes
+    public class Planes
     {
-        public int id { get; set; }
-        public string nombre_plan { get; set; }
-        public decimal importe { get; set; }
-        public int estado_plan_id { get; set; }
-        public int login_id { get; set; }
-        public int jornada_id { get; set; }
+        public int Plan_ID { get; set; }
+        public int Empleado_ID { get; set; }
+        public string Nombre { get; set; }
+        public decimal Importe_Plan { get; set; }
+        public int Duracion { get; set; }
+        public int Cupo_Total { get; set; }
+        public int Cupo_Restante { get; set; }
+        public string Vigencia { get; set; }
     }
 }

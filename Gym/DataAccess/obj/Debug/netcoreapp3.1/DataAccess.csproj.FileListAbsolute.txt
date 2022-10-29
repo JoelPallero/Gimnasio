@@ -1,13 +1,5 @@
-G:\Programacion\GitHub\Gym\Gym\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.deps.json
-G:\Programacion\GitHub\Gym\Gym\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.dll
-G:\Programacion\GitHub\Gym\Gym\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.pdb
-G:\Programacion\GitHub\Gym\Gym\DataAccess\bin\Debug\netcoreapp3.1\Entities.dll
-G:\Programacion\GitHub\Gym\Gym\DataAccess\bin\Debug\netcoreapp3.1\Entities.pdb
 G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.AssemblyReference.cache
 G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
 G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfoInputs.cache
 G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfo.cs
 G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CoreCompileInputs.cache
-G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CopyComplete
-G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.dll
-G:\Programacion\GitHub\Gym\Gym\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.pdb

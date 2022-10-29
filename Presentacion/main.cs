@@ -190,7 +190,7 @@ namespace Presentacion
 
         private void BtnCaja_Click(object sender, EventArgs e)
         {
-            CallOfForms(new Planes());
+            CallOfForms(new Caja());
             FocusCaja();
         }
 

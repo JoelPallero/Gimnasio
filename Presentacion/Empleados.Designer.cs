@@ -29,301 +29,354 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            this.TxtBuscarEmpleado = new System.Windows.Forms.TextBox();
-            this.DtgvEmpleado = new System.Windows.Forms.DataGridView();
-            this.GbEmpleado = new System.Windows.Forms.GroupBox();
-            this.TxtApellidoEmpleado = new System.Windows.Forms.TextBox();
-            this.GbJornadaEmpleado = new System.Windows.Forms.GroupBox();
-            this.ChkTodos = new System.Windows.Forms.CheckBox();
-            this.TxtHastaSabado = new System.Windows.Forms.TextBox();
-            this.TxtDesdeSabado = new System.Windows.Forms.TextBox();
-            this.TxtHastaViernes = new System.Windows.Forms.TextBox();
-            this.TxtDesdeViernes = new System.Windows.Forms.TextBox();
-            this.TxtHastaJueves = new System.Windows.Forms.TextBox();
-            this.TxtDesdeJueves = new System.Windows.Forms.TextBox();
-            this.TxtHastaMiercoles = new System.Windows.Forms.TextBox();
-            this.TxtDesdeMiercoles = new System.Windows.Forms.TextBox();
-            this.TxtHastaMartes = new System.Windows.Forms.TextBox();
-            this.TxtDesdeMartes = new System.Windows.Forms.TextBox();
-            this.ChkSabado = new System.Windows.Forms.CheckBox();
-            this.ChkViernes = new System.Windows.Forms.CheckBox();
-            this.ChkJueves = new System.Windows.Forms.CheckBox();
-            this.ChkMiercoles = new System.Windows.Forms.CheckBox();
-            this.ChkMartes = new System.Windows.Forms.CheckBox();
-            this.ChkLunes = new System.Windows.Forms.CheckBox();
-            this.TxtHastaLunes = new System.Windows.Forms.TextBox();
-            this.TxtDesdeLunes = new System.Windows.Forms.TextBox();
+            this.txtBuscarEmpleado = new System.Windows.Forms.TextBox();
+            this.dtgvEmpleado = new System.Windows.Forms.DataGridView();
+            this.gbEmpleado = new System.Windows.Forms.GroupBox();
+            this.cmbSexo = new System.Windows.Forms.ComboBox();
+            this.txtAlternativoEmpleados = new System.Windows.Forms.TextBox();
+            this.txtTelefonoEmpleados = new System.Windows.Forms.TextBox();
+            this.txtDocument = new System.Windows.Forms.TextBox();
+            this.btnAltaEmpleado = new System.Windows.Forms.Button();
+            this.txtApellidoEmpleado = new System.Windows.Forms.TextBox();
+            this.gbJornadaEmpleado = new System.Windows.Forms.GroupBox();
+            this.chkTodos = new System.Windows.Forms.CheckBox();
+            this.txtHastaSabado = new System.Windows.Forms.TextBox();
+            this.txtDesdeSabado = new System.Windows.Forms.TextBox();
+            this.txtHastaViernes = new System.Windows.Forms.TextBox();
+            this.txtDesdeViernes = new System.Windows.Forms.TextBox();
+            this.txtHastaJueves = new System.Windows.Forms.TextBox();
+            this.txtDesdeJueves = new System.Windows.Forms.TextBox();
+            this.txtHastaMiercoles = new System.Windows.Forms.TextBox();
+            this.txtDesdeMiercoles = new System.Windows.Forms.TextBox();
+            this.txtHastaMartes = new System.Windows.Forms.TextBox();
+            this.txtDesdeMartes = new System.Windows.Forms.TextBox();
+            this.chkSabado = new System.Windows.Forms.CheckBox();
+            this.chkViernes = new System.Windows.Forms.CheckBox();
+            this.chkJueves = new System.Windows.Forms.CheckBox();
+            this.chkMiercoles = new System.Windows.Forms.CheckBox();
+            this.chkMartes = new System.Windows.Forms.CheckBox();
+            this.chkLunes = new System.Windows.Forms.CheckBox();
+            this.txtHastaLunes = new System.Windows.Forms.TextBox();
+            this.txtDesdeLunes = new System.Windows.Forms.TextBox();
             this.cmbTipoDocumentoEmpleado = new System.Windows.Forms.ComboBox();
-            this.TxtObservacionesEmpleado = new System.Windows.Forms.TextBox();
-            this.CmbTipoEmpleado = new System.Windows.Forms.ComboBox();
-            this.TxtMailEmpleado = new System.Windows.Forms.TextBox();
-            this.TxtNombreEmpleado = new System.Windows.Forms.TextBox();
-            this.BtnAltaEmpleado = new System.Windows.Forms.Button();
-            this.TxtDocument = new System.Windows.Forms.NumericUpDown();
-            this.TxtTelefonoEmpleado = new System.Windows.Forms.NumericUpDown();
-            this.TxtAlternativoEmpleado = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.DtgvEmpleado)).BeginInit();
-            this.GbEmpleado.SuspendLayout();
-            this.GbJornadaEmpleado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtDocument)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtTelefonoEmpleado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtAlternativoEmpleado)).BeginInit();
+            this.txtObservacionesEmpleado = new System.Windows.Forms.TextBox();
+            this.cmbTipoEmpleado = new System.Windows.Forms.ComboBox();
+            this.txtMailEmpleado = new System.Windows.Forms.TextBox();
+            this.txtNombreEmpleado = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleado)).BeginInit();
+            this.gbEmpleado.SuspendLayout();
+            this.gbJornadaEmpleado.SuspendLayout();
             this.SuspendLayout();
             // 
-            // TxtBuscarEmpleado
+            // txtBuscarEmpleado
             // 
-            this.TxtBuscarEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtBuscarEmpleado.Location = new System.Drawing.Point(440, 403);
-            this.TxtBuscarEmpleado.Name = "TxtBuscarEmpleado";
-            this.TxtBuscarEmpleado.Size = new System.Drawing.Size(243, 27);
-            this.TxtBuscarEmpleado.TabIndex = 64;
-            this.TxtBuscarEmpleado.Text = "Buscar";
+            this.txtBuscarEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtBuscarEmpleado.Location = new System.Drawing.Point(440, 403);
+            this.txtBuscarEmpleado.Name = "txtBuscarEmpleado";
+            this.txtBuscarEmpleado.Size = new System.Drawing.Size(243, 27);
+            this.txtBuscarEmpleado.TabIndex = 64;
+            this.txtBuscarEmpleado.Text = "Buscar";
             // 
-            // DtgvEmpleado
+            // dtgvEmpleado
             // 
-            this.DtgvEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DtgvEmpleado.Location = new System.Drawing.Point(17, 436);
-            this.DtgvEmpleado.Name = "DtgvEmpleado";
-            this.DtgvEmpleado.RowHeadersWidth = 51;
-            this.DtgvEmpleado.RowTemplate.Height = 29;
-            this.DtgvEmpleado.Size = new System.Drawing.Size(666, 205);
-            this.DtgvEmpleado.TabIndex = 63;
+            this.dtgvEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvEmpleado.Location = new System.Drawing.Point(17, 436);
+            this.dtgvEmpleado.Name = "dtgvEmpleado";
+            this.dtgvEmpleado.RowHeadersWidth = 51;
+            this.dtgvEmpleado.RowTemplate.Height = 29;
+            this.dtgvEmpleado.Size = new System.Drawing.Size(666, 205);
+            this.dtgvEmpleado.TabIndex = 63;
             // 
-            // GbEmpleado
+            // gbEmpleado
             // 
-            this.GbEmpleado.Controls.Add(this.TxtAlternativoEmpleado);
-            this.GbEmpleado.Controls.Add(this.TxtTelefonoEmpleado);
-            this.GbEmpleado.Controls.Add(this.TxtDocument);
-            this.GbEmpleado.Controls.Add(this.TxtApellidoEmpleado);
-            this.GbEmpleado.Controls.Add(this.GbJornadaEmpleado);
-            this.GbEmpleado.Controls.Add(this.cmbTipoDocumentoEmpleado);
-            this.GbEmpleado.Controls.Add(this.TxtObservacionesEmpleado);
-            this.GbEmpleado.Controls.Add(this.CmbTipoEmpleado);
-            this.GbEmpleado.Controls.Add(this.TxtMailEmpleado);
-            this.GbEmpleado.Controls.Add(this.TxtNombreEmpleado);
-            this.GbEmpleado.Controls.Add(this.BtnAltaEmpleado);
-            this.GbEmpleado.Location = new System.Drawing.Point(17, 11);
-            this.GbEmpleado.Name = "GbEmpleado";
-            this.GbEmpleado.Size = new System.Drawing.Size(666, 386);
-            this.GbEmpleado.TabIndex = 62;
-            this.GbEmpleado.TabStop = false;
-            this.GbEmpleado.Text = "Datos de Empleado";
+            this.gbEmpleado.Controls.Add(this.cmbSexo);
+            this.gbEmpleado.Controls.Add(this.txtAlternativoEmpleados);
+            this.gbEmpleado.Controls.Add(this.txtTelefonoEmpleados);
+            this.gbEmpleado.Controls.Add(this.txtDocument);
+            this.gbEmpleado.Controls.Add(this.btnAltaEmpleado);
+            this.gbEmpleado.Controls.Add(this.txtApellidoEmpleado);
+            this.gbEmpleado.Controls.Add(this.gbJornadaEmpleado);
+            this.gbEmpleado.Controls.Add(this.cmbTipoDocumentoEmpleado);
+            this.gbEmpleado.Controls.Add(this.txtObservacionesEmpleado);
+            this.gbEmpleado.Controls.Add(this.cmbTipoEmpleado);
+            this.gbEmpleado.Controls.Add(this.txtMailEmpleado);
+            this.gbEmpleado.Controls.Add(this.txtNombreEmpleado);
+            this.gbEmpleado.Location = new System.Drawing.Point(17, 11);
+            this.gbEmpleado.Name = "gbEmpleado";
+            this.gbEmpleado.Size = new System.Drawing.Size(666, 386);
+            this.gbEmpleado.TabIndex = 62;
+            this.gbEmpleado.TabStop = false;
+            this.gbEmpleado.Text = "Datos de Empleado";
             // 
-            // TxtApellidoEmpleado
+            // cmbSexo
             // 
-            this.TxtApellidoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtApellidoEmpleado.Location = new System.Drawing.Point(17, 74);
-            this.TxtApellidoEmpleado.Name = "TxtApellidoEmpleado";
-            this.TxtApellidoEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.TxtApellidoEmpleado.TabIndex = 68;
-            this.TxtApellidoEmpleado.Text = "Apellido";
+            this.cmbSexo.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.cmbSexo.FormattingEnabled = true;
+            this.cmbSexo.Items.AddRange(new object[] {
+            "Masculino",
+            "Femenino"});
+            this.cmbSexo.Location = new System.Drawing.Point(17, 147);
+            this.cmbSexo.Name = "cmbSexo";
+            this.cmbSexo.Size = new System.Drawing.Size(286, 28);
+            this.cmbSexo.TabIndex = 72;
+            this.cmbSexo.Text = "Sexo";
             // 
-            // GbJornadaEmpleado
+            // txtAlternativoEmpleados
             // 
-            this.GbJornadaEmpleado.Controls.Add(this.ChkTodos);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaSabado);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeSabado);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaViernes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeViernes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaJueves);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeJueves);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaMiercoles);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeMiercoles);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaMartes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeMartes);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkSabado);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkViernes);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkJueves);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkMiercoles);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkMartes);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkLunes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaLunes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeLunes);
-            this.GbJornadaEmpleado.Location = new System.Drawing.Point(333, 71);
-            this.GbJornadaEmpleado.Name = "GbJornadaEmpleado";
-            this.GbJornadaEmpleado.Size = new System.Drawing.Size(307, 249);
-            this.GbJornadaEmpleado.TabIndex = 67;
-            this.GbJornadaEmpleado.TabStop = false;
-            this.GbJornadaEmpleado.Text = "Días y horarios";
+            this.txtAlternativoEmpleados.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtAlternativoEmpleados.Location = new System.Drawing.Point(17, 221);
+            this.txtAlternativoEmpleados.Name = "txtAlternativoEmpleados";
+            this.txtAlternativoEmpleados.Size = new System.Drawing.Size(286, 27);
+            this.txtAlternativoEmpleados.TabIndex = 71;
+            this.txtAlternativoEmpleados.Text = "Alternativo";
             // 
-            // ChkTodos
+            // txtTelefonoEmpleados
             // 
-            this.ChkTodos.AutoSize = true;
-            this.ChkTodos.Location = new System.Drawing.Point(10, 29);
-            this.ChkTodos.Name = "ChkTodos";
-            this.ChkTodos.Size = new System.Drawing.Size(149, 24);
-            this.ChkTodos.TabIndex = 106;
-            this.ChkTodos.Text = "Seleccionar todos";
-            this.ChkTodos.UseVisualStyleBackColor = true;
-            this.ChkTodos.CheckedChanged += new System.EventHandler(this.ChkAll_CheckedChanged);
+            this.txtTelefonoEmpleados.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtTelefonoEmpleados.Location = new System.Drawing.Point(17, 183);
+            this.txtTelefonoEmpleados.Name = "txtTelefonoEmpleados";
+            this.txtTelefonoEmpleados.Size = new System.Drawing.Size(286, 27);
+            this.txtTelefonoEmpleados.TabIndex = 70;
+            this.txtTelefonoEmpleados.Text = "Telefono";
             // 
-            // TxtHastaSabado
+            // txtDocument
             // 
-            this.TxtHastaSabado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaSabado.Location = new System.Drawing.Point(215, 214);
-            this.TxtHastaSabado.Name = "TxtHastaSabado";
-            this.TxtHastaSabado.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaSabado.TabIndex = 105;
-            this.TxtHastaSabado.Text = "Hasta";
+            this.txtDocument.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDocument.Location = new System.Drawing.Point(92, 111);
+            this.txtDocument.Name = "txtDocument";
+            this.txtDocument.Size = new System.Drawing.Size(211, 27);
+            this.txtDocument.TabIndex = 69;
+            this.txtDocument.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocument_KeyPress);
             // 
-            // TxtDesdeSabado
+            // btnAltaEmpleado
             // 
-            this.TxtDesdeSabado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeSabado.Location = new System.Drawing.Point(128, 214);
-            this.TxtDesdeSabado.Name = "TxtDesdeSabado";
-            this.TxtDesdeSabado.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeSabado.TabIndex = 104;
-            this.TxtDesdeSabado.Text = "Desde";
+            this.btnAltaEmpleado.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnAltaEmpleado.FlatAppearance.BorderSize = 0;
+            this.btnAltaEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAltaEmpleado.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAltaEmpleado.Location = new System.Drawing.Point(333, 328);
+            this.btnAltaEmpleado.Name = "btnAltaEmpleado";
+            this.btnAltaEmpleado.Size = new System.Drawing.Size(307, 41);
+            this.btnAltaEmpleado.TabIndex = 53;
+            this.btnAltaEmpleado.Text = "Guardar";
+            this.btnAltaEmpleado.UseVisualStyleBackColor = false;
+            this.btnAltaEmpleado.Click += new System.EventHandler(this.BtnSaveEmployee_Click);
             // 
-            // TxtHastaViernes
+            // txtApellidoEmpleado
             // 
-            this.TxtHastaViernes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaViernes.Location = new System.Drawing.Point(215, 184);
-            this.TxtHastaViernes.Name = "TxtHastaViernes";
-            this.TxtHastaViernes.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaViernes.TabIndex = 103;
-            this.TxtHastaViernes.Text = "Hasta";
+            this.txtApellidoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtApellidoEmpleado.Location = new System.Drawing.Point(17, 74);
+            this.txtApellidoEmpleado.Name = "txtApellidoEmpleado";
+            this.txtApellidoEmpleado.Size = new System.Drawing.Size(286, 27);
+            this.txtApellidoEmpleado.TabIndex = 68;
+            this.txtApellidoEmpleado.Text = "Apellido";
             // 
-            // TxtDesdeViernes
+            // gbJornadaEmpleado
             // 
-            this.TxtDesdeViernes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeViernes.Location = new System.Drawing.Point(128, 184);
-            this.TxtDesdeViernes.Name = "TxtDesdeViernes";
-            this.TxtDesdeViernes.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeViernes.TabIndex = 102;
-            this.TxtDesdeViernes.Text = "Desde";
+            this.gbJornadaEmpleado.Controls.Add(this.chkTodos);
+            this.gbJornadaEmpleado.Controls.Add(this.txtHastaSabado);
+            this.gbJornadaEmpleado.Controls.Add(this.txtDesdeSabado);
+            this.gbJornadaEmpleado.Controls.Add(this.txtHastaViernes);
+            this.gbJornadaEmpleado.Controls.Add(this.txtDesdeViernes);
+            this.gbJornadaEmpleado.Controls.Add(this.txtHastaJueves);
+            this.gbJornadaEmpleado.Controls.Add(this.txtDesdeJueves);
+            this.gbJornadaEmpleado.Controls.Add(this.txtHastaMiercoles);
+            this.gbJornadaEmpleado.Controls.Add(this.txtDesdeMiercoles);
+            this.gbJornadaEmpleado.Controls.Add(this.txtHastaMartes);
+            this.gbJornadaEmpleado.Controls.Add(this.txtDesdeMartes);
+            this.gbJornadaEmpleado.Controls.Add(this.chkSabado);
+            this.gbJornadaEmpleado.Controls.Add(this.chkViernes);
+            this.gbJornadaEmpleado.Controls.Add(this.chkJueves);
+            this.gbJornadaEmpleado.Controls.Add(this.chkMiercoles);
+            this.gbJornadaEmpleado.Controls.Add(this.chkMartes);
+            this.gbJornadaEmpleado.Controls.Add(this.chkLunes);
+            this.gbJornadaEmpleado.Controls.Add(this.txtHastaLunes);
+            this.gbJornadaEmpleado.Controls.Add(this.txtDesdeLunes);
+            this.gbJornadaEmpleado.Location = new System.Drawing.Point(333, 71);
+            this.gbJornadaEmpleado.Name = "gbJornadaEmpleado";
+            this.gbJornadaEmpleado.Size = new System.Drawing.Size(307, 249);
+            this.gbJornadaEmpleado.TabIndex = 67;
+            this.gbJornadaEmpleado.TabStop = false;
+            this.gbJornadaEmpleado.Text = "Días y horarios";
             // 
-            // TxtHastaJueves
+            // chkTodos
             // 
-            this.TxtHastaJueves.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaJueves.Location = new System.Drawing.Point(215, 154);
-            this.TxtHastaJueves.Name = "TxtHastaJueves";
-            this.TxtHastaJueves.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaJueves.TabIndex = 101;
-            this.TxtHastaJueves.Text = "Hasta";
+            this.chkTodos.AutoSize = true;
+            this.chkTodos.Location = new System.Drawing.Point(10, 29);
+            this.chkTodos.Name = "chkTodos";
+            this.chkTodos.Size = new System.Drawing.Size(149, 24);
+            this.chkTodos.TabIndex = 106;
+            this.chkTodos.Text = "Seleccionar todos";
+            this.chkTodos.UseVisualStyleBackColor = true;
+            this.chkTodos.CheckedChanged += new System.EventHandler(this.ChkAll_CheckedChanged);
             // 
-            // TxtDesdeJueves
+            // txtHastaSabado
             // 
-            this.TxtDesdeJueves.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeJueves.Location = new System.Drawing.Point(128, 154);
-            this.TxtDesdeJueves.Name = "TxtDesdeJueves";
-            this.TxtDesdeJueves.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeJueves.TabIndex = 100;
-            this.TxtDesdeJueves.Text = "Desde";
+            this.txtHastaSabado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaSabado.Location = new System.Drawing.Point(215, 214);
+            this.txtHastaSabado.Name = "txtHastaSabado";
+            this.txtHastaSabado.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaSabado.TabIndex = 105;
+            this.txtHastaSabado.Text = "Hasta";
             // 
-            // TxtHastaMiercoles
+            // txtDesdeSabado
             // 
-            this.TxtHastaMiercoles.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaMiercoles.Location = new System.Drawing.Point(215, 124);
-            this.TxtHastaMiercoles.Name = "TxtHastaMiercoles";
-            this.TxtHastaMiercoles.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaMiercoles.TabIndex = 99;
-            this.TxtHastaMiercoles.Text = "Hasta";
+            this.txtDesdeSabado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeSabado.Location = new System.Drawing.Point(128, 214);
+            this.txtDesdeSabado.Name = "txtDesdeSabado";
+            this.txtDesdeSabado.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeSabado.TabIndex = 104;
+            this.txtDesdeSabado.Text = "Desde";
             // 
-            // TxtDesdeMiercoles
+            // txtHastaViernes
             // 
-            this.TxtDesdeMiercoles.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeMiercoles.Location = new System.Drawing.Point(128, 124);
-            this.TxtDesdeMiercoles.Name = "TxtDesdeMiercoles";
-            this.TxtDesdeMiercoles.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeMiercoles.TabIndex = 98;
-            this.TxtDesdeMiercoles.Text = "Desde";
+            this.txtHastaViernes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaViernes.Location = new System.Drawing.Point(215, 184);
+            this.txtHastaViernes.Name = "txtHastaViernes";
+            this.txtHastaViernes.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaViernes.TabIndex = 103;
+            this.txtHastaViernes.Text = "Hasta";
             // 
-            // TxtHastaMartes
+            // txtDesdeViernes
             // 
-            this.TxtHastaMartes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaMartes.Location = new System.Drawing.Point(215, 94);
-            this.TxtHastaMartes.Name = "TxtHastaMartes";
-            this.TxtHastaMartes.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaMartes.TabIndex = 97;
-            this.TxtHastaMartes.Text = "Hasta";
+            this.txtDesdeViernes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeViernes.Location = new System.Drawing.Point(128, 184);
+            this.txtDesdeViernes.Name = "txtDesdeViernes";
+            this.txtDesdeViernes.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeViernes.TabIndex = 102;
+            this.txtDesdeViernes.Text = "Desde";
             // 
-            // TxtDesdeMartes
+            // txtHastaJueves
             // 
-            this.TxtDesdeMartes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeMartes.Location = new System.Drawing.Point(128, 94);
-            this.TxtDesdeMartes.Name = "TxtDesdeMartes";
-            this.TxtDesdeMartes.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeMartes.TabIndex = 96;
-            this.TxtDesdeMartes.Text = "Desde";
+            this.txtHastaJueves.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaJueves.Location = new System.Drawing.Point(215, 154);
+            this.txtHastaJueves.Name = "txtHastaJueves";
+            this.txtHastaJueves.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaJueves.TabIndex = 101;
+            this.txtHastaJueves.Text = "Hasta";
             // 
-            // ChkSabado
+            // txtDesdeJueves
             // 
-            this.ChkSabado.AutoSize = true;
-            this.ChkSabado.Location = new System.Drawing.Point(10, 216);
-            this.ChkSabado.Name = "ChkSabado";
-            this.ChkSabado.Size = new System.Drawing.Size(82, 24);
-            this.ChkSabado.TabIndex = 95;
-            this.ChkSabado.Text = "Sábado";
-            this.ChkSabado.UseVisualStyleBackColor = true;
+            this.txtDesdeJueves.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeJueves.Location = new System.Drawing.Point(128, 154);
+            this.txtDesdeJueves.Name = "txtDesdeJueves";
+            this.txtDesdeJueves.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeJueves.TabIndex = 100;
+            this.txtDesdeJueves.Text = "Desde";
             // 
-            // ChkViernes
+            // txtHastaMiercoles
             // 
-            this.ChkViernes.AutoSize = true;
-            this.ChkViernes.Location = new System.Drawing.Point(10, 186);
-            this.ChkViernes.Name = "ChkViernes";
-            this.ChkViernes.Size = new System.Drawing.Size(79, 24);
-            this.ChkViernes.TabIndex = 94;
-            this.ChkViernes.Text = "Viernes";
-            this.ChkViernes.UseVisualStyleBackColor = true;
+            this.txtHastaMiercoles.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaMiercoles.Location = new System.Drawing.Point(215, 124);
+            this.txtHastaMiercoles.Name = "txtHastaMiercoles";
+            this.txtHastaMiercoles.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaMiercoles.TabIndex = 99;
+            this.txtHastaMiercoles.Text = "Hasta";
             // 
-            // ChkJueves
+            // txtDesdeMiercoles
             // 
-            this.ChkJueves.AutoSize = true;
-            this.ChkJueves.Location = new System.Drawing.Point(10, 156);
-            this.ChkJueves.Name = "ChkJueves";
-            this.ChkJueves.Size = new System.Drawing.Size(73, 24);
-            this.ChkJueves.TabIndex = 93;
-            this.ChkJueves.Text = "Jueves";
-            this.ChkJueves.UseVisualStyleBackColor = true;
+            this.txtDesdeMiercoles.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeMiercoles.Location = new System.Drawing.Point(128, 124);
+            this.txtDesdeMiercoles.Name = "txtDesdeMiercoles";
+            this.txtDesdeMiercoles.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeMiercoles.TabIndex = 98;
+            this.txtDesdeMiercoles.Text = "Desde";
             // 
-            // ChkMiercoles
+            // txtHastaMartes
             // 
-            this.ChkMiercoles.AutoSize = true;
-            this.ChkMiercoles.Location = new System.Drawing.Point(10, 126);
-            this.ChkMiercoles.Name = "ChkMiercoles";
-            this.ChkMiercoles.Size = new System.Drawing.Size(95, 24);
-            this.ChkMiercoles.TabIndex = 92;
-            this.ChkMiercoles.Text = "Miércoles";
-            this.ChkMiercoles.UseVisualStyleBackColor = true;
+            this.txtHastaMartes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaMartes.Location = new System.Drawing.Point(215, 94);
+            this.txtHastaMartes.Name = "txtHastaMartes";
+            this.txtHastaMartes.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaMartes.TabIndex = 97;
+            this.txtHastaMartes.Text = "Hasta";
             // 
-            // ChkMartes
+            // txtDesdeMartes
             // 
-            this.ChkMartes.AutoSize = true;
-            this.ChkMartes.Location = new System.Drawing.Point(10, 96);
-            this.ChkMartes.Name = "ChkMartes";
-            this.ChkMartes.Size = new System.Drawing.Size(76, 24);
-            this.ChkMartes.TabIndex = 91;
-            this.ChkMartes.Text = "Martes";
-            this.ChkMartes.UseVisualStyleBackColor = true;
+            this.txtDesdeMartes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeMartes.Location = new System.Drawing.Point(128, 94);
+            this.txtDesdeMartes.Name = "txtDesdeMartes";
+            this.txtDesdeMartes.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeMartes.TabIndex = 96;
+            this.txtDesdeMartes.Text = "Desde";
             // 
-            // ChkLunes
+            // chkSabado
             // 
-            this.ChkLunes.AutoSize = true;
-            this.ChkLunes.Location = new System.Drawing.Point(10, 68);
-            this.ChkLunes.Name = "ChkLunes";
-            this.ChkLunes.Size = new System.Drawing.Size(68, 24);
-            this.ChkLunes.TabIndex = 90;
-            this.ChkLunes.Text = "Lunes";
-            this.ChkLunes.UseVisualStyleBackColor = true;
+            this.chkSabado.AutoSize = true;
+            this.chkSabado.Location = new System.Drawing.Point(10, 216);
+            this.chkSabado.Name = "chkSabado";
+            this.chkSabado.Size = new System.Drawing.Size(82, 24);
+            this.chkSabado.TabIndex = 95;
+            this.chkSabado.Text = "Sábado";
+            this.chkSabado.UseVisualStyleBackColor = true;
             // 
-            // TxtHastaLunes
+            // chkViernes
             // 
-            this.TxtHastaLunes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaLunes.Location = new System.Drawing.Point(215, 63);
-            this.TxtHastaLunes.Name = "TxtHastaLunes";
-            this.TxtHastaLunes.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaLunes.TabIndex = 89;
-            this.TxtHastaLunes.Text = "Hasta";
+            this.chkViernes.AutoSize = true;
+            this.chkViernes.Location = new System.Drawing.Point(10, 186);
+            this.chkViernes.Name = "chkViernes";
+            this.chkViernes.Size = new System.Drawing.Size(79, 24);
+            this.chkViernes.TabIndex = 94;
+            this.chkViernes.Text = "Viernes";
+            this.chkViernes.UseVisualStyleBackColor = true;
             // 
-            // TxtDesdeLunes
+            // chkJueves
             // 
-            this.TxtDesdeLunes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeLunes.Location = new System.Drawing.Point(128, 63);
-            this.TxtDesdeLunes.Name = "TxtDesdeLunes";
-            this.TxtDesdeLunes.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeLunes.TabIndex = 88;
-            this.TxtDesdeLunes.Text = "Desde";
+            this.chkJueves.AutoSize = true;
+            this.chkJueves.Location = new System.Drawing.Point(10, 156);
+            this.chkJueves.Name = "chkJueves";
+            this.chkJueves.Size = new System.Drawing.Size(73, 24);
+            this.chkJueves.TabIndex = 93;
+            this.chkJueves.Text = "Jueves";
+            this.chkJueves.UseVisualStyleBackColor = true;
+            // 
+            // chkMiercoles
+            // 
+            this.chkMiercoles.AutoSize = true;
+            this.chkMiercoles.Location = new System.Drawing.Point(10, 126);
+            this.chkMiercoles.Name = "chkMiercoles";
+            this.chkMiercoles.Size = new System.Drawing.Size(95, 24);
+            this.chkMiercoles.TabIndex = 92;
+            this.chkMiercoles.Text = "Miércoles";
+            this.chkMiercoles.UseVisualStyleBackColor = true;
+            // 
+            // chkMartes
+            // 
+            this.chkMartes.AutoSize = true;
+            this.chkMartes.Location = new System.Drawing.Point(10, 96);
+            this.chkMartes.Name = "chkMartes";
+            this.chkMartes.Size = new System.Drawing.Size(76, 24);
+            this.chkMartes.TabIndex = 91;
+            this.chkMartes.Text = "Martes";
+            this.chkMartes.UseVisualStyleBackColor = true;
+            // 
+            // chkLunes
+            // 
+            this.chkLunes.AutoSize = true;
+            this.chkLunes.Location = new System.Drawing.Point(10, 68);
+            this.chkLunes.Name = "chkLunes";
+            this.chkLunes.Size = new System.Drawing.Size(68, 24);
+            this.chkLunes.TabIndex = 90;
+            this.chkLunes.Text = "Lunes";
+            this.chkLunes.UseVisualStyleBackColor = true;
+            // 
+            // txtHastaLunes
+            // 
+            this.txtHastaLunes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaLunes.Location = new System.Drawing.Point(215, 63);
+            this.txtHastaLunes.Name = "txtHastaLunes";
+            this.txtHastaLunes.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaLunes.TabIndex = 89;
+            this.txtHastaLunes.Text = "Hasta";
+            // 
+            // txtDesdeLunes
+            // 
+            this.txtDesdeLunes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeLunes.Location = new System.Drawing.Point(128, 63);
+            this.txtDesdeLunes.Name = "txtDesdeLunes";
+            this.txtDesdeLunes.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeLunes.TabIndex = 88;
+            this.txtDesdeLunes.Text = "Desde";
             // 
             // cmbTipoDocumentoEmpleado
             // 
@@ -335,117 +388,60 @@ namespace Presentacion
             this.cmbTipoDocumentoEmpleado.TabIndex = 65;
             this.cmbTipoDocumentoEmpleado.Text = "Tipo";
             // 
-            // TxtObservacionesEmpleado
+            // txtObservacionesEmpleado
             // 
-            this.TxtObservacionesEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtObservacionesEmpleado.Location = new System.Drawing.Point(17, 257);
-            this.TxtObservacionesEmpleado.Multiline = true;
-            this.TxtObservacionesEmpleado.Name = "TxtObservacionesEmpleado";
-            this.TxtObservacionesEmpleado.Size = new System.Drawing.Size(286, 112);
-            this.TxtObservacionesEmpleado.TabIndex = 64;
-            this.TxtObservacionesEmpleado.Text = "Observaciones y/o consideraciones";
+            this.txtObservacionesEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtObservacionesEmpleado.Location = new System.Drawing.Point(17, 292);
+            this.txtObservacionesEmpleado.Multiline = true;
+            this.txtObservacionesEmpleado.Name = "txtObservacionesEmpleado";
+            this.txtObservacionesEmpleado.Size = new System.Drawing.Size(286, 77);
+            this.txtObservacionesEmpleado.TabIndex = 64;
+            this.txtObservacionesEmpleado.Text = "Observaciones y/o consideraciones";
             // 
-            // CmbTipoEmpleado
+            // cmbTipoEmpleado
             // 
-            this.CmbTipoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.CmbTipoEmpleado.FormattingEnabled = true;
-            this.CmbTipoEmpleado.Location = new System.Drawing.Point(333, 36);
-            this.CmbTipoEmpleado.Name = "CmbTipoEmpleado";
-            this.CmbTipoEmpleado.Size = new System.Drawing.Size(307, 28);
-            this.CmbTipoEmpleado.TabIndex = 61;
-            this.CmbTipoEmpleado.Text = "Tipo de empleado";
+            this.cmbTipoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.cmbTipoEmpleado.FormattingEnabled = true;
+            this.cmbTipoEmpleado.Location = new System.Drawing.Point(333, 36);
+            this.cmbTipoEmpleado.Name = "cmbTipoEmpleado";
+            this.cmbTipoEmpleado.Size = new System.Drawing.Size(307, 28);
+            this.cmbTipoEmpleado.TabIndex = 61;
+            this.cmbTipoEmpleado.Text = "Tipo de empleado";
             // 
-            // TxtMailEmpleado
+            // txtMailEmpleado
             // 
-            this.TxtMailEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtMailEmpleado.Location = new System.Drawing.Point(17, 219);
-            this.TxtMailEmpleado.Name = "TxtMailEmpleado";
-            this.TxtMailEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.TxtMailEmpleado.TabIndex = 60;
-            this.TxtMailEmpleado.Text = "Mail";
+            this.txtMailEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtMailEmpleado.Location = new System.Drawing.Point(17, 257);
+            this.txtMailEmpleado.Name = "txtMailEmpleado";
+            this.txtMailEmpleado.Size = new System.Drawing.Size(286, 27);
+            this.txtMailEmpleado.TabIndex = 60;
+            this.txtMailEmpleado.Text = "Mail";
             // 
-            // TxtNombreEmpleado
+            // txtNombreEmpleado
             // 
-            this.TxtNombreEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtNombreEmpleado.Location = new System.Drawing.Point(17, 37);
-            this.TxtNombreEmpleado.Name = "TxtNombreEmpleado";
-            this.TxtNombreEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.TxtNombreEmpleado.TabIndex = 56;
-            this.TxtNombreEmpleado.Text = "Nombre";
-            // 
-            // BtnAltaEmpleado
-            // 
-            this.BtnAltaEmpleado.BackColor = System.Drawing.SystemColors.Highlight;
-            this.BtnAltaEmpleado.FlatAppearance.BorderSize = 0;
-            this.BtnAltaEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAltaEmpleado.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BtnAltaEmpleado.Location = new System.Drawing.Point(333, 328);
-            this.BtnAltaEmpleado.Name = "BtnAltaEmpleado";
-            this.BtnAltaEmpleado.Size = new System.Drawing.Size(307, 41);
-            this.BtnAltaEmpleado.TabIndex = 53;
-            this.BtnAltaEmpleado.Text = "Guardar";
-            this.BtnAltaEmpleado.UseVisualStyleBackColor = false;
-            this.BtnAltaEmpleado.Click += new System.EventHandler(this.BtnSaveEmployee_Click);
-            // 
-            // TxtDocument
-            // 
-            this.TxtDocument.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.TxtDocument.InterceptArrowKeys = false;
-            this.TxtDocument.Location = new System.Drawing.Point(92, 111);
-            this.TxtDocument.Name = "TxtDocument";
-            this.TxtDocument.Size = new System.Drawing.Size(211, 27);
-            this.TxtDocument.TabIndex = 69;
-            this.TxtDocument.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDocument_KeyPress);
-            // 
-            // TxtTelefonoEmpleado
-            // 
-            this.TxtTelefonoEmpleado.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.TxtTelefonoEmpleado.InterceptArrowKeys = false;
-            this.TxtTelefonoEmpleado.Location = new System.Drawing.Point(17, 148);
-            this.TxtTelefonoEmpleado.Name = "TxtTelefonoEmpleado";
-            this.TxtTelefonoEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.TxtTelefonoEmpleado.TabIndex = 70;
-            // 
-            // TxtAlternativoEmpleado
-            // 
-            this.TxtAlternativoEmpleado.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.TxtAlternativoEmpleado.InterceptArrowKeys = false;
-            this.TxtAlternativoEmpleado.Location = new System.Drawing.Point(17, 185);
-            this.TxtAlternativoEmpleado.Name = "TxtAlternativoEmpleado";
-            this.TxtAlternativoEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.TxtAlternativoEmpleado.TabIndex = 71;
+            this.txtNombreEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtNombreEmpleado.Location = new System.Drawing.Point(17, 37);
+            this.txtNombreEmpleado.Name = "txtNombreEmpleado";
+            this.txtNombreEmpleado.Size = new System.Drawing.Size(286, 27);
+            this.txtNombreEmpleado.TabIndex = 56;
+            this.txtNombreEmpleado.Text = "Nombre";
             // 
             // Empleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 650);
-            this.Controls.Add(this.TxtBuscarEmpleado);
-            this.Controls.Add(this.DtgvEmpleado);
-            this.Controls.Add(this.GbEmpleado);
+            this.Controls.Add(this.txtBuscarEmpleado);
+            this.Controls.Add(this.dtgvEmpleado);
+            this.Controls.Add(this.gbEmpleado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Empleados";
             this.Text = "empleados";
-            ((System.ComponentModel.ISupportInitialize)(this.DtgvEmpleado)).EndInit();
-            this.GbEmpleado.ResumeLayout(false);
-            this.GbEmpleado.PerformLayout();
-            this.GbJornadaEmpleado.ResumeLayout(false);
-            this.GbJornadaEmpleado.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtDocument)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtTelefonoEmpleado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtAlternativoEmpleado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleado)).EndInit();
+            this.gbEmpleado.ResumeLayout(false);
+            this.gbEmpleado.PerformLayout();
+            this.gbJornadaEmpleado.ResumeLayout(false);
+            this.gbJornadaEmpleado.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,38 +449,39 @@ namespace Presentacion
 
         #endregion
 
-        private System.Windows.Forms.TextBox TxtBuscarEmpleado;
-        private System.Windows.Forms.DataGridView DtgvEmpleado;
-        private System.Windows.Forms.GroupBox GbEmpleado;
+        private System.Windows.Forms.TextBox txtBuscarEmpleado;
+        private System.Windows.Forms.DataGridView dtgvEmpleado;
+        private System.Windows.Forms.GroupBox gbEmpleado;
         private System.Windows.Forms.ComboBox cmbTipoDocumentoEmpleado;
-        private System.Windows.Forms.TextBox TxtObservacionesEmpleado;
-        private System.Windows.Forms.ComboBox CmbTipoEmpleado;
-        private System.Windows.Forms.TextBox TxtMailEmpleado;
-        private System.Windows.Forms.TextBox TxtNombreEmpleado;
-        private System.Windows.Forms.Button BtnAltaEmpleado;
-        private System.Windows.Forms.GroupBox GbJornadaEmpleado;
-        private System.Windows.Forms.CheckBox ChkTodos;
-        private System.Windows.Forms.TextBox TxtHastaSabado;
-        private System.Windows.Forms.TextBox TxtDesdeSabado;
-        private System.Windows.Forms.TextBox TxtHastaViernes;
-        private System.Windows.Forms.TextBox TxtDesdeViernes;
-        private System.Windows.Forms.TextBox TxtHastaJueves;
-        private System.Windows.Forms.TextBox TxtDesdeJueves;
-        private System.Windows.Forms.TextBox TxtHastaMiercoles;
-        private System.Windows.Forms.TextBox TxtDesdeMiercoles;
-        private System.Windows.Forms.TextBox TxtHastaMartes;
-        private System.Windows.Forms.TextBox TxtDesdeMartes;
-        private System.Windows.Forms.CheckBox ChkSabado;
-        private System.Windows.Forms.CheckBox ChkViernes;
-        private System.Windows.Forms.CheckBox ChkJueves;
-        private System.Windows.Forms.CheckBox ChkMiercoles;
-        private System.Windows.Forms.CheckBox ChkMartes;
-        private System.Windows.Forms.CheckBox ChkLunes;
-        private System.Windows.Forms.TextBox TxtHastaLunes;
-        private System.Windows.Forms.TextBox TxtDesdeLunes;
-        private System.Windows.Forms.TextBox TxtApellidoEmpleado;
-        private System.Windows.Forms.NumericUpDown TxtAlternativoEmpleado;
-        private System.Windows.Forms.NumericUpDown TxtTelefonoEmpleado;
-        private System.Windows.Forms.NumericUpDown TxtDocument;
+        private System.Windows.Forms.TextBox txtObservacionesEmpleado;
+        private System.Windows.Forms.ComboBox cmbTipoEmpleado;
+        private System.Windows.Forms.TextBox txtMailEmpleado;
+        private System.Windows.Forms.TextBox txtNombreEmpleado;
+        private System.Windows.Forms.Button btnAltaEmpleado;
+        private System.Windows.Forms.GroupBox gbJornadaEmpleado;
+        private System.Windows.Forms.CheckBox chkTodos;
+        private System.Windows.Forms.TextBox txtHastaSabado;
+        private System.Windows.Forms.TextBox txtDesdeSabado;
+        private System.Windows.Forms.TextBox txtHastaViernes;
+        private System.Windows.Forms.TextBox txtDesdeViernes;
+        private System.Windows.Forms.TextBox txtHastaJueves;
+        private System.Windows.Forms.TextBox txtDesdeJueves;
+        private System.Windows.Forms.TextBox txtHastaMiercoles;
+        private System.Windows.Forms.TextBox txtDesdeMiercoles;
+        private System.Windows.Forms.TextBox txtHastaMartes;
+        private System.Windows.Forms.TextBox txtDesdeMartes;
+        private System.Windows.Forms.CheckBox chkSabado;
+        private System.Windows.Forms.CheckBox chkViernes;
+        private System.Windows.Forms.CheckBox chkJueves;
+        private System.Windows.Forms.CheckBox chkMiercoles;
+        private System.Windows.Forms.CheckBox chkMartes;
+        private System.Windows.Forms.CheckBox chkLunes;
+        private System.Windows.Forms.TextBox txtHastaLunes;
+        private System.Windows.Forms.TextBox txtDesdeLunes;
+        private System.Windows.Forms.TextBox txtApellidoEmpleado;
+        private System.Windows.Forms.TextBox txtAlternativoEmpleados;
+        private System.Windows.Forms.TextBox txtTelefonoEmpleados;
+        private System.Windows.Forms.TextBox txtDocument;
+        private System.Windows.Forms.ComboBox cmbSexo;
     }
 }

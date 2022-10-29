@@ -23,6 +23,12 @@ namespace Presentacion
             InitializeComponent();
         }
 
+        #region Variables
+
+        private bool menuConfigAbierto = false;
+
+        #endregion
+
         #region Call of Forms
 
         private void CallOfForms(object Hijo)
@@ -84,6 +90,14 @@ namespace Presentacion
             focoCaja.Visible = true;
         }
 
+        private void quitarFoco()
+        {
+            focoAsistencia.Visible = false;
+            focoRegistro.Visible = false;
+            focoPagos.Visible = false;
+            focoPlanes.Visible = false;
+            focoCaja.Visible = false;
+        }
         #endregion
 
         #region Menu Buttons
@@ -114,6 +128,27 @@ namespace Presentacion
             CallOfForms(new Caja());
             focusCaja();
         }
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+            if (!menuConfigAbierto)
+            {
+                CallOfForms(new Configuracion());
+                quitarFoco();
+                QuitarMenuConfig();
+            }
+        }
+
+        private void QuitarMenuConfig()
+        {
+            if (menuConfigAbierto)
+            {
+                menuConfigAbierto = false;
+            }
+            else
+            {
+                menuConfigAbierto = true;
+            }
+        }
 
         #endregion
 
@@ -127,30 +162,12 @@ namespace Presentacion
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void btnclose_MouseHover(object sender, EventArgs e)
-        {
-            btnclose.ForeColor = Color.White;
-        }
-
-        private void btnclose_MouseLeave(object sender, EventArgs e)
-        {
-            btnclose.ForeColor = Color.Red;
-        }
-        private void btnminimize_MouseHover(object sender, EventArgs e)
-        {
-            btnminimize.ForeColor = Color.White;
-        }
-
-        private void btnminimize_MouseLeave(object sender, EventArgs e)
-        {
-            btnminimize.ForeColor = Color.Red;
-        }
         private void btnLogout_Click(object sender, EventArgs e)
         {
             if (_commonClass.CajaAbierta == false) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
             {
                 //deslogueamos la sesión abierta
-                this.Hide();
+                this.Close();
                 Login frm = new Login();
                 frm.Show();
             }
@@ -161,7 +178,6 @@ namespace Presentacion
                 _caja.Show();
             }
         }
-
         #endregion
 
         #region Arrastrar Form

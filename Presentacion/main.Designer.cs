@@ -49,6 +49,7 @@ namespace Presentacion
             this.focoEmpleados = new System.Windows.Forms.Label();
             this.btnminimize = new System.Windows.Forms.Button();
             this.btnclose = new System.Windows.Forms.Button();
+            this.btnConfiguracion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.menuboxMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleboxMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.windowboxMain)).BeginInit();
@@ -98,7 +99,7 @@ namespace Presentacion
             this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLogout.Location = new System.Drawing.Point(0, 645);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(250, 55);
+            this.btnLogout.Size = new System.Drawing.Size(194, 55);
             this.btnLogout.TabIndex = 47;
             this.btnLogout.Text = "Cerrar Sesión";
             this.btnLogout.UseVisualStyleBackColor = false;
@@ -330,11 +331,30 @@ namespace Presentacion
             this.btnclose.MouseLeave += new System.EventHandler(this.Btnclose_MouseLeave);
             this.btnclose.MouseHover += new System.EventHandler(this.Btnclose_MouseHover);
             // 
-            // main
+            // btnConfiguracion
+            // 
+            this.btnConfiguracion.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnConfiguracion.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConfiguracion.BackgroundImage")));
+            this.btnConfiguracion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfiguracion.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnConfiguracion.FlatAppearance.BorderSize = 0;
+            this.btnConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguracion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnConfiguracion.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConfiguracion.Location = new System.Drawing.Point(200, 650);
+            this.btnConfiguracion.Name = "btnConfiguracion";
+            this.btnConfiguracion.Size = new System.Drawing.Size(50, 50);
+            this.btnConfiguracion.TabIndex = 61;
+            this.btnConfiguracion.UseVisualStyleBackColor = false;
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 700);
+            this.Controls.Add(this.btnConfiguracion);
             this.Controls.Add(this.btnminimize);
             this.Controls.Add(this.btnclose);
             this.Controls.Add(this.focoEmpleados);
@@ -355,7 +375,7 @@ namespace Presentacion
             this.Controls.Add(this.titleboxMain);
             this.Controls.Add(this.menuboxMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "main";
+            this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.menuboxMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleboxMain)).EndInit();
@@ -387,5 +407,6 @@ namespace Presentacion
         private System.Windows.Forms.Label focoEmpleados;
         private System.Windows.Forms.Button btnminimize;
         private System.Windows.Forms.Button btnclose;
+        private System.Windows.Forms.Button btnConfiguracion;
     }
 }

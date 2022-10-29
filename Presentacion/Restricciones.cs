@@ -15,8 +15,8 @@ namespace Presentacion
 
         //Solo se pueden ingresar números
 
-        public void SoloNumeros(object sender, KeyPressEventArgs e, string strTexto)
-        {
+        public void SoloNumeros(KeyPressEventArgs e, string strTexto)
+        {            
             //Solo se teclean los digitos
             if (Char.IsDigit(e.KeyChar))
             {
@@ -28,6 +28,8 @@ namespace Presentacion
             {
                 e.Handled = false;
             }
+
+            //prohibir caracteres especiales
             else if (Char.IsPunctuation(e.KeyChar))
             {
                 if (strTexto.Contains("/") ||
@@ -46,11 +48,13 @@ namespace Presentacion
                     e.Handled = false;
                 }
             }
+
+            //simbolos tambien
             else if (Char.IsSymbol(e.KeyChar))
             {
                 e.Handled = true;
             }
-
+            // no puede haber espacios en blanco
             else if (Char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true;
@@ -63,5 +67,8 @@ namespace Presentacion
             }
         }
 
+        //realizar el método con variables globales para que quede guardada en las variables
+        //los datos del usuario que tiene la sesión iniciada en este programa.
+        //
     }
 }

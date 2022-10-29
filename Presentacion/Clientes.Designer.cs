@@ -32,16 +32,16 @@ namespace Presentacion
             this.TxtBuscarCliente = new System.Windows.Forms.TextBox();
             this.DtgvCliente = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TxtApellidoCliente = new System.Windows.Forms.TextBox();
-            this.TxtNumDocumentoCliente = new System.Windows.Forms.TextBox();
-            this.CmbTipoDocumentoCliente = new System.Windows.Forms.ComboBox();
-            this.TxtObservacionesCliente = new System.Windows.Forms.TextBox();
-            this.CmbPlanCliente = new System.Windows.Forms.ComboBox();
-            this.TxtMailCliente = new System.Windows.Forms.TextBox();
-            this.TxtAlternativoCliente = new System.Windows.Forms.TextBox();
-            this.TxtTelefonoCliente = new System.Windows.Forms.TextBox();
-            this.TxtNombreCliente = new System.Windows.Forms.TextBox();
-            this.BtnAltaCliente = new System.Windows.Forms.Button();
+            this.txtNombreCliente = new System.Windows.Forms.TextBox();
+            this.cmbSexo = new System.Windows.Forms.ComboBox();
+            this.txtApellidoCliente = new System.Windows.Forms.TextBox();
+            this.txtNumDocumentoCliente = new System.Windows.Forms.TextBox();
+            this.cmbTipoDocumentoCliente = new System.Windows.Forms.ComboBox();
+            this.txtObservacionesCliente = new System.Windows.Forms.TextBox();
+            this.txtMailCliente = new System.Windows.Forms.TextBox();
+            this.txtAlternativoCliente = new System.Windows.Forms.TextBox();
+            this.txtTelefonoCliente = new System.Windows.Forms.TextBox();
+            this.btnAltaCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DtgvCliente)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -67,119 +67,131 @@ namespace Presentacion
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.TxtApellidoCliente);
-            this.groupBox1.Controls.Add(this.TxtNumDocumentoCliente);
-            this.groupBox1.Controls.Add(this.CmbTipoDocumentoCliente);
-            this.groupBox1.Controls.Add(this.TxtObservacionesCliente);
-            this.groupBox1.Controls.Add(this.CmbPlanCliente);
-            this.groupBox1.Controls.Add(this.TxtMailCliente);
-            this.groupBox1.Controls.Add(this.TxtAlternativoCliente);
-            this.groupBox1.Controls.Add(this.TxtTelefonoCliente);
-            this.groupBox1.Controls.Add(this.TxtNombreCliente);
-            this.groupBox1.Controls.Add(this.BtnAltaCliente);
+            this.groupBox1.Controls.Add(this.txtNombreCliente);
+            this.groupBox1.Controls.Add(this.cmbSexo);
+            this.groupBox1.Controls.Add(this.txtApellidoCliente);
+            this.groupBox1.Controls.Add(this.txtNumDocumentoCliente);
+            this.groupBox1.Controls.Add(this.cmbTipoDocumentoCliente);
+            this.groupBox1.Controls.Add(this.txtObservacionesCliente);
+            this.groupBox1.Controls.Add(this.txtMailCliente);
+            this.groupBox1.Controls.Add(this.txtAlternativoCliente);
+            this.groupBox1.Controls.Add(this.txtTelefonoCliente);
+            this.groupBox1.Controls.Add(this.btnAltaCliente);
             this.groupBox1.Location = new System.Drawing.Point(17, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(666, 225);
+            this.groupBox1.Size = new System.Drawing.Size(666, 250);
             this.groupBox1.TabIndex = 59;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Personales";
             // 
-            // TxtApellidoCliente
+            // txtNombreCliente
             // 
-            this.TxtApellidoCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtApellidoCliente.Location = new System.Drawing.Point(28, 73);
-            this.TxtApellidoCliente.Name = "TxtApellidoCliente";
-            this.TxtApellidoCliente.Size = new System.Drawing.Size(286, 27);
-            this.TxtApellidoCliente.TabIndex = 67;
-            this.TxtApellidoCliente.Text = "Apellido";
+            this.txtNombreCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNombreCliente.Location = new System.Drawing.Point(28, 29);
+            this.txtNombreCliente.Name = "txtNombreCliente";
+            this.txtNombreCliente.Size = new System.Drawing.Size(286, 27);
+            this.txtNombreCliente.TabIndex = 70;
+            this.txtNombreCliente.Text = "Nombre";
             // 
-            // TxtNumDocumentoCliente
+            // cmbSexo
             // 
-            this.TxtNumDocumentoCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtNumDocumentoCliente.Location = new System.Drawing.Point(103, 111);
-            this.TxtNumDocumentoCliente.Name = "TxtNumDocumentoCliente";
-            this.TxtNumDocumentoCliente.Size = new System.Drawing.Size(211, 27);
-            this.TxtNumDocumentoCliente.TabIndex = 66;
-            this.TxtNumDocumentoCliente.Text = "N° documento";
+            this.cmbSexo.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbSexo.FormattingEnabled = true;
+            this.cmbSexo.Location = new System.Drawing.Point(28, 138);
+            this.cmbSexo.Name = "cmbSexo";
+            this.cmbSexo.Size = new System.Drawing.Size(286, 28);
+            this.cmbSexo.TabIndex = 68;
+            this.cmbSexo.Text = "Sexo";
             // 
-            // CmbTipoDocumentoCliente
+            // txtApellidoCliente
             // 
-            this.CmbTipoDocumentoCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.CmbTipoDocumentoCliente.FormattingEnabled = true;
-            this.CmbTipoDocumentoCliente.Location = new System.Drawing.Point(28, 110);
-            this.CmbTipoDocumentoCliente.Name = "CmbTipoDocumentoCliente";
-            this.CmbTipoDocumentoCliente.Size = new System.Drawing.Size(69, 28);
-            this.CmbTipoDocumentoCliente.TabIndex = 65;
-            this.CmbTipoDocumentoCliente.Text = "Tipo";
+            this.txtApellidoCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtApellidoCliente.Location = new System.Drawing.Point(28, 65);
+            this.txtApellidoCliente.Name = "txtApellidoCliente";
+            this.txtApellidoCliente.Size = new System.Drawing.Size(286, 27);
+            this.txtApellidoCliente.TabIndex = 69;
+            this.txtApellidoCliente.Text = "Apellido";
+            this.txtApellidoCliente.Enter += new System.EventHandler(this.txtApellidoCliente_Enter);
+            this.txtApellidoCliente.Leave += new System.EventHandler(this.txtApellidoCliente_Leave);
             // 
-            // TxtObservacionesCliente
+            // txtNumDocumentoCliente
             // 
-            this.TxtObservacionesCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtObservacionesCliente.Location = new System.Drawing.Point(348, 111);
-            this.TxtObservacionesCliente.Multiline = true;
-            this.TxtObservacionesCliente.Name = "TxtObservacionesCliente";
-            this.TxtObservacionesCliente.Size = new System.Drawing.Size(286, 29);
-            this.TxtObservacionesCliente.TabIndex = 64;
-            this.TxtObservacionesCliente.Text = "Observaciones y/o consideraciones";
+            this.txtNumDocumentoCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNumDocumentoCliente.Location = new System.Drawing.Point(103, 103);
+            this.txtNumDocumentoCliente.Name = "txtNumDocumentoCliente";
+            this.txtNumDocumentoCliente.Size = new System.Drawing.Size(211, 27);
+            this.txtNumDocumentoCliente.TabIndex = 66;
+            this.txtNumDocumentoCliente.Text = "N° documento";
+            this.txtNumDocumentoCliente.Enter += new System.EventHandler(this.txtNumDocumentoCliente_Enter);
+            this.txtNumDocumentoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumDocumentoCliente_KeyPress);
+            this.txtNumDocumentoCliente.Leave += new System.EventHandler(this.txtNumDocumentoCliente_Leave);
             // 
-            // CmbPlanCliente
+            // cmbTipoDocumentoCliente
             // 
-            this.CmbPlanCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.CmbPlanCliente.FormattingEnabled = true;
-            this.CmbPlanCliente.Location = new System.Drawing.Point(348, 73);
-            this.CmbPlanCliente.Name = "CmbPlanCliente";
-            this.CmbPlanCliente.Size = new System.Drawing.Size(286, 28);
-            this.CmbPlanCliente.TabIndex = 61;
-            this.CmbPlanCliente.Text = "Seleccionar Plan";
+            this.cmbTipoDocumentoCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.cmbTipoDocumentoCliente.FormattingEnabled = true;
+            this.cmbTipoDocumentoCliente.Location = new System.Drawing.Point(28, 102);
+            this.cmbTipoDocumentoCliente.Name = "cmbTipoDocumentoCliente";
+            this.cmbTipoDocumentoCliente.Size = new System.Drawing.Size(69, 28);
+            this.cmbTipoDocumentoCliente.TabIndex = 65;
+            this.cmbTipoDocumentoCliente.Text = "Tipo";
             // 
-            // TxtMailCliente
+            // txtObservacionesCliente
             // 
-            this.TxtMailCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtMailCliente.Location = new System.Drawing.Point(348, 37);
-            this.TxtMailCliente.Name = "TxtMailCliente";
-            this.TxtMailCliente.Size = new System.Drawing.Size(286, 27);
-            this.TxtMailCliente.TabIndex = 60;
-            this.TxtMailCliente.Text = "Mail";
+            this.txtObservacionesCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtObservacionesCliente.Location = new System.Drawing.Point(348, 65);
+            this.txtObservacionesCliente.Multiline = true;
+            this.txtObservacionesCliente.Name = "txtObservacionesCliente";
+            this.txtObservacionesCliente.Size = new System.Drawing.Size(286, 101);
+            this.txtObservacionesCliente.TabIndex = 64;
+            this.txtObservacionesCliente.Text = "Observaciones y/o consideraciones";
+            this.txtObservacionesCliente.Enter += new System.EventHandler(this.txtAlternativoCliente_Enter);
             // 
-            // TxtAlternativoCliente
+            // txtMailCliente
             // 
-            this.TxtAlternativoCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtAlternativoCliente.Location = new System.Drawing.Point(28, 182);
-            this.TxtAlternativoCliente.Name = "TxtAlternativoCliente";
-            this.TxtAlternativoCliente.Size = new System.Drawing.Size(286, 27);
-            this.TxtAlternativoCliente.TabIndex = 59;
-            this.TxtAlternativoCliente.Text = "Alternativo";
+            this.txtMailCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtMailCliente.Location = new System.Drawing.Point(348, 29);
+            this.txtMailCliente.Name = "txtMailCliente";
+            this.txtMailCliente.Size = new System.Drawing.Size(286, 27);
+            this.txtMailCliente.TabIndex = 60;
+            this.txtMailCliente.Text = "Mail";
+            this.txtMailCliente.Enter += new System.EventHandler(this.txtMailCliente_Enter);
+            this.txtMailCliente.Leave += new System.EventHandler(this.txtMailCliente_Leave);
             // 
-            // TxtTelefonoCliente
+            // txtAlternativoCliente
             // 
-            this.TxtTelefonoCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtTelefonoCliente.Location = new System.Drawing.Point(28, 147);
-            this.TxtTelefonoCliente.Name = "TxtTelefonoCliente";
-            this.TxtTelefonoCliente.Size = new System.Drawing.Size(286, 27);
-            this.TxtTelefonoCliente.TabIndex = 58;
-            this.TxtTelefonoCliente.Text = "Teléfono";
+            this.txtAlternativoCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtAlternativoCliente.Location = new System.Drawing.Point(28, 209);
+            this.txtAlternativoCliente.Name = "txtAlternativoCliente";
+            this.txtAlternativoCliente.Size = new System.Drawing.Size(286, 27);
+            this.txtAlternativoCliente.TabIndex = 59;
+            this.txtAlternativoCliente.Text = "Alternativo";
+            this.txtAlternativoCliente.Enter += new System.EventHandler(this.txtAlternativoCliente_Enter);
+            this.txtAlternativoCliente.Leave += new System.EventHandler(this.txtAlternativoCliente_Leave);
             // 
-            // TxtNombreCliente
+            // txtTelefonoCliente
             // 
-            this.TxtNombreCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtNombreCliente.Location = new System.Drawing.Point(28, 37);
-            this.TxtNombreCliente.Name = "TxtNombreCliente";
-            this.TxtNombreCliente.Size = new System.Drawing.Size(286, 27);
-            this.TxtNombreCliente.TabIndex = 56;
-            this.TxtNombreCliente.Text = "Nombre y Apellido";
+            this.txtTelefonoCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtTelefonoCliente.Location = new System.Drawing.Point(28, 174);
+            this.txtTelefonoCliente.Name = "txtTelefonoCliente";
+            this.txtTelefonoCliente.Size = new System.Drawing.Size(286, 27);
+            this.txtTelefonoCliente.TabIndex = 58;
+            this.txtTelefonoCliente.Text = "Teléfono";
+            this.txtTelefonoCliente.Enter += new System.EventHandler(this.txtTelefonoCliente_Enter);
+            this.txtTelefonoCliente.Leave += new System.EventHandler(this.txtTelefonoCliente_Leave);
             // 
-            // BtnAltaCliente
+            // btnAltaCliente
             // 
-            this.BtnAltaCliente.BackColor = System.Drawing.SystemColors.Highlight;
-            this.BtnAltaCliente.FlatAppearance.BorderSize = 0;
-            this.BtnAltaCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAltaCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BtnAltaCliente.Location = new System.Drawing.Point(348, 146);
-            this.BtnAltaCliente.Name = "BtnAltaCliente";
-            this.BtnAltaCliente.Size = new System.Drawing.Size(286, 63);
-            this.BtnAltaCliente.TabIndex = 53;
-            this.BtnAltaCliente.Text = "Aceptar";
-            this.BtnAltaCliente.UseVisualStyleBackColor = false;
+            this.btnAltaCliente.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnAltaCliente.FlatAppearance.BorderSize = 0;
+            this.btnAltaCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAltaCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAltaCliente.Location = new System.Drawing.Point(348, 173);
+            this.btnAltaCliente.Name = "btnAltaCliente";
+            this.btnAltaCliente.Size = new System.Drawing.Size(286, 63);
+            this.btnAltaCliente.TabIndex = 53;
+            this.btnAltaCliente.Text = "Aceptar";
+            this.btnAltaCliente.UseVisualStyleBackColor = false;
             // 
             // Clientes
             // 
@@ -191,7 +203,6 @@ namespace Presentacion
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Clientes";
-            this.Text = "registro";
             ((System.ComponentModel.ISupportInitialize)(this.DtgvCliente)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -205,15 +216,15 @@ namespace Presentacion
         private System.Windows.Forms.TextBox TxtBuscarCliente;
         private System.Windows.Forms.DataGridView DtgvCliente;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox TxtNumDocumentoCliente;
-        private System.Windows.Forms.ComboBox CmbTipoDocumentoCliente;
-        private System.Windows.Forms.TextBox TxtObservacionesCliente;
-        private System.Windows.Forms.ComboBox CmbPlanCliente;
-        private System.Windows.Forms.TextBox TxtMailCliente;
-        private System.Windows.Forms.TextBox TxtAlternativoCliente;
-        private System.Windows.Forms.TextBox TxtTelefonoCliente;
-        private System.Windows.Forms.TextBox TxtNombreCliente;
-        private System.Windows.Forms.Button BtnAltaCliente;
-        private System.Windows.Forms.TextBox TxtApellidoCliente;
+        private System.Windows.Forms.TextBox txtNumDocumentoCliente;
+        private System.Windows.Forms.ComboBox cmbTipoDocumentoCliente;
+        private System.Windows.Forms.TextBox txtObservacionesCliente;
+        private System.Windows.Forms.TextBox txtMailCliente;
+        private System.Windows.Forms.TextBox txtAlternativoCliente;
+        private System.Windows.Forms.TextBox txtTelefonoCliente;
+        private System.Windows.Forms.TextBox txtApellidoCliente;
+        private System.Windows.Forms.Button btnAltaCliente;
+        private System.Windows.Forms.ComboBox cmbSexo;
+        private System.Windows.Forms.TextBox txtNombreCliente;
     }
 }
