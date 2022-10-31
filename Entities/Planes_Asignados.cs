@@ -12,5 +12,6 @@ namespace Entities
         public int Empleado_ID { get; set; }
         public DateTime Fecha_Inicio { get; set; }
         public DateTime Fecha_Fin { get; set; }
+        public string Estado { get; set; }
     }
 }

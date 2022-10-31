@@ -10,8 +10,8 @@ go
 
 /* Personas */
 
-create table Empleados(
-Empleado_ID int primary key identity (0, 1),
+create table Personas(
+Persona_ID int primary key identity (0, 1),
 Nombre nvarchar(50) not null,
 Apellido nvarchar(50) not null,
 Tipo_Documento_ID int not null,
@@ -20,7 +20,12 @@ Tipo_Sexo_ID int not null,
 Nro_Telefono nvarchar(24) not null,
 Nro_Alternativo nvarchar(24) null,
 Mail nvarchar(50) null,
-Observaciones nvarchar(200) null,
+Observaciones nvarchar(200) null
+)
+
+create table Empleados(
+Empleado_ID int primary key identity (0, 1),
+Persona_ID int not null,
 Usuario nvarchar(255) null,
 Clave nvarchar(255) null,
 Tipo_Empleado_ID int not null,
@@ -37,16 +42,10 @@ go
 
 create table Clientes(
 Cliente_ID int primary key identity (0, 1),
-Nombre nvarchar(50) not null,
-Apellido nvarchar(50) not null,
-Tipo_Documento_ID int not null,
-Nro_documento nvarchar(24) not null,
-Tipo_Sexo_ID int not null,
-Nro_Telefono nvarchar(24) not null,
-Nro_Alternativo nvarchar(24) null,
-Mail nvarchar(50) null,
-Observaciones nvarchar(200) null,
-Estado nvarchar(20) not null,
+Persona_ID int not null,
+Fecha_Alta datetime not null,
+Fecha_Baja datetime null,
+Estado nvarchar(20) not null
 )
 
 go
@@ -108,7 +107,7 @@ Importe_Plan decimal (18, 0) not null,
 Duracion int null,
 Cupo_Total int null,
 Cupo_Restante int null,
-Vigencia nvarchar (1) not null
+Estado nvarchar (1) not null
 )
 
 go
@@ -119,7 +118,8 @@ Plan_ID int not null,
 Cliente_ID int not null,
 Empleado_ID int not null,
 Fecha_Inicio datetime not null,
-Fecha_Fin datetime null
+Fecha_Fin datetime null,
+Estado nvarchar(1) not null
 )
 
 go
@@ -430,3 +430,15 @@ and Tipo != 'Jefe'
 go
 
 exec sp_cargar_tipos_empleados
+
+select * from empleados
+
+create proc sp_cargar_ultimo_ID
+as
+select Empleado_ID
+from Empleados
+where Empleado_ID = (select(max(Empleado_ID)) from Empleados)
+
+exec sp_cargar_ultimo_ID
+
+

@@ -13,6 +13,6 @@ namespace Entities
         public int Duracion { get; set; }
         public int Cupo_Total { get; set; }
         public int Cupo_Restante { get; set; }
-        public string Vigencia { get; set; }
+        public string Estado { get; set; }
     }
 }
