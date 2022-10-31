@@ -240,6 +240,21 @@ go
 
 /* Constrains */
 
+/* Personas */
+
+
+alter table Personas
+add CONSTRAINT FK_Personas_TipoDocumento FOREIGN KEY (Tipo_Documento_ID) 
+REFERENCES Tipos_Documentos (Tipo_Documento_ID)
+
+go
+
+alter table Personas
+add CONSTRAINT FK_Personas_TipoSexo FOREIGN KEY (Tipo_Sexo_ID) 
+REFERENCES Tipos_Sexos (Tipo_Sexo_ID)
+
+go
+
 /* Empleados */
 
 alter table Empleados
@@ -255,33 +270,23 @@ REFERENCES Estados_Empleados (Estado_Empleado_ID)
 go
 
 alter table Empleados
-add CONSTRAINT FK_Empleados_TipoDocumento FOREIGN KEY (Tipo_Documento_ID) 
-REFERENCES Tipos_Documentos (Tipo_Documento_ID)
+add CONSTRAINT FK_Empleado_Persona FOREIGN KEY (Persona_ID) 
+REFERENCES Personas (Persona_ID)
 
 go
 
-alter table Empleados
-add CONSTRAINT FK_Empleados_TipoSexo FOREIGN KEY (Tipo_Sexo_ID) 
-REFERENCES Tipos_Sexos (Tipo_Sexo_ID)
-
-go
 
 /* Clientes */
 
 
 alter table Clientes
-add CONSTRAINT FK_Clientes_TipoDocumento FOREIGN KEY (Tipo_Documento_ID) 
-REFERENCES Tipos_Documentos (Tipo_Documento_ID)
-
-go
-
-alter table Clientes
-add CONSTRAINT FK_Clientes_TipoSexo FOREIGN KEY (Tipo_Sexo_ID) 
-REFERENCES Tipos_Sexos (Tipo_Sexo_ID)
+add CONSTRAINT FK_Cliente_Persona FOREIGN KEY (Persona_ID) 
+REFERENCES Personas (Persona_ID)
 
 go
 
 /* Asistencias */
+
 alter table Asistencias
 add CONSTRAINT FK_Asistencia_Cliente FOREIGN KEY (Cliente_ID) 
 REFERENCES Clientes (Cliente_ID)
@@ -429,9 +434,20 @@ and Tipo != 'Jefe'
 
 go
 
-exec sp_cargar_tipos_empleados
+create proc sp_cargar_tipos_empleados_Jefe
+as
+select Tipo_Empleado_ID, Tipo
+from Tipos_Empleados
+where Tipo != 'Admin'
 
-select * from empleados
+go
+
+create proc sp_cargar_tipos_empleados_Admin
+as
+select Tipo_Empleado_ID, Tipo
+from Tipos_Empleados
+
+go
 
 create proc sp_cargar_ultimo_ID
 as
@@ -439,6 +455,12 @@ select Empleado_ID
 from Empleados
 where Empleado_ID = (select(max(Empleado_ID)) from Empleados)
 
-exec sp_cargar_ultimo_ID
+go
 
+create proc sp_cargar_ultimo_ID_Personas
+as
+select Persona_ID
+from Personas
+where Persona_ID = (select(max(Persona_ID)) from Empleados)
 
+go

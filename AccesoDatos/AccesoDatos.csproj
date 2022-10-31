@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataCaja.cs" />
+    <Compile Include="DataClientes.cs" />
     <Compile Include="DataConnection.cs" />
     <Compile Include="DataEmpleados.cs" />
     <Compile Include="DataJornadas.cs" />

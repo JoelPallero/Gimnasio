@@ -36,7 +36,7 @@ namespace Gym
             this.logo = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAsistencia = new System.Windows.Forms.Button();
-            this.btnRegistro = new System.Windows.Forms.Button();
+            this.btnClientes = new System.Windows.Forms.Button();
             this.btnPagos = new System.Windows.Forms.Button();
             this.btnCaja = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -136,24 +136,24 @@ namespace Gym
             this.btnAsistencia.UseVisualStyleBackColor = false;
             this.btnAsistencia.Click += new System.EventHandler(this.btnAsistencia_Click);
             // 
-            // btnRegistro
+            // btnClientes
             // 
-            this.btnRegistro.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnRegistro.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.btnRegistro.FlatAppearance.BorderSize = 0;
-            this.btnRegistro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnRegistro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistro.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.btnRegistro.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistro.Location = new System.Drawing.Point(5, 262);
-            this.btnRegistro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRegistro.Name = "btnRegistro";
-            this.btnRegistro.Size = new System.Drawing.Size(245, 55);
-            this.btnRegistro.TabIndex = 35;
-            this.btnRegistro.Text = "Clientes";
-            this.btnRegistro.UseVisualStyleBackColor = false;
-            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
+            this.btnClientes.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnClientes.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnClientes.FlatAppearance.BorderSize = 0;
+            this.btnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClientes.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.btnClientes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClientes.Location = new System.Drawing.Point(5, 262);
+            this.btnClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Size = new System.Drawing.Size(245, 55);
+            this.btnClientes.TabIndex = 35;
+            this.btnClientes.Text = "Clientes";
+            this.btnClientes.UseVisualStyleBackColor = false;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // btnPagos
             // 
@@ -344,7 +344,7 @@ namespace Gym
             this.btnConfiguracion.UseVisualStyleBackColor = false;
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
-            // Usuarios
+            // MainUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -358,7 +358,7 @@ namespace Gym
             this.Controls.Add(this.btnCaja);
             this.Controls.Add(this.btnPlanes);
             this.Controls.Add(this.btnPagos);
-            this.Controls.Add(this.btnRegistro);
+            this.Controls.Add(this.btnClientes);
             this.Controls.Add(this.btnAsistencia);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
@@ -371,7 +371,7 @@ namespace Gym
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Usuarios";
+            this.Name = "MainUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mainEmpleados";
             ((System.ComponentModel.ISupportInitialize)(this.windowbox)).EndInit();
@@ -391,7 +391,7 @@ namespace Gym
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAsistencia;
-        private System.Windows.Forms.Button btnRegistro;
+        private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnPagos;
         private System.Windows.Forms.Button btnCaja;
         private System.Windows.Forms.Button btnLogout;

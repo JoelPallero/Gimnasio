@@ -13,7 +13,7 @@ namespace Gym
 {
     public partial class MainUsuarios : Form
     {
-        #region Call of Class
+        #region Instanacias
 
         MetodosGenerales _metodosGenerales = new MetodosGenerales();
 
@@ -57,7 +57,7 @@ namespace Gym
             focoPlanes.Visible = false;
             focoCaja.Visible = false;
         }
-        private void focusRegistro()
+        private void focusClientes()
         {
             focoAsistencia.Visible = false;
             focoRegistro.Visible = true;
@@ -106,10 +106,10 @@ namespace Gym
             CallOfForms(new Asistencias());
             focusAsistencia();
         }
-        private void btnRegistro_Click(object sender, EventArgs e)
+        private void btnClientes_Click(object sender, EventArgs e)
         {
             CallOfForms(new Clientes());
-            focusRegistro();
+            focusClientes();
         }
         private void btnPagos_Click(object sender, EventArgs e)
         {

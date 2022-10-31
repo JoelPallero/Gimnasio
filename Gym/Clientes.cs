@@ -15,8 +15,10 @@ namespace Gym
     {
         #region Instancias
 
-        private readonly Restricciones _restricciones;
-        private readonly MetodosGenerales _metodosGenerales;
+        private readonly Restricciones _restricciones = new Restricciones();
+        private readonly MetodosGenerales _metodosGenerales = new MetodosGenerales();
+        private readonly Entities.Clientes _clientes = new Entities.Clientes();
+        private readonly BussinessClientes _bussinessClientes = new BussinessClientes();
 
         #endregion
 
@@ -24,8 +26,6 @@ namespace Gym
         public Clientes()
         {
             InitializeComponent();
-            _restricciones = new Restricciones();
-            _metodosGenerales = new MetodosGenerales();
         }
         private void Clientes_Load(object sender, EventArgs e)
         {
@@ -38,6 +38,9 @@ namespace Gym
         #region Variables
 
         private int caracteresRestantes = 200;
+        private bool contenidoErroneo;
+        private bool camposObligatoriosVacios;
+        private bool personaRegistrada;
 
         #endregion
 
@@ -56,9 +59,138 @@ namespace Gym
         {
             //llamo al método para traer los tipos de sexos y los asigno al combobox
             _metodosGenerales.Bring_Tipos_Sexos();
-            cmbSexo.DataSource = _metodosGenerales.DtTipos_Documentos;
+            cmbSexo.DataSource = _metodosGenerales.DtTipos_Sexos;
             cmbSexo.DisplayMember = "Sexo"; //Pero solo esta columna es la que muestro
             cmbSexo.ValueMember = "Tipo_Sexo_ID";
+        }
+
+        private void DarAltaCliente()
+        {
+            AltaPersona();
+            AltaCliente();
+            ResetControls();
+        }
+
+        private void AltaPersona()
+        {
+            string Nombre = Convert.ToString(txtNombreCliente.Text);
+            string Apellido = Convert.ToString(txtApellidoCliente.Text); ;
+            int Tipo_Documento_ID = cmbTipoDocumentoCliente.SelectedIndex;
+            string Nro_Documento = Convert.ToString(txtNumDocumentoCliente.Text);
+            int Tipo_Sexo_ID = cmbSexo.SelectedIndex;
+            string Nro_Telefono = Convert.ToString(txtTelefonoCliente.Text);
+            string Nro_Alternativo;
+            string Mail;
+            string Observaciones;
+
+            if (txtAlternativoCliente.Text != "Alternativo")
+            {
+                Nro_Alternativo = Convert.ToString(txtAlternativoCliente.Text);
+            }
+            else
+            {
+                Nro_Alternativo = string.Empty;
+            }
+
+            if (txtMailCliente.Text != "Mail")
+            {
+                Mail = Convert.ToString(txtMailCliente.Text);
+            }
+            else
+            {
+                Mail = string.Empty;
+            }
+
+            if (txtObservacionesCliente.Text != "Observaciones y/o consideraciones")
+            {
+                Observaciones = Convert.ToString(txtObservacionesCliente.Text);
+            }
+            else
+            {
+                Observaciones = string.Empty;
+            }
+
+            _metodosGenerales.AltaPersona(Nombre,
+                                Apellido,
+                                Tipo_Documento_ID,
+                                Nro_Documento,
+                                Tipo_Sexo_ID,
+                                Nro_Telefono,
+                                Nro_Alternativo,
+                                Mail,
+                                Observaciones);
+
+        }
+        private void AltaCliente()
+        {
+            //El ID de la última persona que se registró (método anterior)
+            //Tenía otra sentencia, para traer el ID que se generó
+            //En esta primera línea, traigo el valor de esta variable y o asigno.
+            _clientes.Persona_ID = _metodosGenerales.persona_ID;
+
+            //Luego relleno los campos faltantes de la entidad Cliente.
+            _clientes.Fecha_Alta = DateTime.Now;
+            _clientes.Estado = "Activo";
+            _bussinessClientes.AltaCliente(_clientes);
+        }
+
+        private void ValidarCamposVacios()
+        {
+            if (string.IsNullOrEmpty(txtNombreCliente.Text) ||
+                string.IsNullOrEmpty(txtApellidoCliente.Text) ||
+                string.IsNullOrEmpty(txtNumDocumentoCliente.Text) ||
+                string.IsNullOrEmpty(txtTelefonoCliente.Text))
+            {
+                camposObligatoriosVacios = true;
+            }
+            else
+            {
+                camposObligatoriosVacios = false;
+            }
+        }
+
+        private void ValidarContenido()
+        {
+            foreach (Control txt in this.gbClientes.Controls)
+            {
+                if (txt is TextBox)
+                {
+                    if (txt.Text == "Nombre" ||
+                        txt.Text == "Apellido" ||
+                        txt.Text == "Documento" ||
+                        txt.Text == "Teléfono")
+                    {
+                        MessageBox.Show("Existen campos con datos erróneos. Por favor, rellene todos los campos con datos válidos", "Campos obligatorios sin rellenar.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        contenidoErroneo = true;
+                        break;
+                    }
+                    else
+                    {
+                        contenidoErroneo = false;
+                    }
+                }
+            }
+        }
+
+        private void ResetControls()
+        {
+            //Reseteamos todos los controles del form.
+            txtNombreCliente.Text = "Nombre";
+            txtApellidoCliente.Text = "Apellido";
+            txtNumDocumentoCliente.Text = "Documento";
+            txtTelefonoCliente.Text = "Teléfono";
+            txtAlternativoCliente.Text = "Alternativo";
+            txtMailCliente.Text = "Mail";
+            txtObservacionesCliente.Text = "Observaciones y/o consideraciones";
+            cmbTipoDocumentoCliente.SelectedItem = 0;
+            cmbSexo.SelectedItem = 0;
+            foreach (Control txt in this.gbClientes.Controls)
+            {
+                if (txt is TextBox box)
+                {
+                    txt.ForeColor = Color.DimGray;
+                }
+            }
         }
 
         #endregion
@@ -237,5 +369,35 @@ namespace Gym
         }
 
         #endregion
+
+        private void btnAltaCliente_Click(object sender, EventArgs e)
+        {
+            //Verificamos si i el contenido es distinto al texto predeterminado
+            //Nombre, Apellido, etc. Tiene que ser distinto a eso,
+            //pára que sea válido
+            ValidarContenido();
+
+            if (!contenidoErroneo)
+            {
+                //Valido si hay campos obligatorios vacíos
+                ValidarCamposVacios();
+                if (!camposObligatoriosVacios)
+                {
+                    if (!personaRegistrada)
+                    {
+                        DarAltaCliente();
+                    }
+                    else
+                    {
+                        //Vamos a mostrar un mensaje, en caso de que esta persona ya esté registrada.
+                        MessageBox.Show("Esta persona ya está registrada en el sistema. Solo se pueden hacer modificaciones", "Registro encontrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Campos obligatorios sin completar. Por favor, complete todos los campos requeridos", "Campos vacios", MessageBoxButtons.OK);
+                }
+            }
+        }
     }
 }

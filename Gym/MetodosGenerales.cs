@@ -1,4 +1,5 @@
 ﻿using BussinessLayer;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,8 @@ namespace Gym
         #region Instancias
         private BussinessTipo _bussinessTipo;
         private BussinessEmpleados _bussinessEmpleados;
+        private readonly BussinessPersonas _bussinessPersonas;
+        private Personas _personas;
         private Entities.Empleados _empleados;
 
         #endregion
@@ -23,6 +26,8 @@ namespace Gym
             _bussinessTipo = new BussinessTipo();
             _bussinessEmpleados = new BussinessEmpleados();
             _empleados = new Entities.Empleados();
+            _bussinessPersonas = new BussinessPersonas();
+            _personas = new Personas();
         }
 
         #region Variables
@@ -37,6 +42,7 @@ namespace Gym
         public DataTable DtTipos_Sexos = new DataTable();
         public DataTable DtTipos_Empleados = new DataTable();
         public int empleado_ID;
+        public int persona_ID;
 
 
         #endregion
@@ -78,9 +84,38 @@ namespace Gym
 
         #endregion
 
-        #region Empleados
+        #region Personas
 
-        public void Bring_Last_ID()
+        public void AltaPersona(string Nombre,
+                                string Apellido,
+                                int Tipo_Documento_ID,
+                                string Nro_documento,
+                                int Tipo_Sexo_ID,
+                                string Nro_Telefono,
+                                string Nro_Alternativo,
+                                string Mail,
+                                string Observaciones)
+        {
+            _personas.Nombre = Nombre;
+            _personas.Apellido = Apellido;
+            _personas.Tipo_Documento_ID = Tipo_Documento_ID;
+            _personas.Nro_documento = Nro_documento;
+            _personas.Tipo_Sexo_ID = Tipo_Sexo_ID;
+            _personas.Nro_Telefono = Nro_Telefono;
+            _personas.Nro_Alternativo = Nro_Alternativo;
+            _personas.Mail = Mail;
+            _personas.Observaciones = Observaciones;
+            _bussinessPersonas.AltaPersona(_personas);
+
+            //Una vez registrada esta nueva persona, consulto su ID
+            //Ya que el sistema lo necesita para, dar de alta al empleado
+            //o al cliente.
+            _personas = _bussinessPersonas.Get_Last_Id_Persona(_personas);
+            persona_ID = _personas.Persona_ID;
+
+        }
+
+        public void Get_Last_Id_Empleado()
         {
             _empleados = _bussinessEmpleados.GetLastID(_empleados);
             empleado_ID = _empleados.Empleado_ID;

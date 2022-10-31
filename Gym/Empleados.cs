@@ -27,6 +27,8 @@ namespace Gym
         //Negocio
         private readonly BussinessEmpleados _bussinessEmpleados;
         private readonly BussinessJornadas _bussinessJornadas;
+        private readonly BussinessPersonas _bussinessPersonas;
+        private readonly Personas _personas;
 
         #endregion
 
@@ -43,6 +45,8 @@ namespace Gym
         private string clave = string.Empty;
         private string desde;
         private string hasta;
+        private bool personaRegistrada;
+        private bool claveOK;
 
         #endregion
 
@@ -56,6 +60,8 @@ namespace Gym
             _empleados = new Entities.Empleados();
             _jornadas_Empleados = new Jornadas_Empleados();
             _bussinessJornadas = new BussinessJornadas();
+            _bussinessPersonas = new BussinessPersonas();
+            _personas = new Personas();
         }
 
         private void Empleados_Load(object sender, EventArgs e)
@@ -71,7 +77,8 @@ namespace Gym
 
         private void DarAltaCompletaEmpleado()
         {
-            AltaDatosEmpleado();
+            AltaPersona();
+            AltaEmpleado();
             CrearJornadaEmpleado();
             ResetControls();
         }
@@ -79,7 +86,7 @@ namespace Gym
         private void TraerIdEmpleado()
         {
             //traer id último registro de empleado que se acaba de hacer
-            _metodosGenerales.Bring_Last_ID();
+            _metodosGenerales.Get_Last_Id_Empleado();
             var ultimoId = new Entities.Empleados()
             {
                 Empleado_ID = _metodosGenerales.empleado_ID
@@ -183,60 +190,93 @@ namespace Gym
                 }
             }
         }
-        private void AltaDatosEmpleado()
+
+        private void AltaPersona()
         {
-            _empleados.Nombre = Convert.ToString(txtNombreEmpleado.Text);
-            _empleados.Apellido = Convert.ToString(txtApellidoEmpleado.Text);
-            _empleados.Tipo_Documento_ID = cmbTipoDocumentoEmpleado.SelectedIndex;
-            _empleados.Nro_documento = Convert.ToString(txtDocumentoEmpleado.Text);
-            _empleados.Tipo_Sexo_ID = cmbSexoEmpleado.SelectedIndex;
-            _empleados.Nro_Telefono = Convert.ToString(txtTelefonoEmpleado.Text);
+            string Nombre = Convert.ToString(txtNombreEmpleado.Text);
+            string Apellido = Convert.ToString(txtApellidoEmpleado.Text);
+            int Tipo_Documento_ID = cmbTipoDocumentoEmpleado.SelectedIndex;
+            string Nro_documento = Convert.ToString(txtDocumentoEmpleado.Text);
+            int Tipo_Sexo_ID = cmbSexoEmpleado.SelectedIndex;
+            string Nro_Telefono = Convert.ToString(txtTelefonoEmpleado.Text);
+            string Nro_Alternativo, Mail, Observaciones;
+            
+            //Envío todo el objeto creado a la cada de negocios para ser enviado
+            //a la bdd.
 
             if (txtAlternativoEmpleado.Text != "Alternativo")
             {
-                _empleados.Nro_Alternativo = Convert.ToString(txtAlternativoEmpleado.Text);
+                Nro_Alternativo = Convert.ToString(txtAlternativoEmpleado.Text);
             }
             else
             {
-                _empleados.Nro_Alternativo = string.Empty;
+                Nro_Alternativo = string.Empty;
             }
 
             if (txtMailEmpleado.Text != "Mail")
             {
-                _empleados.Mail = Convert.ToString(txtMailEmpleado.Text);
+                Mail = Convert.ToString(txtMailEmpleado.Text);
             }
             else
             {
-                _empleados.Mail = string.Empty;
+                Mail = string.Empty;
             }
 
             if (txtObservacionesEmpleado.Text != "Observaciones y/o consideraciones")
             {
-                _empleados.Observaciones = Convert.ToString(txtObservacionesEmpleado.Text);
+                Observaciones = Convert.ToString(txtObservacionesEmpleado.Text);
             }
             else
             {
-                _empleados.Observaciones = string.Empty;
+                Observaciones = string.Empty;
             }
 
-            _empleados.Tipo_Empleado_ID = cmbTipoEmpleado.SelectedIndex + 2;
+            _metodosGenerales.AltaPersona(Nombre,
+                                Apellido,
+                                Tipo_Documento_ID,
+                                Nro_documento,
+                                Tipo_Sexo_ID,
+                                Nro_Telefono,
+                                Nro_Alternativo,
+                                Mail,
+                                Observaciones);
 
+        }
+        private void AltaEmpleado()
+        {
+            _empleados.Persona_ID = _metodosGenerales.persona_ID;
+            _empleados.Tipo_Empleado_ID = cmbTipoEmpleado.SelectedIndex + 2;            
+            
+            //Envío toda la data a la capa de negocio para ser mandada a la bdd.
+            _bussinessEmpleados.AltaEmpleado(_empleados);
+        }
+
+        private void VerificarClave()
+        {
             if (cmbTipoEmpleado.SelectedIndex == 0)
             {
-                clave = (txtClave.Text).ToString();
+                if (txtUsuario.Text != "Usuario" || txtClave.Text != "Clave")
+                {
+                    clave = (txtClave.Text).ToString();
 
-                //Vamos a encriptar la clave con un código hash cuando corresponda
-                GetHash(clave);
-                _empleados.Clave = GetHashString(clave);
-                _empleados.Usuario = txtUsuario.Text.ToString();
+                    //Vamos a encriptar la clave con un código hash cuando corresponda
+                    GetHash(clave);
+                    _empleados.Clave = GetHashString(clave);
+                    _empleados.Usuario = txtUsuario.Text.ToString();
+                    claveOK = true;
+                }
+                else
+                {
+                    MessageBox.Show("Debe registrar una clave, en caso de ser usuario. Caso contrario, modifique el tipo de empleado que está registrando.", "Datos erróneos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    claveOK = false;
+                }
             }
             else
             {
-                _empleados.Clave = string.Empty;
                 _empleados.Usuario = string.Empty;
+                _empleados.Clave = string.Empty;
+                claveOK = true;
             }
-            
-            _bussinessEmpleados.AltaEmpleado(_empleados);
         }
 
         public static byte[] GetHash(string inputString)
@@ -334,32 +374,6 @@ namespace Gym
                 todosChk = true;
             }
         }
-
-        private void DeshabilitarTxt()
-        {
-            foreach (Control txt in this.gbJornadaEmpleado.Controls)
-            {
-                if (txt is TextBox box && txt != txtDesdeLunes && txt != txtHastaLunes)
-                {
-                    TextBox t;
-                    t = box;
-                    t.Enabled = false;
-                }
-            }
-        }
-
-        private void HabilitarTxt()
-        {
-            foreach (Control txt in this.gbJornadaEmpleado.Controls)
-            {
-                if (txt is TextBox box)
-                {
-                    TextBox t;
-                    t = box;
-                    t.Enabled = true;
-                }
-            }
-        }
         
         private void ValidarCamposVacios()
         {
@@ -434,7 +448,7 @@ namespace Gym
 
             //luego el groupbox general, lo volvemos al estado inicial.
             txtNombreEmpleado.Text = "Nombre";
-            txtAlternativoEmpleado.Text = "Apellido";
+            txtApellidoEmpleado.Text = "Apellido";
             txtDocumentoEmpleado.Text = "Documento";
             txtTelefonoEmpleado.Text = "Teléfono";
             txtAlternativoEmpleado.Text = "Alternativo";
@@ -454,179 +468,14 @@ namespace Gym
             }
         }
 
-        //private void CrearJornada()
-        //{
-        //    _jornada = new Jornada();
-        //    if (chkTodos.Checked)
-        //    {
-        //        //voy a recorrer todos los textbox del control que los tiene
-        //        //y ahí voy a verificar si hay horarios. Todos pueden ser null en la bdd
-        //        //así que no importa si no tienen datos.
-        //        bool empty = true;
-        //        foreach (Control txt in this.gbJornadaEmpleado.Controls)
-        //        {
-        //            if (txt is TextBox box)
-        //            {
-        //                TextBox t;
-        //                t = box;
-        //                if (string.IsNullOrEmpty(t.Text))
-        //                {
-        //                    empty = true;
-        //                }
-        //                else
-        //                {
-        //                    empty = false;
-        //                }
-        //            }
-        //        }
-
-        //        if (empty)
-        //        {
-        //            _jornada.Tipo_Jornada = 3;
-        //        }
-        //        else
-        //        {
-        //            _jornada.Todos = txtDesdeLunes.Text + "a" + txtHastaLunes.Text;
-        //            _jornada.Tipo_Jornada = 3;
-        //        }
-        //        _jornadaBusiness.CreateJornadaAll(_jornada);
-        //    }
-        //    else
-        //    {
-        //        bool txtVacio = true;
-        //        foreach (Control txt in this.gbJornadaEmpleado.Controls)
-        //        {
-        //            if (txt is TextBox box)
-        //            {
-        //                TextBox t;
-        //                t = box;
-        //                if (string.IsNullOrEmpty(t.Text))
-        //                {
-        //                    txtVacio = true;
-        //                }
-        //                else
-        //                {
-        //                    txtVacio = false;
-        //                }
-        //            }
-        //        }
-
-        //        if (txtVacio)
-        //        {
-        //            MessageBox.Show("Si ha seleccionado varios días, es necesario que indique los horarios.", "Datos incompletos", MessageBoxButtons.OK);
-        //        }
-        //        else
-        //        {
-        //            foreach (Control chk in this.gbJornadaEmpleado.Controls)
-        //            {
-        //                if (chk is CheckBox box)
-        //                {
-        //                    CheckBox c;
-        //                    c = box;
-        //                    if (c.Checked)
-        //                    {
-        //                        chkSelected[chkConteo] = c.Text;
-        //                        chkConteo++;
-        //                    }
-        //                }
-        //            }
-        //            if (chkConteo == 0)
-        //            {
-        //                MessageBox.Show("No ha seleccionado los días. En caso de no ser específico, puede elegir 'Seleccionar todos'.", "Opciones sin seleccionar", MessageBoxButtons.OK);
-        //            }
-        //            else
-        //            {
-        //                for (int i = 0; i < chkConteo; i++)
-        //                {
-        //                    switch (chkSelected[i])
-        //                    {
-        //                        case "Lunes":
-        //                            if (chkSelected[i] == chkLunes.Text
-        //                                && !string.IsNullOrEmpty(txtDesdeLunes.Text)
-        //                                && !string.IsNullOrEmpty(txtHastaLunes.Text))
-        //                            {
-        //                                _jornada.Lunes = txtDesdeLunes.Text + " a " + txtHastaLunes.Text;
-        //                            }
-        //                            else
-        //                            {
-        //                                _jornada.Lunes = "-";
-        //                            }
-        //                            break;
-        //                        case "Martes":
-        //                            if (chkSelected[i] == chkMartes.Text
-        //                                && !string.IsNullOrEmpty(txtDesdeMartes.Text)
-        //                                && !string.IsNullOrEmpty(txtHastaMartes.Text))
-        //                            {
-        //                                _jornada.Martes = txtDesdeMartes.Text + " a " + txtHastaMartes.Text;
-        //                            }
-        //                            else
-        //                            {
-        //                                _jornada.Martes = "-";
-        //                            }
-        //                            break;
-        //                        case "Miércoles":
-        //                            if (chkSelected[i] == chkMiercoles.Text
-        //                                && !string.IsNullOrEmpty(txtDesdeMiercoles.Text)
-        //                                && !string.IsNullOrEmpty(txtHastaMiercoles.Text))
-        //                            {
-        //                                _jornada.Miercoles = txtDesdeMiercoles.Text + " a " + txtHastaMiercoles.Text;
-        //                            }
-        //                            else
-        //                            {
-        //                                _jornada.Miercoles = "-";
-        //                            }
-        //                            break;
-        //                        case "Jueves":
-        //                            if (chkSelected[i] == chkJueves.Text
-        //                                && !string.IsNullOrEmpty(txtDesdeJueves.Text)
-        //                                && !string.IsNullOrEmpty(txtHastaJueves.Text))
-        //                            {
-        //                                _jornada.Jueves = txtDesdeJueves.Text + " a " + txtHastaJueves.Text;
-        //                            }
-        //                            else
-        //                            {
-        //                                _jornada.Jueves = "-";
-        //                            }
-        //                            break;
-        //                        case "Viernes":
-        //                            if (chkSelected[i] == chkViernes.Text
-        //                                && !string.IsNullOrEmpty(txtDesdeViernes.Text)
-        //                                && !string.IsNullOrEmpty(txtHastaViernes.Text))
-        //                            {
-        //                                _jornada.Viernes = txtDesdeViernes.Text + " a " + txtHastaViernes.Text;
-        //                            }
-        //                            else
-        //                            {
-        //                                _jornada.Viernes = "-";
-        //                            }
-        //                            break;
-        //                        case "Sábado":
-        //                            if (chkSelected[i] == chkSabado.Text
-        //                                && !string.IsNullOrEmpty(txtDesdeSabado.Text)
-        //                                && !string.IsNullOrEmpty(txtHastaSabado.Text))
-        //                            {
-        //                                _jornada.Sabado = txtDesdeSabado.Text + " a " + txtHastaSabado.Text;
-        //                            }
-        //                            else
-        //                            {
-        //                                _jornada.Sabado = "-";
-        //                            }
-        //                            break;
-        //                    }
-        //                }
-        //                _jornadaBusiness.CreateJornada(_jornada);
-        //            }
-        //        }                
-        //    }            
-        //}
-
-
         #endregion
 
         #region Alta Empleado
         private void btnAltaEmpleado_Click(object sender, EventArgs e)
         {
-            //y si el contenido es distinto al texto predeterminado
+            //Verificamos si i el contenido es distinto al texto predeterminado
+            //Nombre, Apellido, etc. Tiene que ser distinto a eso,
+            //pára que sea válido
             ValidarContenido();
 
             if (!contenidoErroneo)
@@ -636,23 +485,39 @@ namespace Gym
 
                 if (!camposObligatoriosVacios)
                 {
-                    //Luego verificamos los CHK
-                    VerificarChk();
-                    //Primero verificamos si se seleccionaron todos los chk
-                    //y su horario correspondiente.
-                    if (!todosChk)
+                    if (!personaRegistrada)
                     {
-                        //En caso de que no se haya seleccionado ninguna jornada
-                        //Se consultará si se desea dar el alta sin jornada.
-                        DialogResult result = MessageBox.Show("No ha registrado la jornada. ¿Desea dar el alta de empleado sin jornada?", "Jornada no establecida", MessageBoxButtons.YesNo);
-                        if (result == DialogResult.Yes)
+                        //Luego verificamos los CHK
+                        VerificarChk();
+                        //Primero verificamos si se seleccionaron todos los chk
+                        //y su horario correspondiente.
+                        if (!todosChk)
                         {
-                            DarAltaCompletaEmpleado();
+                            //En caso de que no se haya seleccionado ninguna jornada
+                            //Se consultará si se desea dar el alta sin jornada.
+                            DialogResult result = MessageBox.Show("No ha registrado la jornada. ¿Desea dar el alta de empleado sin jornada?", "Jornada no establecida", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.Yes)
+                            {
+                                VerificarClave();
+                                if (claveOK)
+                                {
+                                    DarAltaCompletaEmpleado();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            VerificarClave();
+                            if (claveOK)
+                            {
+                                DarAltaCompletaEmpleado();
+                            }
                         }
                     }
                     else
                     {
-                        DarAltaCompletaEmpleado();
+                        //Vamos a mostrar un mensaje, en caso de que esta persona ya esté registrada.
+                        MessageBox.Show("Esta persona ya está registrada en el sistema. Solo se pueden hacer modificaciones", "Registro encontrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else

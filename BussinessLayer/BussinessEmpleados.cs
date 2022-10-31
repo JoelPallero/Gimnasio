@@ -18,7 +18,7 @@ namespace BussinessLayer
 
         public int AltaEmpleado(Empleados empleados)
         {
-            return _dataEmpleados.AltaEmpleadoSinClave(empleados);
+            return _dataEmpleados.AltaEmpleado(empleados);
         }
 
         public Empleados GetLastID(Empleados empleados)
