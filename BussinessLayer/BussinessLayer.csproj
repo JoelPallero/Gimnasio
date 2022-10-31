@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BussinessTipos_Documentos.cs" />
+    <Compile Include="BussinessEmpleados.cs" />
+    <Compile Include="BussinessJornadas.cs" />
+    <Compile Include="BussinessTipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,14 +13,6 @@ namespace Gym
 {
     public partial class Clientes : Form
     {
-        public Clientes()
-        {
-            InitializeComponent();
-            _restricciones = new Restricciones();
-            _metodosGenerales = new MetodosGenerales();
-            //Tipos_Documentos();
-        }
-
         #region Instancias
 
         private readonly Restricciones _restricciones;
@@ -28,7 +20,24 @@ namespace Gym
 
         #endregion
 
+        #region Load del formulario
+        public Clientes()
+        {
+            InitializeComponent();
+            _restricciones = new Restricciones();
+            _metodosGenerales = new MetodosGenerales();
+        }
+        private void Clientes_Load(object sender, EventArgs e)
+        {
+            Tipos_Documentos();
+            Tipos_Sexos();
+        }
+
+        #endregion
+
         #region Variables
+
+        private int caracteresRestantes = 200;
 
         #endregion
 
@@ -36,15 +45,20 @@ namespace Gym
 
         private void Tipos_Documentos()
         {
+            //llamo al método para traer los tipos de documentos y los asigno al combobox
             _metodosGenerales.Bring_Tipos_Documentos();
-            cmbTipoDocumentoCliente.DataSource = _metodosGenerales.DsTipos_Documentos;
-            if (_metodosGenerales.DsTipos_Documentos.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in _metodosGenerales.DsTipos_Documentos.Tables[0].Rows)
-                {
-                    cmbTipoDocumentoCliente.DisplayMember = dr[1].ToString();                    
-                }
-            }            
+            cmbTipoDocumentoCliente.DataSource = _metodosGenerales.DtTipos_Documentos;
+            cmbTipoDocumentoCliente.DisplayMember = "Tipo";
+            cmbTipoDocumentoCliente.ValueMember = "Tipo_documento_ID";
+        }
+
+        private void Tipos_Sexos()
+        {
+            //llamo al método para traer los tipos de sexos y los asigno al combobox
+            _metodosGenerales.Bring_Tipos_Sexos();
+            cmbSexo.DataSource = _metodosGenerales.DtTipos_Documentos;
+            cmbSexo.DisplayMember = "Sexo"; //Pero solo esta columna es la que muestro
+            cmbSexo.ValueMember = "Tipo_Sexo_ID";
         }
 
         #endregion
@@ -166,6 +180,41 @@ namespace Gym
             }
         }
 
+        private void txtObservacionesCliente_Enter(object sender, System.EventArgs e)
+        {
+            if (txtObservacionesCliente.Text == "Observaciones y/o consideraciones")
+            {
+                txtObservacionesCliente.Text = string.Empty;
+                txtObservacionesCliente.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtObservacionesCliente_Leave(object sender, System.EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtObservacionesCliente.Text))
+            {
+                txtObservacionesCliente.Text = "Observaciones y/o consideraciones";
+                txtObservacionesCliente.ForeColor = Color.DimGray;
+            }
+        }
+        private void txtBuscarCliente_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscarCliente.Text == "Buscar")
+            {
+                txtBuscarCliente.Text = string.Empty;
+                txtBuscarCliente.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtBuscarCliente_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBuscarCliente.Text))
+            {
+                txtBuscarCliente.Text = "Buscar";
+                txtBuscarCliente.ForeColor = Color.DimGray;
+            }
+        }
+
         #endregion
 
         #region Eventos KeyPress en Textbox
@@ -175,15 +224,18 @@ namespace Gym
             string strTexto = txtNumDocumentoCliente.Text;
             _restricciones.SoloNumeros(e, strTexto);
         }
+        private void txtTelefonoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string strTexto = txtTelefonoCliente.Text;
+            _restricciones.SoloNumeros(e, strTexto);
+        }
 
+        private void txtAlternativoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string strTexto = txtAlternativoCliente.Text;
+            _restricciones.SoloNumeros(e, strTexto);
+        }
 
         #endregion
-
-        private void Clientes_Load(object sender, EventArgs e)
-        {
-            // TODO: esta línea de código carga datos en la tabla 'gymDs.Tipos_Documentos' Puede moverla o quitarla según sea necesario.
-            this.tipos_DocumentosTableAdapter.Fill(this.gymDs.Tipos_Documentos);
-
-        }
     }
 }

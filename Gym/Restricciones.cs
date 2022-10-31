@@ -28,38 +28,6 @@ namespace Gym
             {
                 e.Handled = false;
             }
-
-            //prohibir caracteres especiales
-            else if (Char.IsPunctuation(e.KeyChar))
-            {
-                if (strTexto.Contains("/") ||
-                         strTexto.Contains("*") ||
-                         strTexto.Contains("-"))
-                {
-                    e.Handled = true;
-                }
-                else if (strTexto.Contains(",")
-                    || strTexto.Contains("."))
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-
-            //simbolos tambien
-            else if (Char.IsSymbol(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            // no puede haber espacios en blanco
-            else if (Char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-
             else
             {
                 //con esto se desactivan todas las otras teclas no contempladas en las líneas anteriores

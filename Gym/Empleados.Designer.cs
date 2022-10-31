@@ -32,10 +32,12 @@ namespace Gym
             this.txtBuscarEmpleado = new System.Windows.Forms.TextBox();
             this.dtgvEmpleado = new System.Windows.Forms.DataGridView();
             this.gbEmpleado = new System.Windows.Forms.GroupBox();
-            this.cmbSexo = new System.Windows.Forms.ComboBox();
-            this.txtAlternativoEmpleados = new System.Windows.Forms.TextBox();
-            this.txtTelefonoEmpleados = new System.Windows.Forms.TextBox();
-            this.txtDocument = new System.Windows.Forms.TextBox();
+            this.txtClave = new System.Windows.Forms.TextBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.cmbSexoEmpleado = new System.Windows.Forms.ComboBox();
+            this.txtAlternativoEmpleado = new System.Windows.Forms.TextBox();
+            this.txtTelefonoEmpleado = new System.Windows.Forms.TextBox();
+            this.txtDocumentoEmpleado = new System.Windows.Forms.TextBox();
             this.btnAltaEmpleado = new System.Windows.Forms.Button();
             this.txtApellidoEmpleado = new System.Windows.Forms.TextBox();
             this.gbJornadaEmpleado = new System.Windows.Forms.GroupBox();
@@ -70,31 +72,35 @@ namespace Gym
             // 
             // txtBuscarEmpleado
             // 
-            this.txtBuscarEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtBuscarEmpleado.Location = new System.Drawing.Point(440, 402);
+            this.txtBuscarEmpleado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtBuscarEmpleado.Location = new System.Drawing.Point(440, 440);
             this.txtBuscarEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBuscarEmpleado.Name = "txtBuscarEmpleado";
             this.txtBuscarEmpleado.Size = new System.Drawing.Size(243, 27);
             this.txtBuscarEmpleado.TabIndex = 64;
             this.txtBuscarEmpleado.Text = "Buscar";
+            this.txtBuscarEmpleado.Enter += new System.EventHandler(this.txtBuscarEmpleado_Enter);
+            this.txtBuscarEmpleado.Leave += new System.EventHandler(this.txtBuscarEmpleado_Leave);
             // 
             // dtgvEmpleado
             // 
             this.dtgvEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvEmpleado.Location = new System.Drawing.Point(17, 436);
+            this.dtgvEmpleado.Location = new System.Drawing.Point(17, 471);
             this.dtgvEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvEmpleado.Name = "dtgvEmpleado";
             this.dtgvEmpleado.RowHeadersWidth = 51;
             this.dtgvEmpleado.RowTemplate.Height = 29;
-            this.dtgvEmpleado.Size = new System.Drawing.Size(666, 205);
+            this.dtgvEmpleado.Size = new System.Drawing.Size(666, 170);
             this.dtgvEmpleado.TabIndex = 63;
             // 
             // gbEmpleado
             // 
-            this.gbEmpleado.Controls.Add(this.cmbSexo);
-            this.gbEmpleado.Controls.Add(this.txtAlternativoEmpleados);
-            this.gbEmpleado.Controls.Add(this.txtTelefonoEmpleados);
-            this.gbEmpleado.Controls.Add(this.txtDocument);
+            this.gbEmpleado.Controls.Add(this.txtClave);
+            this.gbEmpleado.Controls.Add(this.txtUsuario);
+            this.gbEmpleado.Controls.Add(this.cmbSexoEmpleado);
+            this.gbEmpleado.Controls.Add(this.txtAlternativoEmpleado);
+            this.gbEmpleado.Controls.Add(this.txtTelefonoEmpleado);
+            this.gbEmpleado.Controls.Add(this.txtDocumentoEmpleado);
             this.gbEmpleado.Controls.Add(this.btnAltaEmpleado);
             this.gbEmpleado.Controls.Add(this.txtApellidoEmpleado);
             this.gbEmpleado.Controls.Add(this.gbJornadaEmpleado);
@@ -107,54 +113,88 @@ namespace Gym
             this.gbEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbEmpleado.Name = "gbEmpleado";
             this.gbEmpleado.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbEmpleado.Size = new System.Drawing.Size(666, 386);
+            this.gbEmpleado.Size = new System.Drawing.Size(666, 415);
             this.gbEmpleado.TabIndex = 62;
             this.gbEmpleado.TabStop = false;
             this.gbEmpleado.Text = "Datos de Empleado";
             // 
-            // cmbSexo
+            // txtClave
             // 
-            this.cmbSexo.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.cmbSexo.FormattingEnabled = true;
-            this.cmbSexo.Items.AddRange(new object[] {
+            this.txtClave.ForeColor = System.Drawing.Color.DimGray;
+            this.txtClave.Location = new System.Drawing.Point(336, 70);
+            this.txtClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtClave.Name = "txtClave";
+            this.txtClave.Size = new System.Drawing.Size(307, 27);
+            this.txtClave.TabIndex = 8;
+            this.txtClave.Text = "Clave";
+            this.txtClave.UseSystemPasswordChar = true;
+            this.txtClave.Enter += new System.EventHandler(this.txtClave_Enter);
+            this.txtClave.Leave += new System.EventHandler(this.txtClave_Leave);
+            // 
+            // txtUsuario
+            // 
+            this.txtUsuario.ForeColor = System.Drawing.Color.DimGray;
+            this.txtUsuario.Location = new System.Drawing.Point(336, 34);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(307, 27);
+            this.txtUsuario.TabIndex = 7;
+            this.txtUsuario.Text = "Usuario";
+            this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
+            this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
+            // 
+            // cmbSexoEmpleado
+            // 
+            this.cmbSexoEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSexoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.cmbSexoEmpleado.FormattingEnabled = true;
+            this.cmbSexoEmpleado.Items.AddRange(new object[] {
             "Masculino",
             "Femenino"});
-            this.cmbSexo.Location = new System.Drawing.Point(17, 148);
-            this.cmbSexo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbSexo.Name = "cmbSexo";
-            this.cmbSexo.Size = new System.Drawing.Size(286, 28);
-            this.cmbSexo.TabIndex = 72;
-            this.cmbSexo.Text = "Sexo";
+            this.cmbSexoEmpleado.Location = new System.Drawing.Point(20, 144);
+            this.cmbSexoEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbSexoEmpleado.Name = "cmbSexoEmpleado";
+            this.cmbSexoEmpleado.Size = new System.Drawing.Size(286, 28);
+            this.cmbSexoEmpleado.TabIndex = 72;
             // 
-            // txtAlternativoEmpleados
+            // txtAlternativoEmpleado
             // 
-            this.txtAlternativoEmpleados.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtAlternativoEmpleados.Location = new System.Drawing.Point(17, 221);
-            this.txtAlternativoEmpleados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtAlternativoEmpleados.Name = "txtAlternativoEmpleados";
-            this.txtAlternativoEmpleados.Size = new System.Drawing.Size(286, 27);
-            this.txtAlternativoEmpleados.TabIndex = 71;
-            this.txtAlternativoEmpleados.Text = "Alternativo";
+            this.txtAlternativoEmpleado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtAlternativoEmpleado.Location = new System.Drawing.Point(20, 217);
+            this.txtAlternativoEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtAlternativoEmpleado.Name = "txtAlternativoEmpleado";
+            this.txtAlternativoEmpleado.Size = new System.Drawing.Size(286, 27);
+            this.txtAlternativoEmpleado.TabIndex = 4;
+            this.txtAlternativoEmpleado.Text = "Alternativo";
+            this.txtAlternativoEmpleado.Enter += new System.EventHandler(this.txtAlternativoEmpleado_Enter);
+            this.txtAlternativoEmpleado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoEmpleado_KeyPress);
+            this.txtAlternativoEmpleado.Leave += new System.EventHandler(this.txtAlternativoEmpleado_Leave);
             // 
-            // txtTelefonoEmpleados
+            // txtTelefonoEmpleado
             // 
-            this.txtTelefonoEmpleados.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtTelefonoEmpleados.Location = new System.Drawing.Point(17, 182);
-            this.txtTelefonoEmpleados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtTelefonoEmpleados.Name = "txtTelefonoEmpleados";
-            this.txtTelefonoEmpleados.Size = new System.Drawing.Size(286, 27);
-            this.txtTelefonoEmpleados.TabIndex = 70;
-            this.txtTelefonoEmpleados.Text = "Telefono";
+            this.txtTelefonoEmpleado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtTelefonoEmpleado.Location = new System.Drawing.Point(20, 178);
+            this.txtTelefonoEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTelefonoEmpleado.Name = "txtTelefonoEmpleado";
+            this.txtTelefonoEmpleado.Size = new System.Drawing.Size(286, 27);
+            this.txtTelefonoEmpleado.TabIndex = 3;
+            this.txtTelefonoEmpleado.Text = "Teléfono";
+            this.txtTelefonoEmpleado.Enter += new System.EventHandler(this.txtTelefonoEmpleado_Enter);
+            this.txtTelefonoEmpleado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoEmpleado_KeyPress);
+            this.txtTelefonoEmpleado.Leave += new System.EventHandler(this.txtTelefonoEmpleado_Leave);
             // 
-            // txtDocument
+            // txtDocumentoEmpleado
             // 
-            this.txtDocument.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtDocument.Location = new System.Drawing.Point(92, 111);
-            this.txtDocument.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtDocument.Name = "txtDocument";
-            this.txtDocument.Size = new System.Drawing.Size(211, 27);
-            this.txtDocument.TabIndex = 69;
-            this.txtDocument.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocument_KeyPress);
+            this.txtDocumentoEmpleado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDocumentoEmpleado.Location = new System.Drawing.Point(95, 107);
+            this.txtDocumentoEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDocumentoEmpleado.Name = "txtDocumentoEmpleado";
+            this.txtDocumentoEmpleado.Size = new System.Drawing.Size(211, 27);
+            this.txtDocumentoEmpleado.TabIndex = 2;
+            this.txtDocumentoEmpleado.Text = "Documento";
+            this.txtDocumentoEmpleado.Enter += new System.EventHandler(this.txtDocumentoEmpleado_Enter);
+            this.txtDocumentoEmpleado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumDocumentoEmpleado_KeyPress);
+            this.txtDocumentoEmpleado.Leave += new System.EventHandler(this.txtDocumentoEmpleado_Leave);
             // 
             // btnAltaEmpleado
             // 
@@ -162,24 +202,26 @@ namespace Gym
             this.btnAltaEmpleado.FlatAppearance.BorderSize = 0;
             this.btnAltaEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAltaEmpleado.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAltaEmpleado.Location = new System.Drawing.Point(333, 328);
+            this.btnAltaEmpleado.Location = new System.Drawing.Point(336, 357);
             this.btnAltaEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAltaEmpleado.Name = "btnAltaEmpleado";
             this.btnAltaEmpleado.Size = new System.Drawing.Size(307, 41);
-            this.btnAltaEmpleado.TabIndex = 53;
+            this.btnAltaEmpleado.TabIndex = 28;
             this.btnAltaEmpleado.Text = "Guardar";
             this.btnAltaEmpleado.UseVisualStyleBackColor = false;
-            this.btnAltaEmpleado.Click += new System.EventHandler(this.BtnSaveEmployee_Click);
+            this.btnAltaEmpleado.Click += new System.EventHandler(this.btnAltaEmpleado_Click);
             // 
             // txtApellidoEmpleado
             // 
-            this.txtApellidoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtApellidoEmpleado.Location = new System.Drawing.Point(17, 74);
+            this.txtApellidoEmpleado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtApellidoEmpleado.Location = new System.Drawing.Point(20, 70);
             this.txtApellidoEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtApellidoEmpleado.Name = "txtApellidoEmpleado";
             this.txtApellidoEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.txtApellidoEmpleado.TabIndex = 68;
+            this.txtApellidoEmpleado.TabIndex = 1;
             this.txtApellidoEmpleado.Text = "Apellido";
+            this.txtApellidoEmpleado.Enter += new System.EventHandler(this.txtApellidoEmpleado_Enter);
+            this.txtApellidoEmpleado.Leave += new System.EventHandler(this.txtApellidoEmpleado_Leave);
             // 
             // gbJornadaEmpleado
             // 
@@ -202,7 +244,7 @@ namespace Gym
             this.gbJornadaEmpleado.Controls.Add(this.chkLunes);
             this.gbJornadaEmpleado.Controls.Add(this.txtHastaLunes);
             this.gbJornadaEmpleado.Controls.Add(this.txtDesdeLunes);
-            this.gbJornadaEmpleado.Location = new System.Drawing.Point(333, 71);
+            this.gbJornadaEmpleado.Location = new System.Drawing.Point(336, 102);
             this.gbJornadaEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbJornadaEmpleado.Name = "gbJornadaEmpleado";
             this.gbJornadaEmpleado.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -218,109 +260,119 @@ namespace Gym
             this.chkTodos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkTodos.Name = "chkTodos";
             this.chkTodos.Size = new System.Drawing.Size(149, 24);
-            this.chkTodos.TabIndex = 106;
+            this.chkTodos.TabIndex = 9;
             this.chkTodos.Text = "Seleccionar todos";
             this.chkTodos.UseVisualStyleBackColor = true;
             this.chkTodos.CheckedChanged += new System.EventHandler(this.ChkAll_CheckedChanged);
             // 
             // txtHastaSabado
             // 
-            this.txtHastaSabado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaSabado.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaSabado.Location = new System.Drawing.Point(215, 214);
             this.txtHastaSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaSabado.MaxLength = 5;
             this.txtHastaSabado.Name = "txtHastaSabado";
             this.txtHastaSabado.Size = new System.Drawing.Size(81, 27);
-            this.txtHastaSabado.TabIndex = 105;
+            this.txtHastaSabado.TabIndex = 27;
             this.txtHastaSabado.Text = "Hasta";
             // 
             // txtDesdeSabado
             // 
-            this.txtDesdeSabado.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeSabado.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeSabado.Location = new System.Drawing.Point(128, 214);
             this.txtDesdeSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeSabado.MaxLength = 5;
             this.txtDesdeSabado.Name = "txtDesdeSabado";
             this.txtDesdeSabado.Size = new System.Drawing.Size(81, 27);
-            this.txtDesdeSabado.TabIndex = 104;
+            this.txtDesdeSabado.TabIndex = 26;
             this.txtDesdeSabado.Text = "Desde";
             // 
             // txtHastaViernes
             // 
-            this.txtHastaViernes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaViernes.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaViernes.Location = new System.Drawing.Point(215, 184);
             this.txtHastaViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaViernes.MaxLength = 5;
             this.txtHastaViernes.Name = "txtHastaViernes";
             this.txtHastaViernes.Size = new System.Drawing.Size(81, 27);
-            this.txtHastaViernes.TabIndex = 103;
+            this.txtHastaViernes.TabIndex = 24;
             this.txtHastaViernes.Text = "Hasta";
             // 
             // txtDesdeViernes
             // 
-            this.txtDesdeViernes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeViernes.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeViernes.Location = new System.Drawing.Point(128, 184);
             this.txtDesdeViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeViernes.MaxLength = 5;
             this.txtDesdeViernes.Name = "txtDesdeViernes";
             this.txtDesdeViernes.Size = new System.Drawing.Size(81, 27);
-            this.txtDesdeViernes.TabIndex = 102;
+            this.txtDesdeViernes.TabIndex = 23;
             this.txtDesdeViernes.Text = "Desde";
             // 
             // txtHastaJueves
             // 
-            this.txtHastaJueves.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaJueves.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaJueves.Location = new System.Drawing.Point(215, 154);
             this.txtHastaJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaJueves.MaxLength = 5;
             this.txtHastaJueves.Name = "txtHastaJueves";
             this.txtHastaJueves.Size = new System.Drawing.Size(81, 27);
-            this.txtHastaJueves.TabIndex = 101;
+            this.txtHastaJueves.TabIndex = 21;
             this.txtHastaJueves.Text = "Hasta";
             // 
             // txtDesdeJueves
             // 
-            this.txtDesdeJueves.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeJueves.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeJueves.Location = new System.Drawing.Point(128, 154);
             this.txtDesdeJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeJueves.MaxLength = 5;
             this.txtDesdeJueves.Name = "txtDesdeJueves";
             this.txtDesdeJueves.Size = new System.Drawing.Size(81, 27);
-            this.txtDesdeJueves.TabIndex = 100;
+            this.txtDesdeJueves.TabIndex = 20;
             this.txtDesdeJueves.Text = "Desde";
             // 
             // txtHastaMiercoles
             // 
-            this.txtHastaMiercoles.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaMiercoles.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaMiercoles.Location = new System.Drawing.Point(215, 124);
             this.txtHastaMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaMiercoles.MaxLength = 5;
             this.txtHastaMiercoles.Name = "txtHastaMiercoles";
             this.txtHastaMiercoles.Size = new System.Drawing.Size(81, 27);
-            this.txtHastaMiercoles.TabIndex = 99;
+            this.txtHastaMiercoles.TabIndex = 18;
             this.txtHastaMiercoles.Text = "Hasta";
             // 
             // txtDesdeMiercoles
             // 
-            this.txtDesdeMiercoles.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeMiercoles.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeMiercoles.Location = new System.Drawing.Point(128, 124);
             this.txtDesdeMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeMiercoles.MaxLength = 5;
             this.txtDesdeMiercoles.Name = "txtDesdeMiercoles";
             this.txtDesdeMiercoles.Size = new System.Drawing.Size(81, 27);
-            this.txtDesdeMiercoles.TabIndex = 98;
+            this.txtDesdeMiercoles.TabIndex = 17;
             this.txtDesdeMiercoles.Text = "Desde";
             // 
             // txtHastaMartes
             // 
-            this.txtHastaMartes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaMartes.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaMartes.Location = new System.Drawing.Point(215, 94);
             this.txtHastaMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaMartes.MaxLength = 5;
             this.txtHastaMartes.Name = "txtHastaMartes";
             this.txtHastaMartes.Size = new System.Drawing.Size(81, 27);
-            this.txtHastaMartes.TabIndex = 97;
+            this.txtHastaMartes.TabIndex = 15;
             this.txtHastaMartes.Text = "Hasta";
             // 
             // txtDesdeMartes
             // 
-            this.txtDesdeMartes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeMartes.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeMartes.Location = new System.Drawing.Point(128, 94);
             this.txtDesdeMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeMartes.MaxLength = 5;
             this.txtDesdeMartes.Name = "txtDesdeMartes";
             this.txtDesdeMartes.Size = new System.Drawing.Size(81, 27);
-            this.txtDesdeMartes.TabIndex = 96;
+            this.txtDesdeMartes.TabIndex = 14;
             this.txtDesdeMartes.Text = "Desde";
             // 
             // chkSabado
@@ -330,7 +382,7 @@ namespace Gym
             this.chkSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkSabado.Name = "chkSabado";
             this.chkSabado.Size = new System.Drawing.Size(82, 24);
-            this.chkSabado.TabIndex = 95;
+            this.chkSabado.TabIndex = 25;
             this.chkSabado.Text = "Sábado";
             this.chkSabado.UseVisualStyleBackColor = true;
             // 
@@ -341,7 +393,7 @@ namespace Gym
             this.chkViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkViernes.Name = "chkViernes";
             this.chkViernes.Size = new System.Drawing.Size(79, 24);
-            this.chkViernes.TabIndex = 94;
+            this.chkViernes.TabIndex = 22;
             this.chkViernes.Text = "Viernes";
             this.chkViernes.UseVisualStyleBackColor = true;
             // 
@@ -352,7 +404,7 @@ namespace Gym
             this.chkJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkJueves.Name = "chkJueves";
             this.chkJueves.Size = new System.Drawing.Size(73, 24);
-            this.chkJueves.TabIndex = 93;
+            this.chkJueves.TabIndex = 19;
             this.chkJueves.Text = "Jueves";
             this.chkJueves.UseVisualStyleBackColor = true;
             // 
@@ -363,7 +415,7 @@ namespace Gym
             this.chkMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkMiercoles.Name = "chkMiercoles";
             this.chkMiercoles.Size = new System.Drawing.Size(95, 24);
-            this.chkMiercoles.TabIndex = 92;
+            this.chkMiercoles.TabIndex = 16;
             this.chkMiercoles.Text = "Miércoles";
             this.chkMiercoles.UseVisualStyleBackColor = true;
             // 
@@ -374,93 +426,101 @@ namespace Gym
             this.chkMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkMartes.Name = "chkMartes";
             this.chkMartes.Size = new System.Drawing.Size(76, 24);
-            this.chkMartes.TabIndex = 91;
+            this.chkMartes.TabIndex = 13;
             this.chkMartes.Text = "Martes";
             this.chkMartes.UseVisualStyleBackColor = true;
             // 
             // chkLunes
             // 
             this.chkLunes.AutoSize = true;
-            this.chkLunes.Location = new System.Drawing.Point(10, 68);
+            this.chkLunes.Location = new System.Drawing.Point(10, 64);
             this.chkLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkLunes.Name = "chkLunes";
             this.chkLunes.Size = new System.Drawing.Size(68, 24);
-            this.chkLunes.TabIndex = 90;
+            this.chkLunes.TabIndex = 10;
             this.chkLunes.Text = "Lunes";
             this.chkLunes.UseVisualStyleBackColor = true;
             // 
             // txtHastaLunes
             // 
-            this.txtHastaLunes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtHastaLunes.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaLunes.Location = new System.Drawing.Point(215, 62);
             this.txtHastaLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaLunes.MaxLength = 5;
             this.txtHastaLunes.Name = "txtHastaLunes";
             this.txtHastaLunes.Size = new System.Drawing.Size(81, 27);
-            this.txtHastaLunes.TabIndex = 89;
+            this.txtHastaLunes.TabIndex = 12;
             this.txtHastaLunes.Text = "Hasta";
             // 
             // txtDesdeLunes
             // 
-            this.txtDesdeLunes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDesdeLunes.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeLunes.Location = new System.Drawing.Point(128, 62);
             this.txtDesdeLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeLunes.MaxLength = 5;
             this.txtDesdeLunes.Name = "txtDesdeLunes";
             this.txtDesdeLunes.Size = new System.Drawing.Size(81, 27);
-            this.txtDesdeLunes.TabIndex = 88;
+            this.txtDesdeLunes.TabIndex = 11;
             this.txtDesdeLunes.Text = "Desde";
             // 
             // cmbTipoDocumentoEmpleado
             // 
+            this.cmbTipoDocumentoEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoDocumentoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.cmbTipoDocumentoEmpleado.FormattingEnabled = true;
-            this.cmbTipoDocumentoEmpleado.Location = new System.Drawing.Point(17, 111);
+            this.cmbTipoDocumentoEmpleado.Location = new System.Drawing.Point(20, 107);
             this.cmbTipoDocumentoEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTipoDocumentoEmpleado.Name = "cmbTipoDocumentoEmpleado";
             this.cmbTipoDocumentoEmpleado.Size = new System.Drawing.Size(69, 28);
             this.cmbTipoDocumentoEmpleado.TabIndex = 65;
-            this.cmbTipoDocumentoEmpleado.Text = "Tipo";
             // 
             // txtObservacionesEmpleado
             // 
-            this.txtObservacionesEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtObservacionesEmpleado.Location = new System.Drawing.Point(17, 292);
+            this.txtObservacionesEmpleado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtObservacionesEmpleado.Location = new System.Drawing.Point(20, 322);
             this.txtObservacionesEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtObservacionesEmpleado.Multiline = true;
             this.txtObservacionesEmpleado.Name = "txtObservacionesEmpleado";
             this.txtObservacionesEmpleado.Size = new System.Drawing.Size(286, 76);
-            this.txtObservacionesEmpleado.TabIndex = 64;
+            this.txtObservacionesEmpleado.TabIndex = 6;
             this.txtObservacionesEmpleado.Text = "Observaciones y/o consideraciones";
+            this.txtObservacionesEmpleado.Enter += new System.EventHandler(this.txtObservacionesEmpleado_Enter);
+            this.txtObservacionesEmpleado.Leave += new System.EventHandler(this.txtObservacionesEmpleado_Leave);
             // 
             // cmbTipoEmpleado
             // 
+            this.cmbTipoEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.cmbTipoEmpleado.FormattingEnabled = true;
-            this.cmbTipoEmpleado.Location = new System.Drawing.Point(333, 36);
+            this.cmbTipoEmpleado.Location = new System.Drawing.Point(20, 288);
             this.cmbTipoEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTipoEmpleado.Name = "cmbTipoEmpleado";
-            this.cmbTipoEmpleado.Size = new System.Drawing.Size(307, 28);
+            this.cmbTipoEmpleado.Size = new System.Drawing.Size(286, 28);
             this.cmbTipoEmpleado.TabIndex = 61;
-            this.cmbTipoEmpleado.Text = "Tipo de empleado";
             // 
             // txtMailEmpleado
             // 
-            this.txtMailEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtMailEmpleado.Location = new System.Drawing.Point(17, 258);
+            this.txtMailEmpleado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtMailEmpleado.Location = new System.Drawing.Point(20, 254);
             this.txtMailEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMailEmpleado.Name = "txtMailEmpleado";
             this.txtMailEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.txtMailEmpleado.TabIndex = 60;
+            this.txtMailEmpleado.TabIndex = 5;
             this.txtMailEmpleado.Text = "Mail";
+            this.txtMailEmpleado.Enter += new System.EventHandler(this.txtMailEmpleado_Enter);
+            this.txtMailEmpleado.Leave += new System.EventHandler(this.txtMailEmpleado_Leave);
             // 
             // txtNombreEmpleado
             // 
-            this.txtNombreEmpleado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtNombreEmpleado.Location = new System.Drawing.Point(17, 38);
+            this.txtNombreEmpleado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNombreEmpleado.Location = new System.Drawing.Point(20, 34);
             this.txtNombreEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombreEmpleado.Name = "txtNombreEmpleado";
             this.txtNombreEmpleado.Size = new System.Drawing.Size(286, 27);
-            this.txtNombreEmpleado.TabIndex = 56;
+            this.txtNombreEmpleado.TabIndex = 0;
             this.txtNombreEmpleado.Text = "Nombre";
+            this.txtNombreEmpleado.Enter += new System.EventHandler(this.txtNombreEmpleado_Enter);
+            this.txtNombreEmpleado.Leave += new System.EventHandler(this.txtNombreEmpleado_Leave);
             // 
             // Empleados
             // 
@@ -475,6 +535,7 @@ namespace Gym
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Empleados";
             this.Text = "empleados";
+            this.Load += new System.EventHandler(this.Empleados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleado)).EndInit();
             this.gbEmpleado.ResumeLayout(false);
             this.gbEmpleado.PerformLayout();
@@ -517,9 +578,11 @@ namespace Gym
         private System.Windows.Forms.TextBox txtHastaLunes;
         private System.Windows.Forms.TextBox txtDesdeLunes;
         private System.Windows.Forms.TextBox txtApellidoEmpleado;
-        private System.Windows.Forms.TextBox txtAlternativoEmpleados;
-        private System.Windows.Forms.TextBox txtTelefonoEmpleados;
-        private System.Windows.Forms.TextBox txtDocument;
-        private System.Windows.Forms.ComboBox cmbSexo;
+        private System.Windows.Forms.TextBox txtAlternativoEmpleado;
+        private System.Windows.Forms.TextBox txtTelefonoEmpleado;
+        private System.Windows.Forms.TextBox txtDocumentoEmpleado;
+        private System.Windows.Forms.ComboBox cmbSexoEmpleado;
+        private System.Windows.Forms.TextBox txtClave;
+        private System.Windows.Forms.TextBox txtUsuario;
     }
 }

@@ -12,16 +12,20 @@ namespace Gym
     public class MetodosGenerales
     {
         #region Instancias
-        private readonly BussinessTipos_Documentos _bussinessTipos_Documentos = new BussinessTipos_Documentos();
-        public DataSet DsTipos_Documentos = new DataSet();
+        private BussinessTipo _bussinessTipo;
+        private BussinessEmpleados _bussinessEmpleados;
+        private Entities.Empleados _empleados;
 
         #endregion
-        //Poner el arrastre del form
-        //y todos los botones o eventos comunes en cada formulario
-        //en caso de poder hacerlo xD
 
+        public MetodosGenerales()
+        {
+            _bussinessTipo = new BussinessTipo();
+            _bussinessEmpleados = new BussinessEmpleados();
+            _empleados = new Entities.Empleados();
+        }
 
-
+        #region Variables
         /*tareas*/
 
         //Asignar el ID del usuario´con el login abierto para utilizarlo
@@ -29,14 +33,60 @@ namespace Gym
 
         public bool CajaAbierta = true;
 
+        public DataTable DtTipos_Documentos = new DataTable();
+        public DataTable DtTipos_Sexos = new DataTable();
+        public DataTable DtTipos_Empleados = new DataTable();
+        public int empleado_ID;
 
-        // Traeremos los tipos de documento, entre otros datos comunes desde acá
 
+        #endregion
+
+
+
+
+        #region Tipos de documento
+
+        // Traeremos los tipos de documento
         public void Bring_Tipos_Documentos()
         {
-            DsTipos_Documentos = _bussinessTipos_Documentos.BringTipoDocumento();
+            DtTipos_Documentos = _bussinessTipo.BringTipoDocumento();
         }
 
+        #endregion
+
+        #region Tipos de sexo
+
+        // Traeremos los tipos de sexo
+        public void Bring_Tipos_Sexos()
+        {
+            //Asignamos los dato de ese método de negocios
+            //a una table que hemos creado al principio
+            DtTipos_Sexos = _bussinessTipo.BringTipoSexo();
+        }
+
+
+        #endregion
+
+
+        #region Tipos de Empleados
+        public void Bring_Tipos_Empleados()
+        {
+            //Asignamos los dato de ese método de negocios
+            //a una table que hemos creado al principio
+            DtTipos_Empleados = _bussinessTipo.BringTipoEmpleado();
+        }
+
+        #endregion
+
+        #region Empleados
+
+        public void Bring_Last_ID()
+        {
+            _empleados = _bussinessEmpleados.GetLastID(_empleados);
+            empleado_ID = _empleados.Empleado_ID;
+        }
+
+        #endregion
 
     }
 }

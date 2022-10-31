@@ -6,7 +6,6 @@ namespace Entities
 {
     public class Personas
     {
-        public int Persona_ID { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int Tipo_Documento_ID { get; set; }

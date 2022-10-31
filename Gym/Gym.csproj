@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -32,7 +32,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -51,6 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -94,28 +95,23 @@
     <Compile Include="Empleados.Designer.cs">
       <DependentUpon>Empleados.cs</DependentUpon>
     </Compile>
-    <Compile Include="gymDs.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>gymDs.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainUsuarios.Designer.cs">
+      <DependentUpon>MainUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainJefe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainJefe.Designer.cs">
       <DependentUpon>MainJefe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainUsuario.Designer.cs">
-      <DependentUpon>MainUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="MetodosGenerales.cs" />
     <Compile Include="Pagos.cs">
@@ -157,11 +153,11 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainUsuarios.resx">
+      <DependentUpon>MainUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainJefe.resx">
       <DependentUpon>MainJefe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainUsuario.resx">
-      <DependentUpon>MainUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pagos.resx">
       <DependentUpon>Pagos.cs</DependentUpon>
@@ -181,17 +177,6 @@
     <EmbeddedResource Include="RegistroPrimeraVez.resx">
       <DependentUpon>RegistroPrimeraVez.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="gymDs.xsc">
-      <DependentUpon>gymDs.xsd</DependentUpon>
-    </None>
-    <None Include="gymDs.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>gymDs.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="gymDs.xss">
-      <DependentUpon>gymDs.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

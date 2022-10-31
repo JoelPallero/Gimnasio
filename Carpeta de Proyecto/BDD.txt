@@ -9,35 +9,43 @@ go
 /* Tablas Maestras */
 
 /* Personas */
-create table Persona(
-Persona_ID int primary key identity (0, 1),
+
+create table Empleados(
+Empleado_ID int primary key identity (0, 1),
 Nombre nvarchar(50) not null,
 Apellido nvarchar(50) not null,
 Tipo_Documento_ID int not null,
 Nro_documento nvarchar(24) not null,
 Tipo_Sexo_ID int not null,
-Telefono nvarchar(24) not null,
+Nro_Telefono nvarchar(24) not null,
 Nro_Alternativo nvarchar(24) null,
 Mail nvarchar(50) null,
-Observaciones nvarchar(200) null
-)
-
-go
-
-create table Empleados(
-Empleado_ID int primary key identity (0, 1),
-Persona_ID int not null,
+Observaciones nvarchar(200) null,
 Usuario nvarchar(255) null,
 Clave nvarchar(255) null,
 Tipo_Empleado_ID int not null,
-Estado_Empleado int not null
+Estado_Empleado_ID int not null
 )
 
 go
 
+/*
+0 Activo
+1 Vacaciones
+
+*/
+
 create table Clientes(
 Cliente_ID int primary key identity (0, 1),
-Persona_ID int not null,
+Nombre nvarchar(50) not null,
+Apellido nvarchar(50) not null,
+Tipo_Documento_ID int not null,
+Nro_documento nvarchar(24) not null,
+Tipo_Sexo_ID int not null,
+Nro_Telefono nvarchar(24) not null,
+Nro_Alternativo nvarchar(24) null,
+Mail nvarchar(50) null,
+Observaciones nvarchar(200) null,
 Estado nvarchar(20) not null,
 )
 
@@ -68,7 +76,7 @@ go
 create table Detalles_Cajas(
 Detalle_Caja_ID int primary key identity (0, 1),
 Caja_ID int not null,
-Plan_Asignado int not null,
+Plan_Asignado_ID int not null,
 Empleado_ID int not null,
 Importe_Ingreso decimal (18, 0) null,
 Importe_Egreso decimal (18, 0) null,
@@ -79,8 +87,8 @@ Observaciones nvarchar(200) null,
 go
 
 create table Cuotas(
-Cuotas_ID int primary key identity (0, 1),
-Plan_Asignado int not null,
+Cuota_ID int primary key identity (0, 1),
+Plan_Asignado_ID int not null,
 Empleado_ID int not null,
 Detalle_Caja_ID int null,
 Importe_Cuota decimal(18, 0) not null,
@@ -99,7 +107,7 @@ Nombre nvarchar(20) not null,
 Importe_Plan decimal (18, 0) not null,
 Duracion int null,
 Cupo_Total int null,
-CupoRestante int null,
+Cupo_Restante int null,
 Vigencia nvarchar (1) not null
 )
 
@@ -200,16 +208,17 @@ go
 
 create table Tipos_Empleados(
 Tipo_Empleado_ID int primary key identity (0, 1),
-Tipo varchar(20) not null
+Tipo varchar(20) not null,
+AccesoClave varchar(1) not null
 )
 
 go
 
-insert into Tipos_Empleados values ('Admin')
-insert into Tipos_Empleados values ('Jefe')
-insert into Tipos_Empleados values ('Usuario')
-insert into Tipos_Empleados values ('Profesor')
-insert into Tipos_Empleados values ('Otros')
+insert into Tipos_Empleados values ('Admin', 'Y')
+insert into Tipos_Empleados values ('Jefe', 'Y')
+insert into Tipos_Empleados values ('Usuario',  'Y')
+insert into Tipos_Empleados values ('Profesor',  'N')
+insert into Tipos_Empleados values ('Otros', 'N')
 
 go
 
@@ -222,21 +231,8 @@ go
 
 insert into Estados_Empleados values ('Activo')
 insert into Estados_Empleados values ('Vacaciones')
-insert into Estados_Empleados values ('Vacaciones')
 insert into Estados_Empleados values ('Licencia Médica')
 insert into Estados_Empleados values ('Baja')
-
-go
-
-create table Estados_Clientes(
-Estado_Cliente_ID int primary key identity (0, 1),
-Estado varchar(20) not null
-)
-
-go
-
-insert into Estados_Clientes values ('Activo')
-insert into Estados_Clientes values ('Baja')
 
 go
 
@@ -245,12 +241,6 @@ go
 /* Constrains */
 
 /* Empleados */
-
-alter table Empleados
-add CONSTRAINT FK_Empleado_Persona FOREIGN KEY (Persona_ID) 
-REFERENCES Personas (Persona_ID)
-
-go
 
 alter table Empleados
 add CONSTRAINT FK_Empleado_Tipo_Empleado FOREIGN KEY (Tipo_Empleado_ID) 
@@ -264,12 +254,30 @@ REFERENCES Estados_Empleados (Estado_Empleado_ID)
 
 go
 
+alter table Empleados
+add CONSTRAINT FK_Empleados_TipoDocumento FOREIGN KEY (Tipo_Documento_ID) 
+REFERENCES Tipos_Documentos (Tipo_Documento_ID)
+
+go
+
+alter table Empleados
+add CONSTRAINT FK_Empleados_TipoSexo FOREIGN KEY (Tipo_Sexo_ID) 
+REFERENCES Tipos_Sexos (Tipo_Sexo_ID)
+
+go
+
 /* Clientes */
 
 
 alter table Clientes
-add CONSTRAINT FK_Clientes_Persona FOREIGN KEY (Persona_ID) 
-REFERENCES Personas (Persona_ID)
+add CONSTRAINT FK_Clientes_TipoDocumento FOREIGN KEY (Tipo_Documento_ID) 
+REFERENCES Tipos_Documentos (Tipo_Documento_ID)
+
+go
+
+alter table Clientes
+add CONSTRAINT FK_Clientes_TipoSexo FOREIGN KEY (Tipo_Sexo_ID) 
+REFERENCES Tipos_Sexos (Tipo_Sexo_ID)
 
 go
 
@@ -283,12 +291,6 @@ go
 alter table Asistencias
 add CONSTRAINT FK_Asistencia_Empleado FOREIGN KEY (Empleado_ID) 
 REFERENCES Empleados (Empleado_ID)
-
-go
-
-alter table Asistencias
-add CONSTRAINT FK_Asistencia_Plan_Asignado FOREIGN KEY (Plan_Asignado_ID) 
-REFERENCES Plans_Asignados (Plan_Asignado_ID)
 
 go
 
@@ -386,7 +388,7 @@ go
 
 /* Jornada_Empleados */
 
-alter table Jornada_Empleados
+alter table Jornadas_Empleados
 add CONSTRAINT FK_Jornada_Empleados_Empleados FOREIGN KEY (Empleado_ID) 
 REFERENCES Empleados (Empleado_ID)
 
@@ -400,3 +402,31 @@ REFERENCES Empleados (Empleado_ID)
 go
 
 /* Fin Constrains */
+
+
+/* Procedimientos, triggers y demás */
+
+create proc sp_cargar_tipos_documentos
+as
+select Tipo_Documento_ID, Tipo
+from Tipos_Documentos
+
+go
+
+create proc sp_cargar_tipos_sexos
+as
+select Tipo_sexo_ID, Sexo
+from Tipos_Sexos
+
+go
+
+create proc sp_cargar_tipos_empleados
+as
+select Tipo_Empleado_ID, Tipo
+from Tipos_Empleados
+where Tipo != 'Admin'
+and Tipo != 'Jefe'
+
+go
+
+exec sp_cargar_tipos_empleados

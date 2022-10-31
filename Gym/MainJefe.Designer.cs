@@ -30,168 +30,66 @@ namespace Gym
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainJefe));
-            this.windowbox = new System.Windows.Forms.PictureBox();
-            this.titlebox = new System.Windows.Forms.PictureBox();
-            this.menubox = new System.Windows.Forms.PictureBox();
-            this.logo = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnAsistencia = new System.Windows.Forms.Button();
-            this.btnRegistro = new System.Windows.Forms.Button();
-            this.btnPagos = new System.Windows.Forms.Button();
-            this.btnCaja = new System.Windows.Forms.Button();
+            this.menuboxMain = new System.Windows.Forms.PictureBox();
+            this.titleboxMain = new System.Windows.Forms.PictureBox();
+            this.windowboxMain = new System.Windows.Forms.PictureBox();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnclose = new System.Windows.Forms.Button();
-            this.btnminimize = new System.Windows.Forms.Button();
-            this.focoAsistencia = new System.Windows.Forms.Label();
-            this.focoRegistro = new System.Windows.Forms.Label();
+            this.btnCaja = new System.Windows.Forms.Button();
             this.btnPlanes = new System.Windows.Forms.Button();
+            this.btnPagos = new System.Windows.Forms.Button();
+            this.btnRegistro = new System.Windows.Forms.Button();
+            this.btnAsistencia = new System.Windows.Forms.Button();
+            this.btnEmpleados = new System.Windows.Forms.Button();
+            this.logo = new System.Windows.Forms.PictureBox();
+            this.focoRegistro = new System.Windows.Forms.Label();
+            this.focoCaja = new System.Windows.Forms.Label();
             this.focoPagos = new System.Windows.Forms.Label();
             this.focoPlanes = new System.Windows.Forms.Label();
-            this.focoCaja = new System.Windows.Forms.Label();
+            this.focoAsistencia = new System.Windows.Forms.Label();
+            this.focoEmpleados = new System.Windows.Forms.Label();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.windowbox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.titlebox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.menubox)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.menuboxMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.titleboxMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowboxMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
-            // windowbox
+            // menuboxMain
             // 
-            this.windowbox.BackColor = System.Drawing.Color.Transparent;
-            this.windowbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.windowbox.Location = new System.Drawing.Point(250, 50);
-            this.windowbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.windowbox.Name = "windowbox";
-            this.windowbox.Size = new System.Drawing.Size(700, 650);
-            this.windowbox.TabIndex = 19;
-            this.windowbox.TabStop = false;
+            this.menuboxMain.BackColor = System.Drawing.SystemColors.Highlight;
+            this.menuboxMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuboxMain.Location = new System.Drawing.Point(0, 0);
+            this.menuboxMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.menuboxMain.Name = "menuboxMain";
+            this.menuboxMain.Size = new System.Drawing.Size(250, 700);
+            this.menuboxMain.TabIndex = 0;
+            this.menuboxMain.TabStop = false;
+            this.menuboxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleboxMain_MouseDown);
             // 
-            // titlebox
+            // titleboxMain
             // 
-            this.titlebox.BackColor = System.Drawing.Color.DodgerBlue;
-            this.titlebox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titlebox.Location = new System.Drawing.Point(250, 0);
-            this.titlebox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.titlebox.Name = "titlebox";
-            this.titlebox.Size = new System.Drawing.Size(700, 50);
-            this.titlebox.TabIndex = 18;
-            this.titlebox.TabStop = false;
-            this.titlebox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebox_MouseDown);
+            this.titleboxMain.BackColor = System.Drawing.Color.DodgerBlue;
+            this.titleboxMain.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titleboxMain.Location = new System.Drawing.Point(250, 0);
+            this.titleboxMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.titleboxMain.Name = "titleboxMain";
+            this.titleboxMain.Size = new System.Drawing.Size(700, 50);
+            this.titleboxMain.TabIndex = 1;
+            this.titleboxMain.TabStop = false;
+            this.titleboxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleboxMain_MouseDown);
             // 
-            // menubox
+            // windowboxMain
             // 
-            this.menubox.BackColor = System.Drawing.SystemColors.Highlight;
-            this.menubox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.menubox.Location = new System.Drawing.Point(0, 0);
-            this.menubox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.menubox.Name = "menubox";
-            this.menubox.Size = new System.Drawing.Size(250, 700);
-            this.menubox.TabIndex = 17;
-            this.menubox.TabStop = false;
-            this.menubox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebox_MouseDown);
-            // 
-            // logo
-            // 
-            this.logo.BackColor = System.Drawing.Color.Transparent;
-            this.logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("logo.BackgroundImage")));
-            this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.logo.Location = new System.Drawing.Point(0, 0);
-            this.logo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(250, 140);
-            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logo.TabIndex = 30;
-            this.logo.TabStop = false;
-            this.logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebox_MouseDown);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(267, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 23);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "Usuario XXXXX";
-            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebox_MouseDown);
-            // 
-            // btnAsistencia
-            // 
-            this.btnAsistencia.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnAsistencia.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.btnAsistencia.FlatAppearance.BorderSize = 0;
-            this.btnAsistencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAsistencia.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.btnAsistencia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAsistencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAsistencia.Location = new System.Drawing.Point(5, 190);
-            this.btnAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAsistencia.Name = "btnAsistencia";
-            this.btnAsistencia.Size = new System.Drawing.Size(245, 55);
-            this.btnAsistencia.TabIndex = 0;
-            this.btnAsistencia.Text = "Asistencia";
-            this.btnAsistencia.UseVisualStyleBackColor = false;
-            this.btnAsistencia.Click += new System.EventHandler(this.btnAsistencia_Click);
-            // 
-            // btnRegistro
-            // 
-            this.btnRegistro.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnRegistro.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.btnRegistro.FlatAppearance.BorderSize = 0;
-            this.btnRegistro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnRegistro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistro.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.btnRegistro.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistro.Location = new System.Drawing.Point(5, 262);
-            this.btnRegistro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRegistro.Name = "btnRegistro";
-            this.btnRegistro.Size = new System.Drawing.Size(245, 55);
-            this.btnRegistro.TabIndex = 35;
-            this.btnRegistro.Text = "Clientes";
-            this.btnRegistro.UseVisualStyleBackColor = false;
-            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
-            // 
-            // btnPagos
-            // 
-            this.btnPagos.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnPagos.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.btnPagos.FlatAppearance.BorderSize = 0;
-            this.btnPagos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPagos.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.btnPagos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPagos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPagos.Location = new System.Drawing.Point(5, 334);
-            this.btnPagos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPagos.Name = "btnPagos";
-            this.btnPagos.Size = new System.Drawing.Size(245, 55);
-            this.btnPagos.TabIndex = 36;
-            this.btnPagos.Text = "Pagos";
-            this.btnPagos.UseVisualStyleBackColor = false;
-            this.btnPagos.Click += new System.EventHandler(this.btnPagos_Click);
-            // 
-            // btnCaja
-            // 
-            this.btnCaja.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnCaja.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.btnCaja.FlatAppearance.BorderSize = 0;
-            this.btnCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCaja.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.btnCaja.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCaja.Location = new System.Drawing.Point(5, 478);
-            this.btnCaja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnCaja.Name = "btnCaja";
-            this.btnCaja.Size = new System.Drawing.Size(245, 55);
-            this.btnCaja.TabIndex = 38;
-            this.btnCaja.Text = "Caja";
-            this.btnCaja.UseVisualStyleBackColor = false;
-            this.btnCaja.Click += new System.EventHandler(this.btnCaja_Click);
+            this.windowboxMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.windowboxMain.Location = new System.Drawing.Point(250, 50);
+            this.windowboxMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.windowboxMain.Name = "windowboxMain";
+            this.windowboxMain.Size = new System.Drawing.Size(700, 650);
+            this.windowboxMain.TabIndex = 16;
+            this.windowboxMain.TabStop = false;
             // 
             // btnLogout
             // 
@@ -207,70 +105,29 @@ namespace Gym
             this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(194, 55);
-            this.btnLogout.TabIndex = 39;
+            this.btnLogout.TabIndex = 47;
             this.btnLogout.Text = "Cerrar Sesión";
             this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
             // 
-            // btnclose
+            // btnCaja
             // 
-            this.btnclose.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnclose.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnclose.FlatAppearance.BorderSize = 0;
-            this.btnclose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.btnclose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnclose.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.btnclose.ForeColor = System.Drawing.Color.White;
-            this.btnclose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnclose.Location = new System.Drawing.Point(900, 0);
-            this.btnclose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnclose.Name = "btnclose";
-            this.btnclose.Size = new System.Drawing.Size(50, 50);
-            this.btnclose.TabIndex = 40;
-            this.btnclose.Text = "X";
-            this.btnclose.UseVisualStyleBackColor = false;
-            this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
-            // 
-            // btnminimize
-            // 
-            this.btnminimize.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnminimize.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnminimize.FlatAppearance.BorderSize = 0;
-            this.btnminimize.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight;
-            this.btnminimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnminimize.Font = new System.Drawing.Font("Century Gothic", 16.2F);
-            this.btnminimize.ForeColor = System.Drawing.Color.White;
-            this.btnminimize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnminimize.Location = new System.Drawing.Point(844, 0);
-            this.btnminimize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnminimize.Name = "btnminimize";
-            this.btnminimize.Size = new System.Drawing.Size(50, 50);
-            this.btnminimize.TabIndex = 41;
-            this.btnminimize.Text = "-";
-            this.btnminimize.UseVisualStyleBackColor = false;
-            this.btnminimize.Click += new System.EventHandler(this.btnminimize_Click);
-            // 
-            // focoAsistencia
-            // 
-            this.focoAsistencia.AutoSize = true;
-            this.focoAsistencia.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoAsistencia.Location = new System.Drawing.Point(0, 190);
-            this.focoAsistencia.MinimumSize = new System.Drawing.Size(5, 55);
-            this.focoAsistencia.Name = "focoAsistencia";
-            this.focoAsistencia.Size = new System.Drawing.Size(5, 55);
-            this.focoAsistencia.TabIndex = 47;
-            this.focoAsistencia.Visible = false;
-            // 
-            // focoRegistro
-            // 
-            this.focoRegistro.AutoSize = true;
-            this.focoRegistro.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoRegistro.Location = new System.Drawing.Point(0, 262);
-            this.focoRegistro.MinimumSize = new System.Drawing.Size(5, 55);
-            this.focoRegistro.Name = "focoRegistro";
-            this.focoRegistro.Size = new System.Drawing.Size(5, 55);
-            this.focoRegistro.TabIndex = 48;
-            this.focoRegistro.Visible = false;
+            this.btnCaja.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnCaja.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnCaja.FlatAppearance.BorderSize = 0;
+            this.btnCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCaja.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.btnCaja.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCaja.Location = new System.Drawing.Point(5, 431);
+            this.btnCaja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCaja.Name = "btnCaja";
+            this.btnCaja.Size = new System.Drawing.Size(245, 50);
+            this.btnCaja.TabIndex = 46;
+            this.btnCaja.Text = "Caja";
+            this.btnCaja.UseVisualStyleBackColor = false;
+            this.btnCaja.Click += new System.EventHandler(this.BtnCaja_Click);
             // 
             // btnPlanes
             // 
@@ -282,47 +139,208 @@ namespace Gym
             this.btnPlanes.Font = new System.Drawing.Font("Century Gothic", 11.25F);
             this.btnPlanes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPlanes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPlanes.Location = new System.Drawing.Point(5, 406);
+            this.btnPlanes.Location = new System.Drawing.Point(5, 369);
             this.btnPlanes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPlanes.Name = "btnPlanes";
-            this.btnPlanes.Size = new System.Drawing.Size(245, 55);
-            this.btnPlanes.TabIndex = 37;
+            this.btnPlanes.Size = new System.Drawing.Size(245, 50);
+            this.btnPlanes.TabIndex = 45;
             this.btnPlanes.Text = "Planes";
             this.btnPlanes.UseVisualStyleBackColor = false;
-            this.btnPlanes.Click += new System.EventHandler(this.btnPlanes_Click);
+            this.btnPlanes.Click += new System.EventHandler(this.BtnPlanes_Click);
+            // 
+            // btnPagos
+            // 
+            this.btnPagos.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnPagos.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnPagos.FlatAppearance.BorderSize = 0;
+            this.btnPagos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnPagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPagos.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.btnPagos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPagos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPagos.Location = new System.Drawing.Point(5, 308);
+            this.btnPagos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPagos.Name = "btnPagos";
+            this.btnPagos.Size = new System.Drawing.Size(245, 50);
+            this.btnPagos.TabIndex = 44;
+            this.btnPagos.Text = "Pagos";
+            this.btnPagos.UseVisualStyleBackColor = false;
+            this.btnPagos.Click += new System.EventHandler(this.BtnPagos_Click);
+            // 
+            // btnRegistro
+            // 
+            this.btnRegistro.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnRegistro.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnRegistro.FlatAppearance.BorderSize = 0;
+            this.btnRegistro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnRegistro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistro.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.btnRegistro.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegistro.Location = new System.Drawing.Point(5, 245);
+            this.btnRegistro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRegistro.Name = "btnRegistro";
+            this.btnRegistro.Size = new System.Drawing.Size(245, 50);
+            this.btnRegistro.TabIndex = 43;
+            this.btnRegistro.Text = "Clientes";
+            this.btnRegistro.UseVisualStyleBackColor = false;
+            this.btnRegistro.Click += new System.EventHandler(this.BtnRegistro_Click);
+            // 
+            // btnAsistencia
+            // 
+            this.btnAsistencia.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnAsistencia.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnAsistencia.FlatAppearance.BorderSize = 0;
+            this.btnAsistencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsistencia.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.btnAsistencia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAsistencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAsistencia.Location = new System.Drawing.Point(5, 182);
+            this.btnAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAsistencia.Name = "btnAsistencia";
+            this.btnAsistencia.Size = new System.Drawing.Size(245, 50);
+            this.btnAsistencia.TabIndex = 42;
+            this.btnAsistencia.Text = "Asistencia";
+            this.btnAsistencia.UseVisualStyleBackColor = false;
+            this.btnAsistencia.Click += new System.EventHandler(this.BtnAsistencia_Click);
+            // 
+            // btnEmpleados
+            // 
+            this.btnEmpleados.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnEmpleados.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnEmpleados.FlatAppearance.BorderSize = 0;
+            this.btnEmpleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmpleados.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.btnEmpleados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEmpleados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEmpleados.Location = new System.Drawing.Point(5, 492);
+            this.btnEmpleados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEmpleados.Name = "btnEmpleados";
+            this.btnEmpleados.Size = new System.Drawing.Size(245, 50);
+            this.btnEmpleados.TabIndex = 51;
+            this.btnEmpleados.Text = "Empleados";
+            this.btnEmpleados.UseVisualStyleBackColor = false;
+            this.btnEmpleados.Click += new System.EventHandler(this.BtnEmpleados_Click);
+            // 
+            // logo
+            // 
+            this.logo.BackColor = System.Drawing.Color.Transparent;
+            this.logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("logo.BackgroundImage")));
+            this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.logo.Location = new System.Drawing.Point(0, 0);
+            this.logo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(250, 140);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 52;
+            this.logo.TabStop = false;
+            this.logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleboxMain_MouseDown);
+            // 
+            // focoRegistro
+            // 
+            this.focoRegistro.AutoSize = true;
+            this.focoRegistro.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.focoRegistro.Location = new System.Drawing.Point(0, 245);
+            this.focoRegistro.MinimumSize = new System.Drawing.Size(5, 50);
+            this.focoRegistro.Name = "focoRegistro";
+            this.focoRegistro.Size = new System.Drawing.Size(5, 50);
+            this.focoRegistro.TabIndex = 54;
+            this.focoRegistro.Visible = false;
+            // 
+            // focoCaja
+            // 
+            this.focoCaja.AutoSize = true;
+            this.focoCaja.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.focoCaja.Location = new System.Drawing.Point(0, 431);
+            this.focoCaja.MinimumSize = new System.Drawing.Size(5, 50);
+            this.focoCaja.Name = "focoCaja";
+            this.focoCaja.Size = new System.Drawing.Size(5, 50);
+            this.focoCaja.TabIndex = 57;
+            this.focoCaja.Visible = false;
             // 
             // focoPagos
             // 
             this.focoPagos.AutoSize = true;
             this.focoPagos.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoPagos.Location = new System.Drawing.Point(0, 334);
-            this.focoPagos.MinimumSize = new System.Drawing.Size(5, 55);
+            this.focoPagos.Location = new System.Drawing.Point(0, 308);
+            this.focoPagos.MinimumSize = new System.Drawing.Size(5, 50);
             this.focoPagos.Name = "focoPagos";
-            this.focoPagos.Size = new System.Drawing.Size(5, 55);
-            this.focoPagos.TabIndex = 49;
+            this.focoPagos.Size = new System.Drawing.Size(5, 50);
+            this.focoPagos.TabIndex = 55;
             this.focoPagos.Visible = false;
             // 
             // focoPlanes
             // 
             this.focoPlanes.AutoSize = true;
             this.focoPlanes.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoPlanes.Location = new System.Drawing.Point(0, 406);
-            this.focoPlanes.MinimumSize = new System.Drawing.Size(5, 55);
+            this.focoPlanes.Location = new System.Drawing.Point(0, 369);
+            this.focoPlanes.MinimumSize = new System.Drawing.Size(5, 50);
             this.focoPlanes.Name = "focoPlanes";
-            this.focoPlanes.Size = new System.Drawing.Size(5, 55);
-            this.focoPlanes.TabIndex = 50;
+            this.focoPlanes.Size = new System.Drawing.Size(5, 50);
+            this.focoPlanes.TabIndex = 56;
             this.focoPlanes.Visible = false;
             // 
-            // focoCaja
+            // focoAsistencia
             // 
-            this.focoCaja.AutoSize = true;
-            this.focoCaja.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoCaja.Location = new System.Drawing.Point(0, 478);
-            this.focoCaja.MinimumSize = new System.Drawing.Size(5, 55);
-            this.focoCaja.Name = "focoCaja";
-            this.focoCaja.Size = new System.Drawing.Size(5, 55);
-            this.focoCaja.TabIndex = 51;
-            this.focoCaja.Visible = false;
+            this.focoAsistencia.AutoSize = true;
+            this.focoAsistencia.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.focoAsistencia.Location = new System.Drawing.Point(0, 182);
+            this.focoAsistencia.MinimumSize = new System.Drawing.Size(5, 50);
+            this.focoAsistencia.Name = "focoAsistencia";
+            this.focoAsistencia.Size = new System.Drawing.Size(5, 50);
+            this.focoAsistencia.TabIndex = 53;
+            this.focoAsistencia.Visible = false;
+            // 
+            // focoEmpleados
+            // 
+            this.focoEmpleados.AutoSize = true;
+            this.focoEmpleados.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.focoEmpleados.Location = new System.Drawing.Point(0, 492);
+            this.focoEmpleados.MinimumSize = new System.Drawing.Size(5, 50);
+            this.focoEmpleados.Name = "focoEmpleados";
+            this.focoEmpleados.Size = new System.Drawing.Size(5, 50);
+            this.focoEmpleados.TabIndex = 58;
+            this.focoEmpleados.Visible = false;
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnMinimize.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Font = new System.Drawing.Font("Century Gothic", 16.2F);
+            this.btnMinimize.ForeColor = System.Drawing.Color.White;
+            this.btnMinimize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMinimize.Location = new System.Drawing.Point(844, 0);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(50, 50);
+            this.btnMinimize.TabIndex = 60;
+            this.btnMinimize.Text = "-";
+            this.btnMinimize.UseVisualStyleBackColor = false;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(900, 0);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(50, 50);
+            this.btnClose.TabIndex = 59;
+            this.btnClose.Text = "X";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnConfiguracion
             // 
@@ -340,43 +358,56 @@ namespace Gym
             this.btnConfiguracion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfiguracion.Name = "btnConfiguracion";
             this.btnConfiguracion.Size = new System.Drawing.Size(50, 50);
-            this.btnConfiguracion.TabIndex = 52;
+            this.btnConfiguracion.TabIndex = 61;
             this.btnConfiguracion.UseVisualStyleBackColor = false;
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(266, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 23);
+            this.label1.TabIndex = 62;
+            this.label1.Text = "Usuario XXXXX";
             // 
             // MainJefe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 700);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnConfiguracion);
+            this.Controls.Add(this.btnMinimize);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.focoEmpleados);
             this.Controls.Add(this.focoCaja);
             this.Controls.Add(this.focoPlanes);
             this.Controls.Add(this.focoPagos);
             this.Controls.Add(this.focoRegistro);
             this.Controls.Add(this.focoAsistencia);
+            this.Controls.Add(this.logo);
+            this.Controls.Add(this.btnEmpleados);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnCaja);
             this.Controls.Add(this.btnPlanes);
             this.Controls.Add(this.btnPagos);
             this.Controls.Add(this.btnRegistro);
             this.Controls.Add(this.btnAsistencia);
-            this.Controls.Add(this.btnminimize);
-            this.Controls.Add(this.btnclose);
-            this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.logo);
-            this.Controls.Add(this.windowbox);
-            this.Controls.Add(this.titlebox);
-            this.Controls.Add(this.menubox);
+            this.Controls.Add(this.windowboxMain);
+            this.Controls.Add(this.titleboxMain);
+            this.Controls.Add(this.menuboxMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainJefe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "mainEmpleados";
-            ((System.ComponentModel.ISupportInitialize)(this.windowbox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.titlebox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.menubox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.menuboxMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.titleboxMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowboxMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -385,24 +416,26 @@ namespace Gym
 
         #endregion
 
-        private System.Windows.Forms.PictureBox windowbox;
-        private System.Windows.Forms.PictureBox titlebox;
-        private System.Windows.Forms.PictureBox menubox;
-        private System.Windows.Forms.PictureBox logo;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAsistencia;
-        private System.Windows.Forms.Button btnRegistro;
-        private System.Windows.Forms.Button btnPagos;
-        private System.Windows.Forms.Button btnCaja;
+        private System.Windows.Forms.PictureBox menuboxMain;
+        private System.Windows.Forms.PictureBox titleboxMain;
+        private System.Windows.Forms.PictureBox windowboxMain;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button btnclose;
-        private System.Windows.Forms.Button btnminimize;
-        private System.Windows.Forms.Label focoAsistencia;
-        private System.Windows.Forms.Label focoRegistro;
+        private System.Windows.Forms.Button btnCaja;
         private System.Windows.Forms.Button btnPlanes;
+        private System.Windows.Forms.Button btnPagos;
+        private System.Windows.Forms.Button btnRegistro;
+        private System.Windows.Forms.Button btnAsistencia;
+        private System.Windows.Forms.Button btnEmpleados;
+        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.Label focoRegistro;
+        private System.Windows.Forms.Label focoCaja;
         private System.Windows.Forms.Label focoPagos;
         private System.Windows.Forms.Label focoPlanes;
-        private System.Windows.Forms.Label focoCaja;
+        private System.Windows.Forms.Label focoAsistencia;
+        private System.Windows.Forms.Label focoEmpleados;
+        private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnConfiguracion;
+        private System.Windows.Forms.Label label1;
     }
 }
