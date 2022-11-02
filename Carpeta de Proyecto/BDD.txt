@@ -20,7 +20,9 @@ Tipo_Sexo_ID int not null,
 Nro_Telefono nvarchar(24) not null,
 Nro_Alternativo nvarchar(24) null,
 Mail nvarchar(50) null,
-Observaciones nvarchar(200) null
+Observaciones nvarchar(200) null,
+Fecha_Alta datetime not null,
+Fecha_Baja datetime null,
 )
 
 create table Empleados(
@@ -43,8 +45,6 @@ go
 create table Clientes(
 Cliente_ID int primary key identity (0, 1),
 Persona_ID int not null,
-Fecha_Alta datetime not null,
-Fecha_Baja datetime null,
 Estado nvarchar(20) not null
 )
 
@@ -461,6 +461,46 @@ create proc sp_cargar_ultimo_ID_Personas
 as
 select Persona_ID
 from Personas
-where Persona_ID = (select(max(Persona_ID)) from Empleados)
+where Persona_ID = (select(max(Persona_ID)) from Personas)
 
 go
+
+create proc sp_Cargar_Clientes_Desc
+as
+SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
+FROM Personas
+INNER JOIN Clientes
+ON Personas.Persona_ID=Clientes.Persona_ID
+WHERE Clientes.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+ORDER BY Clientes.Fecha_Alta desc
+
+go
+
+create proc sp_Cargar_Clientes_Asc
+as
+SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
+FROM Personas
+INNER JOIN Clientes
+ON Personas.Persona_ID=Clientes.Persona_ID
+WHERE Clientes.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+ORDER BY Clientes.Fecha_Alta asc
+
+go
+
+create proc sp_Cargar_Empleados_Desc
+AS
+SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
+	   Tipos_Empleados.Tipo, Estados_Empleados.Estado
+FROM Personas
+INNER JOIN Empleados
+ON Personas.Persona_ID = Empleados.Persona_ID
+INNER JOIN Tipos_Empleados
+ON Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
+INNER JOIN Estados_Empleados
+ON Empleados.Estado_Empleado_ID = Estados_Empleados.Estado_Empleado_ID
+WHERE Clientes.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+ORDER BY Clientes.Fecha_Alta asc
+go
+
+
+SELECT * FROM Empleados

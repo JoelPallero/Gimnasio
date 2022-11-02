@@ -13,16 +13,29 @@ namespace Gym
 {
     public partial class MainJefe : Form
     {
-        #region Call of Class
+        #region Instancias
 
         MetodosGenerales _metodosGenerales;
+        Empleados empleados;
 
         #endregion
+
+        #region Load
         public MainJefe()
         {
             InitializeComponent();
             _metodosGenerales = new MetodosGenerales();
+            empleados = new Empleados();
         }
+
+        private void MainJefe_Load(object sender, EventArgs e)
+        {
+            Login frm = new Login();
+            frm.Close();
+        }
+
+        #endregion
+
 
         #region Call of Forms
 
@@ -111,12 +124,14 @@ namespace Gym
         }        
         private void BtnLogout_Click(object sender, EventArgs e)
         {
+            //deslogueamos la sesión abierta
+            Login frm = new Login();
+            this.Hide();
+            frm.Show();
+
             if (_metodosGenerales.CajaAbierta == false) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
             {
-                //deslogueamos la sesión abierta
-                this.Hide();
-                Login frm = new Login();
-                frm.Show();
+                
             }
             else
             {
@@ -152,6 +167,12 @@ namespace Gym
 
         private void BtnAsistencia_Click(object sender, EventArgs e)
         {
+            //bool formIncompleto = false;
+            //empleados.FormIncompleto(formIncompleto);
+            //if (!formIncompleto)
+            //{
+            //}
+
             CallOfForms(new Asistencias());
             FocusAsistencia();
         }
@@ -182,6 +203,7 @@ namespace Gym
 
         private void BtnEmpleados_Click(object sender, EventArgs e)
         {
+            
             CallOfForms(new Empleados());
             FocusEmpleados();
         }
@@ -192,5 +214,6 @@ namespace Gym
         {
 
         }
+
     }
 }

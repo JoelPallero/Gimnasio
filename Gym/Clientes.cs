@@ -31,6 +31,7 @@ namespace Gym
         {
             Tipos_Documentos();
             Tipos_Sexos();
+            GetClientes();
         }
 
         #endregion
@@ -41,10 +42,31 @@ namespace Gym
         private bool contenidoErroneo;
         private bool camposObligatoriosVacios;
         private bool personaRegistrada;
+        private DataSet dsTablaClientes;
+        private string buscar;
 
         #endregion
 
         #region Métodos Encapsulados
+
+        private void GetClientes()
+        {
+            //Primero limpio el grid. Para que no haya errores.
+            //Sería como si hiciera un refresh.
+            //Saco lo que haya y luego vuelvo a traer los datos
+            dtgvCliente.Rows.Clear();
+
+            dsTablaClientes = _bussinessClientes.GetClientes(buscar);
+            buscar = string.Empty;
+
+            if (dsTablaClientes.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in dsTablaClientes.Tables[0].Rows)
+                {
+                    dtgvCliente.Rows.Add(dr[1].ToString(), dr[2], dr[3], dr[4], dr[5]);
+                }
+            }
+        }
 
         private void Tipos_Documentos()
         {
@@ -82,6 +104,7 @@ namespace Gym
             string Nro_Alternativo;
             string Mail;
             string Observaciones;
+            DateTime FechaAlta = DateTime.Now;
 
             if (txtAlternativoCliente.Text != "Alternativo")
             {
@@ -118,7 +141,8 @@ namespace Gym
                                 Nro_Telefono,
                                 Nro_Alternativo,
                                 Mail,
-                                Observaciones);
+                                Observaciones,
+                                FechaAlta);
 
         }
         private void AltaCliente()
@@ -129,7 +153,6 @@ namespace Gym
             _clientes.Persona_ID = _metodosGenerales.persona_ID;
 
             //Luego relleno los campos faltantes de la entidad Cliente.
-            _clientes.Fecha_Alta = DateTime.Now;
             _clientes.Estado = "Activo";
             _bussinessClientes.AltaCliente(_clientes);
         }
@@ -368,7 +391,19 @@ namespace Gym
             _restricciones.SoloNumeros(e, strTexto);
         }
 
+
+        private void txtBuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                buscar = txtBuscarCliente.Text;
+                GetClientes();
+            }
+        }
+
         #endregion
+
+        #region Alta Clientes
 
         private void btnAltaCliente_Click(object sender, EventArgs e)
         {
@@ -399,5 +434,8 @@ namespace Gym
                 }
             }
         }
+
+        #endregion
+
     }
 }

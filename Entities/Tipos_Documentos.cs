@@ -8,5 +8,6 @@ namespace Entities
     {
         public int Tipo_Documento_ID { get; set; }
         public string Tipo { get; set; }
+        public string Estado { get; set; }
     }
 }

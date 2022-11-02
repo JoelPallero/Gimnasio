@@ -8,6 +8,7 @@ namespace Entities
     {
         public int Tipo_Empleado_ID { get; set; }
         public string Tipo { get; set; }
-        public string AccesoClave { get; set; }
+        public string Acceso_Clave { get; set; }
+        public string Estado { get; set; }
     }
 }

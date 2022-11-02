@@ -30,48 +30,51 @@ namespace Gym
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.txtClave = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnIngresar = new System.Windows.Forms.Button();
             this.lblGenerarPrimerUsuario = new System.Windows.Forms.LinkLabel();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtUsuario
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox1.Location = new System.Drawing.Point(36, 186);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(319, 34);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Usuario";
+            this.txtUsuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuario.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtUsuario.Location = new System.Drawing.Point(47, 186);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(299, 27);
+            this.txtUsuario.TabIndex = 1;
+            this.txtUsuario.Text = "Usuario";
+            this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
+            this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
             // 
-            // textBox2
+            // txtClave
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox2.Location = new System.Drawing.Point(36, 244);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(319, 34);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "Clave";
+            this.txtClave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClave.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtClave.Location = new System.Drawing.Point(47, 244);
+            this.txtClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtClave.Name = "txtClave";
+            this.txtClave.Size = new System.Drawing.Size(299, 27);
+            this.txtClave.TabIndex = 2;
+            this.txtClave.Text = "Clave";
+            this.txtClave.UseSystemPasswordChar = true;
+            this.txtClave.Enter += new System.EventHandler(this.txtClave_Enter);
+            this.txtClave.Leave += new System.EventHandler(this.txtClave_Leave);
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(125, 406);
+            this.linkLabel1.Location = new System.Drawing.Point(142, 380);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(149, 20);
-            this.linkLabel1.TabIndex = 3;
+            this.linkLabel1.TabIndex = 4;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Olvidé mi contraseña";
             // 
@@ -86,27 +89,28 @@ namespace Gym
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // btnIngresar
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(12, 351);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(376, 52);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Ingresar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnIngresar.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnIngresar.FlatAppearance.BorderSize = 0;
+            this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIngresar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnIngresar.Location = new System.Drawing.Point(47, 326);
+            this.btnIngresar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIngresar.Name = "btnIngresar";
+            this.btnIngresar.Size = new System.Drawing.Size(299, 52);
+            this.btnIngresar.TabIndex = 0;
+            this.btnIngresar.Text = "Ingresar";
+            this.btnIngresar.UseVisualStyleBackColor = false;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // lblGenerarPrimerUsuario
             // 
             this.lblGenerarPrimerUsuario.AutoSize = true;
-            this.lblGenerarPrimerUsuario.Location = new System.Drawing.Point(76, 292);
+            this.lblGenerarPrimerUsuario.Location = new System.Drawing.Point(105, 278);
             this.lblGenerarPrimerUsuario.Name = "lblGenerarPrimerUsuario";
             this.lblGenerarPrimerUsuario.Size = new System.Drawing.Size(246, 20);
-            this.lblGenerarPrimerUsuario.TabIndex = 6;
+            this.lblGenerarPrimerUsuario.TabIndex = 3;
             this.lblGenerarPrimerUsuario.TabStop = true;
             this.lblGenerarPrimerUsuario.Text = "Generar contraseña por primera vez";
             this.lblGenerarPrimerUsuario.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblGenerarPrimerUsuario_LinkClicked);
@@ -157,17 +161,18 @@ namespace Gym
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblGenerarPrimerUsuario);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtClave);
+            this.Controls.Add(this.txtUsuario);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "login";
+            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -175,11 +180,11 @@ namespace Gym
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.LinkLabel lblGenerarPrimerUsuario;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;

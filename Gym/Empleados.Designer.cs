@@ -29,8 +29,15 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBuscarEmpleado = new System.Windows.Forms.TextBox();
-            this.dtgvEmpleado = new System.Windows.Forms.DataGridView();
             this.gbEmpleado = new System.Windows.Forms.GroupBox();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -65,33 +72,36 @@ namespace Gym
             this.cmbTipoEmpleado = new System.Windows.Forms.ComboBox();
             this.txtMailEmpleado = new System.Windows.Forms.TextBox();
             this.txtNombreEmpleado = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleado)).BeginInit();
+            this.dtgvEmpleados = new System.Windows.Forms.DataGridView();
+            this.Persona_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo_Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmEmpleado = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editarEmpleado = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarEstadoEmpleado = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarJornadaEmpleado = new System.Windows.Forms.ToolStripMenuItem();
+            this.blanqueoClaveEmpleado = new System.Windows.Forms.ToolStripMenuItem();
             this.gbEmpleado.SuspendLayout();
             this.gbJornadaEmpleado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleados)).BeginInit();
+            this.cmEmpleado.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtBuscarEmpleado
             // 
             this.txtBuscarEmpleado.ForeColor = System.Drawing.Color.DimGray;
-            this.txtBuscarEmpleado.Location = new System.Drawing.Point(440, 440);
+            this.txtBuscarEmpleado.Location = new System.Drawing.Point(439, 440);
             this.txtBuscarEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBuscarEmpleado.Name = "txtBuscarEmpleado";
             this.txtBuscarEmpleado.Size = new System.Drawing.Size(243, 27);
             this.txtBuscarEmpleado.TabIndex = 64;
             this.txtBuscarEmpleado.Text = "Buscar";
             this.txtBuscarEmpleado.Enter += new System.EventHandler(this.txtBuscarEmpleado_Enter);
+            this.txtBuscarEmpleado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarEmpleado_KeyPress);
             this.txtBuscarEmpleado.Leave += new System.EventHandler(this.txtBuscarEmpleado_Leave);
-            // 
-            // dtgvEmpleado
-            // 
-            this.dtgvEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvEmpleado.Location = new System.Drawing.Point(17, 471);
-            this.dtgvEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtgvEmpleado.Name = "dtgvEmpleado";
-            this.dtgvEmpleado.RowHeadersWidth = 51;
-            this.dtgvEmpleado.RowTemplate.Height = 29;
-            this.dtgvEmpleado.Size = new System.Drawing.Size(666, 170);
-            this.dtgvEmpleado.TabIndex = 63;
             // 
             // gbEmpleado
             // 
@@ -109,7 +119,7 @@ namespace Gym
             this.gbEmpleado.Controls.Add(this.cmbTipoEmpleado);
             this.gbEmpleado.Controls.Add(this.txtMailEmpleado);
             this.gbEmpleado.Controls.Add(this.txtNombreEmpleado);
-            this.gbEmpleado.Location = new System.Drawing.Point(17, 11);
+            this.gbEmpleado.Location = new System.Drawing.Point(16, 11);
             this.gbEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbEmpleado.Name = "gbEmpleado";
             this.gbEmpleado.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -125,11 +135,9 @@ namespace Gym
             this.txtClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(307, 27);
-            this.txtClave.TabIndex = 8;
+            this.txtClave.TabIndex = 73;
             this.txtClave.Text = "Clave";
             this.txtClave.UseSystemPasswordChar = true;
-            this.txtClave.Enter += new System.EventHandler(this.txtClave_Enter);
-            this.txtClave.Leave += new System.EventHandler(this.txtClave_Leave);
             // 
             // txtUsuario
             // 
@@ -497,6 +505,7 @@ namespace Gym
             this.cmbTipoEmpleado.Name = "cmbTipoEmpleado";
             this.cmbTipoEmpleado.Size = new System.Drawing.Size(286, 28);
             this.cmbTipoEmpleado.TabIndex = 61;
+            this.cmbTipoEmpleado.SelectedIndexChanged += new System.EventHandler(this.cmbTipoEmpleado_SelectedIndexChanged);
             // 
             // txtMailEmpleado
             // 
@@ -522,13 +531,158 @@ namespace Gym
             this.txtNombreEmpleado.Enter += new System.EventHandler(this.txtNombreEmpleado_Enter);
             this.txtNombreEmpleado.Leave += new System.EventHandler(this.txtNombreEmpleado_Leave);
             // 
+            // dtgvEmpleados
+            // 
+            this.dtgvEmpleados.AllowUserToAddRows = false;
+            this.dtgvEmpleados.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvEmpleados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvEmpleados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Persona_ID,
+            this.Nombre,
+            this.Apellido,
+            this.Documento,
+            this.Tipo_Empleado,
+            this.Estado});
+            this.dtgvEmpleados.ContextMenuStrip = this.cmEmpleado;
+            this.dtgvEmpleados.GridColor = System.Drawing.SystemColors.Control;
+            this.dtgvEmpleados.Location = new System.Drawing.Point(16, 471);
+            this.dtgvEmpleados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtgvEmpleados.Name = "dtgvEmpleados";
+            this.dtgvEmpleados.ReadOnly = true;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvEmpleados.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.dtgvEmpleados.RowHeadersVisible = false;
+            this.dtgvEmpleados.RowHeadersWidth = 51;
+            this.dtgvEmpleados.RowTemplate.Height = 29;
+            this.dtgvEmpleados.Size = new System.Drawing.Size(666, 168);
+            this.dtgvEmpleados.TabIndex = 65;
+            // 
+            // Persona_ID
+            // 
+            this.Persona_ID.Frozen = true;
+            this.Persona_ID.HeaderText = "ID de Persona";
+            this.Persona_ID.MinimumWidth = 6;
+            this.Persona_ID.Name = "Persona_ID";
+            this.Persona_ID.ReadOnly = true;
+            this.Persona_ID.Visible = false;
+            this.Persona_ID.Width = 125;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Nombre.Frozen = true;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nombre.Width = 130;
+            // 
+            // Apellido
+            // 
+            this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Apellido.DefaultCellStyle = dataGridViewCellStyle15;
+            this.Apellido.Frozen = true;
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.MinimumWidth = 6;
+            this.Apellido.Name = "Apellido";
+            this.Apellido.ReadOnly = true;
+            this.Apellido.Width = 130;
+            // 
+            // Documento
+            // 
+            this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Documento.DefaultCellStyle = dataGridViewCellStyle16;
+            this.Documento.Frozen = true;
+            this.Documento.HeaderText = "Documento";
+            this.Documento.MinimumWidth = 6;
+            this.Documento.Name = "Documento";
+            this.Documento.ReadOnly = true;
+            this.Documento.Width = 130;
+            // 
+            // Tipo_Empleado
+            // 
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Tipo_Empleado.DefaultCellStyle = dataGridViewCellStyle17;
+            this.Tipo_Empleado.Frozen = true;
+            this.Tipo_Empleado.HeaderText = "Empleado";
+            this.Tipo_Empleado.MinimumWidth = 6;
+            this.Tipo_Empleado.Name = "Tipo_Empleado";
+            this.Tipo_Empleado.ReadOnly = true;
+            this.Tipo_Empleado.Width = 130;
+            // 
+            // Estado
+            // 
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Estado.DefaultCellStyle = dataGridViewCellStyle18;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 142;
+            // 
+            // cmEmpleado
+            // 
+            this.cmEmpleado.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmEmpleado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editarEmpleado,
+            this.editarEstadoEmpleado,
+            this.editarJornadaEmpleado,
+            this.blanqueoClaveEmpleado});
+            this.cmEmpleado.Name = "cmEmpleado";
+            this.cmEmpleado.Size = new System.Drawing.Size(203, 100);
+            this.cmEmpleado.Text = "Edición";
+            // 
+            // editarEmpleado
+            // 
+            this.editarEmpleado.Name = "editarEmpleado";
+            this.editarEmpleado.Size = new System.Drawing.Size(202, 24);
+            this.editarEmpleado.Text = "Editar Datos";
+            this.editarEmpleado.Click += new System.EventHandler(this.editarEmpleado_Click);
+            // 
+            // editarEstadoEmpleado
+            // 
+            this.editarEstadoEmpleado.Name = "editarEstadoEmpleado";
+            this.editarEstadoEmpleado.Size = new System.Drawing.Size(202, 24);
+            this.editarEstadoEmpleado.Text = "Editar Estado";
+            // 
+            // editarJornadaEmpleado
+            // 
+            this.editarJornadaEmpleado.Name = "editarJornadaEmpleado";
+            this.editarJornadaEmpleado.Size = new System.Drawing.Size(202, 24);
+            this.editarJornadaEmpleado.Text = "Editar Jornada";
+            // 
+            // blanqueoClaveEmpleado
+            // 
+            this.blanqueoClaveEmpleado.Name = "blanqueoClaveEmpleado";
+            this.blanqueoClaveEmpleado.Size = new System.Drawing.Size(202, 24);
+            this.blanqueoClaveEmpleado.Text = "Blanqueo de Clave";
+            // 
             // Empleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 650);
+            this.Controls.Add(this.dtgvEmpleados);
             this.Controls.Add(this.txtBuscarEmpleado);
-            this.Controls.Add(this.dtgvEmpleado);
             this.Controls.Add(this.gbEmpleado);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -536,11 +690,12 @@ namespace Gym
             this.Name = "Empleados";
             this.Text = "empleados";
             this.Load += new System.EventHandler(this.Empleados_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleado)).EndInit();
             this.gbEmpleado.ResumeLayout(false);
             this.gbEmpleado.PerformLayout();
             this.gbJornadaEmpleado.ResumeLayout(false);
             this.gbJornadaEmpleado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleados)).EndInit();
+            this.cmEmpleado.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -549,7 +704,6 @@ namespace Gym
         #endregion
 
         private System.Windows.Forms.TextBox txtBuscarEmpleado;
-        private System.Windows.Forms.DataGridView dtgvEmpleado;
         private System.Windows.Forms.GroupBox gbEmpleado;
         private System.Windows.Forms.ComboBox cmbTipoDocumentoEmpleado;
         private System.Windows.Forms.TextBox txtObservacionesEmpleado;
@@ -582,7 +736,19 @@ namespace Gym
         private System.Windows.Forms.TextBox txtTelefonoEmpleado;
         private System.Windows.Forms.TextBox txtDocumentoEmpleado;
         private System.Windows.Forms.ComboBox cmbSexoEmpleado;
-        private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.DataGridView dtgvEmpleados;
+        private System.Windows.Forms.ContextMenuStrip cmEmpleado;
+        private System.Windows.Forms.ToolStripMenuItem editarEmpleado;
+        private System.Windows.Forms.ToolStripMenuItem editarEstadoEmpleado;
+        private System.Windows.Forms.ToolStripMenuItem editarJornadaEmpleado;
+        private System.Windows.Forms.ToolStripMenuItem blanqueoClaveEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Persona_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_Empleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.TextBox txtClave;
     }
 }

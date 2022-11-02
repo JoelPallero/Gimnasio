@@ -16,5 +16,7 @@ namespace Entities
         public string Nro_Alternativo { get; set; }
         public string Mail { get; set; }
         public string Observaciones { get; set; }
+        public DateTime Fecha_Alta { get; set; }
+        public DateTime Fecha_Baja { get; set; }
     }
 }

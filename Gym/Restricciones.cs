@@ -13,8 +13,12 @@ namespace Gym
         //para que sean comunes a todas las plantillas y solo
         //se acceda a la clase.
 
-        //Solo se pueden ingresar números
+        #region Variables globales
 
+        #endregion
+
+
+        //Solo se pueden ingresar números
         public void SoloNumeros(KeyPressEventArgs e, string strTexto)
         {
             //Solo se teclean los digitos

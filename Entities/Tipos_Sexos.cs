@@ -8,5 +8,6 @@ namespace Entities
     {
         public int Tipo_Sexo_ID { get; set; }
         public string Sexo { get; set; }
+        public string Estado { get; set; }
     }
 }

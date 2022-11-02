@@ -374,6 +374,7 @@ namespace Gym
             this.Name = "MainUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mainEmpleados";
+            this.Load += new System.EventHandler(this.MainUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.windowbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.titlebox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menubox)).EndInit();

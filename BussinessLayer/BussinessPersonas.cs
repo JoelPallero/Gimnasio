@@ -25,5 +25,20 @@ namespace BussinessLayer
         {
             return _dataPersonas.Get_Las_Id_Personas(personas);
         }
+
+        public Personas GetEmpleadoUnico(Personas personas)
+        {
+            return _dataPersonas.GetEmpleadoUnico(personas);
+        }
+
+        public int EditarPersona(Personas personas)
+        {
+            return _dataPersonas.EditarPersona(personas);
+        }
+
+        public int AltaJefe(Personas personas)
+        {
+            return _dataPersonas.AltaJefe(personas);
+        }
     }
 }

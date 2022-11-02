@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,5 +26,26 @@ namespace BussinessLayer
         {
             return _dataEmpleados.GetLastID(empleados);
         }
+
+        public DataSet GetEmpleados(string buscar)
+        {
+            return _dataEmpleados.GetEmpleados(buscar);
+        }
+
+        public Empleados GetTipoEmpleado(Empleados empleados)
+        {
+            return _dataEmpleados.GetTipoEmpleado(empleados);
+        }
+
+        public int EditarEmpleado(Empleados empleados)
+        {
+            return _dataEmpleados.EditarEmpleado(empleados);
+        }
+
+        public Empleados VerificarClaveEnBdd(string clave, Tipos_Empleados _tiposEmpleados, Empleados _empleados)
+        {
+            return _dataEmpleados.VerificarClaveEnBdd(clave, _tiposEmpleados, _empleados);
+        }
+
     }
 }

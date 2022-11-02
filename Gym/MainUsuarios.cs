@@ -18,10 +18,20 @@ namespace Gym
         MetodosGenerales _metodosGenerales = new MetodosGenerales();
 
         #endregion
+
+        #region Load
         public MainUsuarios()
         {
             InitializeComponent();
         }
+        private void MainUsuarios_Load(object sender, EventArgs e)
+        {
+            Login frm = new Login();
+            frm.Close();
+        }
+
+        #endregion
+
 
         #region Variables
 
@@ -164,12 +174,13 @@ namespace Gym
         }
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (_metodosGenerales.CajaAbierta == false) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
+            //deslogueamos la sesión abierta
+            this.Close();
+            Login frm = new Login();
+            frm.Show();
+
+            if (_metodosGenerales.CajaAbierta == true) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
             {
-                //deslogueamos la sesión abierta
-                this.Close();
-                Login frm = new Login();
-                frm.Show();
             }
             else
             {

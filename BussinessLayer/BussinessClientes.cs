@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,11 @@ namespace BussinessLayer
         public int AltaCliente(Clientes clientes)
         {
             return _dataClientes.AltaCliente(clientes);
+        }
+
+        public DataSet GetClientes(string buscar)
+        {
+            return _dataClientes.GetClientes(buscar);
         }
     }
 }

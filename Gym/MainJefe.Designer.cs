@@ -405,6 +405,7 @@ namespace Gym
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainJefe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.MainJefe_Load);
             ((System.ComponentModel.ISupportInitialize)(this.menuboxMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleboxMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.windowboxMain)).EndInit();

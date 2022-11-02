@@ -30,17 +30,14 @@ namespace Gym
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
-            this.DtgvCliente = new System.Windows.Forms.DataGridView();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtgvCliente = new System.Windows.Forms.DataGridView();
             this.gbClientes = new System.Windows.Forms.GroupBox();
             this.txtNombreCliente = new System.Windows.Forms.TextBox();
             this.cmbSexo = new System.Windows.Forms.ComboBox();
@@ -52,7 +49,12 @@ namespace Gym
             this.txtAlternativoCliente = new System.Windows.Forms.TextBox();
             this.txtTelefonoCliente = new System.Windows.Forms.TextBox();
             this.btnAltaCliente = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.DtgvCliente)).BeginInit();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvCliente)).BeginInit();
             this.gbClientes.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,87 +68,46 @@ namespace Gym
             this.txtBuscarCliente.TabIndex = 10;
             this.txtBuscarCliente.Text = "Buscar";
             this.txtBuscarCliente.Enter += new System.EventHandler(this.txtBuscarCliente_Enter);
+            this.txtBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarCliente_KeyPress);
             this.txtBuscarCliente.Leave += new System.EventHandler(this.txtBuscarCliente_Leave);
             // 
-            // DtgvCliente
+            // dtgvCliente
             // 
-            this.DtgvCliente.AllowUserToAddRows = false;
-            this.DtgvCliente.AllowUserToDeleteRows = false;
-            this.DtgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DtgvCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dtgvCliente.AllowUserToAddRows = false;
+            this.dtgvCliente.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nombre,
             this.Apellido,
             this.Documento,
             this.Telefono,
-            this.Mail});
-            this.DtgvCliente.Location = new System.Drawing.Point(17, 298);
-            this.DtgvCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DtgvCliente.Name = "DtgvCliente";
-            this.DtgvCliente.ReadOnly = true;
-            this.DtgvCliente.RowHeadersVisible = false;
-            this.DtgvCliente.RowHeadersWidth = 51;
-            this.DtgvCliente.RowTemplate.Height = 29;
-            this.DtgvCliente.Size = new System.Drawing.Size(666, 340);
-            this.DtgvCliente.TabIndex = 60;
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Nombre.Frozen = true;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Nombre.Width = 130;
-            // 
-            // Apellido
-            // 
-            this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Apellido.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Apellido.Frozen = true;
-            this.Apellido.HeaderText = "Apellido";
-            this.Apellido.MinimumWidth = 6;
-            this.Apellido.Name = "Apellido";
-            this.Apellido.ReadOnly = true;
-            this.Apellido.Width = 130;
-            // 
-            // Documento
-            // 
-            this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Documento.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Documento.Frozen = true;
-            this.Documento.HeaderText = "Documento";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 130;
-            // 
-            // Telefono
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Telefono.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Telefono.Frozen = true;
-            this.Telefono.HeaderText = "Teléfono";
-            this.Telefono.MinimumWidth = 6;
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            this.Telefono.Width = 130;
-            // 
-            // Mail
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Mail.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Mail.Frozen = true;
-            this.Mail.HeaderText = "Mail";
-            this.Mail.MinimumWidth = 6;
-            this.Mail.Name = "Mail";
-            this.Mail.ReadOnly = true;
-            this.Mail.Width = 142;
+            this.Estado});
+            this.dtgvCliente.GridColor = System.Drawing.SystemColors.Control;
+            this.dtgvCliente.Location = new System.Drawing.Point(17, 298);
+            this.dtgvCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtgvCliente.Name = "dtgvCliente";
+            this.dtgvCliente.ReadOnly = true;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dtgvCliente.RowHeadersVisible = false;
+            this.dtgvCliente.RowHeadersWidth = 51;
+            this.dtgvCliente.RowTemplate.Height = 29;
+            this.dtgvCliente.Size = new System.Drawing.Size(666, 340);
+            this.dtgvCliente.TabIndex = 60;
             // 
             // gbClientes
             // 
@@ -295,13 +256,72 @@ namespace Gym
             this.btnAltaCliente.UseVisualStyleBackColor = false;
             this.btnAltaCliente.Click += new System.EventHandler(this.btnAltaCliente_Click);
             // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Nombre.Frozen = true;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nombre.Width = 130;
+            // 
+            // Apellido
+            // 
+            this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Apellido.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Apellido.Frozen = true;
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.MinimumWidth = 6;
+            this.Apellido.Name = "Apellido";
+            this.Apellido.ReadOnly = true;
+            this.Apellido.Width = 130;
+            // 
+            // Documento
+            // 
+            this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Documento.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Documento.Frozen = true;
+            this.Documento.HeaderText = "Documento";
+            this.Documento.MinimumWidth = 6;
+            this.Documento.Name = "Documento";
+            this.Documento.ReadOnly = true;
+            this.Documento.Width = 130;
+            // 
+            // Telefono
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Telefono.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Telefono.Frozen = true;
+            this.Telefono.HeaderText = "Teléfono";
+            this.Telefono.MinimumWidth = 6;
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
+            this.Telefono.Width = 130;
+            // 
+            // Estado
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Estado.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Estado.Frozen = true;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 142;
+            // 
             // Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 650);
             this.Controls.Add(this.txtBuscarCliente);
-            this.Controls.Add(this.DtgvCliente);
+            this.Controls.Add(this.dtgvCliente);
             this.Controls.Add(this.gbClientes);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -309,7 +329,7 @@ namespace Gym
             this.Name = "Clientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Load += new System.EventHandler(this.Clientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DtgvCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvCliente)).EndInit();
             this.gbClientes.ResumeLayout(false);
             this.gbClientes.PerformLayout();
             this.ResumeLayout(false);
@@ -320,7 +340,7 @@ namespace Gym
         #endregion
 
         private System.Windows.Forms.TextBox txtBuscarCliente;
-        private System.Windows.Forms.DataGridView DtgvCliente;
+        private System.Windows.Forms.DataGridView dtgvCliente;
         private System.Windows.Forms.GroupBox gbClientes;
         private System.Windows.Forms.TextBox txtNumDocumentoCliente;
         private System.Windows.Forms.ComboBox cmbTipoDocumentoCliente;
@@ -336,6 +356,6 @@ namespace Gym
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Mail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }

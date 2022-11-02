@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Gym
 {
-    public partial class EstadoEmpleado : Form
+    public partial class Estados : Form
     {
-        public EstadoEmpleado()
+        public Estados()
         {
             InitializeComponent();
         }
