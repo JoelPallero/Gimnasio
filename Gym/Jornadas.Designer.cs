@@ -261,7 +261,6 @@ namespace Gym
             this.chkSabado.TabIndex = 25;
             this.chkSabado.Text = "Sábado";
             this.chkSabado.UseVisualStyleBackColor = true;
-            this.chkSabado.CheckedChanged += new System.EventHandler(this.chkSabado_CheckedChanged);
             // 
             // chkViernes
             // 
@@ -273,7 +272,6 @@ namespace Gym
             this.chkViernes.TabIndex = 22;
             this.chkViernes.Text = "Viernes";
             this.chkViernes.UseVisualStyleBackColor = true;
-            this.chkViernes.CheckedChanged += new System.EventHandler(this.chkViernes_CheckedChanged);
             // 
             // chkJueves
             // 
@@ -285,7 +283,6 @@ namespace Gym
             this.chkJueves.TabIndex = 19;
             this.chkJueves.Text = "Jueves";
             this.chkJueves.UseVisualStyleBackColor = true;
-            this.chkJueves.CheckedChanged += new System.EventHandler(this.chkJueves_CheckedChanged);
             // 
             // chkMiercoles
             // 
@@ -297,7 +294,6 @@ namespace Gym
             this.chkMiercoles.TabIndex = 16;
             this.chkMiercoles.Text = "Miércoles";
             this.chkMiercoles.UseVisualStyleBackColor = true;
-            this.chkMiercoles.CheckedChanged += new System.EventHandler(this.chkMiercoles_CheckedChanged);
             // 
             // chkMartes
             // 
@@ -309,7 +305,6 @@ namespace Gym
             this.chkMartes.TabIndex = 13;
             this.chkMartes.Text = "Martes";
             this.chkMartes.UseVisualStyleBackColor = true;
-            this.chkMartes.CheckedChanged += new System.EventHandler(this.chkMartes_CheckedChanged);
             // 
             // chkLunes
             // 
@@ -321,7 +316,6 @@ namespace Gym
             this.chkLunes.TabIndex = 10;
             this.chkLunes.Text = "Lunes";
             this.chkLunes.UseVisualStyleBackColor = true;
-            this.chkLunes.CheckedChanged += new System.EventHandler(this.chkLunes_CheckedChanged);
             // 
             // txtHastaLunes
             // 
