@@ -50,7 +50,7 @@ namespace Gym
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBienvenido = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.menuboxMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleboxMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.windowboxMain)).BeginInit();
@@ -362,24 +362,23 @@ namespace Gym
             this.btnConfiguracion.UseVisualStyleBackColor = false;
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
-            // label1
+            // lblBienvenido
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(266, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 23);
-            this.label1.TabIndex = 62;
-            this.label1.Text = "Usuario XXXXX";
+            this.lblBienvenido.AutoSize = true;
+            this.lblBienvenido.BackColor = System.Drawing.Color.DodgerBlue;
+            this.lblBienvenido.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.lblBienvenido.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblBienvenido.Location = new System.Drawing.Point(266, 14);
+            this.lblBienvenido.Name = "lblBienvenido";
+            this.lblBienvenido.Size = new System.Drawing.Size(0, 23);
+            this.lblBienvenido.TabIndex = 62;
             // 
             // MainJefe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 700);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblBienvenido);
             this.Controls.Add(this.btnConfiguracion);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
@@ -437,6 +436,6 @@ namespace Gym
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnConfiguracion;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblBienvenido;
     }
 }

@@ -11,6 +11,9 @@ namespace Gym
     {
         public static string GetSHA256(string clave)
         {
+            //Este método devuelve un hash de 64byts
+            //de la clave que le enviemos como argumento desde cualquier otra clase
+            //en la que se invoque este método.
             SHA256 sha256 = SHA256Managed.Create();
             ASCIIEncoding encoding = new ASCIIEncoding();
             byte[] stream = null;

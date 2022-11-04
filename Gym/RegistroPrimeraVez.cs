@@ -60,6 +60,9 @@ namespace Gym
 
         private void VerificarCamposVacios()
         {
+            //Recorro todos los textbox para saber si están vacíos
+            //Y si hay alguno vacío, lo notifico, porque no pueden
+            //haber campos vacíos en este formulario.
             foreach (Control txt in this.Controls)
             {
                 if (txt is TextBox box)
@@ -92,6 +95,7 @@ namespace Gym
             _personas.Nro_Telefono = txtTelefono.Text.ToString();
             _personas.Fecha_Alta = DateTime.Now;
             _personas.Mail = txtMail.Text.ToString();
+
 
             //Y la enviamos a la capa de negocio para llevarla a la bdd.
             _bussinessPersonas.AltaJefe(_personas);
@@ -137,12 +141,27 @@ namespace Gym
 
         #endregion
 
+        #region Eventos KeyPress
+
+        //Tengo un método encapsulado en la clase Restricciones para los campos
+        //que quiero que sean numéricos.
+        //Así que creo una variable, le asigno la tecla presionada
+        //y si no es numérico, lo bloquea.
+        //Es una clase general, xq todos los controles de los forms, que son numéricos
+        //utilizan el mismo método.
+        //Para no crear nuevamente el método en cada formulario.
         private void txtNroDocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
             string strTexto = txtNroDocumento.Text;
             _restricciones.SoloNumeros(e, strTexto);
         }
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string strTexto = txtTelefono.Text;
+            _restricciones.SoloNumeros(e, strTexto);
+        }
 
+        #endregion
 
         #region Eventos Botones
 
@@ -190,5 +209,6 @@ namespace Gym
 
 
         #endregion
+
     }
 }

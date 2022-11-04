@@ -14,10 +14,14 @@ namespace Gym
     public partial class Clientes : Form
     {
         #region Instancias
+        //Entidades
+        private readonly Entities.Clientes _clientes = new Entities.Clientes();
 
+        //Clases internas
         private readonly Restricciones _restricciones = new Restricciones();
         private readonly MetodosGenerales _metodosGenerales = new MetodosGenerales();
-        private readonly Entities.Clientes _clientes = new Entities.Clientes();
+
+        //Capa de negocio
         private readonly BussinessClientes _bussinessClientes = new BussinessClientes();
 
         #endregion
@@ -38,9 +42,9 @@ namespace Gym
 
         #region Variables
 
-        private int caracteresRestantes = 200;
         private bool contenidoErroneo;
         private bool camposObligatoriosVacios;
+        //Verificar coincidencias **************************
         private bool personaRegistrada;
         private DataSet dsTablaClientes;
         private string buscar;
@@ -56,13 +60,19 @@ namespace Gym
             //Saco lo que haya y luego vuelvo a traer los datos
             dtgvCliente.Rows.Clear();
 
+            //Acá traigo los datos y se los asigno a la tabla dsTablaClientes
             dsTablaClientes = _bussinessClientes.GetClientes(buscar);
+            //Vacío el textbox para resetear en caso de búsqueda específica
             buscar = string.Empty;
 
+            //Y acá traigo los datos
+            //Pregunto si el dataset tiene datos, preguntando si tiene filas
             if (dsTablaClientes.Tables[0].Rows.Count > 0)
             {
+                //Y por cada fila que haya en el dataset
                 foreach (DataRow dr in dsTablaClientes.Tables[0].Rows)
                 {
+                    //paso esa fila al datagrid para que se vean los datos
                     dtgvCliente.Rows.Add(dr[1].ToString(), dr[2], dr[3], dr[4], dr[5]);
                 }
             }
@@ -73,7 +83,9 @@ namespace Gym
             //llamo al método para traer los tipos de documentos y los asigno al combobox
             _metodosGenerales.Bring_Tipos_Documentos();
             cmbTipoDocumentoCliente.DataSource = _metodosGenerales.DtTipos_Documentos;
+            //lo que quiero ver
             cmbTipoDocumentoCliente.DisplayMember = "Tipo";
+            //y les asigno el id correspondiente
             cmbTipoDocumentoCliente.ValueMember = "Tipo_documento_ID";
         }
 
@@ -95,6 +107,9 @@ namespace Gym
 
         private void AltaPersona()
         {
+            //En la clase "MetodosGenerales" tengo un método para enviar los datos de 
+            //una nueva persona a la entidad y luego a la base de datos a través 
+            //de la capa de negocio
             string Nombre = Convert.ToString(txtNombreCliente.Text);
             string Apellido = Convert.ToString(txtApellidoCliente.Text); ;
             int Tipo_Documento_ID = cmbTipoDocumentoCliente.SelectedIndex;
@@ -133,6 +148,9 @@ namespace Gym
                 Observaciones = string.Empty;
             }
 
+            //Asíque asigno cada campo a una variable y mando esas variables como argumentos
+            //para el método en la clase.
+            //Eso lo hago para poder utilizar el mismo método desde otro formulario
             _metodosGenerales.AltaPersona(Nombre,
                                 Apellido,
                                 Tipo_Documento_ID,
@@ -159,6 +177,7 @@ namespace Gym
 
         private void ValidarCamposVacios()
         {
+            //Estos campos que valido, son los obligatorios.
             if (string.IsNullOrEmpty(txtNombreCliente.Text) ||
                 string.IsNullOrEmpty(txtApellidoCliente.Text) ||
                 string.IsNullOrEmpty(txtNumDocumentoCliente.Text) ||
@@ -174,6 +193,9 @@ namespace Gym
 
         private void ValidarContenido()
         {
+            //acá valido el contenido de los campos obligatorios
+            //xq pueden estar llenos pero con el texto que los identifica como "Nombre"
+            //Y esos strings son los que no quiero que se guarden en la base de datos
             foreach (Control txt in this.gbClientes.Controls)
             {
                 if (txt is TextBox)
@@ -434,8 +456,6 @@ namespace Gym
                 }
             }
         }
-
         #endregion
-
     }
 }

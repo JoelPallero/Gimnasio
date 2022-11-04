@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS gym
+
+go
+
 create database gym
 
 go
@@ -9,6 +13,7 @@ go
 /* Tablas Maestras */
 
 /* Personas */
+
 create table Personas(
 Persona_ID int primary key identity (0, 1),
 Nombre nvarchar(50) not null,
@@ -19,26 +24,32 @@ Tipo_Sexo_ID int not null,
 Nro_Telefono nvarchar(24) not null,
 Nro_Alternativo nvarchar(24) null,
 Mail nvarchar(50) null,
-Observaciones nvarchar(200) null
+Observaciones nvarchar(200) null,
+Fecha_Alta datetime not null,
+Fecha_Baja datetime null,
 )
-
-go
 
 create table Empleados(
 Empleado_ID int primary key identity (0, 1),
 Persona_ID int not null,
 Usuario nvarchar(255) null,
-Clave nvarchar(255) null,
+Clave varchar(200) null,
 Tipo_Empleado_ID int not null,
 Estado_Empleado_ID int not null
 )
 
 go
 
+/*
+0 Activo
+1 Vacaciones
+
+*/
+
 create table Clientes(
 Cliente_ID int primary key identity (0, 1),
 Persona_ID int not null,
-Estado nvarchar(20) not null,
+Estado nvarchar(20) not null
 )
 
 go
@@ -100,7 +111,7 @@ Importe_Plan decimal (18, 0) not null,
 Duracion int null,
 Cupo_Total int null,
 Cupo_Restante int null,
-Vigencia nvarchar (1) not null
+Estado nvarchar (1) not null
 )
 
 go
@@ -111,7 +122,8 @@ Plan_ID int not null,
 Cliente_ID int not null,
 Empleado_ID int not null,
 Fecha_Inicio datetime not null,
-Fecha_Fin datetime null
+Fecha_Fin datetime null,
+Estado nvarchar(1) not null
 )
 
 go
@@ -140,6 +152,7 @@ Plan_ID int not null,
 Dia nvarchar(10) not null,
 Desde_Hora nvarchar(5) not null,
 Hasta_Hora nvarchar(5) not null,
+Estado nvarchar(8) not null
 )
 
 go
@@ -150,9 +163,11 @@ Empleado_ID int not null,
 Dia nvarchar(10) not null,
 Desde_Hora nvarchar(5) not null,
 Hasta_Hora nvarchar(5) not null,
+Estado nvarchar(8) not null
 )
 
 go
+
 
 /* Registro de Login */
 
@@ -171,60 +186,66 @@ go
 
 create table Tipos_Documentos(
 Tipo_Documento_ID int primary key identity (0, 1),
-Tipo varchar(3) not null
+Tipo varchar(4) not null,
+Estado varchar(8) not null
 )
 
 go
 
-insert into Tipos_Documentos values ('DNI')
-insert into Tipos_Documentos values ('LC')
-insert into Tipos_Documentos values ('LE')
-insert into Tipos_Documentos values ('CI')
-insert into Tipos_Documentos values ('PAS')
-insert into Tipos_Documentos values ('EXT')
+insert into Tipos_Documentos values ('DNI', 'Activo')
+insert into Tipos_Documentos values ('LC', 'Activo')
+insert into Tipos_Documentos values ('LE', 'Activo')
+insert into Tipos_Documentos values ('CI', 'Activo')
+insert into Tipos_Documentos values ('PAS', 'Activo')
+insert into Tipos_Documentos values ('EXT', 'Activo')
+insert into Tipos_Documentos values ('CUIL', 'Activo')
+insert into Tipos_Documentos values ('CUIT', 'Activo')
 
 go
 
 create table Tipos_Sexos(
 Tipo_Sexo_ID int primary key identity (0, 1),
-Sexo varchar(20) not null
+Sexo varchar(20) not null,
+Estado varchar(8) not null
 )
 
 go
 
-insert into Tipos_Sexos values ('Masculino')
-insert into Tipos_Sexos values ('Femenino')
-insert into Tipos_Sexos values ('Otros')
+insert into Tipos_Sexos values ('Masculino', 'Activo')
+insert into Tipos_Sexos values ('Femenino', 'Activo')
+insert into Tipos_Sexos values ('Otros', 'Activo')
 
 go
 
 create table Tipos_Empleados(
 Tipo_Empleado_ID int primary key identity (0, 1),
-Tipo varchar(20) not null
+Tipo varchar(20) not null,
+Acceso_Clave varchar(1) not null,
+Estado varchar(8) not null
 )
 
 go
 
-insert into Tipos_Empleados values ('Admin')
-insert into Tipos_Empleados values ('Jefe')
-insert into Tipos_Empleados values ('Usuario')
-insert into Tipos_Empleados values ('Profesor')
-insert into Tipos_Empleados values ('Otros')
+insert into Tipos_Empleados values ('Admin', 'Y', 'Activo')
+insert into Tipos_Empleados values ('Jefe', 'Y', 'Activo')
+insert into Tipos_Empleados values ('Usuario',  'Y', 'Activo')
+insert into Tipos_Empleados values ('Profesor',  'N', 'Activo')
+insert into Tipos_Empleados values ('Otros', 'N', 'Activo')
 
 go
 
 create table Estados_Empleados(
 Estado_Empleado_ID int primary key identity (0, 1),
-Estado varchar(20) not null
+Estado_Empleado varchar(20) not null,
+Estado varchar(8) not null
 )
 
 go
 
-insert into Estados_Empleados values ('Activo')
-insert into Estados_Empleados values ('Vacaciones')
-insert into Estados_Empleados values ('Vacaciones')
-insert into Estados_Empleados values ('Licencia Médica')
-insert into Estados_Empleados values ('Baja')
+insert into Estados_Empleados values ('Activo', 'Activo')
+insert into Estados_Empleados values ('Vacaciones', 'Activo')
+insert into Estados_Empleados values ('Licencia Médica', 'Activo')
+insert into Estados_Empleados values ('Baja', 'Activo')
 
 go
 
@@ -232,13 +253,22 @@ go
 
 /* Constrains */
 
-/* Empleados */
+/* Personas */
 
-alter table Empleados
-add CONSTRAINT FK_Empleado_Persona FOREIGN KEY (Persona_ID) 
-REFERENCES Personas (Persona_ID)
+
+alter table Personas
+add CONSTRAINT FK_Personas_TipoDocumento FOREIGN KEY (Tipo_Documento_ID) 
+REFERENCES Tipos_Documentos (Tipo_Documento_ID)
 
 go
+
+alter table Personas
+add CONSTRAINT FK_Personas_TipoSexo FOREIGN KEY (Tipo_Sexo_ID) 
+REFERENCES Tipos_Sexos (Tipo_Sexo_ID)
+
+go
+
+/* Empleados */
 
 alter table Empleados
 add CONSTRAINT FK_Empleado_Tipo_Empleado FOREIGN KEY (Tipo_Empleado_ID) 
@@ -252,16 +282,24 @@ REFERENCES Estados_Empleados (Estado_Empleado_ID)
 
 go
 
+alter table Empleados
+add CONSTRAINT FK_Empleado_Persona FOREIGN KEY (Persona_ID) 
+REFERENCES Personas (Persona_ID)
+
+go
+
+
 /* Clientes */
 
 
 alter table Clientes
-add CONSTRAINT FK_Clientes_Persona FOREIGN KEY (Persona_ID) 
+add CONSTRAINT FK_Cliente_Persona FOREIGN KEY (Persona_ID) 
 REFERENCES Personas (Persona_ID)
 
 go
 
 /* Asistencias */
+
 alter table Asistencias
 add CONSTRAINT FK_Asistencia_Cliente FOREIGN KEY (Cliente_ID) 
 REFERENCES Clientes (Cliente_ID)
@@ -382,3 +420,99 @@ REFERENCES Empleados (Empleado_ID)
 go
 
 /* Fin Constrains */
+
+
+/* Procedimientos, triggers y demás */
+
+create proc sp_cargar_tipos_documentos
+as
+select Tipo_Documento_ID, Tipo
+from Tipos_Documentos
+where Estado = 'Activo'
+
+go
+
+create proc sp_cargar_tipos_sexos
+as
+select Tipo_sexo_ID, Sexo
+from Tipos_Sexos
+where Estado = 'Activo'
+
+go
+
+create proc sp_cargar_tipos_empleados
+as
+select Tipo, Acceso_Clave
+from Tipos_Empleados
+where Tipo != 'Admin'
+and Tipo != 'Jefe'
+
+go
+
+create proc sp_cargar_tipos_empleados_Jefe
+as
+select Tipo_Empleado_ID, Tipo
+from Tipos_Empleados
+where Tipo != 'Admin'
+and Estado = 'Activo'
+
+go
+
+create proc sp_cargar_tipos_empleados_Admin
+as
+select Tipo_Empleado_ID, Tipo
+from Tipos_Empleados
+where Estado = 'Activo'
+
+go
+
+create proc sp_cargar_ultimo_ID
+as
+select Empleado_ID
+from Empleados
+where Empleado_ID = (select(max(Empleado_ID)) from Empleados)
+
+go
+
+create proc sp_cargar_ultimo_ID_Personas
+as
+select Persona_ID
+from Personas
+where Persona_ID = (select(max(Persona_ID)) from Personas)
+
+go
+
+create proc sp_Cargar_Clientes_Desc
+as
+SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
+FROM Personas
+INNER JOIN Clientes
+ON Personas.Persona_ID=Clientes.Persona_ID
+WHERE Personas.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+ORDER BY Personas.Fecha_Alta desc
+
+go
+
+
+create proc sp_Cargar_Empleados_Desc
+AS
+SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
+	   Tipos_Empleados.Tipo, Estados_Empleados.Estado_Empleado
+FROM Personas
+INNER JOIN Empleados
+ON Personas.Persona_ID = Empleados.Persona_ID
+INNER JOIN Tipos_Empleados
+ON Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
+INNER JOIN Estados_Empleados
+ON Empleados.Estado_Empleado_ID = Estados_Empleados.Estado_Empleado_ID
+WHERE Personas.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+and Empleados.Tipo_Empleado_ID != 0
+and Empleados.Tipo_Empleado_ID != 1
+ORDER BY Personas.Fecha_Alta desc
+
+go
+
+--Desde acá creo el perfil de admin, con la clave encriptada.
+insert into Personas values ('Admin', 'Admin', 0, '123456', 0, '0', null, null, null, GETDATE(), null)
+insert into Empleados values (0, 'Admin', 'c4a0b7848bf1526e502f68b2c296f384d1aeee3857780b90ce2ddf7530875a27', 0, 0)
+

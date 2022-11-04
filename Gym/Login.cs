@@ -2,8 +2,6 @@
 using Entities;
 using System;
 using System.Drawing;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Gym
@@ -17,6 +15,10 @@ namespace Gym
         //Capa de entidades
         private readonly Entities.Empleados _empleados;
         private readonly Tipos_Empleados _tiposEmpleados;
+        private readonly Personas _personas = new Personas();
+
+        //Clases internas de la capa
+        private readonly MetodosGenerales _metodosGenerales;
 
         #endregion
 
@@ -27,6 +29,7 @@ namespace Gym
             _bussinessEmplados = new BussinessEmpleados();
             _empleados = new Entities.Empleados();
             _tiposEmpleados = new Tipos_Empleados();
+            _metodosGenerales = new MetodosGenerales();
         }
         private void Login_Load(object sender, EventArgs e)
         {
@@ -38,7 +41,6 @@ namespace Gym
 
         #region Variables
 
-        private bool primerUsuario = true;
         private string clave = string.Empty;
 
         #endregion
@@ -51,25 +53,6 @@ namespace Gym
             frm.Close();
             MainUsuarios frmU = new MainUsuarios();
             frmU.Close();
-        }
-
-        private void PrimerLogueo()
-        {
-            //Verificar si hay algún logín previo de JEFE (si o si).
-            //Me devuelve en booleano la respuesta.
-
-            /*Acá verifico si hay un login de jefe ya*/
-            //_bussinessEmplados.VerificarJefe();
-
-            //vamos a realizar una acción distinta.
-            if (primerUsuario)
-            {
-                lblGenerarPrimerUsuario.Visible = true;
-            }
-            else
-            {
-                lblGenerarPrimerUsuario.Visible = false;
-            }
         }
 
         //Encriptamiento de clave
@@ -137,8 +120,6 @@ namespace Gym
             this.WindowState = FormWindowState.Minimized;
         }
 
-        #endregion
-
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             //Vamos a verificar primero si existe la clave en el sistema.
@@ -148,6 +129,10 @@ namespace Gym
             string usuario = txtUsuario.Text.ToString();
             _empleados.Usuario = txtUsuario.Text.ToString();
             _bussinessEmplados.VerificarClaveEnBdd(clave, _tiposEmpleados, _empleados);
+
+            //una vez traidos los datos, los comparamos con los que tenemos en
+            //cada variable. Si son idénticas, entonces, ya puede verificarse
+            //el acceso al programa
             if (_empleados.Clave == clave && _empleados.Usuario == usuario)
             {
                 //Verificamos si es de un jefe o usuario,
@@ -155,6 +140,11 @@ namespace Gym
 
                 if (_tiposEmpleados.Estado == "Activo" && _tiposEmpleados.Acceso_Clave == "Y")
                 {
+                    //Vamos a traer los datos del empleado que abrió sesión
+                    _metodosGenerales.usuarioOpenID = _empleados.Empleado_ID;
+                    _metodosGenerales.personaOpenID = _empleados.Persona_ID;
+
+
                     switch (_tiposEmpleados.Tipo)
                     {
                         case "Admin":
@@ -179,7 +169,7 @@ namespace Gym
                                             "para que haga la modificación de manera manual", "Advertencia",
                                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             break;
-                    }                  
+                    }
                 }
                 else
                 {
@@ -191,15 +181,16 @@ namespace Gym
                                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else 
+            else
             {
-                    MessageBox.Show("No hay usuario ni clave para los datos registrado. " +
-                                "En caso de no ser usuario, deberá solicitar un perfil con el administrador correspondiente", "Error",
-                                MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("No hay usuario ni clave para los datos registrado. " +
+                            "En caso de no ser usuario, deberá solicitar un perfil con el administrador correspondiente", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
+        #endregion
 
         //MessageBox.Show("Se encontró el perfil", "Prueba");
         //MessageBox.Show("No se encontró el perfil", "Prueba fallida");

@@ -1,6 +1,7 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -49,8 +50,32 @@ namespace AccesoDatos
 
             return resultado;
         }
+        public DataTable GetJornadaEmpleado(Jornadas_Empleados jornadas_Empleados, int personaID)
+        {
+            string query = @"select * from Jornadas_Empleados where Empleado_ID  = '" + personaID + "'";
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar las jornadas de los empleados.", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return dt;
+        }
 
         #endregion
-
     }
 }

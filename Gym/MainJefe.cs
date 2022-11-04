@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Entities;
+using BussinessLayer;
 
 namespace Gym
 {
@@ -15,7 +17,17 @@ namespace Gym
     {
         #region Instancias
 
+        //Clases internas
         MetodosGenerales _metodosGenerales;
+
+        //Capa de Negocio
+        private readonly BussinessPersonas _bussinessPersonas;
+
+        //Entidades
+        private Personas _personas;
+        private readonly Entities.Empleados _empleados;
+
+        //Forms
         Empleados empleados;
 
         #endregion
@@ -26,18 +38,27 @@ namespace Gym
             InitializeComponent();
             _metodosGenerales = new MetodosGenerales();
             empleados = new Empleados();
+            _personas = new Personas();
+            _empleados = new Entities.Empleados();
+            _bussinessPersonas = new BussinessPersonas();
         }
 
         private void MainJefe_Load(object sender, EventArgs e)
         {
             Login frm = new Login();
             frm.Close();
+            AsignarNombre();
         }
 
         #endregion
 
+        #region Metodos encapsulados
 
-        #region Call of Forms
+        private void AsignarNombre()
+        {
+            _metodosGenerales.GetPersona();
+            lblBienvenido.Text = "Bienvenido " + _metodosGenerales.nombrePersona.ToString() + "!";
+        }
 
         private void CallOfForms(object Hijo)
         {

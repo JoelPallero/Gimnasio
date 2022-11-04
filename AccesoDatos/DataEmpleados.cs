@@ -27,18 +27,21 @@ namespace AccesoDatos
                                                              @Tipo_Empleado_ID,
                                                              @Estado_Empleado_ID)"
             ;
+
             SqlParameter persona_ID = new SqlParameter("@Persona_ID", empleados.Persona_ID);
             SqlParameter usuario = new SqlParameter("@Usuario", empleados.Usuario);
             SqlParameter clave = new SqlParameter("@Clave", empleados.Clave);
             SqlParameter tipo_Empleado_ID = new SqlParameter("@Tipo_Empleado_ID", empleados.Tipo_Empleado_ID);
             SqlParameter estado_Empleado_ID = new SqlParameter("@Estado_Empleado_ID", empleados.Estado_Empleado_ID);
-            
+
             SqlCommand cmd = new SqlCommand(query, conexion);
+
             cmd.Parameters.Add(persona_ID);
-            cmd.Parameters.Add(usuario);
-            cmd.Parameters.Add(clave);
-            cmd.Parameters.Add(tipo_Empleado_ID);
+            cmd.Parameters.Add(usuario); 
+            cmd.Parameters.Add(clave); 
+            cmd.Parameters.Add(tipo_Empleado_ID); 
             cmd.Parameters.Add(estado_Empleado_ID);
+
 
             try
             {
@@ -61,11 +64,69 @@ namespace AccesoDatos
         #endregion
 
         #region Consultas de ID
-
         public Empleados GetLastID(Empleados empleados)
         {
             string query = @"sp_cargar_ultimo_ID";
             SqlCommand cmd = new SqlCommand(query, conexion);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudo concretar la solicitud requerida", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+
+            return empleados;
+        }
+
+        public DataTable GetEstadosEmpleados(Tipos_Empleados tipos_Empleados)
+        {
+            string query = @"select * from Estados_Empleados";
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar Movimientos", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return dt;
+        }
+
+        public Empleados GetEmleadoID(Empleados empleados)
+        {
+            string query = @"select Empleado_ID from Empleados
+                            where Persona_ID = @Persona_ID"
+            ;
+            SqlParameter personaId = new SqlParameter("@Persona_ID", empleados.Persona_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(personaId);
 
             try
             {
@@ -99,27 +160,29 @@ namespace AccesoDatos
         public DataSet GetEmpleados(string buscar)
         {
             //Solicitamos la lista de TODOS los empleados
-            string getEmpleados;
+            string getBusqueda;
+
             if (string.IsNullOrEmpty(buscar))
             {
-                getEmpleados = @"sp_Cargar_Empleados_Desc";
+                getBusqueda = @"sp_Cargar_Empleados_Desc";
             }
             else
             {
-                getEmpleados = @"SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
+                getBusqueda = @"SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
 	                                   Tipos_Empleados.Tipo, 
                                        Estados_Empleados.Estado
-
                                 FROM Personas
 
                                 INNER JOIN Empleados
-                                ON Personas.Persona_ID = Empleados.Persona_ID
+                                ON Empleados.Persona_ID = Personas.Persona_ID
+                                and Empleados.Tipo_Empleado_ID != 0
+                                and Empleados.Tipo_Empleado_ID != 1
 
                                 INNER JOIN Tipos_Empleados
-                                ON Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
+                                ON Tipos_Empleados.Tipo_Empleado_ID = Empleados.Tipo_Empleado_ID
 
                                 INNER JOIN Estados_Empleados
-                                ON Empleados.Estado_Empleado_ID = Estados_Empleados.Estado_Empleado_ID
+                                ON Estados_Empleados.Estado_Empleado_ID = Empleados.Estado_Empleado_ID
                         
                                 where Personas.Persona_ID LIKE @query 
                                     or Personas.Nombre LIKE @query 
@@ -127,15 +190,14 @@ namespace AccesoDatos
                                     or Personas.Nro_Documento LIKE @query
                                     or Tipos_Empleados.Tipo LIKE @query
                                     or Estados_Empleados.Estado LIKE @query
-
-                                Order by Personas.Fecha_Alta desc"
-                ;
+                                Order by Personas.Fecha_Alta desc";
             }
 
-            SqlCommand cmd = new SqlCommand(getEmpleados, conexion)
+            SqlCommand cmd = new SqlCommand(getBusqueda, conexion)
             {
                 CommandType = CommandType.Text
             };
+            
             cmd.Parameters.Add(new SqlParameter()
             {
                 ParameterName = "@query",
@@ -168,14 +230,15 @@ namespace AccesoDatos
 
         public Empleados GetTipoEmpleado(Empleados empleados)
         {
-            string query = @"select Tipo_Empleado_ID, Usuario, Clave 
-                            from Empleados 
-                            where Persona_ID = '" + empleados.Persona_ID + "'"
+            string query = @"select * from Empleados 
+                            where Persona_ID = @Persona_ID"
             ;
-            
-            
-            
+
+            SqlParameter personaID = new SqlParameter("@Persona_ID", empleados.Persona_ID);
+
             SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(personaID);
 
             try
             {
@@ -184,16 +247,19 @@ namespace AccesoDatos
 
                 if (reader.Read())
                 {
-                    empleados.Tipo_Empleado_ID = int.Parse(reader["Tipo_Empleado_ID"].ToString());
+                    empleados.Empleado_ID = int.Parse(reader["Empleado_ID"].ToString());
+                    empleados.Persona_ID = int.Parse(reader["Persona_ID"].ToString());
                     empleados.Usuario = (reader["Usuario"].ToString());
                     empleados.Clave = (reader["Clave"].ToString());
+                    empleados.Tipo_Empleado_ID = int.Parse(reader["Tipo_Empleado_ID"].ToString());
+                    empleados.Estado_Empleado_ID = int.Parse(reader["Estado_Empleado_ID"].ToString());
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                throw new Exception("No se pudo realizar el cálculo requerido", e);
+                throw new Exception("No se pudo traer los datos requeridos", e);
             }
             finally
             {
@@ -210,15 +276,17 @@ namespace AccesoDatos
             string orden = @"update Empleados set Usuario = @Usuario, 
                                                      Clave = @Clave,   
                                                      Tipo_Empleado_ID = @Tipo_Empleado_ID
-                                               Where Persona_ID = " + empleados.Persona_ID + ""
+                                               Where Persona_ID = @Persona_ID"
             ;
 
+            SqlParameter persona_ID = new SqlParameter("@Persona_ID", empleados.Persona_ID);
             SqlParameter usuario = new SqlParameter("@Usuario", empleados.Usuario);
             SqlParameter clave = new SqlParameter("@Clave", empleados.Clave);
             SqlParameter tipo_Empleado_ID = new SqlParameter("@Tipo_Empleado_ID", empleados.Tipo_Empleado_ID);
             
             SqlCommand cmd = new SqlCommand(orden, conexion);
 
+            cmd.Parameters.Add(persona_ID);
             cmd.Parameters.Add(usuario);
             cmd.Parameters.Add(clave);
             cmd.Parameters.Add(tipo_Empleado_ID);
@@ -246,7 +314,7 @@ namespace AccesoDatos
 
         public Empleados VerificarClaveEnBdd(string clave, Tipos_Empleados _tiposEmpleados, Empleados _empleados)
         {
-            string query = @"select Empleados.Usuario, Empleados.Clave, 
+            string query = @"select Empleados.Empleado_ID,Empleados.Persona_ID, Empleados.Usuario, Empleados.Clave, 
                                     Tipos_Empleados.Tipo, Tipos_Empleados.Acceso_Clave, Tipos_Empleados.Estado
                             from Empleados
                             inner join Tipos_Empleados
@@ -269,6 +337,8 @@ namespace AccesoDatos
                     _tiposEmpleados.Tipo = Convert.ToString(reader["Tipo"]);
                     _empleados.Clave = Convert.ToString(reader["Clave"]);
                     _empleados.Usuario = Convert.ToString(reader["Usuario"]);
+                    _empleados.Persona_ID = int.Parse(reader["Persona_ID"].ToString());
+                    _empleados.Empleado_ID = int.Parse(reader["Empleado_ID"].ToString());
                 }
             }
             catch (Exception e)
@@ -284,5 +354,44 @@ namespace AccesoDatos
         }
 
         #endregion
+
+        #region Edición de clave y usuario
+
+        public int EditarClave(Empleados empleados)
+        {
+            int resultado = -1;
+            string query = @"update Empleados set Usuario = @Usuario, 
+                             Clave = @Clave,   
+                             Where Persona_ID = '" + empleados.Persona_ID + "'"
+            ;
+
+            SqlParameter usuario = new SqlParameter("@Usuario", empleados.Usuario);
+            SqlParameter clave = new SqlParameter("@Clave", empleados.Clave);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(usuario);
+            cmd.Parameters.Add(clave);
+
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al tratar de editar datos", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+
+            return resultado;
+        }
+
+        #endregion
+
     }
 }

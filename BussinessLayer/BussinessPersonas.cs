@@ -28,7 +28,7 @@ namespace BussinessLayer
 
         public Personas GetEmpleadoUnico(Personas personas)
         {
-            return _dataPersonas.GetEmpleadoUnico(personas);
+            return _dataPersonas.GetPersonaUnica(personas);
         }
 
         public int EditarPersona(Personas personas)
@@ -39,6 +39,16 @@ namespace BussinessLayer
         public int AltaJefe(Personas personas)
         {
             return _dataPersonas.AltaJefe(personas);
+        }
+
+        public Personas GetPersona(Personas personas)
+        {
+            return _dataPersonas.GetPersona(personas);
+        }
+
+        public Personas BuscarCoincidencias(int id, string documento, Personas personas)
+        {
+            return _dataPersonas.BuscarCoincidencias(id, documento, personas);
         }
     }
 }

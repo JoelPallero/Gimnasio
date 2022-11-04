@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS gym
+
+go
+
 create database gym
 
 go
@@ -29,7 +33,7 @@ create table Empleados(
 Empleado_ID int primary key identity (0, 1),
 Persona_ID int not null,
 Usuario nvarchar(255) null,
-Clave nvarchar(255) null,
+Clave varchar(200) null,
 Tipo_Empleado_ID int not null,
 Estado_Empleado_ID int not null
 )
@@ -148,6 +152,7 @@ Plan_ID int not null,
 Dia nvarchar(10) not null,
 Desde_Hora nvarchar(5) not null,
 Hasta_Hora nvarchar(5) not null,
+Estado nvarchar(8) not null
 )
 
 go
@@ -158,9 +163,11 @@ Empleado_ID int not null,
 Dia nvarchar(10) not null,
 Desde_Hora nvarchar(5) not null,
 Hasta_Hora nvarchar(5) not null,
+Estado nvarchar(8) not null
 )
 
 go
+
 
 /* Registro de Login */
 
@@ -179,60 +186,66 @@ go
 
 create table Tipos_Documentos(
 Tipo_Documento_ID int primary key identity (0, 1),
-Tipo varchar(3) not null
+Tipo varchar(4) not null,
+Estado varchar(8) not null
 )
 
 go
 
-insert into Tipos_Documentos values ('DNI')
-insert into Tipos_Documentos values ('LC')
-insert into Tipos_Documentos values ('LE')
-insert into Tipos_Documentos values ('CI')
-insert into Tipos_Documentos values ('PAS')
-insert into Tipos_Documentos values ('EXT')
+insert into Tipos_Documentos values ('DNI', 'Activo')
+insert into Tipos_Documentos values ('LC', 'Activo')
+insert into Tipos_Documentos values ('LE', 'Activo')
+insert into Tipos_Documentos values ('CI', 'Activo')
+insert into Tipos_Documentos values ('PAS', 'Activo')
+insert into Tipos_Documentos values ('EXT', 'Activo')
+insert into Tipos_Documentos values ('CUIL', 'Activo')
+insert into Tipos_Documentos values ('CUIT', 'Activo')
 
 go
 
 create table Tipos_Sexos(
 Tipo_Sexo_ID int primary key identity (0, 1),
-Sexo varchar(20) not null
+Sexo varchar(20) not null,
+Estado varchar(8) not null
 )
 
 go
 
-insert into Tipos_Sexos values ('Masculino')
-insert into Tipos_Sexos values ('Femenino')
-insert into Tipos_Sexos values ('Otros')
+insert into Tipos_Sexos values ('Masculino', 'Activo')
+insert into Tipos_Sexos values ('Femenino', 'Activo')
+insert into Tipos_Sexos values ('Otros', 'Activo')
 
 go
 
 create table Tipos_Empleados(
 Tipo_Empleado_ID int primary key identity (0, 1),
 Tipo varchar(20) not null,
-AccesoClave varchar(1) not null
+Acceso_Clave varchar(1) not null,
+Estado varchar(8) not null
 )
 
 go
 
-insert into Tipos_Empleados values ('Admin', 'Y')
-insert into Tipos_Empleados values ('Jefe', 'Y')
-insert into Tipos_Empleados values ('Usuario',  'Y')
-insert into Tipos_Empleados values ('Profesor',  'N')
-insert into Tipos_Empleados values ('Otros', 'N')
+insert into Tipos_Empleados values ('Admin', 'Y', 'Activo')
+insert into Tipos_Empleados values ('Jefe', 'Y', 'Activo')
+insert into Tipos_Empleados values ('Usuario',  'Y', 'Activo')
+insert into Tipos_Empleados values ('Profesor',  'N', 'Activo')
+insert into Tipos_Empleados values ('Otros', 'N', 'Activo')
 
 go
 
 create table Estados_Empleados(
 Estado_Empleado_ID int primary key identity (0, 1),
-Estado varchar(20) not null
+Estado_Empleado varchar(20) not null,
+Estado varchar(8) not null
 )
 
 go
 
-insert into Estados_Empleados values ('Activo')
-insert into Estados_Empleados values ('Vacaciones')
-insert into Estados_Empleados values ('Licencia Médica')
-insert into Estados_Empleados values ('Baja')
+insert into Estados_Empleados values ('Activo', 'Activo')
+insert into Estados_Empleados values ('Vacaciones', 'Activo')
+insert into Estados_Empleados values ('Licencia Médica', 'Activo')
+insert into Estados_Empleados values ('Baja', 'Activo')
 
 go
 
@@ -415,6 +428,7 @@ create proc sp_cargar_tipos_documentos
 as
 select Tipo_Documento_ID, Tipo
 from Tipos_Documentos
+where Estado = 'Activo'
 
 go
 
@@ -422,12 +436,13 @@ create proc sp_cargar_tipos_sexos
 as
 select Tipo_sexo_ID, Sexo
 from Tipos_Sexos
+where Estado = 'Activo'
 
 go
 
 create proc sp_cargar_tipos_empleados
 as
-select Tipo_Empleado_ID, Tipo
+select Tipo, Acceso_Clave
 from Tipos_Empleados
 where Tipo != 'Admin'
 and Tipo != 'Jefe'
@@ -439,6 +454,7 @@ as
 select Tipo_Empleado_ID, Tipo
 from Tipos_Empleados
 where Tipo != 'Admin'
+and Estado = 'Activo'
 
 go
 
@@ -446,6 +462,7 @@ create proc sp_cargar_tipos_empleados_Admin
 as
 select Tipo_Empleado_ID, Tipo
 from Tipos_Empleados
+where Estado = 'Activo'
 
 go
 
@@ -471,26 +488,16 @@ SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Doc
 FROM Personas
 INNER JOIN Clientes
 ON Personas.Persona_ID=Clientes.Persona_ID
-WHERE Clientes.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
-ORDER BY Clientes.Fecha_Alta desc
+WHERE Personas.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+ORDER BY Personas.Fecha_Alta desc
 
 go
 
-create proc sp_Cargar_Clientes_Asc
-as
-SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
-FROM Personas
-INNER JOIN Clientes
-ON Personas.Persona_ID=Clientes.Persona_ID
-WHERE Clientes.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
-ORDER BY Clientes.Fecha_Alta asc
-
-go
 
 create proc sp_Cargar_Empleados_Desc
 AS
 SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
-	   Tipos_Empleados.Tipo, Estados_Empleados.Estado
+	   Tipos_Empleados.Tipo, Estados_Empleados.Estado_Empleado
 FROM Personas
 INNER JOIN Empleados
 ON Personas.Persona_ID = Empleados.Persona_ID
@@ -498,9 +505,14 @@ INNER JOIN Tipos_Empleados
 ON Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
 INNER JOIN Estados_Empleados
 ON Empleados.Estado_Empleado_ID = Estados_Empleados.Estado_Empleado_ID
-WHERE Clientes.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
-ORDER BY Clientes.Fecha_Alta asc
+WHERE Personas.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+and Empleados.Tipo_Empleado_ID != 0
+and Empleados.Tipo_Empleado_ID != 1
+ORDER BY Personas.Fecha_Alta desc
+
 go
 
+--Desde acá creo el perfil de admin, con la clave encriptada.
+insert into Personas values ('Admin', 'Admin', 0, '123456', 0, '0', null, null, null, GETDATE(), null)
+insert into Empleados values (0, 'Admin', 'c4a0b7848bf1526e502f68b2c296f384d1aeee3857780b90ce2ddf7530875a27', 0, 0)
 
-SELECT * FROM Empleados

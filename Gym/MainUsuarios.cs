@@ -28,6 +28,7 @@ namespace Gym
         {
             Login frm = new Login();
             frm.Close();
+            AsignarNombre();
         }
 
         #endregion
@@ -39,7 +40,13 @@ namespace Gym
 
         #endregion
 
-        #region Call of Forms
+        #region Métodos encapsulados
+
+        private void AsignarNombre()
+        {
+            _metodosGenerales.GetPersona();
+            lblBienvenido.Text = "Bienvenido " + _metodosGenerales.nombrePersona.ToString() + "!";
+        }
 
         private void CallOfForms(object Hijo)
         {

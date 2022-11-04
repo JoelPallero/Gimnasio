@@ -1,6 +1,7 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -152,9 +153,10 @@ namespace AccesoDatos
                                                      Nro_Alternativo = @Nro_Alternativo,
                                                      Mail = @Mail, 
                                                      Observaciones = @Observaciones
-                                               Where Persona_ID = "+ personas.Persona_ID +""
+                                               Where Persona_ID = @persona_ID"
             ;
 
+            SqlParameter id = new SqlParameter("@persona_ID", personas.Persona_ID);
             SqlParameter nombre = new SqlParameter("@Nombre", personas.Nombre);
             SqlParameter apellido = new SqlParameter("@Apellido", personas.Apellido);
             SqlParameter tipo_Documento_ID = new SqlParameter("@Tipo_Documento_ID", personas.Tipo_Documento_ID);
@@ -167,6 +169,7 @@ namespace AccesoDatos
 
             SqlCommand cmd = new SqlCommand(orden, conexion);
 
+            cmd.Parameters.Add(id);
             cmd.Parameters.Add(nombre);
             cmd.Parameters.Add(apellido);
             cmd.Parameters.Add(tipo_Documento_ID);
@@ -184,7 +187,7 @@ namespace AccesoDatos
             }
             catch (Exception e)
             {
-                throw new Exception("Error al tratar de Modificar Movimientos", e);
+                throw new Exception("Error al tratar de actualizar datos de la persona", e);
             }
             finally
             {
@@ -193,7 +196,6 @@ namespace AccesoDatos
             }
             return resultado;
         }
-
         public Personas Get_Las_Id_Personas(Personas personas)
         {
             string query = @"sp_cargar_ultimo_ID_Personas";
@@ -226,14 +228,18 @@ namespace AccesoDatos
 
         #region Consulta cliente único
 
-        public Personas GetEmpleadoUnico(Personas personas)
+        public Personas GetPersonaUnica(Personas personas)
         {
             string query = @"select *
                             From Personas
-                            where Personas.Persona_ID = " + personas.Persona_ID + ""
+                            where Persona_ID = @Persona_ID"
             ;
 
+            SqlParameter persona_ID = new SqlParameter("@Persona_ID", personas.Persona_ID);
+
             SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(persona_ID);
 
             try
             {
@@ -242,6 +248,7 @@ namespace AccesoDatos
 
                 if (reader.Read())
                 {
+                    personas.Persona_ID = int.Parse(reader["Persona_ID"].ToString());
                     personas.Nombre = reader["Nombre"].ToString();
                     personas.Apellido = reader["Apellido"].ToString();
                     personas.Tipo_Documento_ID = int.Parse(reader["Tipo_Documento_ID"].ToString());
@@ -258,6 +265,81 @@ namespace AccesoDatos
             catch (Exception e)
             {
                 throw new Exception("No se pudo realizar el cálculo requerido", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+
+            return personas;
+        }
+
+        public Personas GetPersona(Personas personas)
+        {
+            string query = @"select Nombre, Persona_ID
+                            From Personas
+                            where Personas.Persona_ID = '" + personas.Persona_ID + "'"
+            ;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    personas.Nombre = reader["Nombre"].ToString();
+                    personas.Persona_ID = int.Parse(reader["Persona_ID"].ToString());
+                }
+                reader.Close();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudo realizar el cálculo requerido", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+
+            return personas;
+        }
+
+        public Personas BuscarCoincidencias(int id, string documnento, Personas personas)
+        {
+            string query = @"select * from Personas where Persona_ID = @id and Nro_Documento = @documnento";
+            
+
+            SqlParameter idpersona = new SqlParameter("@id", id);
+            SqlParameter docPersona = new SqlParameter("@documnento", documnento);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(idpersona);
+            cmd.Parameters.Add(docPersona);
+
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    personas.Persona_ID = int.Parse(reader["Persona_ID"].ToString());
+                    personas.Nro_documento = reader["Nro_documento"].ToString();
+                }
+                reader.Close();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
             }
             finally
             {

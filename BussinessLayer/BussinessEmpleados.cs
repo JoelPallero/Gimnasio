@@ -47,5 +47,19 @@ namespace BussinessLayer
             return _dataEmpleados.VerificarClaveEnBdd(clave, _tiposEmpleados, _empleados);
         }
 
+        public int EditarClave(Empleados empleados)
+        {
+            return _dataEmpleados.EditarClave(empleados);
+        }
+
+        public DataTable GetEstadosEmpleados(Tipos_Empleados _tiposEmpleados)
+        {
+            return _dataEmpleados.GetEstadosEmpleados(_tiposEmpleados);
+        }
+
+        public Empleados GetEmpleadoID(Empleados empleados)
+        {
+            return _dataEmpleados.GetEmleadoID(empleados);
+        }
     }
 }

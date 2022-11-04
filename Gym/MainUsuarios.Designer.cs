@@ -34,7 +34,7 @@ namespace Gym
             this.titlebox = new System.Windows.Forms.PictureBox();
             this.menubox = new System.Windows.Forms.PictureBox();
             this.logo = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBienvenido = new System.Windows.Forms.Label();
             this.btnAsistencia = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
             this.btnPagos = new System.Windows.Forms.Button();
@@ -104,18 +104,17 @@ namespace Gym
             this.logo.TabStop = false;
             this.logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebox_MouseDown);
             // 
-            // label1
+            // lblBienvenido
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(267, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 23);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "Usuario XXXXX";
-            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebox_MouseDown);
+            this.lblBienvenido.AutoSize = true;
+            this.lblBienvenido.BackColor = System.Drawing.Color.DodgerBlue;
+            this.lblBienvenido.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.lblBienvenido.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblBienvenido.Location = new System.Drawing.Point(267, 14);
+            this.lblBienvenido.Name = "lblBienvenido";
+            this.lblBienvenido.Size = new System.Drawing.Size(0, 23);
+            this.lblBienvenido.TabIndex = 34;
+            this.lblBienvenido.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebox_MouseDown);
             // 
             // btnAsistencia
             // 
@@ -363,7 +362,7 @@ namespace Gym
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblBienvenido);
             this.Controls.Add(this.logo);
             this.Controls.Add(this.windowbox);
             this.Controls.Add(this.titlebox);
@@ -390,7 +389,7 @@ namespace Gym
         private System.Windows.Forms.PictureBox titlebox;
         private System.Windows.Forms.PictureBox menubox;
         private System.Windows.Forms.PictureBox logo;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblBienvenido;
         private System.Windows.Forms.Button btnAsistencia;
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnPagos;

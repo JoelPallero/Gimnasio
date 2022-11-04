@@ -13,11 +13,18 @@ namespace Gym
     public class MetodosGenerales
     {
         #region Instancias
+
+        //Entidades
+        private Personas _personas;
+        private Entities.Empleados _empleados;
+        private Jornadas_Empleados _jornadas_Empleados;
+
+        //Capa de negocio
         private BussinessTipo _bussinessTipo;
         private BussinessEmpleados _bussinessEmpleados;
         private readonly BussinessPersonas _bussinessPersonas;
-        private Personas _personas;
-        private Entities.Empleados _empleados;
+        private readonly Tipos_Empleados _tiposEmpleados;
+        private readonly BussinessJornadas _bussinessJornadas;
 
         #endregion
 
@@ -28,19 +35,27 @@ namespace Gym
             _empleados = new Entities.Empleados();
             _bussinessPersonas = new BussinessPersonas();
             _personas = new Personas();
+            _tiposEmpleados = new Tipos_Empleados();
+            _jornadas_Empleados = new Jornadas_Empleados();
+            _bussinessJornadas = new BussinessJornadas();
         }
 
         #region Variables
-        /*tareas*/
+        //Esta variable me sirve para saber el id del empleado que tiene abierta
+        //su sesión en el programa
+        public int usuarioOpenID;
+        public int personaOpenID;
+        public string nombrePersona;
+        public bool CargarJornada = false;
+        public int empleadoID = 0;
 
-        //Asignar el ID del usuario´con el login abierto para utilizarlo
-        //como huella en los distintos registros.
-
+        //resto de variables
         public bool CajaAbierta = true;
-
         public DataTable DtTipos_Documentos = new DataTable();
         public DataTable DtTipos_Sexos = new DataTable();
         public DataTable DtTipos_Empleados = new DataTable();
+        public DataTable DtEstados_Empleados = new DataTable();
+        public DataTable DtJornadas = new DataTable();
         public int empleado_ID;
         public int persona_ID;
         public string apellidoNombrePersona;
@@ -50,8 +65,18 @@ namespace Gym
 
         #endregion
 
+        #region Jornadas
 
+        public void GetJornadaEmpleado()
+        {
+            DtJornadas = _bussinessJornadas.GetJornadaEmpleado(_jornadas_Empleados, empleadoID);
+        }
 
+        #endregion
+
+        #region Planes
+
+        #endregion
 
         #region Tipos de documento
 
@@ -88,6 +113,7 @@ namespace Gym
         #endregion
 
         #region Personas
+
 
         public void AltaPersona(string Nombre,
                                 string Apellido,
@@ -150,7 +176,7 @@ namespace Gym
             persona_ID = _personas.Persona_ID;
         }
 
-        public void EditarPersona(string Nombre,
+        public void EditarPersona(int Persona_ID, string Nombre,
                                 string Apellido,
                                 int Tipo_Documento_ID,
                                 string Nro_documento,
@@ -160,6 +186,7 @@ namespace Gym
                                 string Mail,
                                 string Observaciones)
         {
+            _personas.Persona_ID = Persona_ID;
             _personas.Nombre = Nombre;
             _personas.Apellido = Apellido;
             _personas.Tipo_Documento_ID = Tipo_Documento_ID;
@@ -178,14 +205,19 @@ namespace Gym
             empleado_ID = _empleados.Empleado_ID;
         }
 
+        public void GetPersona()
+        {
+            _personas = _bussinessPersonas.GetPersona(_personas);
+            nombrePersona = _personas.Nombre;
+            personaOpenID = _personas.Persona_ID;
+        }
+
         #endregion
 
-        #region Buscar Datos de Persona
-        //Para modificar el estado
-
-
-
-        #endregion
+        public void GetEstadosEmpleados()
+        {
+            DtEstados_Empleados = _bussinessEmpleados.GetEstadosEmpleados(_tiposEmpleados);
+        }
 
     }
 }
