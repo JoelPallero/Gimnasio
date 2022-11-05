@@ -42,6 +42,7 @@ namespace Gym
         private int juevesId = -1;
         private int viernesId = -1;
         private int sabadoId = -1;
+        private bool contenidoIncorrecto = false;
 
         #endregion
 
@@ -367,6 +368,38 @@ namespace Gym
             _bussinessJornadas.EliminarJornadaEmpleado(jornadaID);
         }
 
+        private void RevisarContenido()
+        {
+            foreach (Control ctrl in gbJornadaEmpleado.Controls)
+            {
+                if (ctrl is TextBox txt)
+                {
+                    if (txt.Text == "hh:mm" || !string.IsNullOrEmpty(txt.Text))
+                    {
+                        foreach (Control ctl in gbJornadaEmpleado.Controls)
+                        {
+                            if (ctl is CheckBox chk)
+                            {
+                                if (chk.Checked && txt.Name.Contains(chk.Text))
+                                {
+                                    contenidoIncorrecto = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (contenidoIncorrecto)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        contenidoIncorrecto = false;
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region Focus TextBox
@@ -630,8 +663,18 @@ namespace Gym
 
         private void btnAltaJornada_Click(object sender, EventArgs e)
         {
-            CrearJornadaEmpleado();
-            this.Close();
+            RevisarContenido();
+            if (contenidoIncorrecto)
+            {
+                MessageBox.Show("Si selecciona un día, el horario correspondiente " +
+                                "debe ser registrado de manera correcta.","Datos erróneos", 
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                CrearJornadaEmpleado();
+                this.Close();
+            }
         }
         private void chkLunes_Click(object sender, EventArgs e)
         {
@@ -643,30 +686,80 @@ namespace Gym
         {
             check = 2;
             VerificarChk();
+            if (chkMartes.Checked && !chkTodos.Checked)
+            {
+                txtDesdeMartes.Enabled = true;
+                txtHastaMartes.Enabled = true;
+            }
+            else
+            {
+                txtDesdeMartes.Enabled = false;
+                txtHastaMartes.Enabled = false;
+            }
         }
 
         private void chkMiercoles_Click(object sender, EventArgs e)
         {
             check = 3;
             VerificarChk();
+            if (chkMiercoles.Checked && !chkTodos.Checked)
+            {
+                txtDesdeMiercoles.Enabled = true;
+                txtHastaMiercoles.Enabled = true;
+            }
+            else
+            {
+                txtDesdeMiercoles.Enabled = false;
+                txtHastaMiercoles.Enabled = false;
+            }
         }
 
         private void chkJueves_Click(object sender, EventArgs e)
         {
             check = 4;
             VerificarChk();
+            if (chkJueves.Checked && !chkTodos.Checked)
+            {
+                txtDesdeJueves.Enabled = true;
+                txtHastaJueves.Enabled = true;
+            }
+            else
+            {
+                txtHastaJueves.Enabled = false;
+                txtDesdeJueves.Enabled = false;
+            }
         }
 
         private void chkViernes_Click(object sender, EventArgs e)
         {
             check = 5;
             VerificarChk();
+            if (chkViernes.Checked && !chkTodos.Checked)
+            {
+                txtDesdeViernes.Enabled = true;
+                txtHastaViernes.Enabled = true;
+            }
+            else
+            {
+                txtDesdeViernes.Enabled = false;
+                txtHastaViernes.Enabled = false;
+            }
         }
 
         private void chkSabado_Click(object sender, EventArgs e)
         {
             check = 6;
             VerificarChk();
+            if (chkSabado.Checked && !chkTodos.Checked)
+            {
+                txtDesdeSabado.Enabled = true;
+                txtHastaSabado.Enabled = true;
+            }
+            else
+            {
+                txtDesdeSabado.Enabled = false;
+                txtHastaSabado.Enabled = false;
+            }
         }
 
         private void btnDelLunes_Click(object sender, EventArgs e)

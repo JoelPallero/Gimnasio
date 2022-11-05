@@ -27,3 +27,6 @@ G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.csproj.CoreCompileInp
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.csproj.CopyComplete
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.exe
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.pdb
+G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\NLog.config
+G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\NLog.dll
+G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\NLog.xml
