@@ -32,6 +32,9 @@ namespace Gym
         private string desde;
         private string hasta;
         private bool todosChk = false;
+        private int check;
+        private int contador = 0;
+        private string formatoHora = "El formato de la hora es este: hh:mm";
 
         #endregion
 
@@ -59,7 +62,6 @@ namespace Gym
 
         private void cargarJornada()
         {
-
             if (_metodosGenerales.DtJornadas.Rows.Count > 0)
             {
                 foreach (DataRow dr in _metodosGenerales.DtJornadas.Rows)
@@ -110,34 +112,97 @@ namespace Gym
         }
         private void VerificarChk()
         {
-            if (chkTodos.Checked == false)
+            switch (check)
             {
-                //Si el chk que dice "Seleccionar todos" está seleccionad
-                //Entonces todos los otros chk se van a seleccionar
-                //Caso contrario, se les quitará el chkeck
-                foreach (Control chk in this.gbJornadaEmpleado.Controls)
-                {
-                    if (chk is CheckBox box)
-                    {
-                        CheckBox c;
-                        c = box;
-                        //Deshabilito el check en cada checkbox
-                        c.Checked = false;
-                    }
-                    else if (chk is TextBox txt)
-                    {
-                        TextBox t;
-                        t = txt;
-                        if (t.Name != "txtDesdeLunes" && t.Name != "txtHastaLunes")
-                        {
-                            //habilito cada textbox en este control
-                            t.Enabled = true;
-                        }
-                    }
-                }
+                case 0:
+                    ActivarTodoChk();
+                    break;
+                case 1:
+                    ChkDias();
+                    break;
+                case 2:
+                    ChkDias();
+                    break;
+                case 3:
+                    ChkDias();
+                    break;
+                case 4:
+                    ChkDias();
+                    break;
+                case 5:
+                    ChkDias();
+                    break;
+                case 6:
+                    ChkDias();
+                    break;
+            }
+            contador = 0;
+        }
+
+        #region Trash
+        //private void ActivarTextbox()
+        //{
+        //    //Vamos a recorrer los controles
+        //    foreach (Control ctrl in gbJornadaEmpleado.Controls)
+        //    {
+        //        //Primero encuentro los checkbox
+        //        if (ctrl is CheckBox chk)
+        //        {
+        //            CheckBox c;
+        //            c = chk;
+        //            //Por cada chk que no sea Lunes o Todos (el primer chk)
+        //            if (!c.Name.Contains("Lunes") && !c.Name.Contains("Todos"))
+        //            {
+        //                //voy a recorrer los textbox
+        //                foreach (Control txt in gbJornadaEmpleado.Controls)
+        //                {
+        //                    if (txt is TextBox box)
+        //                    {
+        //                        TextBox t;
+        //                        t = box;
+        //                        //Por cada textbox que sea diferente a Lunes
+        //                        if (!t.Name.Contains("Lunes"))
+        //                        {
+        //                            //Voy a habilitarlo o dehabilitarlo en caso de que el chk
+        //                            //
+        //                            if (t.Name.Contains(c.Text) && c.Checked && !todosChk)
+        //                            {
+        //                                t.Enabled = true;
+        //                            }
+        //                            else
+        //                            {
+
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+
+        #endregion
+
+        private void ChkDias()
+        {
+            RevisarTodosChk();
+            if (chkTodos.Checked)
+            {
+                chkTodos.Checked = false;
                 todosChk = false;
             }
             else
+            {
+                if (contador > 5 && !chkTodos.Checked)
+                {
+                    ActivarTodoChk();
+                }
+            }
+        }
+        private void ActivarTodoChk()
+        {
+            if (!chkTodos.Checked && contador < 7 && !todosChk)
             {
                 foreach (Control chk in this.gbJornadaEmpleado.Controls)
                 {
@@ -147,18 +212,56 @@ namespace Gym
                         c = box;
                         c.Checked = true;
                     }
-                    else if (chk is TextBox txt)
-                    {
-                        TextBox t;
-                        t = txt;
-                        if (t.Name != "txtDesdeLunes" && t.Name != "txtHastaLunes")
-                        {
-                            //habilito cada textbox en este control
-                            t.Enabled = false;
-                        }
-                    }
                 }
                 todosChk = true;
+            }
+            else
+            {
+                if (todosChk)
+                {
+                    //Si el chk que dice "Seleccionar todos" está seleccionado
+                    //Entonces todos los otros chk se van a seleccionar
+                    //Caso contrario, se les quitará el chkeck
+                    foreach (Control chk in this.gbJornadaEmpleado.Controls)
+                    {
+                        if (chk is CheckBox box)
+                        {
+                            CheckBox c;
+                            c = box;
+                            //Deshabilito el check en cada checkbox
+                            c.Checked = false;
+                        }
+                    }
+                    todosChk = false;
+                }
+                else
+                {
+                    foreach (Control chk in this.gbJornadaEmpleado.Controls)
+                    {
+                        if (chk is CheckBox box)
+                        {
+                            CheckBox c;
+                            c = box;
+                            c.Checked = true;
+                        }
+                    }
+                    todosChk = true;
+                }
+            }
+        }
+        private void RevisarTodosChk()
+        {
+            foreach (Control chk in this.gbJornadaEmpleado.Controls)
+            {
+                if (chk is CheckBox box)
+                {
+                    CheckBox c;
+                    c = box;
+                    if (c.Checked)
+                    {
+                        contador++;
+                    }
+                }
             }
         }
         private void AsignacionHoras()
@@ -185,7 +288,6 @@ namespace Gym
                 Empleado_ID = _metodosGenerales.empleado_ID
             };
         }
-
         private void CrearJornadaEmpleado()
         {
             TraerIdEmpleado();
@@ -517,9 +619,9 @@ namespace Gym
         #endregion
 
         #region Clicks
-
         private void chkTodos_Click(object sender, EventArgs e)
         {
+            check = 0;
             VerificarChk();
         }
 
@@ -532,6 +634,43 @@ namespace Gym
         {
             CrearJornadaEmpleado();
         }
+        private void chkLunes_Click(object sender, EventArgs e)
+        {
+            check = 1;
+            VerificarChk();
+        }
+
+        private void chkMartes_Click(object sender, EventArgs e)
+        {
+            check = 2;
+            VerificarChk();
+        }
+
+        private void chkMiercoles_Click(object sender, EventArgs e)
+        {
+            check = 3;
+            VerificarChk();
+        }
+
+        private void chkJueves_Click(object sender, EventArgs e)
+        {
+            check = 4;
+            VerificarChk();
+        }
+
+        private void chkViernes_Click(object sender, EventArgs e)
+        {
+            check = 5;
+            VerificarChk();
+        }
+
+        private void chkSabado_Click(object sender, EventArgs e)
+        {
+            check = 6;
+            VerificarChk();
+        }
+
+
 
         #endregion
 
@@ -552,5 +691,9 @@ namespace Gym
 
         #endregion
 
+        private void txtDesdeLunes_MouseHover(object sender, EventArgs e)
+        {
+            ttFormatoHora.Show(formatoHora, txtDesdeLunes);
+        }
     }
 }

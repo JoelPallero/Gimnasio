@@ -516,3 +516,8 @@ go
 insert into Personas values ('Admin', 'Admin', 0, '123456', 0, '0', null, null, null, GETDATE(), null)
 insert into Empleados values (0, 'Admin', 'c4a0b7848bf1526e502f68b2c296f384d1aeee3857780b90ce2ddf7530875a27', 0, 0)
 
+
+
+select * from Personas
+select * from Empleados
+select * from Jornadas_Empleados
