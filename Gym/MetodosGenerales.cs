@@ -219,5 +219,14 @@ namespace Gym
             DtEstados_Empleados = _bussinessEmpleados.GetEstadosEmpleados(_tiposEmpleados);
         }
 
+        #region Jornadas
+
+        public void EliminarJornada(int jornadaID)
+        {
+            
+        }
+
+        #endregion
+
     }
 }

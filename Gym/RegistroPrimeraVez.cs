@@ -88,14 +88,13 @@ namespace Gym
         {
             //Pasamos los datos a la entidad Personas
             _personas.Nombre = txtNombre.Text.ToString();
-            _personas.Apellido = txtClave.Text.ToString();
+            _personas.Apellido = txtApellido.Text.ToString();
             _personas.Tipo_Documento_ID = cmbTipoDocumento.SelectedIndex;
             _personas.Nro_documento = txtNroDocumento.Text.ToString();
             _personas.Tipo_Sexo_ID = cmbSexo.SelectedIndex;
             _personas.Nro_Telefono = txtTelefono.Text.ToString();
             _personas.Fecha_Alta = DateTime.Now;
             _personas.Mail = txtMail.Text.ToString();
-
 
             //Y la enviamos a la capa de negocio para llevarla a la bdd.
             _bussinessPersonas.AltaJefe(_personas);

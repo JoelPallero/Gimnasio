@@ -11,5 +11,6 @@ namespace Entities
         public string Dia { get; set; }
         public string Desde_Hora { get; set; }
         public string Hasta_Hora { get; set; }
+        public string Estado { get; set; }
     }
 }

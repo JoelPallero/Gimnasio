@@ -521,3 +521,4 @@ insert into Empleados values (0, 'Admin', 'c4a0b7848bf1526e502f68b2c296f384d1aee
 select * from Personas
 select * from Empleados
 select * from Jornadas_Empleados
+

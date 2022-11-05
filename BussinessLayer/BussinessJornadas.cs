@@ -36,6 +36,20 @@ namespace BussinessLayer
         {
             return _dataJornadas.GetJornadaEmpleado(jornadas_Empleados, personaID);
         }
+        public int EliminarJornadaEmpleado(int JornadaID)
+        {
+            return _dataJornadas.EliminarJornadaEmpleado(JornadaID);
+        }
+
+        public int EditarJornadaEmpleado(Jornadas_Empleados jornadas_Empleados)
+        {
+            return _dataJornadas.EditarJornadaEmpleado(jornadas_Empleados);
+        }
+
+        #endregion
+
+        #region General
+
 
         #endregion
     }
