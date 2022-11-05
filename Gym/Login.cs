@@ -189,7 +189,6 @@ namespace Gym
             }
         }
 
-
         #endregion
 
         //MessageBox.Show("Se encontró el perfil", "Prueba");

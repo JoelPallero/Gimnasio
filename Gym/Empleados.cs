@@ -74,7 +74,6 @@ namespace Gym
         #endregion
 
         #region Métodos Encapsulados
-
         private void BuscarEmpleado()
         {
             //Asigno el ID de la fila, que está oculto
@@ -125,7 +124,6 @@ namespace Gym
             }
             edicionEmpleado = true;
         }
-
         private void GetEmpleados()
         {
             //Primero limpio el grid. Para que no haya errores.
@@ -144,7 +142,6 @@ namespace Gym
                 }
             }
         }
-
         private void DarAltaCompletaEmpleado()
         {
             switch (motivoEdicion)
@@ -178,7 +175,6 @@ namespace Gym
             GetEmpleados();
             ResetControls();
         }
-        
 
         private void EditarPersona()
         {
@@ -381,7 +377,6 @@ namespace Gym
                 claveOK = true;
             }
         }
-
         private void Tipos_Documentos()
         {
             //llamo al método para traer los tipos de documentos y los asigno al combobox
@@ -390,7 +385,6 @@ namespace Gym
             cmbTipoDocumentoEmpleado.DisplayMember = "Tipo";
             cmbTipoDocumentoEmpleado.ValueMember = "Tipo_documento_ID";
         }
-
         private void Tipos_Sexos()
         {
             //llamo al método para traer los tipos de sexos y los asigno al combobox
@@ -399,7 +393,6 @@ namespace Gym
             cmbSexoEmpleado.DisplayMember = "Sexo"; //Pero solo esta columna es la que muestro
             cmbSexoEmpleado.ValueMember = "Tipo_Sexo_ID";
         }
-
         private void Tipos_Empleados()
         {
             //llamo al método para traer los tipos de Empleados y los asigno al combobox
@@ -416,9 +409,7 @@ namespace Gym
             cmbEstados.Tag = "Estado inicial del empleado";
             cmbEstados.DisplayMember = "Estado_Empleado"; //Pero solo esta columna es la que muestro
             cmbEstados.ValueMember = "Estado_Empleado_ID";
-        }
-
-        
+        }        
         private void ValidarCamposVacios()
         {
             if (string.IsNullOrEmpty(txtNombreEmpleado.Text) ||
@@ -433,7 +424,6 @@ namespace Gym
                 camposObligatoriosVacios = false;
             }
         }
-
         private void ValidarContenido()
         {
             foreach (Control txt in this.gbEmpleado.Controls)
@@ -456,8 +446,6 @@ namespace Gym
                 }
             }
         }
-
-
         private void ResetControls()
         {            
             //luego el groupbox general, lo volvemos al estado inicial.
@@ -861,7 +849,7 @@ namespace Gym
 
         #endregion
 
-        #region Editar Empleado
+        #region Edición de datos de empleado.
         private void editarEmpleado_Click(object sender, EventArgs e)
         {
             motivoEdicion = 0;
@@ -880,22 +868,6 @@ namespace Gym
                 EditarDatos();
             }
         }
-
-        #endregion
-
-        private void editarEstado_Click(object sender, EventArgs e)
-        {
-            motivoEdicion = 1;
-            //Abriremos otro sumenú donde salen los estados. Solo hay que seleccionarlo
-            //y el sistema hace el resto del cambio del mismo en el sistema.
-
-            if (_metodosGenerales.DtEstados_Empleados.Rows.Count > 0)
-            {
-                
-            }
-
-        }
-
         private void editarClave_Click(object sender, EventArgs e)
         {
             motivoEdicion = 2;
@@ -914,12 +886,6 @@ namespace Gym
             EditarDatos();
             EditarLogin();
         }
-
-        private void editarEstado_MouseHover(object sender, EventArgs e)
-        {
-
-        }
-
         private void editarJornada_Click(object sender, EventArgs e)
         {
             _metodosGenerales.empleadoID = _empleados.Empleado_ID;
@@ -933,5 +899,7 @@ namespace Gym
             this.Enabled = false;
             jn.ShowDialog();
         }
+
+        #endregion
     }
 }
