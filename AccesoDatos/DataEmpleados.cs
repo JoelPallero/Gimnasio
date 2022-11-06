@@ -68,15 +68,17 @@ namespace AccesoDatos
         {
             string query = @"sp_cargar_ultimo_ID";
             SqlCommand cmd = new SqlCommand(query, conexion);
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter();
 
             try
             {
-                conexion.Open();
-                cmd.ExecuteNonQuery();
-                da.SelectCommand = cmd;
-                da.Fill(dt);
+                conexion.Open(); 
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    empleados.Empleado_ID = int.Parse(reader["Empleado_ID"].ToString());
+                }
+                reader.Close();
             }
             catch (Exception e)
             {

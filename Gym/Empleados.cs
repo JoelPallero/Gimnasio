@@ -173,7 +173,7 @@ namespace Gym
                     //se va a realizar desde acá
                     EditarPersona();
                     EditarEmpleado();
-                    motivoEdicion = 3;
+
                     break;
                 case 1:
                     //Edición solo de la jornada
@@ -372,10 +372,12 @@ namespace Gym
                     {
                         _empleados.Clave = clave;
                     }
+                    claveOK = true;
                 }
                 else
                 {
                     MessageBox.Show("El usuario y/o la clave están mal registrados. Por favor, asigne usuario y clave validos.","Usuario y/o clave mal registrados");
+                    claveOK = false;
                 }
             }
         }
@@ -821,6 +823,7 @@ namespace Gym
                             if (chkJornadaEmpleados.Checked)
                             {
                                 CargarJornada();
+                                motivoEdicion = 3;
                             }
                         }
 
@@ -867,6 +870,7 @@ namespace Gym
             {
                 EditarDatos();
             }
+            _metodosGenerales.CargarJornada = true;
         }
         private void editarClave_Click(object sender, EventArgs e)
         {

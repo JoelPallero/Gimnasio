@@ -46,7 +46,7 @@ namespace Gym
         public int usuarioOpenID;
         public int personaOpenID;
         public string nombrePersona;
-        public bool CargarJornada = false;
+        public bool CargarJornada = true;
         public int empleadoID;
         public int personaID;
 
@@ -69,7 +69,7 @@ namespace Gym
         #region Jornadas
         public void GetJornadaEmpleado()
         {
-            DtJornadas = _bussinessJornadas.GetJornadaEmpleado(_jornadas_Empleados, empleadoID);
+            DtJornadas = _bussinessJornadas.GetJornadaEmpleado(_jornadas_Empleados, empleado_ID);
         }
 
         #endregion
