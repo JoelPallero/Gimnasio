@@ -276,9 +276,10 @@ namespace AccesoDatos
             string orden = @"update Empleados set Usuario = @Usuario, 
                                                      Clave = @Clave,   
                                                      Tipo_Empleado_ID = @Tipo_Empleado_ID
-                                               Where Persona_ID = @Persona_ID"
+                                               Where Persona_ID = @Persona_ID and Empleado_ID = @Empleado_ID"
             ;
 
+            SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", empleados.Empleado_ID);
             SqlParameter persona_ID = new SqlParameter("@Persona_ID", empleados.Persona_ID);
             SqlParameter usuario = new SqlParameter("@Usuario", empleados.Usuario);
             SqlParameter clave = new SqlParameter("@Clave", empleados.Clave);
@@ -286,6 +287,7 @@ namespace AccesoDatos
             
             SqlCommand cmd = new SqlCommand(orden, conexion);
 
+            cmd.Parameters.Add(empleado_ID);
             cmd.Parameters.Add(persona_ID);
             cmd.Parameters.Add(usuario);
             cmd.Parameters.Add(clave);

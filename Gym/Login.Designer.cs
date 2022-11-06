@@ -66,6 +66,7 @@ namespace Gym
             this.txtClave.Text = "Clave";
             this.txtClave.UseSystemPasswordChar = true;
             this.txtClave.Enter += new System.EventHandler(this.txtClave_Enter);
+            this.txtClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClave_KeyPress);
             this.txtClave.Leave += new System.EventHandler(this.txtClave_Leave);
             // 
             // linkLabel1
@@ -103,6 +104,7 @@ namespace Gym
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = false;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
+            this.btnIngresar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnIngresar_KeyPress);
             // 
             // lblGenerarPrimerUsuario
             // 

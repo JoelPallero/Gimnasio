@@ -74,6 +74,25 @@ namespace Gym
         #endregion
 
         #region Métodos Encapsulados
+
+        private void CargarJornada()
+        {
+            //vamos a cambiar el valor a un booleano
+            //para que el formulario sepa si cargar o no los datos
+            //cuando se abra
+            if (motivoEdicion == 0)
+            {
+                _metodosGenerales.CargarJornada = true;
+            }
+            else
+            {
+                _metodosGenerales.CargarJornada = false;
+            }
+
+            //abrir el form de Jornada y luego cargar todas las jornadas.
+            Jornadas jn = new Jornadas();
+            jn.ShowDialog();
+        }
         private void BuscarEmpleado()
         {
             //Asigno el ID de la fila, que está oculto
@@ -81,8 +100,10 @@ namespace Gym
             _personas.Persona_ID = Convert.ToInt32(dtgvEmpleados.CurrentRow.Cells[0].Value);
             _bussinessPersonas.GetEmpleadoUnico(_personas);
 
-            _empleados.Persona_ID = _personas.Persona_ID;
+            _metodosGenerales.personaID = _personas.Persona_ID;
+            _empleados.Persona_ID = _metodosGenerales.personaID;
             _bussinessEmpleados.GetTipoEmpleado(_empleados);
+            _metodosGenerales.empleadoID = _empleados.Empleado_ID;
 
             //Luego de traer todos los datos, se los asigno a cada textbox
 
@@ -151,6 +172,7 @@ namespace Gym
                     //En caso de que no sea un alta, sino modificación,
                     //se va a realizar desde acá
                     EditarPersona();
+                    EditarEmpleado();
                     motivoEdicion = 3;
                     break;
                 case 1:
@@ -229,7 +251,6 @@ namespace Gym
                                 Nro_Alternativo,
                                 Mail,
                                 Observaciones);
-            EditarEmpleado();
         }
 
         private void AltaPersona()
@@ -287,9 +308,14 @@ namespace Gym
         {
             //Vamos a verificar si se ha modificado el combobox del tipo de empleado
             //cosa de saber si hace falta o no que tenga una clave.
+            _empleados.Empleado_ID = _metodosGenerales.empleadoID;
+            _empleados.Persona_ID = _metodosGenerales.personaID;
+            _empleados.Estado_Empleado_ID = cmbEstados.SelectedIndex;
             if (cmbTipoEmpleado.SelectedIndex == 0)
             {                
                 _empleados.Tipo_Empleado_ID = cmbTipoEmpleado.SelectedIndex + 2;
+                _empleados.Usuario = txtUsuario.Text.ToString();
+                _empleados.Clave = clave;
             }
             else
             {
@@ -297,6 +323,7 @@ namespace Gym
                 _empleados.Usuario = string.Empty;
                 _empleados.Clave = string.Empty;
             }
+
             //Mando todo a la capa de negocio
             _bussinessEmpleados.EditarEmpleado(_empleados);
         }
@@ -306,8 +333,6 @@ namespace Gym
             _empleados.Tipo_Empleado_ID = cmbTipoEmpleado.SelectedIndex + 2;
             _empleados.Estado_Empleado_ID = 0;
             _empleados.Usuario = txtUsuario.Text.ToString();
-            EncriptarClaveClave();
-            _empleados.Clave = clave;
             //Envío toda la data a la capa de negocio para ser mandada a la bdd.
             _bussinessEmpleados.AltaEmpleado(_empleados);
         }
@@ -323,58 +348,35 @@ namespace Gym
         {
             if (cmbTipoEmpleado.SelectedIndex == 0)
             {
-                string claveSinEncrip = (txtClave.Text).ToString();
-                string usuario = txtUsuario.Text;
-                //Vamos a encriptar la clave con un código hash cuando corresponda
-                if (motivoEdicion == 0)
+                if (txtUsuario.Text != "Usuario" && txtClave.Text != "Clave")
                 {
-                    if (claveSinEncrip != _empleados.Clave)
+                    //Si está todo OK.
+                    //Vamos a encriptar la clave y consultar si es una edición o alta.
+                    EncriptarClaveClave();
+                    //Tambien asigno la clave sin encriptación a otra variable.
+                    string claveSinCypt = txtClave.Text;
+
+                    if (motivoEdicion == 0)
                     {
-                        //Si la clave de la bdd es diferente a la del textbox
-                        //entonces encripto la del textbox y la reasigno
-                        EncriptarClaveClave();
-                        _empleados.Clave = clave;
-                        claveOK = true;
-                    }
-                    else if (_empleados.Usuario != usuario)
-                    {
-                        _empleados.Usuario = usuario;
-                    }
-                    else
-                    {
-                        if (txtUsuario.Text != "Usuario" && txtClave.Text != "Clave")
+                        //Si es una edición, hay que comparar si la clave nueva es != a la de la bdd
+                        if (claveSinCypt == _empleados.Clave)
                         {
-                            //Si las claves son iguales, 
-                            _empleados.Clave = claveSinEncrip;
-                            claveOK = true;
+                            _empleados.Clave = claveSinCypt;
                         }
                         else
                         {
-                            MessageBox.Show("Debe registrar una clave válida, en caso de ser usuario. Caso contrario, modifique el tipo de empleado que está registrando.", "Datos erróneos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            claveOK = false;
+                            _empleados.Clave = clave;
                         }
+                    }
+                    else
+                    {
+                        _empleados.Clave = clave;
                     }
                 }
                 else
                 {
-                    if (txtUsuario.Text != "Usuario" && txtClave.Text != "Clave")
-                    {
-                        EncriptarClaveClave();
-                        _empleados.Usuario = usuario;
-                        claveOK = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Debe registrar una clave válida, en caso de ser usuario. Caso contrario, modifique el tipo de empleado que está registrando.", "Datos erróneos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        claveOK = false;
-                    }
+                    MessageBox.Show("El usuario y/o la clave están mal registrados. Por favor, asigne usuario y clave validos.","Usuario y/o clave mal registrados");
                 }
-            }
-            else
-            {
-                _empleados.Usuario = string.Empty;
-                _empleados.Clave = string.Empty;
-                claveOK = true;
             }
         }
         private void Tipos_Documentos()
@@ -818,12 +820,10 @@ namespace Gym
                             //Luego verificamos si va con jornada.
                             if (chkJornadaEmpleados.Checked)
                             {
-                                Empleados emp = new Empleados();
-                                emp.Enabled = false;
-                                editarJornada_Click(sender, e);
+                                CargarJornada();
                             }
                         }
-                        
+
                         else
                         {
                             VerificarClave();
@@ -888,16 +888,7 @@ namespace Gym
         }
         private void editarJornada_Click(object sender, EventArgs e)
         {
-            _metodosGenerales.empleadoID = _empleados.Empleado_ID;
-            //vamos a cambiar el valor a un booleano
-            //para que el formulario sepa si cargar o no los datos
-            //cuando se abra
-            _metodosGenerales.CargarJornada = true;
-
-            //abrir el form de Jornada y luego cargar todas las jornadas.
-            Jornadas jn = new Jornadas();
-            this.Enabled = false;
-            jn.ShowDialog();
+            CargarJornada();
         }
 
         #endregion

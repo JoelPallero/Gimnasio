@@ -47,7 +47,8 @@ namespace Gym
         public int personaOpenID;
         public string nombrePersona;
         public bool CargarJornada = false;
-        public int empleadoID = 0;
+        public int empleadoID;
+        public int personaID;
 
         //resto de variables
         public bool CajaAbierta = true;
@@ -66,7 +67,6 @@ namespace Gym
         #endregion
 
         #region Jornadas
-
         public void GetJornadaEmpleado()
         {
             DtJornadas = _bussinessJornadas.GetJornadaEmpleado(_jornadas_Empleados, empleadoID);
@@ -100,7 +100,6 @@ namespace Gym
 
 
         #endregion
-
 
         #region Tipos de Empleados
         public void Bring_Tipos_Empleados()

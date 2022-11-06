@@ -1,15 +1,9 @@
 ﻿using BussinessLayer;
 using Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Gym
@@ -19,6 +13,7 @@ namespace Gym
         #region Instancias
         //Entidades
         private Jornadas_Empleados _jornadas_Empleados;
+        private Entities.Empleados _empleados;
 
         //Capa de Negocio
         private readonly BussinessJornadas _bussinessJornadas;
@@ -53,14 +48,15 @@ namespace Gym
             _bussinessJornadas = new BussinessJornadas();
             _jornadas_Empleados = new Jornadas_Empleados();
             _metodosGenerales = new MetodosGenerales();
+            _empleados = new Entities.Empleados();
         }
 
         private void Jornadas_Load(object sender, EventArgs e)
         {
             if (_metodosGenerales.CargarJornada)
             {
+                _metodosGenerales.GetJornadaEmpleado();
                 cargarJornada();
-                _metodosGenerales.CargarJornada = false;
             }
         }
 
@@ -318,12 +314,14 @@ namespace Gym
                         _jornadas_Empleados.Estado = "Activo";
                         if (_metodosGenerales.CargarJornada)
                         {
+                            _jornadas_Empleados.Empleado_ID = _metodosGenerales.empleadoID;
                             _bussinessJornadas.EditarJornadaEmpleado(_jornadas_Empleados);
                         }
                         else
                         {
+                            _jornadas_Empleados.Empleado_ID = _empleados.Empleado_ID;
                             _bussinessJornadas.AltaJornadaEmpleados(_jornadas_Empleados);
-                        }                        
+                        }
                         desde = string.Empty;
                         hasta = string.Empty;
                     }
@@ -335,15 +333,13 @@ namespace Gym
             //Si esto es así, es xq lo que hay que hacer es editar y no crear
             if (_metodosGenerales.CargarJornada)
             {
-                _jornadas_Empleados.Empleado_ID = _metodosGenerales.empleado_ID;
-
                 GuardarJornada();
             }
             else
             {
-                //sino, se crean nuevas jornadas
+                //si no es edición, es creación.
                 TraerIdEmpleado();
-                _jornadas_Empleados.Empleado_ID = _metodosGenerales.empleado_ID;
+
                 //Ahora tenemos 2 opciones.
                 // 1 es que se haya seleccionado el check "todos"
                 if (todosChk)
@@ -359,9 +355,10 @@ namespace Gym
                 {
                     //Y la otra es que se hayan seleccionado varios dias
                     //Vamos a verificar los checkbox que se hayan seleccionado
-                    
+                    GuardarJornada();
+
                 }
-            }            
+            }
         }
         private void EliminarJornada(int jornadaID)
         {
@@ -374,14 +371,19 @@ namespace Gym
             {
                 if (ctrl is TextBox txt)
                 {
-                    if (txt.Text == "hh:mm" || !string.IsNullOrEmpty(txt.Text))
+                    //Si el contenido de txt es igual a "hh:mm" o es nulo o está vacío
+                    if (txt.Text == "hh:mm" || string.IsNullOrEmpty(txt.Text))
                     {
+                        //entonces voy a ver si el checkbox que le corresponde está seleccionado
                         foreach (Control ctl in gbJornadaEmpleado.Controls)
                         {
                             if (ctl is CheckBox chk)
                             {
+                                //si está seleccionado y es el que corresponde..
                                 if (chk.Checked && txt.Name.Contains(chk.Text))
                                 {
+                                    //entonces el contenido está mal registrado y hay que registrar bien
+                                    //el contenido de la hora en cada cuadro.
                                     contenidoIncorrecto = true;
                                     break;
                                 }
@@ -667,7 +669,7 @@ namespace Gym
             if (contenidoIncorrecto)
             {
                 MessageBox.Show("Si selecciona un día, el horario correspondiente " +
-                                "debe ser registrado de manera correcta.","Datos erróneos", 
+                                "debe ser registrado de manera correcta.", "Datos erróneos",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
@@ -675,6 +677,7 @@ namespace Gym
                 CrearJornadaEmpleado();
                 this.Close();
             }
+            _metodosGenerales.CargarJornada = false;
         }
         private void chkLunes_Click(object sender, EventArgs e)
         {
@@ -917,6 +920,6 @@ namespace Gym
         }
 
         #endregion
-        
+
     }
 }

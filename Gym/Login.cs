@@ -189,6 +189,22 @@ namespace Gym
             }
         }
 
+        private void btnIngresar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                btnIngresar_Click(sender, e);
+            }
+        }
+
+        private void txtClave_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                btnIngresar_Click(sender, e);
+            }
+        }
+
         #endregion
 
         //MessageBox.Show("Se encontró el perfil", "Prueba");
