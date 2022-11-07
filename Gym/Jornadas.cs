@@ -17,6 +17,7 @@ namespace Gym
 
         //Capa de Negocio
         private readonly BussinessJornadas _bussinessJornadas;
+        private readonly BussinessEmpleados _bussinessEmpleados;
 
         //Clases internas
         private readonly MetodosGenerales _metodosGenerales;
@@ -24,6 +25,10 @@ namespace Gym
         #endregion
 
         #region Variables
+        //variables de tipo table.
+        public DataTable DtJornadas = new DataTable();
+
+        //otras.
         private string desde;
         private string hasta;
         private bool todosChk = false;
@@ -38,88 +43,123 @@ namespace Gym
         private int viernesId = -1;
         private int sabadoId = -1;
         private bool contenidoIncorrecto = false;
-        private int empleadoID;
-        
+        private int empleado_ID;
+        private bool cargarJornada;
+        private int personaJor;
+        private int contadorJornadas;
 
         #endregion
 
         #region Load
-        public Jornadas()
+        public Jornadas(int persona_Jor)
         {
             InitializeComponent();
             _bussinessJornadas = new BussinessJornadas();
             _jornadas_Empleados = new Jornadas_Empleados();
             _metodosGenerales = new MetodosGenerales();
             _empleados = new Entities.Empleados();
-        }
-
-        private void Jornadas_Load(object sender, EventArgs e)
-        {
-            if (_metodosGenerales.CargarJornada)
-            {
-                _metodosGenerales.GetJornadaEmpleado();
-
-                CargarJornada();
-            }
+            _bussinessEmpleados = new BussinessEmpleados();
+            personaJor = persona_Jor;
+            GetLastEmpleado();
         }
 
         #endregion
 
         #region Métodos encapsulados
+
+        
+        private void GetLastEmpleado()
+        {
+            _bussinessEmpleados.GetLastEmpleado(personaJor, _empleados);
+            //Una vez tengo el ID, lo asigno a una variable.
+            empleado_ID = _empleados.Empleado_ID;
+
+            //Una vez asignado, busco la jornada
+            GetJornadaEmpleado();
+
+            if (DtJornadas.Rows.Count > 0)
+            {
+                cargarJornada = true;
+                //cargo la jornada en los textbox corresondientes
+                CargarJornada();
+            }
+            else
+            {
+                cargarJornada = false;
+            }
+        }
+
+        private void GetJornadaEmpleado()
+        {
+            //Y la asigno a un datatable, para poder manejar el contenido.
+            DtJornadas = _bussinessJornadas.GetJornadaEmpleado(_jornadas_Empleados, empleado_ID);
+        }
+
         private void CargarJornada()
         {
-            if (_metodosGenerales.DtJornadas.Rows.Count > 0)
+            foreach (DataRow dr in DtJornadas.Rows)
             {
-                foreach (DataRow dr in _metodosGenerales.DtJornadas.Rows)
+                //Vamos a switchear cada vuelta para que vaya
+                //colocando los datos cada vuelta donde corresponda.
+                switch (dr[2].ToString())
                 {
-                    //Vamos a switchear cada vuelta para que vaya
-                    //colocando los datos cada vuelta donde corresponda.
-                    switch (dr[2].ToString())
-                    {
-                        case "Todos":
-                            chkTodos.Checked = true;
-                            todosId = Convert.ToInt32(dr[0]);
-                            txtDesdeLunes.Text = Convert.ToString(dr[3]);
-                            txtHastaLunes.Text = Convert.ToString(dr[4]);
-                            VerificarChk();
-                            break;
-                        case "Lunes":
-                            txtDesdeLunes.Text = Convert.ToString(dr[3]);
-                            txtHastaLunes.Text = Convert.ToString(dr[4]);
-                            lunesId = Convert.ToInt32(dr[0]);
-                            chkLunes.Checked = true;
-                            break;
-                        case "Martes":
-                            txtDesdeMartes.Text = Convert.ToString(dr[3]);
-                            txtHastaMartes.Text = Convert.ToString(dr[4]);
-                            martesId = Convert.ToInt32(dr[0]);
-                            chkMartes.Checked = true;
-                            break;
-                        case "Miercoles":
-                            txtDesdeMiercoles.Text = Convert.ToString(dr[3]);
-                            txtHastaMiercoles.Text = Convert.ToString(dr[4]);
-                            miercolesId = Convert.ToInt32(dr[0]);
-                            chkMiercoles.Checked = true;
-                            break;
-                        case "Jueves":
-                            txtDesdeJueves.Text = Convert.ToString(dr[3]);
-                            txtHastaJueves.Text = Convert.ToString(dr[4]);
-                            juevesId = Convert.ToInt32(dr[0]);
-                            chkJueves.Checked = true;
-                            break;
-                        case "Viernes":
-                            txtDesdeViernes.Text = Convert.ToString(dr[3]);
-                            txtHastaViernes.Text = Convert.ToString(dr[4]);
-                            viernesId = Convert.ToInt32(dr[0]);
-                            chkViernes.Checked = true;
-                            break;
-                        case "Sabado":
-                            txtDesdeSabado.Text = Convert.ToString(dr[3]);
-                            txtHastaSabado.Text = Convert.ToString(dr[4]);
-                            sabadoId = Convert.ToInt32(dr[0]);
-                            chkSabado.Checked = true;
-                            break;
-                    }
+                    case "Todos":
+                        chkTodos.Checked = true;
+                        todosId = Convert.ToInt32(dr[0]);
+                        txtDesdeLunes.Text = Convert.ToString(dr[3]);
+                        txtHastaLunes.Text = Convert.ToString(dr[4]);
+                        txtDesdeLunes.ForeColor = Color.Black;
+                        txtHastaLunes.ForeColor = Color.Black;
+                        VerificarChk();
+                        break;
+                    case "Lunes":
+                        txtDesdeLunes.Text = Convert.ToString(dr[3]);
+                        txtHastaLunes.Text = Convert.ToString(dr[4]);
+                        txtDesdeLunes.ForeColor = Color.Black;
+                        txtHastaLunes.ForeColor = Color.Black;
+                        lunesId = Convert.ToInt32(dr[0]);
+                        chkLunes.Checked = true;
+                        break;
+                    case "Martes":
+                        txtDesdeMartes.Text = Convert.ToString(dr[3]);
+                        txtHastaMartes.Text = Convert.ToString(dr[4]);
+                        txtDesdeMartes.ForeColor = Color.Black;
+                        txtHastaMartes.ForeColor = Color.Black;
+                        martesId = Convert.ToInt32(dr[0]);
+                        chkMartes.Checked = true;
+                        break;
+                    case "Miercoles":
+                        txtDesdeMiercoles.Text = Convert.ToString(dr[3]);
+                        txtHastaMiercoles.Text = Convert.ToString(dr[4]);
+                        txtDesdeMiercoles.ForeColor = Color.Black;
+                        txtHastaMiercoles.ForeColor = Color.Black;
+                        miercolesId = Convert.ToInt32(dr[0]);
+                        chkMiercoles.Checked = true;
+                        break;
+                    case "Jueves":
+                        txtDesdeJueves.Text = Convert.ToString(dr[3]);
+                        txtHastaJueves.Text = Convert.ToString(dr[4]);
+                        txtDesdeJueves.ForeColor = Color.Black;
+                        txtHastaJueves.ForeColor = Color.Black;
+                        juevesId = Convert.ToInt32(dr[0]);
+                        chkJueves.Checked = true;
+                        break;
+                    case "Viernes":
+                        txtDesdeViernes.Text = Convert.ToString(dr[3]);
+                        txtHastaViernes.Text = Convert.ToString(dr[4]);
+                        txtDesdeViernes.ForeColor = Color.Black;
+                        txtHastaViernes.ForeColor = Color.Black;
+                        viernesId = Convert.ToInt32(dr[0]);
+                        chkViernes.Checked = true;
+                        break;
+                    case "Sabado":
+                        txtDesdeSabado.Text = Convert.ToString(dr[3]);
+                        txtHastaSabado.Text = Convert.ToString(dr[4]);
+                        txtDesdeSabado.ForeColor = Color.Black;
+                        txtHastaSabado.ForeColor = Color.Black;
+                        sabadoId = Convert.ToInt32(dr[0]);
+                        chkSabado.Checked = true;
+                        break;
                 }
             }
         }
@@ -244,16 +284,11 @@ namespace Gym
             }
             else
             {
-                MessageBox.Show("El campo de horas, está mal regitrado. Desde registrarse con este formato: ##:##", "Formato incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El campo de horas, está mal registrado. Desde registrarse con este formato: ##:##", "Formato incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void TraerIdEmpleado()
-        {
-            //traer id último registro de empleado que se acaba de hacer
-            _metodosGenerales.Get_Last_Id_Empleado();
-        }
 
-        private void EditarJornada()
+        private void GuardarJornada()
         {
             foreach (Control chk in this.gbJornadaEmpleado.Controls)
             {
@@ -269,7 +304,7 @@ namespace Gym
                         {
                             case "Lunes":
                                 _jornadas_Empleados.Dia = "Lunes";
-                                _jornadas_Empleados.Jornada_Empleado_ID = lunesId; //problema
+                                _jornadas_Empleados.Jornada_Empleado_ID = lunesId;
                                 desde = txtDesdeLunes.Text.ToString();
                                 hasta = txtHastaLunes.Text.ToString();
                                 AsignacionHoras();
@@ -311,68 +346,15 @@ namespace Gym
                                 break;
                         }
                         _jornadas_Empleados.Estado = "Activo";
-                        _jornadas_Empleados.Empleado_ID = _metodosGenerales.empleado_ID;
-                        _bussinessJornadas.EditarJornadaEmpleado(_jornadas_Empleados);
-                        desde = string.Empty;
-                        hasta = string.Empty;
-                    }
-                }
-            }
-        }
-        private void GuardarNuevaJornada()
-        {
-            foreach (Control chk in this.gbJornadaEmpleado.Controls)
-            {
-                if (chk is CheckBox box)
-                {
-                    CheckBox c;
-                    c = box;
-                    //Y luego de cada checkbox le asignamos el horario.
-                    //Lunes
-                    if (c.Checked)
-                    {
-                        switch (c.Text)
+                        _jornadas_Empleados.Empleado_ID = empleado_ID;
+                        if (_jornadas_Empleados.Jornada_Empleado_ID != -1)
                         {
-                            case "Lunes":
-                                _jornadas_Empleados.Dia = "Lunes";
-                                desde = txtDesdeLunes.Text.ToString();
-                                hasta = txtHastaLunes.Text.ToString();
-                                AsignacionHoras();
-                                break;
-                            case "Martes":
-                                _jornadas_Empleados.Dia = "Martes";
-                                desde = txtDesdeMartes.Text.ToString();
-                                hasta = txtHastaMartes.Text.ToString();
-                                AsignacionHoras();
-                                break;
-                            case "Miercoles":
-                                _jornadas_Empleados.Dia = "Miercoles";
-                                desde = txtDesdeMiercoles.Text.ToString();
-                                hasta = txtHastaMiercoles.Text.ToString();
-                                AsignacionHoras();
-                                break;
-                            case "Jueves":
-                                _jornadas_Empleados.Dia = "Jueves";
-                                desde = txtDesdeJueves.Text.ToString();
-                                hasta = txtHastaJueves.Text.ToString();
-                                AsignacionHoras();
-                                break;
-                            case "Viernes":
-                                _jornadas_Empleados.Dia = "Viernes";
-                                desde = txtDesdeViernes.Text.ToString();
-                                hasta = txtHastaViernes.Text.ToString();
-                                AsignacionHoras();
-                                break;
-                            case "Sabado":
-                                _jornadas_Empleados.Dia = "Sabado";
-                                desde = txtDesdeSabado.Text.ToString();
-                                hasta = txtHastaSabado.Text.ToString();
-                                AsignacionHoras();
-                                break;
+                            _bussinessJornadas.EditarJornadaEmpleado(_jornadas_Empleados);
                         }
-                        _jornadas_Empleados.Estado = "Activo";
-                        _jornadas_Empleados.Empleado_ID = _metodosGenerales.empleado_ID;
-                        _bussinessJornadas.AltaJornadaEmpleados(_jornadas_Empleados);
+                        else
+                        {
+                            _bussinessJornadas.AltaJornadaEmpleados(_jornadas_Empleados);
+                        }
                         desde = string.Empty;
                         hasta = string.Empty;
                     }
@@ -382,15 +364,12 @@ namespace Gym
         private void CrearJornadaEmpleado()
         {
             //Si esto es así, es xq lo que hay que hacer es editar y no crear
-            if (_metodosGenerales.CargarJornada)
+            if (cargarJornada)
             {
-                EditarJornada();
+                GuardarJornada();
             }
             else
             {
-                //si no es edición, es creación.
-                TraerIdEmpleado();
-
                 //Ahora tenemos 2 opciones.
                 // 1 es que se haya seleccionado el check "todos"
                 if (todosChk)
@@ -407,7 +386,7 @@ namespace Gym
                 {
                     //Y la otra es que se hayan seleccionado varios dias
                     //Vamos a verificar los checkbox que se hayan seleccionado
-                    GuardarNuevaJornada();
+                    GuardarJornada();
 
                 }
             }
@@ -729,7 +708,7 @@ namespace Gym
                 CrearJornadaEmpleado();
                 this.Close();
             }
-            _metodosGenerales.CargarJornada = false;
+            
         }
         private void chkLunes_Click(object sender, EventArgs e)
         {

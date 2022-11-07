@@ -453,7 +453,7 @@ namespace Gym
             this.chkMiercoles.Name = "chkMiercoles";
             this.chkMiercoles.Size = new System.Drawing.Size(90, 21);
             this.chkMiercoles.TabIndex = 16;
-            this.chkMiercoles.Text = "Miércoles";
+            this.chkMiercoles.Text = "Miercoles";
             this.chkMiercoles.UseVisualStyleBackColor = true;
             this.chkMiercoles.Click += new System.EventHandler(this.chkMiercoles_Click);
             // 
@@ -536,7 +536,6 @@ namespace Gym
             this.Name = "Jornadas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jornadas";
-            this.Load += new System.EventHandler(this.Jornadas_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.gbJornadaEmpleado.ResumeLayout(false);
             this.gbJornadaEmpleado.PerformLayout();

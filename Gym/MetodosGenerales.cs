@@ -56,21 +56,12 @@ namespace Gym
         public DataTable DtTipos_Sexos = new DataTable();
         public DataTable DtTipos_Empleados = new DataTable();
         public DataTable DtEstados_Empleados = new DataTable();
-        public DataTable DtJornadas = new DataTable();
         public int empleado_ID;
         public int persona_ID;
         public string apellidoNombrePersona;
         public string tipoNumDocumentoPersona;
         public string estadoPersonaPersona;
 
-
-        #endregion
-
-        #region Jornadas
-        public void GetJornadaEmpleado()
-        {
-            DtJornadas = _bussinessJornadas.GetJornadaEmpleado(_jornadas_Empleados, empleado_ID);
-        }
 
         #endregion
 
@@ -198,9 +189,9 @@ namespace Gym
             _bussinessPersonas.EditarPersona(_personas);
         }
 
-        public void Get_Last_Id_Empleado()
+        public void Get_Last_Id_Empleado(int personaJor)
         {
-            _empleados = _bussinessEmpleados.GetLastID(_empleados);
+            _empleados = _bussinessEmpleados.GetLastID(personaJor, _empleados);
             empleado_ID = _empleados.Empleado_ID;
         }
 
@@ -217,15 +208,6 @@ namespace Gym
         {
             DtEstados_Empleados = _bussinessEmpleados.GetEstadosEmpleados(_tiposEmpleados);
         }
-
-        #region Jornadas
-
-        public void EliminarJornada(int jornadaID)
-        {
-            
-        }
-
-        #endregion
 
     }
 }

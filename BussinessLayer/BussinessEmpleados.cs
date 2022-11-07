@@ -22,9 +22,9 @@ namespace BussinessLayer
             return _dataEmpleados.AltaEmpleado(empleados);
         }
 
-        public Empleados GetLastID(Empleados empleados)
+        public Empleados GetLastID(int personaJor, Empleados empleados)
         {
-            return _dataEmpleados.GetLastID(empleados);
+            return _dataEmpleados.GetLastID(personaJor, empleados);
         }
 
         public DataSet GetEmpleados(string buscar)
@@ -60,6 +60,11 @@ namespace BussinessLayer
         public Empleados GetEmpleadoID(Empleados empleados)
         {
             return _dataEmpleados.GetEmleadoID(empleados);
+        }
+
+        public Empleados GetLastEmpleado(int personaId, Empleados empleados)
+        {
+            return _dataEmpleados.GetLastEmpleado(personaId, empleados);
         }
     }
 }

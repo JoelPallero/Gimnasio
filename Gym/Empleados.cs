@@ -47,6 +47,8 @@ namespace Gym
         private bool edicionEmpleado;
         private int motivoEdicion = 3;
         private bool chkTodos;
+        private int persona_Jor;
+        private bool cargarJornada;
         #endregion
 
         #region Load del form
@@ -77,20 +79,11 @@ namespace Gym
 
         private void CargarJornada()
         {
-            //vamos a cambiar el valor a un booleano
-            //para que el formulario sepa si cargar o no los datos
-            //cuando se abra
-            if (motivoEdicion == 0)
-            {
-                _metodosGenerales.CargarJornada = true;
-            }
-            else
-            {
-                _metodosGenerales.CargarJornada = false;
-            }
-
-            //abrir el form de Jornada y luego cargar todas las jornadas.
-            Jornadas jn = new Jornadas();
+            //Hacemos la solicitud para cargar el form de jornadas
+            //enviándole el dato correspondiente para que cargue
+            //las jornadas del empleado si es que hay, o directamente
+            //haga la gestión que el usuario desee.
+            Jornadas jn = new Jornadas(persona_Jor);
             jn.ShowDialog();
         }
         private void BuscarEmpleado()
@@ -163,7 +156,7 @@ namespace Gym
                 }
             }
         }
-        private void DarAltaCompletaEmpleado()
+        private void ABMEmpleado()
         {
             switch (motivoEdicion)
             {
@@ -173,19 +166,18 @@ namespace Gym
                     //se va a realizar desde acá
                     EditarPersona();
                     EditarEmpleado();
+                    persona_Jor = Convert.ToInt32(dtgvEmpleados.CurrentRow.Cells[0].Value);
 
                     break;
                 case 1:
                     //Edición solo de la jornada
+                    persona_Jor = Convert.ToInt32(dtgvEmpleados.CurrentRow.Cells[0].Value);
 
-
-                    motivoEdicion = 3;
                     break;
                 case 2:
                     //Blanqueo solo de usuario y clave.
 
 
-                    motivoEdicion = 3;
                     break;
                 default:
                     //Alta empleado
@@ -817,7 +809,7 @@ namespace Gym
                         if (claveOK)
                         {
                             //Hacemos la edición de la persona.
-                            DarAltaCompletaEmpleado();
+                            ABMEmpleado();
 
                             //Luego verificamos si va con jornada.
                             if (chkJornadaEmpleados.Checked)
@@ -832,7 +824,7 @@ namespace Gym
                             VerificarClave();
                             if (claveOK)
                             {
-                                DarAltaCompletaEmpleado();
+                                ABMEmpleado();
                             }
                         }
                     }
@@ -870,7 +862,6 @@ namespace Gym
             {
                 EditarDatos();
             }
-            _metodosGenerales.CargarJornada = true;
         }
         private void editarClave_Click(object sender, EventArgs e)
         {
@@ -892,6 +883,8 @@ namespace Gym
         }
         private void editarJornada_Click(object sender, EventArgs e)
         {
+            motivoEdicion = 1;
+            ABMEmpleado();
             CargarJornada();
         }
 

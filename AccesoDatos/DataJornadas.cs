@@ -24,16 +24,16 @@ namespace AccesoDatos
             ;
             SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", jornadaEmpleado.Empleado_ID);
             SqlParameter dia = new SqlParameter("@Dia", jornadaEmpleado.Dia);
-            SqlParameter estado = new SqlParameter("@Estado", jornadaEmpleado.Estado);
             SqlParameter desde_Hora = new SqlParameter("@Desde_Hora", jornadaEmpleado.Desde_Hora);
             SqlParameter hasta_Hora = new SqlParameter("@Hasta_Hora", jornadaEmpleado.Hasta_Hora);
-            
+            SqlParameter estado = new SqlParameter("@Estado", jornadaEmpleado.Estado);
+
             SqlCommand cmd = new SqlCommand(query, conexion);
             cmd.Parameters.Add(empleado_ID);
             cmd.Parameters.Add(dia);
-            cmd.Parameters.Add(estado);
             cmd.Parameters.Add(desde_Hora);
             cmd.Parameters.Add(hasta_Hora);
+            cmd.Parameters.Add(estado);
 
             try
             {
