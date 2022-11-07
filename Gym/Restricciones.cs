@@ -39,8 +39,18 @@ namespace Gym
             }
         }
 
-        //realizar el método con variables globales para que quede guardada en las variables
-        //los datos del usuario que tiene la sesión iniciada en este programa.
-        //
+        public void Horarios(KeyPressEventArgs e)
+        {
+            //Solo se teclean los digitos, los : y las teclas de retroceso, o controles.
+            if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar) || e.KeyChar == 58 || e.KeyChar == (char)Keys.Back )
+            {
+                e.Handled = false;
+            }
+
+            else
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

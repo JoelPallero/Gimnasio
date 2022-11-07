@@ -251,6 +251,8 @@ namespace Gym
             // 
             // txtHastaSabado
             // 
+            this.txtHastaSabado.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaSabado.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtHastaSabado.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaSabado.Location = new System.Drawing.Point(215, 228);
             this.txtHastaSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -261,12 +263,14 @@ namespace Gym
             this.txtHastaSabado.Text = "hh:mm";
             this.txtHastaSabado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaSabado.Enter += new System.EventHandler(this.txtHastaSabado_Enter);
+            this.txtHastaSabado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaSabado_KeyPress);
             this.txtHastaSabado.Leave += new System.EventHandler(this.txtHastaSabado_Leave);
-            this.txtHastaSabado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtHastaSabado.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeSabado
             // 
+            this.txtDesdeSabado.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeSabado.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtDesdeSabado.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeSabado.Location = new System.Drawing.Point(128, 228);
             this.txtDesdeSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -277,12 +281,14 @@ namespace Gym
             this.txtDesdeSabado.Text = "hh:mm";
             this.txtDesdeSabado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeSabado.Enter += new System.EventHandler(this.txtDesdeSabado_Enter);
+            this.txtDesdeSabado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeSabado_KeyPress);
             this.txtDesdeSabado.Leave += new System.EventHandler(this.txtDesdeSabado_Leave);
-            this.txtDesdeSabado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtDesdeSabado.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtHastaViernes
             // 
+            this.txtHastaViernes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaViernes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtHastaViernes.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaViernes.Location = new System.Drawing.Point(215, 198);
             this.txtHastaViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -293,12 +299,14 @@ namespace Gym
             this.txtHastaViernes.Text = "hh:mm";
             this.txtHastaViernes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaViernes.Enter += new System.EventHandler(this.txtHastaViernes_Enter);
+            this.txtHastaViernes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaViernes_KeyPress);
             this.txtHastaViernes.Leave += new System.EventHandler(this.txtHastaViernes_Leave);
-            this.txtHastaViernes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtHastaViernes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeViernes
             // 
+            this.txtDesdeViernes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeViernes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtDesdeViernes.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeViernes.Location = new System.Drawing.Point(128, 198);
             this.txtDesdeViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -309,12 +317,14 @@ namespace Gym
             this.txtDesdeViernes.Text = "hh:mm";
             this.txtDesdeViernes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeViernes.Enter += new System.EventHandler(this.txtDesdeViernes_Enter);
+            this.txtDesdeViernes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeViernes_KeyPress);
             this.txtDesdeViernes.Leave += new System.EventHandler(this.txtDesdeViernes_Leave);
-            this.txtDesdeViernes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtDesdeViernes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtHastaJueves
             // 
+            this.txtHastaJueves.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaJueves.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtHastaJueves.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaJueves.Location = new System.Drawing.Point(215, 168);
             this.txtHastaJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -325,12 +335,14 @@ namespace Gym
             this.txtHastaJueves.Text = "hh:mm";
             this.txtHastaJueves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaJueves.Enter += new System.EventHandler(this.txtHastaJueves_Enter);
+            this.txtHastaJueves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaJueves_KeyPress);
             this.txtHastaJueves.Leave += new System.EventHandler(this.txtHastaJueves_Leave);
-            this.txtHastaJueves.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtHastaJueves.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeJueves
             // 
+            this.txtDesdeJueves.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeJueves.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtDesdeJueves.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeJueves.Location = new System.Drawing.Point(128, 168);
             this.txtDesdeJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -341,12 +353,14 @@ namespace Gym
             this.txtDesdeJueves.Text = "hh:mm";
             this.txtDesdeJueves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeJueves.Enter += new System.EventHandler(this.txtDesdeJueves_Enter);
+            this.txtDesdeJueves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeJueves_KeyPress);
             this.txtDesdeJueves.Leave += new System.EventHandler(this.txtDesdeJueves_Leave);
-            this.txtDesdeJueves.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtDesdeJueves.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtHastaMiercoles
             // 
+            this.txtHastaMiercoles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaMiercoles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtHastaMiercoles.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaMiercoles.Location = new System.Drawing.Point(215, 138);
             this.txtHastaMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -357,12 +371,14 @@ namespace Gym
             this.txtHastaMiercoles.Text = "hh:mm";
             this.txtHastaMiercoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaMiercoles.Enter += new System.EventHandler(this.txtHastaMiercoles_Enter);
+            this.txtHastaMiercoles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaMiercoles_KeyPress);
             this.txtHastaMiercoles.Leave += new System.EventHandler(this.txtHastaMiercoles_Leave);
-            this.txtHastaMiercoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtHastaMiercoles.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeMiercoles
             // 
+            this.txtDesdeMiercoles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeMiercoles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtDesdeMiercoles.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeMiercoles.Location = new System.Drawing.Point(128, 138);
             this.txtDesdeMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -373,12 +389,14 @@ namespace Gym
             this.txtDesdeMiercoles.Text = "hh:mm";
             this.txtDesdeMiercoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeMiercoles.Enter += new System.EventHandler(this.txtDesdeMiercoles_Enter);
+            this.txtDesdeMiercoles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeMiercoles_KeyPress);
             this.txtDesdeMiercoles.Leave += new System.EventHandler(this.txtDesdeMiercoles_Leave);
-            this.txtDesdeMiercoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtDesdeMiercoles.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtHastaMartes
             // 
+            this.txtHastaMartes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaMartes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtHastaMartes.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaMartes.Location = new System.Drawing.Point(215, 108);
             this.txtHastaMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -389,12 +407,14 @@ namespace Gym
             this.txtHastaMartes.Text = "hh:mm";
             this.txtHastaMartes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaMartes.Enter += new System.EventHandler(this.txtHastaMartes_Enter);
+            this.txtHastaMartes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaMartes_KeyPress);
             this.txtHastaMartes.Leave += new System.EventHandler(this.txtHastaMartes_Leave);
-            this.txtHastaMartes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtHastaMartes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeMartes
             // 
+            this.txtDesdeMartes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeMartes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtDesdeMartes.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeMartes.Location = new System.Drawing.Point(128, 108);
             this.txtDesdeMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -405,8 +425,8 @@ namespace Gym
             this.txtDesdeMartes.Text = "hh:mm";
             this.txtDesdeMartes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeMartes.Enter += new System.EventHandler(this.txtDesdeMartes_Enter);
+            this.txtDesdeMartes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeMartes_KeyPress);
             this.txtDesdeMartes.Leave += new System.EventHandler(this.txtDesdeMartes_Leave);
-            this.txtDesdeMartes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtDesdeMartes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // chkSabado
@@ -483,6 +503,8 @@ namespace Gym
             // 
             // txtHastaLunes
             // 
+            this.txtHastaLunes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaLunes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtHastaLunes.ForeColor = System.Drawing.Color.DimGray;
             this.txtHastaLunes.Location = new System.Drawing.Point(215, 79);
             this.txtHastaLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -493,12 +515,14 @@ namespace Gym
             this.txtHastaLunes.Text = "hh:mm";
             this.txtHastaLunes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaLunes.Enter += new System.EventHandler(this.txtHastaLunes_Enter);
+            this.txtHastaLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaLunes_KeyPress);
             this.txtHastaLunes.Leave += new System.EventHandler(this.txtHastaLunes_Leave);
-            this.txtHastaLunes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtHastaLunes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeLunes
             // 
+            this.txtDesdeLunes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeLunes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.txtDesdeLunes.ForeColor = System.Drawing.Color.DimGray;
             this.txtDesdeLunes.Location = new System.Drawing.Point(128, 79);
             this.txtDesdeLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -509,8 +533,8 @@ namespace Gym
             this.txtDesdeLunes.Text = "hh:mm";
             this.txtDesdeLunes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeLunes.Enter += new System.EventHandler(this.txtDesdeLunes_Enter);
+            this.txtDesdeLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeLunes_KeyPress);
             this.txtDesdeLunes.Leave += new System.EventHandler(this.txtDesdeLunes_Leave);
-            this.txtDesdeLunes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Jornadas_MouseDown);
             this.txtDesdeLunes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // lblCancelar

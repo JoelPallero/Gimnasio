@@ -21,6 +21,7 @@ namespace Gym
 
         //Clases internas
         private readonly MetodosGenerales _metodosGenerales;
+        private readonly Restricciones _restricciones;
 
         #endregion
 
@@ -61,13 +62,12 @@ namespace Gym
             _bussinessEmpleados = new BussinessEmpleados();
             personaJor = persona_Jor;
             GetLastEmpleado();
+            _restricciones = new Restricciones();
         }
 
         #endregion
 
-        #region Métodos encapsulados
-
-        
+        #region Métodos encapsulados        
         private void GetLastEmpleado()
         {
             _bussinessEmpleados.GetLastEmpleado(personaJor, _empleados);
@@ -948,6 +948,69 @@ namespace Gym
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        #endregion
+
+        #region KeyPress en Textbox
+        private void txtHastaSabado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtDesdeSabado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtDesdeViernes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtHastaViernes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtDesdeJueves_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtHastaJueves_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtDesdeMiercoles_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtHastaMiercoles_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtDesdeMartes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtHastaMartes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtDesdeLunes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
+        }
+
+        private void txtHastaLunes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _restricciones.Horarios(e);
         }
 
         #endregion
