@@ -50,5 +50,11 @@ namespace BussinessLayer
         {
             return _dataPersonas.BuscarCoincidencias(id, documento, personas);
         }
+
+        public Personas GetPersonaPlan(string buscar, Personas personas)
+        {
+            return _dataPersonas.GetPersonaPlan(buscar, personas);
+        }
+
     }
 }

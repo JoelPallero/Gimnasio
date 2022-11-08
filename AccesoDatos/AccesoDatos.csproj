@@ -47,6 +47,7 @@
     <Compile Include="DataEmpleados.cs" />
     <Compile Include="DataJornadas.cs" />
     <Compile Include="DataPersonas.cs" />
+    <Compile Include="DataPlanes.cs" />
     <Compile Include="DataTipos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

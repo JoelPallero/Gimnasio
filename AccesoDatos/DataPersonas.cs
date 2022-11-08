@@ -353,5 +353,61 @@ namespace AccesoDatos
 
         #endregion
 
+        #region Persona para mostrar plan asignado que tiene (si es que tiene)
+
+        public Personas GetPersonaPlan(string buscar, Personas personas)
+        {
+            string query = @"SELECT Personas.Persona_ID, Nombre, Apellido, Nro_Documento, Nro_Telefono
+                                FROM Personas
+								inner join Clientes
+								on Clientes.Persona_ID = Personas.Persona_ID
+                                where Nombre LIKE @query
+                                    or Apellido LIKE @query
+                                    or Nro_Documento LIKE @query"
+            ;
+
+            SqlCommand cmd = new SqlCommand(query, conexion)
+            {
+                CommandType = CommandType.Text
+            };
+
+            cmd.Parameters.Add(new SqlParameter()
+            {
+                ParameterName = "@query",
+                SqlDbType = SqlDbType.NVarChar,
+                Value = string.Format("%{0}%", buscar)
+            });
+
+            try
+            {
+                OpenConnection();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    personas.Persona_ID = int.Parse(reader["Persona_ID"].ToString());
+                    personas.Nombre = reader["Nombre"].ToString();
+                    personas.Apellido = reader["Apellido"].ToString();
+                    personas.Nro_documento = reader["Nro_documento"].ToString();
+                    personas.Nro_Telefono = reader["Nro_Telefono"].ToString();
+                }
+                reader.Close();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al traer datos de cliente", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return personas;
+
+        }
+
+        #endregion
+
     }
 }

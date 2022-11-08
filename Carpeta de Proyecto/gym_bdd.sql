@@ -518,7 +518,24 @@ insert into Personas values ('Admin', 'Admin', 0, '123456', 0, '0', null, null, 
 insert into Empleados values (0, 'Admin', 'c4a0b7848bf1526e502f68b2c296f384d1aeee3857780b90ce2ddf7530875a27', 0, 0)
 
 
-
-select * from Personas
+select * from Planes_Asignados
+Select * from Planes
+Select * from Jornadas_Planes
 select * from Clientes
+select * from Personas
+select * from Facturas_Clientes
+
+
+/* Revisar al último esta consulta, para no generar errores en la consulta de datos
+respecto a cualquier plan que el cliente tenga */
+--select Planes.Nombre, Planes.Importe_Plan, Clientes.Cliente_ID
+--from Planes
+--inner join Planes_Asignados
+--on Planes_Asignados.Plan_ID = Planes.Plan_ID
+--inner join Clientes
+--on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
+--inner join Facturas_Clientes
+--on Facturas_Clientes.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
+--where Clientes.Cliente_ID = @Cliente_ID
+----------------------------
 

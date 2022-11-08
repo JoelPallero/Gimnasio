@@ -30,30 +30,17 @@ namespace Gym
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuPlanes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.edit = new System.Windows.Forms.ToolStripMenuItem();
             this.detele = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.GbModificarPlan = new System.Windows.Forms.GroupBox();
-            this.LblJornadaPlan = new System.Windows.Forms.Label();
-            this.LblCostoPlan = new System.Windows.Forms.Label();
-            this.LblNombrePlan = new System.Windows.Forms.Label();
-            this.BtnActualizarPlanCliente = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.DtgvClientePlan = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.BtnAnularPlan = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.LblPlanCliente = new System.Windows.Forms.Label();
-            this.LblTelefonoCliente = new System.Windows.Forms.Label();
-            this.LblEstadoCuotasCliente = new System.Windows.Forms.Label();
-            this.LblMailCliente = new System.Windows.Forms.Label();
-            this.LblDniCliente = new System.Windows.Forms.Label();
-            this.LblNombreCliente = new System.Windows.Forms.Label();
-            this.BtnBuscarClientePlan = new System.Windows.Forms.Button();
-            this.TxtDatoClientePlan = new System.Windows.Forms.TextBox();
+            this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.GbJornadaEmpleado = new System.Windows.Forms.GroupBox();
             this.ChkTodos = new System.Windows.Forms.CheckBox();
@@ -80,22 +67,39 @@ namespace Gym
             this.TxtCostoPlan = new System.Windows.Forms.TextBox();
             this.CmbProfesorPlan = new System.Windows.Forms.ComboBox();
             this.BtnAltaPlan = new System.Windows.Forms.Button();
-            this.DtgvPlan = new System.Windows.Forms.DataGridView();
-            this.Clase = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Profesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Horarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAgregarPlan = new System.Windows.Forms.Button();
+            this.LblCostoPlan = new System.Windows.Forms.Label();
+            this.GbModificarPlan = new System.Windows.Forms.GroupBox();
+            this.LblNombreCliente = new System.Windows.Forms.Label();
+            this.LblDniCliente = new System.Windows.Forms.Label();
+            this.LblMailCliente = new System.Windows.Forms.Label();
+            this.LblEstadoCuotasCliente = new System.Windows.Forms.Label();
+            this.LblTelefonoCliente = new System.Windows.Forms.Label();
+            this.LblPlanCliente = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtBuscarPlan = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnReemplazarPlan = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.dtgvPlanes = new System.Windows.Forms.DataGridView();
+            this.Persona_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Profesor_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dias_horarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuPlanes.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.GbModificarPlan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DtgvClientePlan)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.GbJornadaEmpleado.SuspendLayout();
             this.GpDatosPlan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DtgvPlan)).BeginInit();
+            this.GbModificarPlan.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvPlanes)).BeginInit();
             this.SuspendLayout();
             // 
             // menuPlanes
@@ -127,245 +131,45 @@ namespace Gym
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(700, 650);
+            this.tabControl1.Size = new System.Drawing.Size(700, 361);
             this.tabControl1.TabIndex = 72;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.GbModificarPlan);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.DtgvClientePlan);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.BtnBuscarClientePlan);
-            this.tabPage1.Controls.Add(this.TxtDatoClientePlan);
+            this.tabPage1.Controls.Add(this.txtBuscarCliente);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(692, 617);
+            this.tabPage1.Size = new System.Drawing.Size(692, 328);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Asignar Plan";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // GbModificarPlan
+            // txtBuscarCliente
             // 
-            this.GbModificarPlan.Controls.Add(this.LblJornadaPlan);
-            this.GbModificarPlan.Controls.Add(this.LblCostoPlan);
-            this.GbModificarPlan.Controls.Add(this.LblNombrePlan);
-            this.GbModificarPlan.Controls.Add(this.BtnActualizarPlanCliente);
-            this.GbModificarPlan.Location = new System.Drawing.Point(19, 256);
-            this.GbModificarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GbModificarPlan.Name = "GbModificarPlan";
-            this.GbModificarPlan.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GbModificarPlan.Size = new System.Drawing.Size(665, 135);
-            this.GbModificarPlan.TabIndex = 16;
-            this.GbModificarPlan.TabStop = false;
-            this.GbModificarPlan.Text = "Seleccionar Plan";
-            // 
-            // LblJornadaPlan
-            // 
-            this.LblJornadaPlan.AutoSize = true;
-            this.LblJornadaPlan.Location = new System.Drawing.Point(22, 99);
-            this.LblJornadaPlan.Name = "LblJornadaPlan";
-            this.LblJornadaPlan.Size = new System.Drawing.Size(64, 20);
-            this.LblJornadaPlan.TabIndex = 18;
-            this.LblJornadaPlan.Text = "Jornada:";
-            // 
-            // LblCostoPlan
-            // 
-            this.LblCostoPlan.AutoSize = true;
-            this.LblCostoPlan.Location = new System.Drawing.Point(22, 66);
-            this.LblCostoPlan.Name = "LblCostoPlan";
-            this.LblCostoPlan.Size = new System.Drawing.Size(50, 20);
-            this.LblCostoPlan.TabIndex = 17;
-            this.LblCostoPlan.Text = "Costo:";
-            // 
-            // LblNombrePlan
-            // 
-            this.LblNombrePlan.AutoSize = true;
-            this.LblNombrePlan.Location = new System.Drawing.Point(19, 35);
-            this.LblNombrePlan.Name = "LblNombrePlan";
-            this.LblNombrePlan.Size = new System.Drawing.Size(67, 20);
-            this.LblNombrePlan.TabIndex = 16;
-            this.LblNombrePlan.Text = "Nombre:";
-            // 
-            // BtnActualizarPlanCliente
-            // 
-            this.BtnActualizarPlanCliente.BackColor = System.Drawing.SystemColors.Highlight;
-            this.BtnActualizarPlanCliente.FlatAppearance.BorderSize = 0;
-            this.BtnActualizarPlanCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnActualizarPlanCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BtnActualizarPlanCliente.Location = new System.Drawing.Point(555, 29);
-            this.BtnActualizarPlanCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BtnActualizarPlanCliente.Name = "BtnActualizarPlanCliente";
-            this.BtnActualizarPlanCliente.Size = new System.Drawing.Size(104, 94);
-            this.BtnActualizarPlanCliente.TabIndex = 15;
-            this.BtnActualizarPlanCliente.Text = "Actualizar";
-            this.BtnActualizarPlanCliente.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.textBox1.Location = new System.Drawing.Point(377, 398);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(307, 27);
-            this.textBox1.TabIndex = 84;
-            this.textBox1.Text = "Buscar Clase";
-            // 
-            // DtgvClientePlan
-            // 
-            this.DtgvClientePlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DtgvClientePlan.Location = new System.Drawing.Point(19, 430);
-            this.DtgvClientePlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DtgvClientePlan.Name = "DtgvClientePlan";
-            this.DtgvClientePlan.RowHeadersWidth = 51;
-            this.DtgvClientePlan.RowTemplate.Height = 29;
-            this.DtgvClientePlan.Size = new System.Drawing.Size(665, 179);
-            this.DtgvClientePlan.TabIndex = 7;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.BtnAnularPlan);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.LblPlanCliente);
-            this.groupBox1.Controls.Add(this.LblTelefonoCliente);
-            this.groupBox1.Controls.Add(this.LblEstadoCuotasCliente);
-            this.groupBox1.Controls.Add(this.LblMailCliente);
-            this.groupBox1.Controls.Add(this.LblDniCliente);
-            this.groupBox1.Controls.Add(this.LblNombreCliente);
-            this.groupBox1.Location = new System.Drawing.Point(19, 72);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(665, 178);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Personales";
-            // 
-            // BtnAnularPlan
-            // 
-            this.BtnAnularPlan.BackColor = System.Drawing.SystemColors.Highlight;
-            this.BtnAnularPlan.FlatAppearance.BorderSize = 0;
-            this.BtnAnularPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAnularPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BtnAnularPlan.Location = new System.Drawing.Point(556, 142);
-            this.BtnAnularPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BtnAnularPlan.Name = "BtnAnularPlan";
-            this.BtnAnularPlan.Size = new System.Drawing.Size(103, 30);
-            this.BtnAnularPlan.TabIndex = 19;
-            this.BtnAnularPlan.Text = "Anular";
-            this.BtnAnularPlan.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(358, 142);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 20);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Jornada:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(358, 104);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 20);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Costo:";
-            // 
-            // LblPlanCliente
-            // 
-            this.LblPlanCliente.AutoSize = true;
-            this.LblPlanCliente.Location = new System.Drawing.Point(358, 68);
-            this.LblPlanCliente.Name = "LblPlanCliente";
-            this.LblPlanCliente.Size = new System.Drawing.Size(86, 20);
-            this.LblPlanCliente.TabIndex = 14;
-            this.LblPlanCliente.Text = "Plan Actual:";
-            // 
-            // LblTelefonoCliente
-            // 
-            this.LblTelefonoCliente.AutoSize = true;
-            this.LblTelefonoCliente.Location = new System.Drawing.Point(22, 104);
-            this.LblTelefonoCliente.Name = "LblTelefonoCliente";
-            this.LblTelefonoCliente.Size = new System.Drawing.Size(70, 20);
-            this.LblTelefonoCliente.TabIndex = 13;
-            this.LblTelefonoCliente.Text = "Telefono:";
-            // 
-            // LblEstadoCuotasCliente
-            // 
-            this.LblEstadoCuotasCliente.AutoSize = true;
-            this.LblEstadoCuotasCliente.Location = new System.Drawing.Point(358, 32);
-            this.LblEstadoCuotasCliente.Name = "LblEstadoCuotasCliente";
-            this.LblEstadoCuotasCliente.Size = new System.Drawing.Size(125, 20);
-            this.LblEstadoCuotasCliente.TabIndex = 12;
-            this.LblEstadoCuotasCliente.Text = "Estado de cuotas:";
-            // 
-            // LblMailCliente
-            // 
-            this.LblMailCliente.AutoSize = true;
-            this.LblMailCliente.Location = new System.Drawing.Point(22, 142);
-            this.LblMailCliente.Name = "LblMailCliente";
-            this.LblMailCliente.Size = new System.Drawing.Size(41, 20);
-            this.LblMailCliente.TabIndex = 11;
-            this.LblMailCliente.Text = "Mail:";
-            // 
-            // LblDniCliente
-            // 
-            this.LblDniCliente.AutoSize = true;
-            this.LblDniCliente.Location = new System.Drawing.Point(22, 68);
-            this.LblDniCliente.Name = "LblDniCliente";
-            this.LblDniCliente.Size = new System.Drawing.Size(38, 20);
-            this.LblDniCliente.TabIndex = 9;
-            this.LblDniCliente.Text = "DNI:";
-            // 
-            // LblNombreCliente
-            // 
-            this.LblNombreCliente.AutoSize = true;
-            this.LblNombreCliente.Location = new System.Drawing.Point(22, 32);
-            this.LblNombreCliente.Name = "LblNombreCliente";
-            this.LblNombreCliente.Size = new System.Drawing.Size(67, 20);
-            this.LblNombreCliente.TabIndex = 7;
-            this.LblNombreCliente.Text = "Nombre:";
-            // 
-            // BtnBuscarClientePlan
-            // 
-            this.BtnBuscarClientePlan.BackColor = System.Drawing.SystemColors.Highlight;
-            this.BtnBuscarClientePlan.FlatAppearance.BorderSize = 0;
-            this.BtnBuscarClientePlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBuscarClientePlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BtnBuscarClientePlan.Location = new System.Drawing.Point(499, 26);
-            this.BtnBuscarClientePlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BtnBuscarClientePlan.Name = "BtnBuscarClientePlan";
-            this.BtnBuscarClientePlan.Size = new System.Drawing.Size(141, 40);
-            this.BtnBuscarClientePlan.TabIndex = 5;
-            this.BtnBuscarClientePlan.Text = "Buscar";
-            this.BtnBuscarClientePlan.UseVisualStyleBackColor = false;
-            // 
-            // TxtDatoClientePlan
-            // 
-            this.TxtDatoClientePlan.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TxtDatoClientePlan.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDatoClientePlan.Location = new System.Drawing.Point(19, 32);
-            this.TxtDatoClientePlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtDatoClientePlan.Name = "TxtDatoClientePlan";
-            this.TxtDatoClientePlan.Size = new System.Drawing.Size(396, 27);
-            this.TxtDatoClientePlan.TabIndex = 4;
-            this.TxtDatoClientePlan.Text = "Nombre o DNI";
+            this.txtBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtBuscarCliente.Location = new System.Drawing.Point(139, 15);
+            this.txtBuscarCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBuscarCliente.Name = "txtBuscarCliente";
+            this.txtBuscarCliente.Size = new System.Drawing.Size(396, 25);
+            this.txtBuscarCliente.TabIndex = 4;
+            this.txtBuscarCliente.Text = "Nombre o DNI";
+            this.txtBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDatoClientePlan_KeyPress);
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.GbJornadaEmpleado);
             this.tabPage2.Controls.Add(this.GpDatosPlan);
-            this.tabPage2.Controls.Add(this.DtgvPlan);
-            this.tabPage2.Controls.Add(this.TxtBuscarPlan);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Controls.Add(this.BtnAltaPlan);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(692, 621);
+            this.tabPage2.Size = new System.Drawing.Size(692, 328);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Alta de Planes";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -395,7 +199,7 @@ namespace Gym
             this.GbJornadaEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GbJornadaEmpleado.Name = "GbJornadaEmpleado";
             this.GbJornadaEmpleado.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GbJornadaEmpleado.Size = new System.Drawing.Size(307, 249);
+            this.GbJornadaEmpleado.Size = new System.Drawing.Size(307, 257);
             this.GbJornadaEmpleado.TabIndex = 87;
             this.GbJornadaEmpleado.TabStop = false;
             this.GbJornadaEmpleado.Text = "Días y horarios";
@@ -599,15 +403,17 @@ namespace Gym
             // 
             // GpDatosPlan
             // 
+            this.GpDatosPlan.Controls.Add(this.comboBox1);
+            this.GpDatosPlan.Controls.Add(this.textBox1);
+            this.GpDatosPlan.Controls.Add(this.textBox2);
             this.GpDatosPlan.Controls.Add(this.TxtNombrePlan);
             this.GpDatosPlan.Controls.Add(this.TxtCostoPlan);
             this.GpDatosPlan.Controls.Add(this.CmbProfesorPlan);
-            this.GpDatosPlan.Controls.Add(this.BtnAltaPlan);
             this.GpDatosPlan.Location = new System.Drawing.Point(8, 9);
             this.GpDatosPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GpDatosPlan.Name = "GpDatosPlan";
             this.GpDatosPlan.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GpDatosPlan.Size = new System.Drawing.Size(351, 249);
+            this.GpDatosPlan.Size = new System.Drawing.Size(351, 309);
             this.GpDatosPlan.TabIndex = 85;
             this.GpDatosPlan.TabStop = false;
             this.GpDatosPlan.Text = "Datos de Plan";
@@ -625,7 +431,7 @@ namespace Gym
             // TxtCostoPlan
             // 
             this.TxtCostoPlan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.TxtCostoPlan.Location = new System.Drawing.Point(19, 130);
+            this.TxtCostoPlan.Location = new System.Drawing.Point(19, 93);
             this.TxtCostoPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCostoPlan.Name = "TxtCostoPlan";
             this.TxtCostoPlan.Size = new System.Drawing.Size(317, 27);
@@ -634,14 +440,14 @@ namespace Gym
             // 
             // CmbProfesorPlan
             // 
+            this.CmbProfesorPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbProfesorPlan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.CmbProfesorPlan.FormattingEnabled = true;
-            this.CmbProfesorPlan.Location = new System.Drawing.Point(19, 92);
+            this.CmbProfesorPlan.Location = new System.Drawing.Point(19, 135);
             this.CmbProfesorPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CmbProfesorPlan.Name = "CmbProfesorPlan";
             this.CmbProfesorPlan.Size = new System.Drawing.Size(317, 28);
             this.CmbProfesorPlan.TabIndex = 84;
-            this.CmbProfesorPlan.Text = "Seleccionar Profesor";
             // 
             // BtnAltaPlan
             // 
@@ -649,87 +455,312 @@ namespace Gym
             this.BtnAltaPlan.FlatAppearance.BorderSize = 0;
             this.BtnAltaPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAltaPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BtnAltaPlan.Location = new System.Drawing.Point(61, 172);
+            this.BtnAltaPlan.Location = new System.Drawing.Point(375, 272);
             this.BtnAltaPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnAltaPlan.Name = "BtnAltaPlan";
-            this.BtnAltaPlan.Size = new System.Drawing.Size(248, 50);
+            this.BtnAltaPlan.Size = new System.Drawing.Size(307, 46);
             this.BtnAltaPlan.TabIndex = 83;
             this.BtnAltaPlan.Text = "Guardar Clase";
             this.BtnAltaPlan.UseVisualStyleBackColor = false;
             // 
-            // DtgvPlan
+            // btnAgregarPlan
             // 
-            this.DtgvPlan.AllowUserToAddRows = false;
-            this.DtgvPlan.AllowUserToDeleteRows = false;
-            this.DtgvPlan.AllowUserToOrderColumns = true;
-            this.DtgvPlan.AllowUserToResizeColumns = false;
-            this.DtgvPlan.AllowUserToResizeRows = false;
-            this.DtgvPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DtgvPlan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Clase,
-            this.Profesor,
-            this.Dias,
-            this.Horarios});
-            this.DtgvPlan.ContextMenuStrip = this.menuPlanes;
-            this.DtgvPlan.Location = new System.Drawing.Point(6, 299);
-            this.DtgvPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DtgvPlan.Name = "DtgvPlan";
-            this.DtgvPlan.ReadOnly = true;
-            this.DtgvPlan.RowHeadersVisible = false;
-            this.DtgvPlan.RowHeadersWidth = 51;
-            this.DtgvPlan.RowTemplate.Height = 29;
-            this.DtgvPlan.Size = new System.Drawing.Size(676, 310);
-            this.DtgvPlan.TabIndex = 84;
+            this.btnAgregarPlan.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnAgregarPlan.FlatAppearance.BorderSize = 0;
+            this.btnAgregarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAgregarPlan.Location = new System.Drawing.Point(555, 21);
+            this.btnAgregarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAgregarPlan.Name = "btnAgregarPlan";
+            this.btnAgregarPlan.Size = new System.Drawing.Size(104, 40);
+            this.btnAgregarPlan.TabIndex = 15;
+            this.btnAgregarPlan.Text = "Agregar";
+            this.btnAgregarPlan.UseVisualStyleBackColor = false;
             // 
-            // Clase
+            // LblCostoPlan
             // 
-            this.Clase.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Clase.FillWeight = 150F;
-            this.Clase.HeaderText = "Clase";
-            this.Clase.MinimumWidth = 170;
-            this.Clase.Name = "Clase";
-            this.Clase.ReadOnly = true;
-            this.Clase.Width = 170;
+            this.LblCostoPlan.AutoSize = true;
+            this.LblCostoPlan.Location = new System.Drawing.Point(29, 58);
+            this.LblCostoPlan.Name = "LblCostoPlan";
+            this.LblCostoPlan.Size = new System.Drawing.Size(70, 20);
+            this.LblCostoPlan.TabIndex = 17;
+            this.LblCostoPlan.Text = "Costo: $0";
             // 
-            // Profesor
+            // GbModificarPlan
             // 
-            this.Profesor.HeaderText = "Profesor";
-            this.Profesor.MinimumWidth = 200;
-            this.Profesor.Name = "Profesor";
-            this.Profesor.ReadOnly = true;
-            this.Profesor.Width = 200;
+            this.GbModificarPlan.Controls.Add(this.linkLabel2);
+            this.GbModificarPlan.Controls.Add(this.comboBox2);
+            this.GbModificarPlan.Controls.Add(this.btnReemplazarPlan);
+            this.GbModificarPlan.Controls.Add(this.LblCostoPlan);
+            this.GbModificarPlan.Controls.Add(this.btnAgregarPlan);
+            this.GbModificarPlan.Location = new System.Drawing.Point(9, 189);
+            this.GbModificarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GbModificarPlan.Name = "GbModificarPlan";
+            this.GbModificarPlan.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GbModificarPlan.Size = new System.Drawing.Size(675, 116);
+            this.GbModificarPlan.TabIndex = 16;
+            this.GbModificarPlan.TabStop = false;
+            this.GbModificarPlan.Text = "Seleccionar Plan";
             // 
-            // Dias
+            // LblNombreCliente
             // 
-            this.Dias.HeaderText = "Dias";
-            this.Dias.MinimumWidth = 150;
-            this.Dias.Name = "Dias";
-            this.Dias.ReadOnly = true;
-            this.Dias.Width = 150;
+            this.LblNombreCliente.AutoSize = true;
+            this.LblNombreCliente.Location = new System.Drawing.Point(22, 32);
+            this.LblNombreCliente.Name = "LblNombreCliente";
+            this.LblNombreCliente.Size = new System.Drawing.Size(67, 20);
+            this.LblNombreCliente.TabIndex = 7;
+            this.LblNombreCliente.Text = "Nombre:";
             // 
-            // Horarios
+            // LblDniCliente
             // 
-            this.Horarios.HeaderText = "Horarios";
-            this.Horarios.MinimumWidth = 6;
-            this.Horarios.Name = "Horarios";
-            this.Horarios.ReadOnly = true;
-            this.Horarios.Width = 150;
+            this.LblDniCliente.AutoSize = true;
+            this.LblDniCliente.Location = new System.Drawing.Point(22, 53);
+            this.LblDniCliente.Name = "LblDniCliente";
+            this.LblDniCliente.Size = new System.Drawing.Size(38, 20);
+            this.LblDniCliente.TabIndex = 9;
+            this.LblDniCliente.Text = "DNI:";
+            // 
+            // LblMailCliente
+            // 
+            this.LblMailCliente.AutoSize = true;
+            this.LblMailCliente.Location = new System.Drawing.Point(22, 97);
+            this.LblMailCliente.Name = "LblMailCliente";
+            this.LblMailCliente.Size = new System.Drawing.Size(41, 20);
+            this.LblMailCliente.TabIndex = 11;
+            this.LblMailCliente.Text = "Mail:";
+            // 
+            // LblEstadoCuotasCliente
+            // 
+            this.LblEstadoCuotasCliente.AutoSize = true;
+            this.LblEstadoCuotasCliente.Location = new System.Drawing.Point(358, 32);
+            this.LblEstadoCuotasCliente.Name = "LblEstadoCuotasCliente";
+            this.LblEstadoCuotasCliente.Size = new System.Drawing.Size(125, 20);
+            this.LblEstadoCuotasCliente.TabIndex = 12;
+            this.LblEstadoCuotasCliente.Text = "Estado de cuotas:";
+            // 
+            // LblTelefonoCliente
+            // 
+            this.LblTelefonoCliente.AutoSize = true;
+            this.LblTelefonoCliente.Location = new System.Drawing.Point(22, 75);
+            this.LblTelefonoCliente.Name = "LblTelefonoCliente";
+            this.LblTelefonoCliente.Size = new System.Drawing.Size(70, 20);
+            this.LblTelefonoCliente.TabIndex = 13;
+            this.LblTelefonoCliente.Text = "Telefono:";
+            // 
+            // LblPlanCliente
+            // 
+            this.LblPlanCliente.AutoSize = true;
+            this.LblPlanCliente.Location = new System.Drawing.Point(358, 53);
+            this.LblPlanCliente.Name = "LblPlanCliente";
+            this.LblPlanCliente.Size = new System.Drawing.Size(86, 20);
+            this.LblPlanCliente.TabIndex = 14;
+            this.LblPlanCliente.Text = "Plan Actual:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(358, 75);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 20);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Costo:";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.linkLabel1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.LblPlanCliente);
+            this.groupBox1.Controls.Add(this.LblTelefonoCliente);
+            this.groupBox1.Controls.Add(this.LblEstadoCuotasCliente);
+            this.groupBox1.Controls.Add(this.LblMailCliente);
+            this.groupBox1.Controls.Add(this.LblDniCliente);
+            this.groupBox1.Controls.Add(this.LblNombreCliente);
+            this.groupBox1.Location = new System.Drawing.Point(9, 48);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(675, 132);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos Personales";
             // 
             // TxtBuscarPlan
             // 
             this.TxtBuscarPlan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.TxtBuscarPlan.Location = new System.Drawing.Point(375, 264);
+            this.TxtBuscarPlan.Location = new System.Drawing.Point(392, 375);
             this.TxtBuscarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtBuscarPlan.Name = "TxtBuscarPlan";
-            this.TxtBuscarPlan.Size = new System.Drawing.Size(307, 27);
-            this.TxtBuscarPlan.TabIndex = 83;
+            this.TxtBuscarPlan.Size = new System.Drawing.Size(304, 27);
+            this.TxtBuscarPlan.TabIndex = 85;
             this.TxtBuscarPlan.Text = "Buscar Clase";
+            // 
+            // textBox1
+            // 
+            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.textBox1.Location = new System.Drawing.Point(19, 178);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(317, 27);
+            this.textBox1.TabIndex = 88;
+            this.textBox1.Text = "Duración";
+            // 
+            // textBox2
+            // 
+            this.textBox2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.textBox2.Location = new System.Drawing.Point(19, 221);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(317, 27);
+            this.textBox2.TabIndex = 87;
+            this.textBox2.Text = "Cupo total";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(19, 263);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(317, 28);
+            this.comboBox1.TabIndex = 89;
+            // 
+            // btnReemplazarPlan
+            // 
+            this.btnReemplazarPlan.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnReemplazarPlan.FlatAppearance.BorderSize = 0;
+            this.btnReemplazarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReemplazarPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnReemplazarPlan.Location = new System.Drawing.Point(555, 64);
+            this.btnReemplazarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReemplazarPlan.Name = "btnReemplazarPlan";
+            this.btnReemplazarPlan.Size = new System.Drawing.Size(104, 40);
+            this.btnReemplazarPlan.TabIndex = 19;
+            this.btnReemplazarPlan.Text = "Reemplazar";
+            this.btnReemplazarPlan.UseVisualStyleBackColor = false;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(358, 96);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(91, 20);
+            this.linkLabel1.TabIndex = 19;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Ver jornadas";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(26, 24);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(317, 28);
+            this.comboBox2.TabIndex = 85;
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(29, 84);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(91, 20);
+            this.linkLabel2.TabIndex = 86;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Ver jornadas";
+            // 
+            // dtgvPlanes
+            // 
+            this.dtgvPlanes.AllowUserToAddRows = false;
+            this.dtgvPlanes.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvPlanes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvPlanes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Persona_ID,
+            this.Nombre,
+            this.Profesor_n,
+            this.Dias_horarios});
+            this.dtgvPlanes.GridColor = System.Drawing.SystemColors.Control;
+            this.dtgvPlanes.Location = new System.Drawing.Point(4, 409);
+            this.dtgvPlanes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtgvPlanes.Name = "dtgvPlanes";
+            this.dtgvPlanes.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvPlanes.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dtgvPlanes.RowHeadersVisible = false;
+            this.dtgvPlanes.RowHeadersWidth = 51;
+            this.dtgvPlanes.RowTemplate.Height = 29;
+            this.dtgvPlanes.Size = new System.Drawing.Size(692, 230);
+            this.dtgvPlanes.TabIndex = 86;
+            // 
+            // Persona_ID
+            // 
+            this.Persona_ID.Frozen = true;
+            this.Persona_ID.HeaderText = "ID de Persona";
+            this.Persona_ID.MinimumWidth = 6;
+            this.Persona_ID.Name = "Persona_ID";
+            this.Persona_ID.ReadOnly = true;
+            this.Persona_ID.Visible = false;
+            this.Persona_ID.Width = 125;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Nombre.Frozen = true;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nombre.Width = 180;
+            // 
+            // Profesor_n
+            // 
+            this.Profesor_n.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Profesor_n.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Profesor_n.Frozen = true;
+            this.Profesor_n.HeaderText = "Profesor";
+            this.Profesor_n.MinimumWidth = 6;
+            this.Profesor_n.Name = "Profesor_n";
+            this.Profesor_n.ReadOnly = true;
+            this.Profesor_n.Width = 200;
+            // 
+            // Dias_horarios
+            // 
+            this.Dias_horarios.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dias_horarios.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Dias_horarios.Frozen = true;
+            this.Dias_horarios.HeaderText = "Dias y horarios";
+            this.Dias_horarios.MinimumWidth = 6;
+            this.Dias_horarios.Name = "Dias_horarios";
+            this.Dias_horarios.ReadOnly = true;
+            this.Dias_horarios.Width = 308;
             // 
             // Planes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 650);
+            this.Controls.Add(this.dtgvPlanes);
+            this.Controls.Add(this.TxtBuscarPlan);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -740,19 +771,18 @@ namespace Gym
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.GbModificarPlan.ResumeLayout(false);
-            this.GbModificarPlan.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DtgvClientePlan)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.GbJornadaEmpleado.ResumeLayout(false);
             this.GbJornadaEmpleado.PerformLayout();
             this.GpDatosPlan.ResumeLayout(false);
             this.GpDatosPlan.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DtgvPlan)).EndInit();
+            this.GbModificarPlan.ResumeLayout(false);
+            this.GbModificarPlan.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvPlanes)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -768,12 +798,6 @@ namespace Gym
         private System.Windows.Forms.TextBox TxtCostoPlan;
         private System.Windows.Forms.ComboBox CmbProfesorPlan;
         private System.Windows.Forms.Button BtnAltaPlan;
-        private System.Windows.Forms.DataGridView DtgvPlan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Clase;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Profesor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dias;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Horarios;
-        private System.Windows.Forms.TextBox TxtBuscarPlan;
         private System.Windows.Forms.GroupBox GbJornadaEmpleado;
         private System.Windows.Forms.CheckBox ChkTodos;
         private System.Windows.Forms.TextBox TxtHastaSabado;
@@ -794,24 +818,30 @@ namespace Gym
         private System.Windows.Forms.CheckBox ChkLunes;
         private System.Windows.Forms.TextBox TxtHastaLunes;
         private System.Windows.Forms.TextBox TxtDesdeLunes;
+        private System.Windows.Forms.TextBox txtBuscarCliente;
+        private System.Windows.Forms.GroupBox GbModificarPlan;
+        private System.Windows.Forms.Label LblCostoPlan;
+        private System.Windows.Forms.Button btnAgregarPlan;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LblPlanCliente;
         private System.Windows.Forms.Label LblTelefonoCliente;
         private System.Windows.Forms.Label LblEstadoCuotasCliente;
         private System.Windows.Forms.Label LblMailCliente;
         private System.Windows.Forms.Label LblDniCliente;
         private System.Windows.Forms.Label LblNombreCliente;
-        private System.Windows.Forms.Button BtnBuscarClientePlan;
-        private System.Windows.Forms.TextBox TxtDatoClientePlan;
-        private System.Windows.Forms.Label LblPlanCliente;
-        private System.Windows.Forms.DataGridView DtgvClientePlan;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.GroupBox GbModificarPlan;
-        private System.Windows.Forms.Label LblJornadaPlan;
-        private System.Windows.Forms.Label LblCostoPlan;
-        private System.Windows.Forms.Label LblNombrePlan;
-        private System.Windows.Forms.Button BtnActualizarPlanCliente;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button BtnAnularPlan;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TxtBuscarPlan;
+        private System.Windows.Forms.Button btnReemplazarPlan;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DataGridView dtgvPlanes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Persona_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Profesor_n;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dias_horarios;
     }
 }
