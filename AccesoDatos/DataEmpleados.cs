@@ -158,7 +158,6 @@ namespace AccesoDatos
         #endregion
 
         #region Traer Empleados Registrados en la bdd
-
         public DataSet GetEmpleados(string buscar)
         {
             //Solicitamos la lista de TODOS los empleados
@@ -186,8 +185,7 @@ namespace AccesoDatos
                                 INNER JOIN Estados_Empleados
                                 ON Estados_Empleados.Estado_Empleado_ID = Empleados.Estado_Empleado_ID
                         
-                                where Personas.Persona_ID LIKE @query 
-                                    or Personas.Nombre LIKE @query 
+                                where Personas.Nombre LIKE @query 
                                     or Personas.Apellido LIKE @query
                                     or Personas.Nro_Documento LIKE @query
                                     or Tipos_Empleados.Tipo LIKE @query
@@ -219,7 +217,7 @@ namespace AccesoDatos
             }
             catch (Exception e)
             {
-                throw new Exception("Error al listar Movimientos", e);
+                throw new Exception("Error al listar Empleados", e);
             }
             finally
             {

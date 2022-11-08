@@ -91,7 +91,7 @@ namespace Gym
             //Asigno el ID de la fila, que está oculto
             //yield lo paso como argumento para buscar los datos de ese id en la bdd
             _personas.Persona_ID = Convert.ToInt32(dtgvEmpleados.CurrentRow.Cells[0].Value);
-            _bussinessPersonas.GetEmpleadoUnico(_personas);
+            _bussinessPersonas.GetPersonaUnica(_personas);
 
             _metodosGenerales.personaID = _personas.Persona_ID;
             _empleados.Persona_ID = _metodosGenerales.personaID;

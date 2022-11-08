@@ -29,6 +29,7 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -49,13 +50,24 @@ namespace Gym
             this.txtAlternativoCliente = new System.Windows.Forms.TextBox();
             this.txtTelefonoCliente = new System.Windows.Forms.TextBox();
             this.btnAltaCliente = new System.Windows.Forms.Button();
+            this.cmClientes = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnEditarDatosCliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarPlanAsignado = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAsignarPlan = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.Cliente_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Persona_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verPlanesAsignados = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCliente)).BeginInit();
             this.gbClientes.SuspendLayout();
+            this.cmClientes.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtBuscarCliente
@@ -85,11 +97,14 @@ namespace Gym
             this.dtgvCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Cliente_ID,
+            this.Persona_ID,
             this.Nombre,
             this.Apellido,
             this.Documento,
             this.Telefono,
             this.Estado});
+            this.dtgvCliente.ContextMenuStrip = this.cmClientes;
             this.dtgvCliente.GridColor = System.Drawing.SystemColors.Control;
             this.dtgvCliente.Location = new System.Drawing.Point(17, 298);
             this.dtgvCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -256,6 +271,65 @@ namespace Gym
             this.btnAltaCliente.UseVisualStyleBackColor = false;
             this.btnAltaCliente.Click += new System.EventHandler(this.btnAltaCliente_Click);
             // 
+            // cmClientes
+            // 
+            this.cmClientes.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmClientes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verPlanesAsignados,
+            this.toolStripSeparator2,
+            this.btnAsignarPlan,
+            this.editarPlanAsignado,
+            this.btnEditarDatosCliente,
+            this.toolStripSeparator1,
+            this.eliminarToolStripMenuItem});
+            this.cmClientes.Name = "cmEmpleado";
+            this.cmClientes.Size = new System.Drawing.Size(217, 164);
+            this.cmClientes.Text = "Edición";
+            // 
+            // btnEditarDatosCliente
+            // 
+            this.btnEditarDatosCliente.Name = "btnEditarDatosCliente";
+            this.btnEditarDatosCliente.Size = new System.Drawing.Size(216, 24);
+            this.btnEditarDatosCliente.Text = "Editar Datos";
+            this.btnEditarDatosCliente.Click += new System.EventHandler(this.btnEditarDatosCliente_Click);
+            // 
+            // editarPlanAsignado
+            // 
+            this.editarPlanAsignado.Name = "editarPlanAsignado";
+            this.editarPlanAsignado.Size = new System.Drawing.Size(216, 24);
+            this.editarPlanAsignado.Text = "Editar Plan Mensual";
+            // 
+            // btnAsignarPlan
+            // 
+            this.btnAsignarPlan.Name = "btnAsignarPlan";
+            this.btnAsignarPlan.Size = new System.Drawing.Size(216, 24);
+            this.btnAsignarPlan.Text = "Asignar Plan";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(213, 6);
+            // 
+            // Cliente_ID
+            // 
+            this.Cliente_ID.Frozen = true;
+            this.Cliente_ID.HeaderText = "Cliente ID";
+            this.Cliente_ID.MinimumWidth = 6;
+            this.Cliente_ID.Name = "Cliente_ID";
+            this.Cliente_ID.ReadOnly = true;
+            this.Cliente_ID.Visible = false;
+            this.Cliente_ID.Width = 125;
+            // 
+            // Persona_ID
+            // 
+            this.Persona_ID.Frozen = true;
+            this.Persona_ID.HeaderText = "Persona ID";
+            this.Persona_ID.MinimumWidth = 6;
+            this.Persona_ID.Name = "Persona_ID";
+            this.Persona_ID.ReadOnly = true;
+            this.Persona_ID.Visible = false;
+            this.Persona_ID.Width = 125;
+            // 
             // Nombre
             // 
             this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -315,6 +389,24 @@ namespace Gym
             this.Estado.ReadOnly = true;
             this.Estado.Width = 142;
             // 
+            // verPlanesAsignados
+            // 
+            this.verPlanesAsignados.Name = "verPlanesAsignados";
+            this.verPlanesAsignados.Size = new System.Drawing.Size(216, 24);
+            this.verPlanesAsignados.Text = "Ver Planes de Cliente";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(213, 6);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
+            this.eliminarToolStripMenuItem.Text = "Eliminar Cliente";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
             // Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -327,11 +419,12 @@ namespace Gym
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Clientes";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Clientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCliente)).EndInit();
             this.gbClientes.ResumeLayout(false);
             this.gbClientes.PerformLayout();
+            this.cmClientes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -352,10 +445,20 @@ namespace Gym
         private System.Windows.Forms.Button btnAltaCliente;
         private System.Windows.Forms.ComboBox cmbSexo;
         private System.Windows.Forms.TextBox txtNombreCliente;
+        private System.Windows.Forms.ContextMenuStrip cmClientes;
+        private System.Windows.Forms.ToolStripMenuItem btnEditarDatosCliente;
+        private System.Windows.Forms.ToolStripMenuItem editarPlanAsignado;
+        private System.Windows.Forms.ToolStripMenuItem btnAsignarPlan;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Persona_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.ToolStripMenuItem verPlanesAsignados;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
     }
 }

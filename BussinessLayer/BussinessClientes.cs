@@ -28,5 +28,15 @@ namespace BussinessLayer
         {
             return _dataClientes.GetClientes(buscar);
         }
+
+        public Clientes GetCliente(Clientes clientes)
+        {
+            return _dataClientes.GetCliente(clientes);
+        }
+
+        public int BajaCliente(Clientes clientes)
+        {
+            return _dataClientes.BajaCliente(clientes);
+        }
     }
 }

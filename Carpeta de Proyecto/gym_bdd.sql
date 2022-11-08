@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS gym
-
+DROP DATABASE  IF EXISTS 
+    gym
 go
 
 create database gym
@@ -484,17 +484,18 @@ go
 
 create proc sp_Cargar_Clientes_Desc
 as
-SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
+SELECT Clientes.Cliente_ID, Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
 FROM Personas
 INNER JOIN Clientes
 ON Personas.Persona_ID=Clientes.Persona_ID
 WHERE Personas.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+and Estado = 'Activo'
 ORDER BY Personas.Fecha_Alta desc
 
 go
 
-
 create proc sp_Cargar_Empleados_Desc
+
 AS
 SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
 	   Tipos_Empleados.Tipo, Estados_Empleados.Estado_Empleado
@@ -519,6 +520,5 @@ insert into Empleados values (0, 'Admin', 'c4a0b7848bf1526e502f68b2c296f384d1aee
 
 
 select * from Personas
-select * from Empleados
-select * from Jornadas_Empleados
+select * from Clientes
 

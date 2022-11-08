@@ -28,6 +28,7 @@ namespace Gym
 
         #endregion
 
+        #region Ctor
         public MetodosGenerales()
         {
             _bussinessTipo = new BussinessTipo();
@@ -39,6 +40,8 @@ namespace Gym
             _jornadas_Empleados = new Jornadas_Empleados();
             _bussinessJornadas = new BussinessJornadas();
         }
+
+        #endregion
 
         #region Variables
         //Esta variable me sirve para saber el id del empleado que tiene abierta
@@ -102,9 +105,7 @@ namespace Gym
 
         #endregion
 
-        #region Personas
-
-
+        #region Personas y Empleados
         public void AltaPersona(string Nombre,
                                 string Apellido,
                                 int Tipo_Documento_ID,
@@ -202,12 +203,12 @@ namespace Gym
             personaOpenID = _personas.Persona_ID;
         }
 
-        #endregion
-
         public void GetEstadosEmpleados()
         {
             DtEstados_Empleados = _bussinessEmpleados.GetEstadosEmpleados(_tiposEmpleados);
         }
+
+        #endregion
 
     }
 }

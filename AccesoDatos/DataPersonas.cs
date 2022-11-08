@@ -279,10 +279,11 @@ namespace AccesoDatos
         {
             string query = @"select Nombre, Persona_ID
                             From Personas
-                            where Personas.Persona_ID = '" + personas.Persona_ID + "'"
+                            where Personas.Persona_ID = @Persona_ID"
             ;
-
+            SqlParameter persona_Id = new SqlParameter("@Persona_ID", personas.Persona_ID);
             SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(persona_Id);
 
             try
             {

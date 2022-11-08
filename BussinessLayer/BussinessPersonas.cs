@@ -26,7 +26,7 @@ namespace BussinessLayer
             return _dataPersonas.Get_Las_Id_Personas(personas);
         }
 
-        public Personas GetEmpleadoUnico(Personas personas)
+        public Personas GetPersonaUnica(Personas personas)
         {
             return _dataPersonas.GetPersonaUnica(personas);
         }

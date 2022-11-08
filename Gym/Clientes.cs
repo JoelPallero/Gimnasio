@@ -1,4 +1,5 @@
 ﻿using BussinessLayer;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +16,16 @@ namespace Gym
     {
         #region Instancias
         //Entidades
-        private readonly Entities.Clientes _clientes = new Entities.Clientes();
+        private readonly Entities.Clientes _clientes;
+        private readonly Personas _personas;
 
         //Clases internas
-        private readonly Restricciones _restricciones = new Restricciones();
-        private readonly MetodosGenerales _metodosGenerales = new MetodosGenerales();
+        private readonly Restricciones _restricciones;
+        private readonly MetodosGenerales _metodosGenerales;
 
         //Capa de negocio
-        private readonly BussinessClientes _bussinessClientes = new BussinessClientes();
+        private readonly BussinessClientes _bussinessClientes;
+        private readonly BussinessPersonas _bussinessPersonas;
 
         #endregion
 
@@ -30,6 +33,12 @@ namespace Gym
         public Clientes()
         {
             InitializeComponent();
+            _clientes = new Entities.Clientes();
+            _restricciones = new Restricciones();
+            _metodosGenerales = new MetodosGenerales();
+            _bussinessClientes = new BussinessClientes();
+            _bussinessPersonas = new BussinessPersonas();
+            _personas = new Personas();
         }
         private void Clientes_Load(object sender, EventArgs e)
         {
@@ -48,6 +57,9 @@ namespace Gym
         private bool personaRegistrada;
         private DataSet dsTablaClientes;
         private string buscar;
+        private int motivoMenu;
+        private bool edicionCliente = false;
+
 
         #endregion
 
@@ -73,7 +85,7 @@ namespace Gym
                 foreach (DataRow dr in dsTablaClientes.Tables[0].Rows)
                 {
                     //paso esa fila al datagrid para que se vean los datos
-                    dtgvCliente.Rows.Add(dr[1].ToString(), dr[2], dr[3], dr[4], dr[5]);
+                    dtgvCliente.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], dr[5]);
                 }
             }
         }
@@ -98,11 +110,73 @@ namespace Gym
             cmbSexo.ValueMember = "Tipo_Sexo_ID";
         }
 
-        private void DarAltaCliente()
+        private void ABMCliente()
         {
-            AltaPersona();
-            AltaCliente();
+            if (motivoMenu == 0)
+            {
+                EditarPersona();
+            }
+            else
+            {
+                AltaPersona();
+                AltaCliente();
+            }
             ResetControls();
+        }
+
+        private void EditarPersona()
+        {
+            //Es la edición de los datos personales
+            //junto con los datos de empleado, excepto las claves
+            int Persona_ID = _personas.Persona_ID;
+            string Nombre = Convert.ToString(txtNombreCliente.Text);
+            string Apellido = Convert.ToString(txtApellidoCliente.Text);
+            int Tipo_Documento_ID = cmbTipoDocumentoCliente.SelectedIndex;
+            string Nro_documento = Convert.ToString(txtNumDocumentoCliente.Text);
+            int Tipo_Sexo_ID = cmbSexo.SelectedIndex;
+            string Nro_Telefono = Convert.ToString(txtTelefonoCliente.Text);
+            string Nro_Alternativo, Mail, Observaciones;
+
+            //Envío todo el objeto creado a la cada de negocios para ser enviado
+            //a la bdd.
+
+            //Acá verifico si el usuario ingresó datos nuevos o no a los campos
+            //que reciben nulos.
+            //Si no agregaron datos, los mandamos como nulos
+            //caso contrario, se envía lo que haya en su correspondiente Textbox
+            if (txtAlternativoCliente.Text != "Alternativo")
+            {
+                Nro_Alternativo = Convert.ToString(txtAlternativoCliente.Text);
+            }
+            else
+            {
+                Nro_Alternativo = string.Empty;
+            }
+            if (txtMailCliente.Text != "Mail")
+            {
+                Mail = Convert.ToString(txtMailCliente.Text);
+            }
+            else
+            {
+                Mail = string.Empty;
+            }
+            if (txtObservacionesCliente.Text != "Observaciones y/o consideraciones")
+            {
+                Observaciones = Convert.ToString(txtObservacionesCliente.Text);
+            }
+            else
+            {
+                Observaciones = string.Empty;
+            }
+            _metodosGenerales.EditarPersona(Persona_ID, Nombre,
+                                Apellido,
+                                Tipo_Documento_ID,
+                                Nro_documento,
+                                Tipo_Sexo_ID,
+                                Nro_Telefono,
+                                Nro_Alternativo,
+                                Mail,
+                                Observaciones);
         }
 
         private void AltaPersona()
@@ -234,6 +308,24 @@ namespace Gym
                 if (txt is TextBox box)
                 {
                     txt.ForeColor = Color.DimGray;
+                }
+            }
+        }
+
+        private void VerificarCoincidecias()
+        {
+            if (motivoMenu != 3)
+            {
+                int id = _clientes.Persona_ID;
+                string documento = txtNumDocumentoCliente.Text.ToString();
+                _bussinessPersonas.BuscarCoincidencias(id, documento, _personas);
+                if (_personas.Persona_ID == id && _personas.Nro_documento == documento)
+                {
+                    personaRegistrada = true;
+                }
+                else
+                {
+                    personaRegistrada = false;
                 }
             }
         }
@@ -440,9 +532,10 @@ namespace Gym
                 ValidarCamposVacios();
                 if (!camposObligatoriosVacios)
                 {
+                    VerificarCoincidecias();
                     if (!personaRegistrada)
                     {
-                        DarAltaCliente();
+                        ABMCliente();
                     }
                     else
                     {
@@ -455,7 +548,95 @@ namespace Gym
                     MessageBox.Show("Campos obligatorios sin completar. Por favor, complete todos los campos requeridos", "Campos vacios", MessageBoxButtons.OK);
                 }
             }
+            motivoMenu = 0;
         }
         #endregion
+
+        private void btnEditarDatosCliente_Click(object sender, EventArgs e)
+        {
+            motivoMenu = 3;
+
+            if (edicionCliente)
+            {
+                DialogResult result = MessageBox.Show("Tiene una edición en proceso. " +
+                    "En caso de querer cancelar la edición actual presione Aceptar", "Edición en proceso",
+                    MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    CargarDatos();
+                }
+            }
+            else
+            {
+                CargarDatos();
+            }
+        }
+
+        private void CargarDatos()
+        {
+            //Asigno el ID de la fila, que está oculto
+            //y lo paso como argumento para buscar los datos de ese id en la bdd
+            _personas.Persona_ID = Convert.ToInt32(dtgvCliente.CurrentRow.Cells[1].Value);
+            _bussinessPersonas.GetPersonaUnica(_personas);
+
+            _clientes.Cliente_ID = Convert.ToInt32(dtgvCliente.CurrentRow.Cells[0].Value);
+            _bussinessClientes.GetCliente(_clientes);
+
+            txtNombreCliente.Text = _personas.Nombre;
+            txtApellidoCliente.Text = _personas.Apellido;
+            cmbTipoDocumentoCliente.SelectedIndex = _personas.Tipo_Documento_ID;
+            txtNumDocumentoCliente.Text = _personas.Nro_documento;
+            cmbSexo.SelectedIndex = _personas.Tipo_Sexo_ID;
+            txtTelefonoCliente.Text = _personas.Nro_Telefono;
+            if (string.IsNullOrEmpty(_personas.Nro_Alternativo))
+            {
+                txtAlternativoCliente.Text = "Alternativo";
+            }
+            else
+            {
+                txtAlternativoCliente.Text = _personas.Nro_Alternativo;
+            }
+            if (string.IsNullOrEmpty(_personas.Mail))
+            {
+                txtMailCliente.Text = "Mail";
+            }
+            else
+            {
+                txtMailCliente.Text = _personas.Mail;
+            }
+            if (string.IsNullOrEmpty(_personas.Observaciones))
+            {
+                txtObservacionesCliente.Text = "Observaciones y/o consideraciones";
+            }
+            else
+            {
+                txtObservacionesCliente.Text = _personas.Observaciones;
+            }
+
+            foreach (Control txt in gbClientes.Controls)
+            {
+                if (txt is TextBox box)
+                {
+                    TextBox t;
+                    t = box;
+                    if (t.ForeColor == Color.DimGray &&
+                        t.Text != "Alternativo" &&
+                        t.Text != "Mail" &&
+                        t.Text != "Observaciones y/o consideraciones")
+                    {
+                        t.ForeColor = Color.Black;
+                    }
+                }
+            }
+            edicionCliente = true;
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            motivoMenu = 4;
+            _clientes.Cliente_ID = Convert.ToInt32(dtgvCliente.CurrentRow.Cells[0].Value);
+            _clientes.Estado = "Inactivo";
+            _bussinessClientes.BajaCliente(_clientes);
+        }
     }
 }
