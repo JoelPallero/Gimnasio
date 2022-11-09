@@ -8,6 +8,7 @@ namespace Entities
     {
         public int Factura_Cliente_ID { get; set; }
         public int Plan_Asignado_ID { get; set; }
+        public int Persona_ID { get; set; }
         public decimal Importe { get; set; }
         public DateTime Fecha_Emision { get; set; }
         public DateTime Fecha_Vencimiento { get; set; }

@@ -42,9 +42,9 @@ namespace BussinessLayer
             return _dataEmpleados.EditarEmpleado(empleados);
         }
 
-        public Empleados VerificarClaveEnBdd(string clave, Tipos_Empleados _tiposEmpleados, Empleados _empleados)
+        public Empleados VerificarClaveEnBdd(Tipos_Empleados _tiposEmpleados, Empleados _empleados)
         {
-            return _dataEmpleados.VerificarClaveEnBdd(clave, _tiposEmpleados, _empleados);
+            return _dataEmpleados.VerificarClaveEnBdd(_tiposEmpleados, _empleados);
         }
 
         public int EditarClave(Empleados empleados)

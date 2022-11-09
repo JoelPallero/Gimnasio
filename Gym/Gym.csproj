@@ -52,9 +52,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.5.0.5\lib\net46\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -119,17 +116,11 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainUsuarios.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainUsuarios.Designer.cs">
-      <DependentUpon>MainUsuarios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainJefe.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainJefe.Designer.cs">
-      <DependentUpon>MainJefe.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MetodosGenerales.cs" />
     <Compile Include="Pagos.cs">
@@ -177,11 +168,8 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainUsuarios.resx">
-      <DependentUpon>MainUsuarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainJefe.resx">
-      <DependentUpon>MainJefe.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pagos.resx">
       <DependentUpon>Pagos.cs</DependentUpon>
@@ -201,16 +189,6 @@
     <EmbeddedResource Include="RegistroPrimeraVez.resx">
       <DependentUpon>RegistroPrimeraVez.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="..\.editorconfig">
-      <Link>.editorconfig</Link>
-    </None>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

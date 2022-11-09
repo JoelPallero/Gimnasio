@@ -13,7 +13,7 @@ using BussinessLayer;
 
 namespace Gym
 {
-    public partial class MainJefe : Form
+    public partial class MainForm : Form
     {
         #region Instancias
 
@@ -27,20 +27,42 @@ namespace Gym
         private Personas _personas;
         private readonly Entities.Empleados _empleados;
 
-        //Forms
-        Empleados empleados;
+
+        #endregion
+
+        #region Variables
+        private bool sesionJefeOn;
+        private int personaLogueada;
 
         #endregion
 
         #region Load
-        public MainJefe()
+        public MainForm(bool mainJefe, int idPersonaLogin)
         {
             InitializeComponent();
+            
+            //inicializo los componentes del formulario, 
+            //pero también todas las instancias de cada clase
+            //que necesito utilizar a lo largo del form.
             _metodosGenerales = new MetodosGenerales();
-            empleados = new Empleados();
             _personas = new Personas();
             _empleados = new Entities.Empleados();
             _bussinessPersonas = new BussinessPersonas();
+
+            //Estos argumentos que recibe el form, son los
+            //que me dicen si el jefe es quien se logueó
+            //y el Id de la persona que se logueó, para
+            //poder utilizarlo luego.
+            personaLogueada = idPersonaLogin;
+            sesionJefeOn = mainJefe;
+            if (sesionJefeOn)
+            {
+                btnConfiguracion.Visible = true;
+            }
+            else
+            {
+                btnConfiguracion.Visible = false;
+            }
         }
 
         private void MainJefe_Load(object sender, EventArgs e)
@@ -188,53 +210,48 @@ namespace Gym
 
         private void BtnAsistencia_Click(object sender, EventArgs e)
         {
-            //bool formIncompleto = false;
-            //empleados.FormIncompleto(formIncompleto);
-            //if (!formIncompleto)
-            //{
-            //}
-
-            CallOfForms(new Asistencias());
+            CallOfForms(new Asistencias(personaLogueada));
             FocusAsistencia();
         }
 
         private void BtnRegistro_Click(object sender, EventArgs e)
         {
-            CallOfForms(new Clientes());
+            CallOfForms(new Clientes(personaLogueada));
             FocusRegistro();
         }
 
         private void BtnPagos_Click(object sender, EventArgs e)
         {
-            CallOfForms(new Pagos());
+            CallOfForms(new Pagos(personaLogueada));
             FocusPagos();
         }
 
         private void BtnPlanes_Click(object sender, EventArgs e)
         {
-            CallOfForms(new Planes());
+            CallOfForms(new Planes(personaLogueada));
             FocusPlanes();
         }
 
         private void BtnCaja_Click(object sender, EventArgs e)
         {
-            CallOfForms(new Cajas());
+            CallOfForms(new Cajas(personaLogueada));
             FocusCaja();
         }
 
         private void BtnEmpleados_Click(object sender, EventArgs e)
         {
             
-            CallOfForms(new Empleados());
+            CallOfForms(new Empleados(personaLogueada));
             FocusEmpleados();
+        }
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+            CallOfForms(new Configuracion(personaLogueada));
+            FocusAsistencia();
         }
 
         #endregion
 
-        private void btnConfiguracion_Click(object sender, EventArgs e)
-        {
-
-        }
 
     }
 }

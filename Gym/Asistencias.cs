@@ -12,9 +12,16 @@ namespace Gym
 {
     public partial class Asistencias : Form
     {
-        public Asistencias()
+        public Asistencias(int idPersonaLog)
         {
             InitializeComponent();
+            personaLogueada = idPersonaLog;
         }
+
+        #region Variables 
+        private int personaLogueada;
+
+        #endregion
+
     }
 }

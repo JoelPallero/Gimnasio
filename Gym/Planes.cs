@@ -33,9 +33,10 @@ namespace Gym
         #endregion
 
         #region Loading
-        public Planes()
+        public Planes(int idPersonaLog)
         {
             InitializeComponent();
+            personaLogueada = idPersonaLog;
             _bussinesPersonas = new BussinessPersonas();
             _bussinessPlanes = new BussinessPlanes();
             _planes = new Entities.Planes();
@@ -49,6 +50,7 @@ namespace Gym
         #endregion
 
         #region Variables
+        private int personaLogueada;
         private string buscar;
 
         #endregion
@@ -69,6 +71,10 @@ namespace Gym
 
         #endregion
 
+        private void MostrarCliente()
+        {
+
+        }
         private void TxtDatoClientePlan_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
@@ -78,7 +84,7 @@ namespace Gym
                 {
                     _bussinesPersonas.GetPersonaPlan(buscar, _personas);
                     MostrarCliente();
-                    _bussinessPlanes.GetPlanAsignado(_planes);
+                    //_bussinessPlanes.GetPlanAsignado(_planes);
 
                 }
             }

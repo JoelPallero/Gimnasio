@@ -42,6 +42,9 @@ namespace Gym
         #region Variables
 
         private string clave = string.Empty;
+        private int idPersonaLogin;
+        private bool mainJefe;
+
 
         #endregion
 
@@ -49,10 +52,8 @@ namespace Gym
 
         private void CerrarForms()
         {
-            MainJefe frm = new MainJefe();
+            MainForm frm = new MainForm(mainJefe, idPersonaLogin);
             frm.Close();
-            MainUsuarios frmU = new MainUsuarios();
-            frmU.Close();
         }
 
         //Encriptamiento de clave
@@ -124,11 +125,18 @@ namespace Gym
         {
             //Vamos a verificar primero si existe la clave en el sistema.
             //en caso de existir, entonces se va a abrir la pantalla
-            //correspondiente si es Jefe o si es un empleado (usuario)
+            //correspondiente si es Jefe o si es usuario
+            
             EncriptarClaveClave();
+            
+            //asigno la clave a una variable, sin encriptarla (xq cuando traigo
+            //la clave de la bdd, esta viene encriptada. Si yo encripto la clave
+            //enciptada, la comparación siempre va a ser falsa)
             string usuario = txtUsuario.Text.ToString();
+
             _empleados.Usuario = txtUsuario.Text.ToString();
-            _bussinessEmplados.VerificarClaveEnBdd(clave, _tiposEmpleados, _empleados);
+            _empleados.Clave = clave;
+            _bussinessEmplados.VerificarClaveEnBdd(_tiposEmpleados, _empleados);
 
             //una vez traidos los datos, los comparamos con los que tenemos en
             //cada variable. Si son idénticas, entonces, ya puede verificarse
@@ -141,35 +149,24 @@ namespace Gym
                 if (_tiposEmpleados.Estado == "Activo" && _tiposEmpleados.Acceso_Clave == "Y")
                 {
                     //Vamos a traer los datos del empleado que abrió sesión
-                    _metodosGenerales.usuarioOpenID = _empleados.Empleado_ID;
-                    _metodosGenerales.personaOpenID = _empleados.Persona_ID;
+                    idPersonaLogin = _empleados.Persona_ID;
 
-
-                    switch (_tiposEmpleados.Tipo)
+                    //Si mainJefe es true, entonces se habilitan todos los botones
+                    //del formulario principal que se va a abrir a continuación,
+                    //sino, hay un botón que no se habilita xq no tienen los permisos
+                    //correspondientes, cada uno de los usuarios del programa.
+                    if (_tiposEmpleados.Tipo == "Jefe")
                     {
-                        case "Admin":
-
-                            break;
-                        case "Jefe":
-                            //Perfil de jefe
-                            MainJefe mj = new MainJefe();
-                            mj.Show();
-                            this.Hide();
-                            break;
-                        case "Usuario":
-                            //Perfil de usuario común
-                            MainUsuarios mu = new MainUsuarios();
-                            mu.Show();
-                            this.Hide();
-                            break;
-                        default:
-                            //Y si por las dudas se cuela un perfil no deseado, se rechaza
-                            MessageBox.Show("Su estado actual no le permite acceder al programa. " +
-                                            "Por favor, comuníquese con su administrador " +
-                                            "para que haga la modificación de manera manual", "Advertencia",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            break;
+                        mainJefe = true;
                     }
+                    else
+                    {
+                        mainJefe = false;
+                    }
+
+                    MainForm mj = new MainForm(mainJefe, idPersonaLogin);
+                    mj.Show();
+                    this.Hide();
                 }
                 else
                 {
@@ -183,7 +180,7 @@ namespace Gym
             }
             else
             {
-                MessageBox.Show("No hay usuario ni clave para los datos registrado. " +
+                MessageBox.Show("No hay usuario ni clave para los datos registrados. " +
                             "En caso de no ser usuario, deberá solicitar un perfil con el administrador correspondiente", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

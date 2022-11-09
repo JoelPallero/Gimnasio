@@ -68,7 +68,7 @@ go
 
 create table Cajas(
 Caja_ID int primary key identity (0, 1),
-Empleado_ID int not null,
+Persona_ID int not null,
 Fecha datetime not null,
 Importe_Inicial decimal(18,0) not null,
 Importe_Final decimal(18,0) not null,
@@ -80,7 +80,7 @@ create table Detalles_Cajas(
 Detalle_Caja_ID int primary key identity (0, 1),
 Caja_ID int not null,
 Plan_Asignado_ID int not null,
-Empleado_ID int not null,
+Persona_ID int not null,
 Importe_Ingreso decimal (18, 0) null,
 Importe_Egreso decimal (18, 0) null,
 Motivo nvarchar(50) not null,
@@ -92,7 +92,7 @@ go
 create table Cuotas(
 Cuota_ID int primary key identity (0, 1),
 Plan_Asignado_ID int not null,
-Empleado_ID int not null,
+Persona_ID int not null,
 Detalle_Caja_ID int null,
 Importe_Cuota decimal(18, 0) not null,
 Saldo decimal(18, 0) not null,
@@ -105,7 +105,7 @@ go
 
 create table Planes(
 Plan_ID int primary key identity (0, 1),
-Empleado_ID int not null,
+Persona_ID int not null,
 Nombre nvarchar(20) not null,
 Importe_Plan decimal (18, 0) not null,
 Duracion int null,
@@ -136,6 +136,7 @@ go
 create table Facturas_Clientes(
 Factura_Cliente_ID int primary key identity (0, 1),
 Plan_Asignado_ID int not null,
+Persona_ID int not null,
 Importe decimal(18, 0) not null,
 Fecha_Emision datetime not null,
 Fecha_Vencimiento datetime not null,
@@ -173,7 +174,7 @@ go
 
 create table Registros_Logs(
 Registro_Log_ID int primary key identity (0, 1),
-Empleado_ID int not null,
+Persona_ID int not null,
 Fecha_LogIn datetime not null,
 Fecha_LogOut datetime null
 )
@@ -315,8 +316,8 @@ go
 /* Caja */
 
 alter table Cajas
-add CONSTRAINT FK_Cajas_Empleado FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Cajas_Empleado FOREIGN KEY (Persona_ID) 
+REFERENCES Empleados (Persona_ID)
 
 go
 
@@ -335,8 +336,8 @@ REFERENCES Planes_Asignados (Plan_Asignado_ID)
 go
 
 alter table Detalles_Cajas
-add CONSTRAINT FK_Detalles_Cajas_Empleado FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Detalles_Cajas_Empleado FOREIGN KEY (Persona_ID) 
+REFERENCES Empleados (Persona_ID)
 
 go
 
@@ -349,8 +350,8 @@ REFERENCES Planes_Asignados (Plan_Asignado_ID)
 go
 
 alter table Cuotas
-add CONSTRAINT FK_Cuotas_Empleado FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Cuotas_Empleado FOREIGN KEY (Persona_ID) 
+REFERENCES Empleados (Persona_ID)
 
 go
 
@@ -363,8 +364,8 @@ go
 /* Planes */
 
 alter table Planes
-add CONSTRAINT FK_Planes_Empleados FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Planes_Empleados FOREIGN KEY (Persona_ID) 
+REFERENCES Empleados (Persona_ID)
 
 go
 
@@ -396,6 +397,12 @@ REFERENCES Planes_Asignados (Plan_Asignado_ID)
 
 go
 
+alter table Facturas_Clientes
+add CONSTRAINT FK_Facturas_Clientes_Cliente FOREIGN KEY (Persona_ID) 
+REFERENCES Clientes (Persona_ID)
+
+go
+
 /* Jornadas_Planes  */
 
 alter table Jornadas_Planes 
@@ -407,15 +414,15 @@ go
 /* Jornada_Empleados */
 
 alter table Jornadas_Empleados
-add CONSTRAINT FK_Jornada_Empleados_Empleados FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Jornada_Empleados_Empleados FOREIGN KEY (Persona_ID) 
+REFERENCES Empleados (Persona_ID)
 
 
 /* Registro de Login */
 
 alter table Registros_Logs
-add CONSTRAINT FK_Registros_Logs_Empleados FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Registros_Logs_Empleados FOREIGN KEY (Persona_ID) 
+REFERENCES Empleados (Persona_ID)
 
 go
 
@@ -537,5 +544,4 @@ respecto a cualquier plan que el cliente tenga */
 --inner join Facturas_Clientes
 --on Facturas_Clientes.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
 --where Clientes.Cliente_ID = @Cliente_ID
-----------------------------
-
+-----------------------

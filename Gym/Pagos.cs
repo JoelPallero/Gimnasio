@@ -4,9 +4,16 @@ namespace Gym
 {
     public partial class Pagos : Form
     {
-        public Pagos()
+        public Pagos(int idPersonaLogin)
         {
             InitializeComponent();
+            personaLogueada = idPersonaLogin;
         }
+
+        #region Variables
+
+        private int personaLogueada;
+
+        #endregion
     }
 }

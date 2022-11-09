@@ -32,9 +32,9 @@ namespace BussinessLayer
             return _dataJornadas.AltaJornadaEmpleados(jornadaEmpleado);
         }
 
-        public DataTable GetJornadaEmpleado(Jornadas_Empleados jornadas_Empleados, int personaID)
+        public DataTable GetJornadaEmpleado(Jornadas_Empleados jornadas_Empleados)
         {
-            return _dataJornadas.GetJornadaEmpleado(jornadas_Empleados, personaID);
+            return _dataJornadas.GetJornadaEmpleado(jornadas_Empleados);
         }
         public int EliminarJornadaEmpleado(int JornadaID)
         {

@@ -52,18 +52,18 @@ namespace Gym
             // DtgvDetalleFacturación
             // 
             this.DtgvDetalleFacturación.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DtgvDetalleFacturación.Location = new System.Drawing.Point(12, 275);
+            this.DtgvDetalleFacturación.Location = new System.Drawing.Point(12, 281);
             this.DtgvDetalleFacturación.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DtgvDetalleFacturación.Name = "DtgvDetalleFacturación";
             this.DtgvDetalleFacturación.RowHeadersWidth = 51;
             this.DtgvDetalleFacturación.RowTemplate.Height = 29;
-            this.DtgvDetalleFacturación.Size = new System.Drawing.Size(676, 365);
+            this.DtgvDetalleFacturación.Size = new System.Drawing.Size(676, 359);
             this.DtgvDetalleFacturación.TabIndex = 77;
             // 
             // textBox3
             // 
             this.textBox3.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox3.Location = new System.Drawing.Point(509, 242);
+            this.textBox3.Location = new System.Drawing.Point(509, 247);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(179, 27);
@@ -73,11 +73,11 @@ namespace Gym
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 241);
+            this.label3.Location = new System.Drawing.Point(12, 254);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 20);
+            this.label3.Size = new System.Drawing.Size(176, 20);
             this.label3.TabIndex = 79;
-            this.label3.Text = "Movimientos del día";
+            this.label3.Text = "Falta el cierre de caja acá";
             // 
             // GbImporteACobrar
             // 

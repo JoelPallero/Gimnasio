@@ -1,7 +1,7 @@
 ﻿
 namespace Gym
 {
-    partial class MainJefe
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainJefe));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuboxMain = new System.Windows.Forms.PictureBox();
             this.titleboxMain = new System.Windows.Forms.PictureBox();
             this.windowboxMain = new System.Windows.Forms.PictureBox();

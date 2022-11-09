@@ -348,18 +348,25 @@ namespace AccesoDatos
 
         #region Sesión de Usuarios
 
-        public Empleados VerificarClaveEnBdd(string clave, Tipos_Empleados _tiposEmpleados, Empleados _empleados)
+        public Empleados VerificarClaveEnBdd(Tipos_Empleados _tiposEmpleados, Empleados _empleados)
         {
             string query = @"select Empleados.Empleado_ID,Empleados.Persona_ID, Empleados.Usuario, Empleados.Clave, 
                                     Tipos_Empleados.Tipo, Tipos_Empleados.Acceso_Clave, Tipos_Empleados.Estado
                             from Empleados
                             inner join Tipos_Empleados
                             on Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
-                            where Empleados.Usuario =  '" + _empleados.Usuario + "' and Empleados.Clave = '" + clave + "'"
+                            where Empleados.Usuario = @Usuario and Empleados.Clave = @Clave"
 
             ;
 
+            SqlParameter usuario = new SqlParameter("@Usuario", _empleados.Usuario);
+            SqlParameter clave = new SqlParameter("@Clave", _empleados.Clave);
+
             SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(usuario);
+            cmd.Parameters.Add(clave);
+
 
             try
             {

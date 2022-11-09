@@ -30,9 +30,10 @@ namespace Gym
         #endregion
 
         #region Load del formulario
-        public Clientes()
+        public Clientes(int idPersonaLog)
         {
             InitializeComponent();
+            personaLogueada = idPersonaLog;
             _clientes = new Entities.Clientes();
             _restricciones = new Restricciones();
             _metodosGenerales = new MetodosGenerales();
@@ -50,6 +51,7 @@ namespace Gym
         #endregion
 
         #region Variables
+        private int personaLogueada;
 
         private bool contenidoErroneo;
         private bool camposObligatoriosVacios;

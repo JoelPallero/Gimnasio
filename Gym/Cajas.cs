@@ -12,9 +12,16 @@ namespace Gym
 {
     public partial class Cajas : Form
     {
-        public Cajas()
+        public Cajas(int idPersonaLog)
         {
             InitializeComponent();
+            personaLogueada = idPersonaLog;
         }
+
+        #region Variables
+        private int personaLogueada;
+
+        #endregion
+
     }
 }

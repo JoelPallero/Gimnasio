@@ -36,13 +36,13 @@ namespace Gym
         private int check;
         private int contador = 0;
         private string formatoHora = "El formato de la hora es este: hh:mm";
-        private int todosId = -1;
-        private int lunesId = -1;
-        private int martesId = -1;
-        private int miercolesId = -1;
-        private int juevesId = -1;
-        private int viernesId = -1;
-        private int sabadoId = -1;
+        private int pTodosId = -1;
+        private int pLunesId = -1;
+        private int pMartesId = -1;
+        private int pMiercolesId = -1;
+        private int pJuevesId = -1;
+        private int pViernesId = -1;
+        private int pSabadoId = -1;
         private bool contenidoIncorrecto = false;
         private int empleado_ID;
         private bool cargarJornada;
@@ -61,21 +61,19 @@ namespace Gym
             _empleados = new Entities.Empleados();
             _bussinessEmpleados = new BussinessEmpleados();
             personaJor = persona_Jor;
-            GetLastEmpleado();
+            GetJornadaEmpleado();
             _restricciones = new Restricciones();
         }
 
         #endregion
 
         #region Métodos encapsulados        
-        private void GetLastEmpleado()
+        private void GetJornadaEmpleado()
         {
-            _bussinessEmpleados.GetLastEmpleado(personaJor, _empleados);
-            //Una vez tengo el ID, lo asigno a una variable.
-            empleado_ID = _empleados.Empleado_ID;
-
+            _jornadas_Empleados.Persona_ID = personaJor;
             //Una vez asignado, busco la jornada
-            GetJornadaEmpleado();
+            //Y la asigno a un datatable, para poder manejar el contenido.
+            DtJornadas = _bussinessJornadas.GetJornadaEmpleado(_jornadas_Empleados);
 
             if (DtJornadas.Rows.Count > 0)
             {
@@ -89,12 +87,6 @@ namespace Gym
             }
         }
 
-        private void GetJornadaEmpleado()
-        {
-            //Y la asigno a un datatable, para poder manejar el contenido.
-            DtJornadas = _bussinessJornadas.GetJornadaEmpleado(_jornadas_Empleados, empleado_ID);
-        }
-
         private void CargarJornada()
         {
             foreach (DataRow dr in DtJornadas.Rows)
@@ -105,7 +97,8 @@ namespace Gym
                 {
                     case "Todos":
                         chkTodos.Checked = true;
-                        todosId = Convert.ToInt32(dr[0]);
+                        //Este es el Id de la jornada que se carga
+                        pTodosId = Convert.ToInt32(dr[0]);
                         txtDesdeLunes.Text = Convert.ToString(dr[3]);
                         txtHastaLunes.Text = Convert.ToString(dr[4]);
                         txtDesdeLunes.ForeColor = Color.Black;
@@ -117,7 +110,7 @@ namespace Gym
                         txtHastaLunes.Text = Convert.ToString(dr[4]);
                         txtDesdeLunes.ForeColor = Color.Black;
                         txtHastaLunes.ForeColor = Color.Black;
-                        lunesId = Convert.ToInt32(dr[0]);
+                        pLunesId = Convert.ToInt32(dr[0]);
                         chkLunes.Checked = true;
                         break;
                     case "Martes":
@@ -125,7 +118,7 @@ namespace Gym
                         txtHastaMartes.Text = Convert.ToString(dr[4]);
                         txtDesdeMartes.ForeColor = Color.Black;
                         txtHastaMartes.ForeColor = Color.Black;
-                        martesId = Convert.ToInt32(dr[0]);
+                        pMartesId = Convert.ToInt32(dr[0]);
                         chkMartes.Checked = true;
                         break;
                     case "Miercoles":
@@ -133,7 +126,7 @@ namespace Gym
                         txtHastaMiercoles.Text = Convert.ToString(dr[4]);
                         txtDesdeMiercoles.ForeColor = Color.Black;
                         txtHastaMiercoles.ForeColor = Color.Black;
-                        miercolesId = Convert.ToInt32(dr[0]);
+                        pMiercolesId = Convert.ToInt32(dr[0]);
                         chkMiercoles.Checked = true;
                         break;
                     case "Jueves":
@@ -141,7 +134,7 @@ namespace Gym
                         txtHastaJueves.Text = Convert.ToString(dr[4]);
                         txtDesdeJueves.ForeColor = Color.Black;
                         txtHastaJueves.ForeColor = Color.Black;
-                        juevesId = Convert.ToInt32(dr[0]);
+                        pJuevesId = Convert.ToInt32(dr[0]);
                         chkJueves.Checked = true;
                         break;
                     case "Viernes":
@@ -149,7 +142,7 @@ namespace Gym
                         txtHastaViernes.Text = Convert.ToString(dr[4]);
                         txtDesdeViernes.ForeColor = Color.Black;
                         txtHastaViernes.ForeColor = Color.Black;
-                        viernesId = Convert.ToInt32(dr[0]);
+                        pViernesId = Convert.ToInt32(dr[0]);
                         chkViernes.Checked = true;
                         break;
                     case "Sabado":
@@ -157,7 +150,7 @@ namespace Gym
                         txtHastaSabado.Text = Convert.ToString(dr[4]);
                         txtDesdeSabado.ForeColor = Color.Black;
                         txtHastaSabado.ForeColor = Color.Black;
-                        sabadoId = Convert.ToInt32(dr[0]);
+                        pSabadoId = Convert.ToInt32(dr[0]);
                         chkSabado.Checked = true;
                         break;
                 }
@@ -304,49 +297,49 @@ namespace Gym
                         {
                             case "Lunes":
                                 _jornadas_Empleados.Dia = "Lunes";
-                                _jornadas_Empleados.Jornada_Empleado_ID = lunesId;
+                                _jornadas_Empleados.Jornada_Empleado_ID = pLunesId;
                                 desde = txtDesdeLunes.Text.ToString();
                                 hasta = txtHastaLunes.Text.ToString();
                                 AsignacionHoras();
                                 break;
                             case "Martes":
                                 _jornadas_Empleados.Dia = "Martes";
-                                _jornadas_Empleados.Jornada_Empleado_ID = martesId;
+                                _jornadas_Empleados.Jornada_Empleado_ID = pMartesId;
                                 desde = txtDesdeMartes.Text.ToString();
                                 hasta = txtHastaMartes.Text.ToString();
                                 AsignacionHoras();
                                 break;
                             case "Miercoles":
                                 _jornadas_Empleados.Dia = "Miercoles";
-                                _jornadas_Empleados.Jornada_Empleado_ID = miercolesId;
+                                _jornadas_Empleados.Jornada_Empleado_ID = pMiercolesId;
                                 desde = txtDesdeMiercoles.Text.ToString();
                                 hasta = txtHastaMiercoles.Text.ToString();
                                 AsignacionHoras();
                                 break;
                             case "Jueves":
                                 _jornadas_Empleados.Dia = "Jueves";
-                                _jornadas_Empleados.Jornada_Empleado_ID = juevesId;
+                                _jornadas_Empleados.Jornada_Empleado_ID = pJuevesId;
                                 desde = txtDesdeJueves.Text.ToString();
                                 hasta = txtHastaJueves.Text.ToString();
                                 AsignacionHoras();
                                 break;
                             case "Viernes":
                                 _jornadas_Empleados.Dia = "Viernes";
-                                _jornadas_Empleados.Jornada_Empleado_ID = viernesId;
+                                _jornadas_Empleados.Jornada_Empleado_ID = pViernesId;
                                 desde = txtDesdeViernes.Text.ToString();
                                 hasta = txtHastaViernes.Text.ToString();
                                 AsignacionHoras();
                                 break;
                             case "Sabado":
                                 _jornadas_Empleados.Dia = "Sabado";
-                                _jornadas_Empleados.Jornada_Empleado_ID = sabadoId;
+                                _jornadas_Empleados.Jornada_Empleado_ID = pSabadoId;
                                 desde = txtDesdeSabado.Text.ToString();
                                 hasta = txtHastaSabado.Text.ToString();
                                 AsignacionHoras();
                                 break;
                         }
                         _jornadas_Empleados.Estado = "Activo";
-                        _jornadas_Empleados.Empleado_ID = empleado_ID;
+                        _jornadas_Empleados.Persona_ID = personaJor;
                         if (_jornadas_Empleados.Jornada_Empleado_ID != -1)
                         {
                             _bussinessJornadas.EditarJornadaEmpleado(_jornadas_Empleados);
@@ -798,10 +791,10 @@ namespace Gym
 
         private void btnDelLunes_Click(object sender, EventArgs e)
         {
-            if (lunesId != -1)
+            if (pLunesId != -1)
             {
-                EliminarJornada(lunesId);
-                lunesId = -1;
+                EliminarJornada(pLunesId);
+                pLunesId = -1;
             }
             else if (!string.IsNullOrEmpty(txtDesdeLunes.Text) && txtDesdeLunes.Text != "hh:mm")
             {
@@ -821,10 +814,10 @@ namespace Gym
 
         private void btnDelMartes_Click(object sender, EventArgs e)
         {
-            if (martesId != -1)
+            if (pMartesId != -1)
             {
-                EliminarJornada(martesId);
-                martesId = -1;
+                EliminarJornada(pMartesId);
+                pMartesId = -1;
             }
             else if (!string.IsNullOrEmpty(txtDesdeMartes.Text) && txtDesdeMartes.Text != "hh:mm")
             {
@@ -844,10 +837,10 @@ namespace Gym
 
         private void btnDelMiercoles_Click(object sender, EventArgs e)
         {
-            if (miercolesId != -1)
+            if (pMiercolesId != -1)
             {
-                EliminarJornada(miercolesId);
-                miercolesId = -1;
+                EliminarJornada(pMiercolesId);
+                pMiercolesId = -1;
             }
             else if (!string.IsNullOrEmpty(txtDesdeMiercoles.Text) && txtDesdeMiercoles.Text != "hh:mm")
             {
@@ -867,10 +860,10 @@ namespace Gym
 
         private void btnDelJueves_Click(object sender, EventArgs e)
         {
-            if (juevesId != -1)
+            if (pJuevesId != -1)
             {
-                EliminarJornada(juevesId);
-                juevesId = -1;
+                EliminarJornada(pJuevesId);
+                pJuevesId = -1;
             }
             else if (!string.IsNullOrEmpty(txtDesdeJueves.Text) && txtDesdeJueves.Text != "hh:mm")
             {
@@ -890,10 +883,10 @@ namespace Gym
 
         private void btnDelViernes_Click(object sender, EventArgs e)
         {
-            if (viernesId != -1)
+            if (pViernesId != -1)
             {
-                EliminarJornada(viernesId);
-                viernesId = -1;
+                EliminarJornada(pViernesId);
+                pViernesId = -1;
             }
             else if (!string.IsNullOrEmpty(txtDesdeViernes.Text) && txtDesdeViernes.Text != "hh:mm")
             {
@@ -913,10 +906,10 @@ namespace Gym
 
         private void btnDelSabado_Click(object sender, EventArgs e)
         {
-            if (sabadoId != -1)
+            if (pSabadoId != -1)
             {
-                EliminarJornada(sabadoId);
-                sabadoId = -1;
+                EliminarJornada(pSabadoId);
+                pSabadoId = -1;
             }
             else if (!string.IsNullOrEmpty(txtDesdeSabado.Text) && txtDesdeSabado.Text != "hh:mm")
             {

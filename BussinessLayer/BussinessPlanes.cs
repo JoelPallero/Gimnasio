@@ -15,9 +15,9 @@ namespace BussinessLayer
             _dataPlanes = new DataPlanes();
         }
 
-        public BussinessPlanes GetPlanAsignado(BussinessPlanes _planes)
-        {
-            return _dataPlanes.GetPlanAsignado(_planes);
-        }
+        //public BussinessPlanes GetPlanAsignado(BussinessPlanes _planes)
+        //{
+        //    return _dataPlanes.GetPlanAsignado(_planes);
+        //}
     }
 }

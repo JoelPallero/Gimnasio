@@ -1,14 +1,11 @@
-G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\NLog.config
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\Gym.exe.config
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\Gym.exe
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\Gym.pdb
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\BussinessLayer.dll
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\Entities.dll
-G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\NLog.dll
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\AccesoDatos.dll
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\BussinessLayer.pdb
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\Entities.pdb
-G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\NLog.xml
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\bin\Debug\AccesoDatos.pdb
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.csproj.AssemblyReference.cache
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Asistencias.resources
@@ -19,8 +16,7 @@ G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Empleados.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Estados.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Jornadas.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Login.resources
-G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.MainUsuarios.resources
-G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.MainJefe.resources
+G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.MainForm.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Pagos.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Planes.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Properties.Resources.resources

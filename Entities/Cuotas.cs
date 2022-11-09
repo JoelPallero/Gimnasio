@@ -8,7 +8,7 @@ namespace Entities
     {
         public int Cuota_ID { get; set; }
         public int Plan_Asignado_ID { get; set; }
-        public int Empleado_ID { get; set; }
+        public int Persona_ID { get; set; }
         public int Detalle_Caja_ID { get; set; }
         public decimal Importe_Cuota { get; set; }
         public decimal Saldo { get; set; }

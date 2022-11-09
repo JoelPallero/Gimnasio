@@ -35,7 +35,7 @@ namespace Gym
         #endregion
 
         #region variables
-
+        private int personaLogueada;
         private bool camposObligatoriosVacios = true;
         private bool contenidoErroneo = false;
         private string clave = string.Empty;
@@ -52,9 +52,10 @@ namespace Gym
         #endregion
 
         #region Load del form
-        public Empleados()
+        public Empleados(int idPersonaLog)
         {
             InitializeComponent();
+            personaLogueada = idPersonaLog;
             _restricciones = new Restricciones();
             _metodosGenerales = new MetodosGenerales();
             _bussinessEmpleados = new BussinessEmpleados();

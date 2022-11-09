@@ -19,17 +19,17 @@ namespace AccesoDatos
         public int AltaJornadaEmpleados(Jornadas_Empleados jornadaEmpleado)
         {
             int resultado = -1;
-            string query = @"insert into Jornadas_Empleados (Empleado_ID, Dia, Desde_Hora, Hasta_Hora, Estado)
-                                                    values (@Empleado_ID, @Dia, @Desde_Hora, @Hasta_Hora, @Estado)"
+            string query = @"insert into Jornadas_Empleados (Persona_ID, Dia, Desde_Hora, Hasta_Hora, Estado)
+                                                    values (@Persona_ID, @Dia, @Desde_Hora, @Hasta_Hora, @Estado)"
             ;
-            SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", jornadaEmpleado.Empleado_ID);
+            SqlParameter persona_ID = new SqlParameter("@Persona_ID", jornadaEmpleado.Persona_ID);
             SqlParameter dia = new SqlParameter("@Dia", jornadaEmpleado.Dia);
             SqlParameter desde_Hora = new SqlParameter("@Desde_Hora", jornadaEmpleado.Desde_Hora);
             SqlParameter hasta_Hora = new SqlParameter("@Hasta_Hora", jornadaEmpleado.Hasta_Hora);
             SqlParameter estado = new SqlParameter("@Estado", jornadaEmpleado.Estado);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
-            cmd.Parameters.Add(empleado_ID);
+            cmd.Parameters.Add(persona_ID);
             cmd.Parameters.Add(dia);
             cmd.Parameters.Add(desde_Hora);
             cmd.Parameters.Add(hasta_Hora);
@@ -52,13 +52,13 @@ namespace AccesoDatos
 
             return resultado;
         }
-        public DataTable GetJornadaEmpleado(Jornadas_Empleados jornadas_Empleados, int personaID)
+        public DataTable GetJornadaEmpleado(Jornadas_Empleados jornadas_Empleados)
         {
             string query = @"select * from Jornadas_Empleados 
-                            where Empleado_ID = @Persona_ID
+                            where Persona_ID = @Persona_ID
                             and Estado = 'Activo'";
 
-            SqlParameter persona_ID = new SqlParameter("@Persona_ID", personaID);
+            SqlParameter persona_ID = new SqlParameter("@Persona_ID", jornadas_Empleados.Persona_ID);
             SqlCommand cmd = new SqlCommand(query, conexion);
 
             cmd.Parameters.Add(persona_ID);
