@@ -27,6 +27,7 @@ namespace Gym
         private readonly Entities.Planes_Asignados _planesAsignados;
 
         //clases internas
+        private readonly Restricciones _restricciones;
 
         #endregion
 
@@ -48,14 +49,19 @@ namespace Gym
         {
             InitializeComponent();
             idEmpleadoLogin = idPersonaLog;
-            _clientes = new Entities.Clientes();
-            _bussinesClientes = new BussinessClientes();
+
             _bussinessPlanes = new BussinessPlanes();
+            _bussinesClientes = new BussinessClientes();
             _bussinessAsistencia = new BussinessAsistencia();
-            _planes = new Entities.Planes();
-            _asistencias = new Entities.Asistencias();
             _bussinesPlanesAsignados = new BussinessPlanesAsignados();
+
+            _planes = new Entities.Planes();
+            _clientes = new Entities.Clientes();
+            _asistencias = new Entities.Asistencias();
             _planesAsignados = new Entities.Planes_Asignados();
+
+            _restricciones = new Restricciones();
+
             BuscarPlanes();
             btnAsignarPlan.Enabled = false;
         }
@@ -71,7 +77,7 @@ namespace Gym
             cmbPlanesActivos.DisplayMember = "Nombre";
             cmbPlanesActivos.ValueMember = "Plan_ID";
         }
-        private void BuscarDatosAlumno()
+        private void BuscarDatosCliente()
         {
             DsClienteAsistencia = _bussinesClientes.BuscarClienteAsistencia(buscar);
             AcomodarDatos();
@@ -152,12 +158,13 @@ namespace Gym
         #region Eventos
         private void txtBuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
+            buscar = txtBuscarCliente.Text;
+            _restricciones.SoloNumeros(e, buscar);
             if (e.KeyChar == (char)Keys.Enter)
             {
                 if (camposVacios)
                 {
-                    buscar = txtBuscarCliente.Text;
-                    BuscarDatosAlumno();
+                    BuscarDatosCliente();
                 }
                 else
                 {
@@ -166,7 +173,7 @@ namespace Gym
                     if (result == DialogResult.OK)
                     {
                         buscar = txtBuscarCliente.Text;
-                        BuscarDatosAlumno();
+                        BuscarDatosCliente();
                     }
                 }
             }
@@ -232,6 +239,11 @@ namespace Gym
             //Me busca el precio, cupo total y restante.
             BuscarDatosPlan();
             //Busca los horarios
+        }
+
+        private void btnAsignarPlan_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

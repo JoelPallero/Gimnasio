@@ -348,6 +348,41 @@ namespace AccesoDatos
 
         #region Sesión de Usuarios
 
+        public bool ConsultarRegistrosLogin(bool primerLogueo)
+        {
+            string query = @"select count(distinct Empleado_ID) as Cuenta from Empleados";
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    if (int.Parse(reader["Cuenta"].ToString()) > 0 )
+                    {
+                        primerLogueo = false;
+                    }
+                    else
+                    {
+                        primerLogueo = true;
+                    }
+                }
+                reader.Close();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return primerLogueo;
+        }
+
         public Empleados VerificarClaveEnBdd(Tipos_Empleados _tiposEmpleados, Empleados _empleados)
         {
             string query = @"select Empleados.Empleado_ID,Empleados.Persona_ID, Empleados.Usuario, Empleados.Clave, 

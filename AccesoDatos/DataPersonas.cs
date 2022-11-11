@@ -82,7 +82,6 @@ namespace AccesoDatos
 
             return resultado;
         }
-
         public int AltaJefe(Personas personas)
         {
             int resultado = -1;
@@ -140,7 +139,6 @@ namespace AccesoDatos
 
             return resultado;
         }
-
         public int EditarPersona(Personas personas)
         {
             int resultado = -1;
@@ -409,5 +407,33 @@ namespace AccesoDatos
 
         #endregion
 
+        #region Consulta Profesores
+        public DataTable BuscarProfesores(Personas personas)
+        {
+            string query = @"sp_cargar_Profesores";
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+            try
+            {
+                OpenConnection();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return dt;
+        }
+
+        #endregion
     }
 }

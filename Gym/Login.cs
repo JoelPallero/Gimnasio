@@ -24,6 +24,16 @@ namespace Gym
 
         #endregion
 
+        #region Variables
+
+        private string clave = string.Empty;
+        private int idEmpleadoLogin;
+        private int idLastLogin;
+        private bool mainJefe;
+        private bool primerLogueo = false;
+
+        #endregion
+
         #region Load
         public Login()
         {
@@ -34,6 +44,7 @@ namespace Gym
             _metodosGenerales = new MetodosGenerales();
             _bussinessRegistrosLogs = new BussinessRegistrosLogs();
             _registros_Logs = new Registros_Logs();
+            VerificarPrimarLogin();
         }
         private void Login_Load(object sender, EventArgs e)
         {
@@ -43,17 +54,20 @@ namespace Gym
 
         #endregion
 
-        #region Variables
-
-        private string clave = string.Empty;
-        private int idEmpleadoLogin;
-        private int idLastLogin;
-        private bool mainJefe;
-
-
-        #endregion
-
         #region Métodos encapsulados
+
+        private void VerificarPrimarLogin()
+        {
+            _bussinessEmplados.ConsultarRegistrosLogin(primerLogueo);
+            if (primerLogueo)
+            {
+                lblGenerarPrimerUsuario.Visible = true;
+            }
+            else
+            {
+                lblGenerarPrimerUsuario.Visible = false;
+            }
+        }
 
         private void CerrarForms()
         {

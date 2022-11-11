@@ -16,20 +16,17 @@ namespace BussinessLayer
         {
             _dataPlanes = new DataPlanes();
         }
-
         public DataTable GetPlanes(Planes planes)
         {
             return _dataPlanes.GetPlanes(planes);
         }
-
         public Planes GetDatoPlan(Planes planes)
         {
             return _dataPlanes.GetDatoPlan(planes);
         }
-
-        //public BussinessPlanes GetPlanAsignado(BussinessPlanes _planes)
-        //{
-        //    return _dataPlanes.GetPlanAsignado(_planes);
-        //}
+        public int RegistrarNuevoPlan(Planes planes)
+        {
+            return _dataPlanes.RegistrarNuevoPlan(planes);
+        }
     }
 }

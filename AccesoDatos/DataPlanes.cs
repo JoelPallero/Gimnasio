@@ -11,25 +11,6 @@ namespace AccesoDatos
 {
     public class DataPlanes : DataConnection
     {
-
-        //public DataPlanes GetPlanAsignado(DataPlanes )
-        //{
-        //    string query = @"select Planes.Nombre, Planes.Importe_Plan, Clientes.Cliente_ID
-        //                    from Planes
-        //                    inner join Planes_Asignados
-        //                    on Planes_Asignados.Plan_ID = Planes.Plan_ID
-        //                    inner join Clientes
-        //                    on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
-        //                    inner join Facturas_Clientes
-        //                    on Facturas_Clientes.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
-        //                    where Clientes.Cliente_ID = @Cliente_ID"
-        //    ;
-
-        //    SqlParameter cliente_Id = new SqlParameter("@Cliente_ID", DataPersonas.Cliente_ID);
-
-
-        //}
-
         public DataTable GetPlanes(Planes planes)
         {
             string query = "sp_cargar_planes";
@@ -108,6 +89,70 @@ namespace AccesoDatos
                 cmd.Dispose();
             }
             return planes;
+        }
+        public int RegistrarNuevoPlan(Planes planes)
+        {
+            int resultado = -1;
+            string query = @"insert into Planes (Nombre,
+                                                Importe_Plan,
+                                                Duracion,
+                                                Fecha_Inicio,
+                                                Fecha_Alta_Plan,
+                                                Cupo_Total,
+                                                Estado,
+                                                Persona_ID,
+                                                Empleado_ID,
+                                                Cupo_Restante)
+                                        values (@Nombre, 
+                                                @Importe_Plan, 
+                                                @Duracion, 
+                                                @Fecha_Inicio, 
+                                                @Fecha_Alta_Plan, 
+                                                @Cupo_Total, 
+                                                @Estado, 
+                                                @Persona_ID,
+                                                @Empleado_ID,
+                                                @Cupo_Restante)"
+            ;
+
+            SqlParameter nombre = new SqlParameter("@Nombre", planes.Nombre);
+            SqlParameter importe_Plan = new SqlParameter("@Importe_Plan", planes.Importe_Plan);
+            SqlParameter duracion = new SqlParameter("@Duracion", planes.Duracion);
+            SqlParameter fecha_Inicio = new SqlParameter("@Fecha_Inicio", planes.Fecha_Inicio);
+            SqlParameter fecha_Alta_Plan = new SqlParameter("@Fecha_Alta_Plan", planes.Fecha_Alta_Plan);
+            SqlParameter cupo_Total = new SqlParameter("@Cupo_Total", planes.Cupo_Total);
+            SqlParameter estado = new SqlParameter("@Estado", planes.Estado);
+            SqlParameter persona_ID = new SqlParameter("@Persona_ID", planes.Persona_ID);
+            SqlParameter cupo_Restante = new SqlParameter("@Cupo_Restante", planes.Cupo_Restante);
+            SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", planes.Empleado_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(nombre);
+            cmd.Parameters.Add(importe_Plan);
+            cmd.Parameters.Add(duracion);
+            cmd.Parameters.Add(fecha_Inicio);
+            cmd.Parameters.Add(fecha_Alta_Plan);
+            cmd.Parameters.Add(cupo_Total);
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(persona_ID);
+            cmd.Parameters.Add(cupo_Restante);
+            cmd.Parameters.Add(empleado_ID);
+
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return resultado;
         }
     }
 }

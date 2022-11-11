@@ -116,7 +116,8 @@ go
 
 create table Planes(
 Plan_ID int primary key identity (0, 1),
-Persona_ID int not null,
+Persona_ID int not null, /*quien hace el registro*/
+Empleado_ID int not null,  /* el profesor */
 Nombre nvarchar(20) not null,
 Importe_Plan decimal (18, 0) not null,
 Duracion int null,
@@ -124,7 +125,8 @@ Cupo_Total int null,
 Cupo_Restante int null,
 Fecha_Inicio date null,  /* fecha de inicio */
 Fecha_Fin date null,     /* fecha de cierre */
-Estado nvarchar (1) not null
+Estado nvarchar (1) not null,
+Fecha_Alta_Plan date null
 )
 
 go
@@ -388,6 +390,12 @@ REFERENCES Personas (Persona_ID)
 
 go
 
+alter table Planes
+add CONSTRAINT FK_Planes_Profesor FOREIGN KEY (Empleado_ID) 
+REFERENCES Empleados (Empleado_ID)
+
+go
+
 /* Planes_Asignados */
 
 alter table Planes_Asignados
@@ -489,6 +497,18 @@ as
 select Tipo_Empleado_ID, Tipo
 from Tipos_Empleados
 where Estado = 'Activo'
+
+go
+
+create proc sp_cargar_Profesores
+as
+select Personas.Nombre, Personas.Persona_ID
+from Personas
+inner join Empleados
+on Empleados.Persona_ID = Personas.Persona_ID
+inner join Tipos_Empleados
+on Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
+where Tipos_Empleados.Tipo = 'Profesor'
 
 go
 
@@ -725,9 +745,6 @@ go
 --where Estado = 'A'
 --and Plan_ID = 0
 
+select * from Planes
+select * from Planes_Asignados
 
-select Planes.Nombre, Planes_Asignados.Plan_Asignado_ID
-from Planes_Asignados
-inner join Planes
-on Planes_Asignados.Plan_ID = Planes.Plan_ID
-where Planes_Asignados.Cliente_ID = 0

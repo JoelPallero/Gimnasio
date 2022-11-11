@@ -21,5 +21,10 @@ namespace BussinessLayer
             return _dataPlanesAsignados.VerClasesQueTieneElCliente(planesAsignados);
         }
 
+        public int AsginarPlanAlCliente(Planes_Asignados planes_Asignados)
+        {
+            return _dataPlanesAsignados.AsginarPlanAlCliente(planes_Asignados);
+        }
+
     }
 }

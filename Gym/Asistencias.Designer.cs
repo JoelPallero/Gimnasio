@@ -31,6 +31,7 @@ namespace Gym
         {
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.gbClienteAsistencia = new System.Windows.Forms.GroupBox();
+            this.cmbClaseDelCliente = new System.Windows.Forms.ComboBox();
             this.lblPlanActual = new System.Windows.Forms.Label();
             this.btnPago = new System.Windows.Forms.Button();
             this.btnGuardarAsistencia = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@ namespace Gym
             this.cmbPlanesActivos = new System.Windows.Forms.ComboBox();
             this.btnAsignarPlan = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.cmbClaseDelCliente = new System.Windows.Forms.ComboBox();
             this.gbClienteAsistencia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgvClienteAsistencia)).BeginInit();
             this.gbAsignarPlan.SuspendLayout();
@@ -88,6 +88,15 @@ namespace Gym
             this.gbClienteAsistencia.TabIndex = 3;
             this.gbClienteAsistencia.TabStop = false;
             this.gbClienteAsistencia.Text = "Asistencia de clientes";
+            // 
+            // cmbClaseDelCliente
+            // 
+            this.cmbClaseDelCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClaseDelCliente.FormattingEnabled = true;
+            this.cmbClaseDelCliente.Location = new System.Drawing.Point(287, 28);
+            this.cmbClaseDelCliente.Name = "cmbClaseDelCliente";
+            this.cmbClaseDelCliente.Size = new System.Drawing.Size(173, 28);
+            this.cmbClaseDelCliente.TabIndex = 19;
             // 
             // lblPlanActual
             // 
@@ -222,6 +231,7 @@ namespace Gym
             this.lblCuposRestantes.Size = new System.Drawing.Size(25, 20);
             this.lblCuposRestantes.TabIndex = 21;
             this.lblCuposRestantes.Text = "10";
+            this.lblCuposRestantes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnHorarios
             // 
@@ -278,6 +288,7 @@ namespace Gym
             this.btnAsignarPlan.TabIndex = 7;
             this.btnAsignarPlan.Text = "Asignar Plan";
             this.btnAsignarPlan.UseVisualStyleBackColor = false;
+            this.btnAsignarPlan.Click += new System.EventHandler(this.btnAsignarPlan_Click);
             // 
             // label20
             // 
@@ -287,15 +298,6 @@ namespace Gym
             this.label20.Size = new System.Drawing.Size(15, 20);
             this.label20.TabIndex = 23;
             this.label20.Text = "/";
-            // 
-            // cmbClaseDelCliente
-            // 
-            this.cmbClaseDelCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbClaseDelCliente.FormattingEnabled = true;
-            this.cmbClaseDelCliente.Location = new System.Drawing.Point(287, 28);
-            this.cmbClaseDelCliente.Name = "cmbClaseDelCliente";
-            this.cmbClaseDelCliente.Size = new System.Drawing.Size(173, 28);
-            this.cmbClaseDelCliente.TabIndex = 19;
             // 
             // Asistencias
             // 

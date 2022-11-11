@@ -66,5 +66,10 @@ namespace BussinessLayer
         {
             return _dataEmpleados.GetLastEmpleado(personaId, empleados);
         }
+
+        public bool ConsultarRegistrosLogin(bool primerLogueo)
+        {
+            return _dataEmpleados.ConsultarRegistrosLogin(primerLogueo);
+        }
     }
 }

@@ -30,11 +30,11 @@ namespace Gym
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuPlanes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.edit = new System.Windows.Forms.ToolStripMenuItem();
             this.detele = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,19 +42,20 @@ namespace Gym
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.GbModificarPlan = new System.Windows.Forms.GroupBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.btnReemplazarPlan = new System.Windows.Forms.Button();
-            this.LblCostoPlan = new System.Windows.Forms.Label();
-            this.btnAgregarPlan = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblCuposTotales = new System.Windows.Forms.Label();
+            this.lblCuposRestantes = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblCostoMensual = new System.Windows.Forms.Label();
+            this.cmbPlanesActivos = new System.Windows.Forms.ComboBox();
+            this.btnAsignarPlan = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.gbDatosCliente = new System.Windows.Forms.GroupBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.LblPlanCliente = new System.Windows.Forms.Label();
-            this.LblTelefonoCliente = new System.Windows.Forms.Label();
-            this.LblEstadoCuotasCliente = new System.Windows.Forms.Label();
-            this.LblMailCliente = new System.Windows.Forms.Label();
-            this.LblDniCliente = new System.Windows.Forms.Label();
-            this.LblNombreCliente = new System.Windows.Forms.Label();
+            this.lblPlanesCliente = new System.Windows.Forms.Label();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblMail = new System.Windows.Forms.Label();
+            this.lblDocumento = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.GbJornadaEmpleado = new System.Windows.Forms.GroupBox();
@@ -77,30 +78,28 @@ namespace Gym
             this.ChkLunes = new System.Windows.Forms.CheckBox();
             this.TxtHastaLunes = new System.Windows.Forms.TextBox();
             this.TxtDesdeLunes = new System.Windows.Forms.TextBox();
-            this.GpDatosPlan = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.TxtNombrePlan = new System.Windows.Forms.TextBox();
-            this.TxtCostoPlan = new System.Windows.Forms.TextBox();
-            this.CmbProfesorPlan = new System.Windows.Forms.ComboBox();
-            this.BtnAltaPlan = new System.Windows.Forms.Button();
+            this.gpDatosPlan = new System.Windows.Forms.GroupBox();
+            this.txtDuracion = new System.Windows.Forms.TextBox();
+            this.txtCupoTotal = new System.Windows.Forms.TextBox();
+            this.txtNombrePlan = new System.Windows.Forms.TextBox();
+            this.txtImporte = new System.Windows.Forms.TextBox();
+            this.cmbProfesores = new System.Windows.Forms.ComboBox();
+            this.btnAltaPlan = new System.Windows.Forms.Button();
             this.TxtBuscarPlan = new System.Windows.Forms.TextBox();
             this.dtgvPlanes = new System.Windows.Forms.DataGridView();
             this.Persona_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Profesor_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dias_horarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblCupos = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.menuPlanes.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.GbModificarPlan.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbDatosCliente.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.GbJornadaEmpleado.SuspendLayout();
-            this.GpDatosPlan.SuspendLayout();
+            this.gpDatosPlan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPlanes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,7 +138,7 @@ namespace Gym
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.GbModificarPlan);
-            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.gbDatosCliente);
             this.tabPage1.Controls.Add(this.txtBuscarCliente);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -152,13 +151,14 @@ namespace Gym
             // 
             // GbModificarPlan
             // 
-            this.GbModificarPlan.Controls.Add(this.dateTimePicker1);
-            this.GbModificarPlan.Controls.Add(this.lblCupos);
             this.GbModificarPlan.Controls.Add(this.linkLabel2);
-            this.GbModificarPlan.Controls.Add(this.comboBox2);
-            this.GbModificarPlan.Controls.Add(this.btnReemplazarPlan);
-            this.GbModificarPlan.Controls.Add(this.LblCostoPlan);
-            this.GbModificarPlan.Controls.Add(this.btnAgregarPlan);
+            this.GbModificarPlan.Controls.Add(this.lblCuposTotales);
+            this.GbModificarPlan.Controls.Add(this.lblCuposRestantes);
+            this.GbModificarPlan.Controls.Add(this.label12);
+            this.GbModificarPlan.Controls.Add(this.lblCostoMensual);
+            this.GbModificarPlan.Controls.Add(this.cmbPlanesActivos);
+            this.GbModificarPlan.Controls.Add(this.btnAsignarPlan);
+            this.GbModificarPlan.Controls.Add(this.label20);
             this.GbModificarPlan.Location = new System.Drawing.Point(9, 189);
             this.GbModificarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GbModificarPlan.Name = "GbModificarPlan";
@@ -166,157 +166,159 @@ namespace Gym
             this.GbModificarPlan.Size = new System.Drawing.Size(675, 145);
             this.GbModificarPlan.TabIndex = 16;
             this.GbModificarPlan.TabStop = false;
-            this.GbModificarPlan.Text = "Seleccionar Plan";
+            this.GbModificarPlan.Text = "Planes vigentes";
             // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(302, 89);
+            this.linkLabel2.Location = new System.Drawing.Point(22, 103);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(91, 20);
-            this.linkLabel2.TabIndex = 86;
+            this.linkLabel2.TabIndex = 32;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Ver jornadas";
             // 
-            // comboBox2
+            // lblCuposTotales
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(26, 87);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(231, 28);
-            this.comboBox2.TabIndex = 85;
+            this.lblCuposTotales.AutoSize = true;
+            this.lblCuposTotales.Location = new System.Drawing.Point(280, 60);
+            this.lblCuposTotales.Name = "lblCuposTotales";
+            this.lblCuposTotales.Size = new System.Drawing.Size(25, 20);
+            this.lblCuposTotales.TabIndex = 30;
+            this.lblCuposTotales.Text = "10";
             // 
-            // btnReemplazarPlan
+            // lblCuposRestantes
             // 
-            this.btnReemplazarPlan.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnReemplazarPlan.FlatAppearance.BorderSize = 0;
-            this.btnReemplazarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReemplazarPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnReemplazarPlan.Location = new System.Drawing.Point(555, 64);
-            this.btnReemplazarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReemplazarPlan.Name = "btnReemplazarPlan";
-            this.btnReemplazarPlan.Size = new System.Drawing.Size(104, 40);
-            this.btnReemplazarPlan.TabIndex = 19;
-            this.btnReemplazarPlan.Text = "Reemplazar";
-            this.btnReemplazarPlan.UseVisualStyleBackColor = false;
+            this.lblCuposRestantes.AutoSize = true;
+            this.lblCuposRestantes.Location = new System.Drawing.Point(249, 60);
+            this.lblCuposRestantes.Name = "lblCuposRestantes";
+            this.lblCuposRestantes.Size = new System.Drawing.Size(25, 20);
+            this.lblCuposRestantes.TabIndex = 29;
+            this.lblCuposRestantes.Text = "10";
+            this.lblCuposRestantes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // LblCostoPlan
+            // label12
             // 
-            this.LblCostoPlan.AutoSize = true;
-            this.LblCostoPlan.Location = new System.Drawing.Point(302, 62);
-            this.LblCostoPlan.Name = "LblCostoPlan";
-            this.LblCostoPlan.Size = new System.Drawing.Size(70, 20);
-            this.LblCostoPlan.TabIndex = 17;
-            this.LblCostoPlan.Text = "Costo: $0";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(20, 33);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(131, 20);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Planes disponibles";
             // 
-            // btnAgregarPlan
+            // lblCostoMensual
             // 
-            this.btnAgregarPlan.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnAgregarPlan.FlatAppearance.BorderSize = 0;
-            this.btnAgregarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAgregarPlan.Location = new System.Drawing.Point(555, 21);
-            this.btnAgregarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAgregarPlan.Name = "btnAgregarPlan";
-            this.btnAgregarPlan.Size = new System.Drawing.Size(104, 40);
-            this.btnAgregarPlan.TabIndex = 15;
-            this.btnAgregarPlan.Text = "Agregar";
-            this.btnAgregarPlan.UseVisualStyleBackColor = false;
+            this.lblCostoMensual.AutoSize = true;
+            this.lblCostoMensual.Location = new System.Drawing.Point(253, 24);
+            this.lblCostoMensual.Name = "lblCostoMensual";
+            this.lblCostoMensual.Size = new System.Drawing.Size(121, 20);
+            this.lblCostoMensual.TabIndex = 26;
+            this.lblCostoMensual.Text = "Costo mensual: $";
             // 
-            // groupBox1
+            // cmbPlanesActivos
             // 
-            this.groupBox1.Controls.Add(this.linkLabel1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.LblPlanCliente);
-            this.groupBox1.Controls.Add(this.LblTelefonoCliente);
-            this.groupBox1.Controls.Add(this.LblEstadoCuotasCliente);
-            this.groupBox1.Controls.Add(this.LblMailCliente);
-            this.groupBox1.Controls.Add(this.LblDniCliente);
-            this.groupBox1.Controls.Add(this.LblNombreCliente);
-            this.groupBox1.Location = new System.Drawing.Point(9, 48);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(675, 132);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Personales";
+            this.cmbPlanesActivos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlanesActivos.FormattingEnabled = true;
+            this.cmbPlanesActivos.Location = new System.Drawing.Point(20, 56);
+            this.cmbPlanesActivos.Name = "cmbPlanesActivos";
+            this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 28);
+            this.cmbPlanesActivos.TabIndex = 25;
+            // 
+            // btnAsignarPlan
+            // 
+            this.btnAsignarPlan.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnAsignarPlan.FlatAppearance.BorderSize = 0;
+            this.btnAsignarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsignarPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAsignarPlan.Location = new System.Drawing.Point(487, 88);
+            this.btnAsignarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAsignarPlan.Name = "btnAsignarPlan";
+            this.btnAsignarPlan.Size = new System.Drawing.Size(173, 40);
+            this.btnAsignarPlan.TabIndex = 24;
+            this.btnAsignarPlan.Text = "Asignar Plan";
+            this.btnAsignarPlan.UseVisualStyleBackColor = false;
+            this.btnAsignarPlan.Click += new System.EventHandler(this.btnAsignarPlan_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(270, 60);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(15, 20);
+            this.label20.TabIndex = 31;
+            this.label20.Text = "/";
+            // 
+            // gbDatosCliente
+            // 
+            this.gbDatosCliente.Controls.Add(this.linkLabel1);
+            this.gbDatosCliente.Controls.Add(this.lblPlanesCliente);
+            this.gbDatosCliente.Controls.Add(this.lblTelefono);
+            this.gbDatosCliente.Controls.Add(this.lblMail);
+            this.gbDatosCliente.Controls.Add(this.lblDocumento);
+            this.gbDatosCliente.Controls.Add(this.lblNombre);
+            this.gbDatosCliente.Location = new System.Drawing.Point(9, 48);
+            this.gbDatosCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbDatosCliente.Name = "gbDatosCliente";
+            this.gbDatosCliente.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbDatosCliente.Size = new System.Drawing.Size(675, 132);
+            this.gbDatosCliente.TabIndex = 6;
+            this.gbDatosCliente.TabStop = false;
+            this.gbDatosCliente.Text = "Datos del Cliente";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(358, 96);
+            this.linkLabel1.Location = new System.Drawing.Point(353, 75);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(91, 20);
             this.linkLabel1.TabIndex = 19;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Ver jornadas";
             // 
-            // label1
+            // lblPlanesCliente
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(358, 75);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 20);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Costo:";
+            this.lblPlanesCliente.AutoSize = true;
+            this.lblPlanesCliente.Location = new System.Drawing.Point(353, 32);
+            this.lblPlanesCliente.Name = "lblPlanesCliente";
+            this.lblPlanesCliente.Size = new System.Drawing.Size(86, 20);
+            this.lblPlanesCliente.TabIndex = 14;
+            this.lblPlanesCliente.Text = "Plan Actual:";
             // 
-            // LblPlanCliente
+            // lblTelefono
             // 
-            this.LblPlanCliente.AutoSize = true;
-            this.LblPlanCliente.Location = new System.Drawing.Point(358, 53);
-            this.LblPlanCliente.Name = "LblPlanCliente";
-            this.LblPlanCliente.Size = new System.Drawing.Size(86, 20);
-            this.LblPlanCliente.TabIndex = 14;
-            this.LblPlanCliente.Text = "Plan Actual:";
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Location = new System.Drawing.Point(22, 75);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(70, 20);
+            this.lblTelefono.TabIndex = 13;
+            this.lblTelefono.Text = "Telefono:";
             // 
-            // LblTelefonoCliente
+            // lblMail
             // 
-            this.LblTelefonoCliente.AutoSize = true;
-            this.LblTelefonoCliente.Location = new System.Drawing.Point(22, 75);
-            this.LblTelefonoCliente.Name = "LblTelefonoCliente";
-            this.LblTelefonoCliente.Size = new System.Drawing.Size(70, 20);
-            this.LblTelefonoCliente.TabIndex = 13;
-            this.LblTelefonoCliente.Text = "Telefono:";
+            this.lblMail.AutoSize = true;
+            this.lblMail.Location = new System.Drawing.Point(22, 97);
+            this.lblMail.Name = "lblMail";
+            this.lblMail.Size = new System.Drawing.Size(41, 20);
+            this.lblMail.TabIndex = 11;
+            this.lblMail.Text = "Mail:";
             // 
-            // LblEstadoCuotasCliente
+            // lblDocumento
             // 
-            this.LblEstadoCuotasCliente.AutoSize = true;
-            this.LblEstadoCuotasCliente.Location = new System.Drawing.Point(358, 32);
-            this.LblEstadoCuotasCliente.Name = "LblEstadoCuotasCliente";
-            this.LblEstadoCuotasCliente.Size = new System.Drawing.Size(125, 20);
-            this.LblEstadoCuotasCliente.TabIndex = 12;
-            this.LblEstadoCuotasCliente.Text = "Estado de cuotas:";
+            this.lblDocumento.AutoSize = true;
+            this.lblDocumento.Location = new System.Drawing.Point(22, 53);
+            this.lblDocumento.Name = "lblDocumento";
+            this.lblDocumento.Size = new System.Drawing.Size(38, 20);
+            this.lblDocumento.TabIndex = 9;
+            this.lblDocumento.Text = "DNI:";
             // 
-            // LblMailCliente
+            // lblNombre
             // 
-            this.LblMailCliente.AutoSize = true;
-            this.LblMailCliente.Location = new System.Drawing.Point(22, 97);
-            this.LblMailCliente.Name = "LblMailCliente";
-            this.LblMailCliente.Size = new System.Drawing.Size(41, 20);
-            this.LblMailCliente.TabIndex = 11;
-            this.LblMailCliente.Text = "Mail:";
-            // 
-            // LblDniCliente
-            // 
-            this.LblDniCliente.AutoSize = true;
-            this.LblDniCliente.Location = new System.Drawing.Point(22, 53);
-            this.LblDniCliente.Name = "LblDniCliente";
-            this.LblDniCliente.Size = new System.Drawing.Size(38, 20);
-            this.LblDniCliente.TabIndex = 9;
-            this.LblDniCliente.Text = "DNI:";
-            // 
-            // LblNombreCliente
-            // 
-            this.LblNombreCliente.AutoSize = true;
-            this.LblNombreCliente.Location = new System.Drawing.Point(22, 32);
-            this.LblNombreCliente.Name = "LblNombreCliente";
-            this.LblNombreCliente.Size = new System.Drawing.Size(67, 20);
-            this.LblNombreCliente.TabIndex = 7;
-            this.LblNombreCliente.Text = "Nombre:";
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(22, 32);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(67, 20);
+            this.lblNombre.TabIndex = 7;
+            this.lblNombre.Text = "Nombre:";
             // 
             // txtBuscarCliente
             // 
@@ -327,19 +329,21 @@ namespace Gym
             this.txtBuscarCliente.Name = "txtBuscarCliente";
             this.txtBuscarCliente.Size = new System.Drawing.Size(396, 25);
             this.txtBuscarCliente.TabIndex = 4;
-            this.txtBuscarCliente.Text = "Nombre o DNI";
-            this.txtBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDatoClientePlan_KeyPress);
+            this.txtBuscarCliente.Text = "DNI";
+            this.txtBuscarCliente.Enter += new System.EventHandler(this.txtBuscarCliente_Enter);
+            this.txtBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarCliente_KeyPress);
+            this.txtBuscarCliente.Leave += new System.EventHandler(this.txtBuscarCliente_Leave);
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.GbJornadaEmpleado);
-            this.tabPage2.Controls.Add(this.GpDatosPlan);
-            this.tabPage2.Controls.Add(this.BtnAltaPlan);
+            this.tabPage2.Controls.Add(this.gpDatosPlan);
+            this.tabPage2.Controls.Add(this.btnAltaPlan);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(692, 328);
+            this.tabPage2.Size = new System.Drawing.Size(692, 338);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Alta de Planes";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -571,98 +575,88 @@ namespace Gym
             this.TxtDesdeLunes.TabIndex = 88;
             this.TxtDesdeLunes.Text = "Desde";
             // 
-            // GpDatosPlan
+            // gpDatosPlan
             // 
-            this.GpDatosPlan.Controls.Add(this.comboBox1);
-            this.GpDatosPlan.Controls.Add(this.textBox1);
-            this.GpDatosPlan.Controls.Add(this.textBox2);
-            this.GpDatosPlan.Controls.Add(this.TxtNombrePlan);
-            this.GpDatosPlan.Controls.Add(this.TxtCostoPlan);
-            this.GpDatosPlan.Controls.Add(this.CmbProfesorPlan);
-            this.GpDatosPlan.Location = new System.Drawing.Point(8, 9);
-            this.GpDatosPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GpDatosPlan.Name = "GpDatosPlan";
-            this.GpDatosPlan.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GpDatosPlan.Size = new System.Drawing.Size(351, 309);
-            this.GpDatosPlan.TabIndex = 85;
-            this.GpDatosPlan.TabStop = false;
-            this.GpDatosPlan.Text = "Datos de Plan";
+            this.gpDatosPlan.Controls.Add(this.dtpFechaInicio);
+            this.gpDatosPlan.Controls.Add(this.txtDuracion);
+            this.gpDatosPlan.Controls.Add(this.txtCupoTotal);
+            this.gpDatosPlan.Controls.Add(this.txtNombrePlan);
+            this.gpDatosPlan.Controls.Add(this.txtImporte);
+            this.gpDatosPlan.Controls.Add(this.cmbProfesores);
+            this.gpDatosPlan.Location = new System.Drawing.Point(8, 9);
+            this.gpDatosPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gpDatosPlan.Name = "gpDatosPlan";
+            this.gpDatosPlan.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gpDatosPlan.Size = new System.Drawing.Size(351, 309);
+            this.gpDatosPlan.TabIndex = 85;
+            this.gpDatosPlan.TabStop = false;
+            this.gpDatosPlan.Text = "Datos de Plan";
             // 
-            // comboBox1
+            // txtDuracion
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(19, 263);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(317, 28);
-            this.comboBox1.TabIndex = 89;
+            this.txtDuracion.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtDuracion.Location = new System.Drawing.Point(19, 178);
+            this.txtDuracion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDuracion.Name = "txtDuracion";
+            this.txtDuracion.Size = new System.Drawing.Size(317, 27);
+            this.txtDuracion.TabIndex = 88;
+            this.txtDuracion.Text = "Duración";
             // 
-            // textBox1
+            // txtCupoTotal
             // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.textBox1.Location = new System.Drawing.Point(19, 178);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(317, 27);
-            this.textBox1.TabIndex = 88;
-            this.textBox1.Text = "Duración";
+            this.txtCupoTotal.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtCupoTotal.Location = new System.Drawing.Point(19, 221);
+            this.txtCupoTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCupoTotal.Name = "txtCupoTotal";
+            this.txtCupoTotal.Size = new System.Drawing.Size(317, 27);
+            this.txtCupoTotal.TabIndex = 87;
+            this.txtCupoTotal.Text = "Cupo total";
             // 
-            // textBox2
+            // txtNombrePlan
             // 
-            this.textBox2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.textBox2.Location = new System.Drawing.Point(19, 221);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(317, 27);
-            this.textBox2.TabIndex = 87;
-            this.textBox2.Text = "Cupo total";
+            this.txtNombrePlan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtNombrePlan.Location = new System.Drawing.Point(19, 52);
+            this.txtNombrePlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNombrePlan.Name = "txtNombrePlan";
+            this.txtNombrePlan.Size = new System.Drawing.Size(317, 27);
+            this.txtNombrePlan.TabIndex = 86;
+            this.txtNombrePlan.Text = "Nombre de clase";
             // 
-            // TxtNombrePlan
+            // txtImporte
             // 
-            this.TxtNombrePlan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.TxtNombrePlan.Location = new System.Drawing.Point(19, 52);
-            this.TxtNombrePlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtNombrePlan.Name = "TxtNombrePlan";
-            this.TxtNombrePlan.Size = new System.Drawing.Size(317, 27);
-            this.TxtNombrePlan.TabIndex = 86;
-            this.TxtNombrePlan.Text = "Nombre de clase";
+            this.txtImporte.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtImporte.Location = new System.Drawing.Point(19, 93);
+            this.txtImporte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtImporte.Name = "txtImporte";
+            this.txtImporte.Size = new System.Drawing.Size(317, 27);
+            this.txtImporte.TabIndex = 85;
+            this.txtImporte.Text = "Importe $$";
             // 
-            // TxtCostoPlan
+            // cmbProfesores
             // 
-            this.TxtCostoPlan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.TxtCostoPlan.Location = new System.Drawing.Point(19, 93);
-            this.TxtCostoPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtCostoPlan.Name = "TxtCostoPlan";
-            this.TxtCostoPlan.Size = new System.Drawing.Size(317, 27);
-            this.TxtCostoPlan.TabIndex = 85;
-            this.TxtCostoPlan.Text = "Importe $$";
+            this.cmbProfesores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProfesores.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cmbProfesores.FormattingEnabled = true;
+            this.cmbProfesores.Location = new System.Drawing.Point(19, 135);
+            this.cmbProfesores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbProfesores.Name = "cmbProfesores";
+            this.cmbProfesores.Size = new System.Drawing.Size(317, 28);
+            this.cmbProfesores.TabIndex = 84;
             // 
-            // CmbProfesorPlan
+            // btnAltaPlan
             // 
-            this.CmbProfesorPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbProfesorPlan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.CmbProfesorPlan.FormattingEnabled = true;
-            this.CmbProfesorPlan.Location = new System.Drawing.Point(19, 135);
-            this.CmbProfesorPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.CmbProfesorPlan.Name = "CmbProfesorPlan";
-            this.CmbProfesorPlan.Size = new System.Drawing.Size(317, 28);
-            this.CmbProfesorPlan.TabIndex = 84;
-            // 
-            // BtnAltaPlan
-            // 
-            this.BtnAltaPlan.BackColor = System.Drawing.SystemColors.Highlight;
-            this.BtnAltaPlan.FlatAppearance.BorderSize = 0;
-            this.BtnAltaPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAltaPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BtnAltaPlan.Location = new System.Drawing.Point(375, 272);
-            this.BtnAltaPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BtnAltaPlan.Name = "BtnAltaPlan";
-            this.BtnAltaPlan.Size = new System.Drawing.Size(307, 46);
-            this.BtnAltaPlan.TabIndex = 83;
-            this.BtnAltaPlan.Text = "Guardar Clase";
-            this.BtnAltaPlan.UseVisualStyleBackColor = false;
+            this.btnAltaPlan.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnAltaPlan.FlatAppearance.BorderSize = 0;
+            this.btnAltaPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAltaPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAltaPlan.Location = new System.Drawing.Point(375, 272);
+            this.btnAltaPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAltaPlan.Name = "btnAltaPlan";
+            this.btnAltaPlan.Size = new System.Drawing.Size(307, 46);
+            this.btnAltaPlan.TabIndex = 83;
+            this.btnAltaPlan.Text = "Guardar Clase";
+            this.btnAltaPlan.UseVisualStyleBackColor = false;
+            this.btnAltaPlan.Click += new System.EventHandler(this.btnAltaPlan_Click);
             // 
             // TxtBuscarPlan
             // 
@@ -678,14 +672,14 @@ namespace Gym
             // 
             this.dtgvPlanes.AllowUserToAddRows = false;
             this.dtgvPlanes.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvPlanes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvPlanes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dtgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvPlanes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Persona_ID,
@@ -697,14 +691,14 @@ namespace Gym
             this.dtgvPlanes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvPlanes.Name = "dtgvPlanes";
             this.dtgvPlanes.ReadOnly = true;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvPlanes.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvPlanes.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dtgvPlanes.RowHeadersVisible = false;
             this.dtgvPlanes.RowHeadersWidth = 51;
             this.dtgvPlanes.RowTemplate.Height = 29;
@@ -724,8 +718,8 @@ namespace Gym
             // Nombre
             // 
             this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle7;
             this.Nombre.Frozen = true;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.MinimumWidth = 6;
@@ -737,8 +731,8 @@ namespace Gym
             // Profesor_n
             // 
             this.Profesor_n.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Profesor_n.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Profesor_n.DefaultCellStyle = dataGridViewCellStyle8;
             this.Profesor_n.Frozen = true;
             this.Profesor_n.HeaderText = "Profesor";
             this.Profesor_n.MinimumWidth = 6;
@@ -749,8 +743,8 @@ namespace Gym
             // Dias_horarios
             // 
             this.Dias_horarios.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Dias_horarios.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Dias_horarios.DefaultCellStyle = dataGridViewCellStyle9;
             this.Dias_horarios.Frozen = true;
             this.Dias_horarios.HeaderText = "Dias y horarios";
             this.Dias_horarios.MinimumWidth = 6;
@@ -758,21 +752,12 @@ namespace Gym
             this.Dias_horarios.ReadOnly = true;
             this.Dias_horarios.Width = 308;
             // 
-            // lblCupos
+            // dtpFechaInicio
             // 
-            this.lblCupos.AutoSize = true;
-            this.lblCupos.Location = new System.Drawing.Point(303, 34);
-            this.lblCupos.Name = "lblCupos";
-            this.lblCupos.Size = new System.Drawing.Size(50, 20);
-            this.lblCupos.TabIndex = 87;
-            this.lblCupos.Text = "Cupos";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(26, 34);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 27);
-            this.dateTimePicker1.TabIndex = 88;
+            this.dtpFechaInicio.Location = new System.Drawing.Point(19, 263);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(317, 27);
+            this.dtpFechaInicio.TabIndex = 89;
             // 
             // Planes
             // 
@@ -793,13 +778,13 @@ namespace Gym
             this.tabPage1.PerformLayout();
             this.GbModificarPlan.ResumeLayout(false);
             this.GbModificarPlan.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbDatosCliente.ResumeLayout(false);
+            this.gbDatosCliente.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.GbJornadaEmpleado.ResumeLayout(false);
             this.GbJornadaEmpleado.PerformLayout();
-            this.GpDatosPlan.ResumeLayout(false);
-            this.GpDatosPlan.PerformLayout();
+            this.gpDatosPlan.ResumeLayout(false);
+            this.gpDatosPlan.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPlanes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -813,11 +798,11 @@ namespace Gym
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox GpDatosPlan;
-        private System.Windows.Forms.TextBox TxtNombrePlan;
-        private System.Windows.Forms.TextBox TxtCostoPlan;
-        private System.Windows.Forms.ComboBox CmbProfesorPlan;
-        private System.Windows.Forms.Button BtnAltaPlan;
+        private System.Windows.Forms.GroupBox gpDatosPlan;
+        private System.Windows.Forms.TextBox txtNombrePlan;
+        private System.Windows.Forms.TextBox txtImporte;
+        private System.Windows.Forms.ComboBox cmbProfesores;
+        private System.Windows.Forms.Button btnAltaPlan;
         private System.Windows.Forms.GroupBox GbJornadaEmpleado;
         private System.Windows.Forms.CheckBox ChkTodos;
         private System.Windows.Forms.TextBox TxtHastaSabado;
@@ -840,30 +825,29 @@ namespace Gym
         private System.Windows.Forms.TextBox TxtDesdeLunes;
         private System.Windows.Forms.TextBox txtBuscarCliente;
         private System.Windows.Forms.GroupBox GbModificarPlan;
-        private System.Windows.Forms.Label LblCostoPlan;
-        private System.Windows.Forms.Button btnAgregarPlan;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label LblPlanCliente;
-        private System.Windows.Forms.Label LblTelefonoCliente;
-        private System.Windows.Forms.Label LblEstadoCuotasCliente;
-        private System.Windows.Forms.Label LblMailCliente;
-        private System.Windows.Forms.Label LblDniCliente;
-        private System.Windows.Forms.Label LblNombreCliente;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.GroupBox gbDatosCliente;
+        private System.Windows.Forms.Label lblPlanesCliente;
+        private System.Windows.Forms.Label lblTelefono;
+        private System.Windows.Forms.Label lblMail;
+        private System.Windows.Forms.Label lblDocumento;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.TextBox txtDuracion;
+        private System.Windows.Forms.TextBox txtCupoTotal;
         private System.Windows.Forms.TextBox TxtBuscarPlan;
-        private System.Windows.Forms.Button btnReemplazarPlan;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.DataGridView dtgvPlanes;
         private System.Windows.Forms.DataGridViewTextBoxColumn Persona_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Profesor_n;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dias_horarios;
-        private System.Windows.Forms.Label lblCupos;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lblCuposTotales;
+        private System.Windows.Forms.Label lblCuposRestantes;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblCostoMensual;
+        private System.Windows.Forms.ComboBox cmbPlanesActivos;
+        private System.Windows.Forms.Button btnAsignarPlan;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
     }
 }
