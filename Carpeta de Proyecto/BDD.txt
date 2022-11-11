@@ -1,9 +1,4 @@
-DROP DATABASE IF EXISTS gym
-
-go
-
 create database gym
-
 go
 
 use gym
@@ -68,10 +63,10 @@ go
 
 create table Cajas(
 Caja_ID int primary key identity (0, 1),
-Empleado_ID int not null,
+Persona_ID int not null,
 Fecha datetime not null,
 Importe_Inicial decimal(18,0) not null,
-Importe_Final decimal(18,0) not null,
+Importe_Final decimal(18,0) null,
 )
 
 go
@@ -80,10 +75,10 @@ create table Detalles_Cajas(
 Detalle_Caja_ID int primary key identity (0, 1),
 Caja_ID int not null,
 Plan_Asignado_ID int not null,
-Empleado_ID int not null,
+Persona_ID int not null,
 Importe_Ingreso decimal (18, 0) null,
 Importe_Egreso decimal (18, 0) null,
-Motivo nvarchar(50) not null,
+Motivo nvarchar(50) null,
 Observaciones nvarchar(200) null,
 )
 
@@ -92,7 +87,7 @@ go
 create table Cuotas(
 Cuota_ID int primary key identity (0, 1),
 Plan_Asignado_ID int not null,
-Empleado_ID int not null,
+Persona_ID int not null,
 Detalle_Caja_ID int null,
 Importe_Cuota decimal(18, 0) not null,
 Saldo decimal(18, 0) not null,
@@ -105,7 +100,7 @@ go
 
 create table Planes(
 Plan_ID int primary key identity (0, 1),
-Empleado_ID int not null,
+Persona_ID int not null,
 Nombre nvarchar(20) not null,
 Importe_Plan decimal (18, 0) not null,
 Duracion int null,
@@ -136,6 +131,7 @@ go
 create table Facturas_Clientes(
 Factura_Cliente_ID int primary key identity (0, 1),
 Plan_Asignado_ID int not null,
+Persona_ID int not null,
 Importe decimal(18, 0) not null,
 Fecha_Emision datetime not null,
 Fecha_Vencimiento datetime not null,
@@ -173,7 +169,7 @@ go
 
 create table Registros_Logs(
 Registro_Log_ID int primary key identity (0, 1),
-Empleado_ID int not null,
+Persona_ID int not null,
 Fecha_LogIn datetime not null,
 Fecha_LogOut datetime null
 )
@@ -315,8 +311,8 @@ go
 /* Caja */
 
 alter table Cajas
-add CONSTRAINT FK_Cajas_Empleado FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Cajas_Empleado FOREIGN KEY (Persona_ID) 
+REFERENCES Personas (Persona_ID)
 
 go
 
@@ -335,8 +331,8 @@ REFERENCES Planes_Asignados (Plan_Asignado_ID)
 go
 
 alter table Detalles_Cajas
-add CONSTRAINT FK_Detalles_Cajas_Empleado FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Detalles_Cajas_Empleado FOREIGN KEY (Persona_ID) 
+REFERENCES Personas (Persona_ID)
 
 go
 
@@ -349,8 +345,8 @@ REFERENCES Planes_Asignados (Plan_Asignado_ID)
 go
 
 alter table Cuotas
-add CONSTRAINT FK_Cuotas_Empleado FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Cuotas_Empleado FOREIGN KEY (Persona_ID) 
+REFERENCES Personas (Persona_ID)
 
 go
 
@@ -363,8 +359,8 @@ go
 /* Planes */
 
 alter table Planes
-add CONSTRAINT FK_Planes_Empleados FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Planes_Empleados FOREIGN KEY (Persona_ID) 
+REFERENCES Personas (Persona_ID)
 
 go
 
@@ -396,6 +392,12 @@ REFERENCES Planes_Asignados (Plan_Asignado_ID)
 
 go
 
+alter table Facturas_Clientes
+add CONSTRAINT FK_Facturas_Clientes_Cliente FOREIGN KEY (Persona_ID) 
+REFERENCES Personas (Persona_ID)
+
+go
+
 /* Jornadas_Planes  */
 
 alter table Jornadas_Planes 
@@ -414,8 +416,8 @@ REFERENCES Empleados (Empleado_ID)
 /* Registro de Login */
 
 alter table Registros_Logs
-add CONSTRAINT FK_Registros_Logs_Empleados FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+add CONSTRAINT FK_Registros_Logs_Empleados FOREIGN KEY (Persona_ID) 
+REFERENCES Personas (Persona_ID)
 
 go
 
@@ -484,17 +486,18 @@ go
 
 create proc sp_Cargar_Clientes_Desc
 as
-SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
+SELECT Clientes.Cliente_ID, Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
 FROM Personas
 INNER JOIN Clientes
 ON Personas.Persona_ID=Clientes.Persona_ID
 WHERE Personas.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+and Estado = 'Activo'
 ORDER BY Personas.Fecha_Alta desc
 
 go
 
-
 create proc sp_Cargar_Empleados_Desc
+
 AS
 SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
 	   Tipos_Empleados.Tipo, Estados_Empleados.Estado_Empleado
@@ -512,7 +515,71 @@ ORDER BY Personas.Fecha_Alta desc
 
 go
 
+set dateformat dmy
+
 --Desde acá creo el perfil de admin, con la clave encriptada.
 insert into Personas values ('Admin', 'Admin', 0, '123456', 0, '0', null, null, null, GETDATE(), null)
 insert into Empleados values (0, 'Admin', 'c4a0b7848bf1526e502f68b2c296f384d1aeee3857780b90ce2ddf7530875a27', 0, 0)
 
+
+select * from Planes_Asignados
+select * from Cuotas
+Select * from Planes
+select * from Clientes
+select * from Personas
+select * from Cajas
+select * from Detalles_Cajas
+select * from Cuotas
+select * from Facturas_Clientes
+Select * from Jornadas_Planes
+
+insert into Personas values ('Joel', 'Pallero', 0, '36233357', 0, '0', null, null, null, GETDATE(), null)
+insert into Clientes values (1, 'A')
+insert into Planes values (1, 'Bicicleta', '4500', null, 30, 29, 'A')
+insert into Planes_Asignados values (0, 0, 0, GETDATE(), null, 'A')
+insert into Cuotas values (0, 0, null, 1500, 0, 10/11/2022)
+insert into Cuotas values (0, 0, null, 1500, 1500, 10/12/2022)
+insert into Cuotas values (0, 0, null, 1500, 3000, 10/01/2023)
+
+insert into Cajas values (0, GETDATE(), 0, null)
+insert into Detalles_Cajas values (0, 0, 0, 1500, null, 'Pago Cuota', null)
+update Cuotas set Detalle_Caja_ID = 0 where Cuota_ID = 0
+
+select * from Cuotas
+
+/* Revisar al último esta consulta, para no generar errores en la consulta de datos
+respecto a cualquier plan que el cliente tenga */
+--select Planes.Nombre, Planes.Importe_Plan, Clientes.Cliente_ID
+--from Planes
+--inner join Planes_Asignados
+--on Planes_Asignados.Plan_ID = Planes.Plan_ID
+--inner join Clientes
+--on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
+--inner join Facturas_Clientes
+--on Facturas_Clientes.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
+--where Clientes.Cliente_ID = @Cliente_ID
+-----------------------
+
+
+
+--select Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Personas.Nro_Telefono, Personas.Mail,
+--	   Planes.Nombre, Planes_Asignados.Plan_Asignado_ID
+--from Personas
+--inner join Clientes
+--on Clientes.Persona_ID = Clientes.Persona_ID
+--inner join Planes_Asignados
+--on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
+--inner join Planes
+--on Planes_Asignados.Plan_ID = Planes.Plan_ID
+--where Planes_Asignados.Estado = 'A'
+--and Planes.Estado = 'A'
+--and Personas.Nro_documento = @Nro_documento
+--or  Personas.Nombre = @Nombre
+--or Personas.Apellido = @Apellido
+
+--select count(*) as CantidadCuotas
+--from Cuotas 
+--where exists
+--(select count(*) as CuotasPagas from Cuotas where Detalle_Caja_ID != null)
+--and Persona_ID = 0
+--and Cuotas.Plan_Asignado_ID = 0

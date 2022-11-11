@@ -29,137 +29,261 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
-            this.TxtDatoClienteAsistencia = new System.Windows.Forms.TextBox();
-            this.GbClienteAsistencia = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.BtnAltaAsistencia = new System.Windows.Forms.Button();
+            this.txtBuscarCliente = new System.Windows.Forms.TextBox();
+            this.gbClienteAsistencia = new System.Windows.Forms.GroupBox();
+            this.lblPlanActual = new System.Windows.Forms.Label();
+            this.btnPago = new System.Windows.Forms.Button();
+            this.btnGuardarAsistencia = new System.Windows.Forms.Button();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblMail = new System.Windows.Forms.Label();
+            this.lblNro_documento = new System.Windows.Forms.Label();
+            this.lblNombreCliente = new System.Windows.Forms.Label();
             this.DtgvClienteAsistencia = new System.Windows.Forms.DataGridView();
-            this.TxtBuscarClienteAsistencia = new System.Windows.Forms.TextBox();
-            this.GbClienteAsistencia.SuspendLayout();
+            this.txtBuscarAsistencias = new System.Windows.Forms.TextBox();
+            this.gbAsignarPlan = new System.Windows.Forms.GroupBox();
+            this.CuposTotales = new System.Windows.Forms.Label();
+            this.lblCuposRestantes = new System.Windows.Forms.Label();
+            this.btnVerJornadas = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cmbPlanesActivos = new System.Windows.Forms.ComboBox();
+            this.btnAsignarPlan = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.gbClienteAsistencia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgvClienteAsistencia)).BeginInit();
+            this.gbAsignarPlan.SuspendLayout();
             this.SuspendLayout();
             // 
-            // TxtDatoClienteAsistencia
+            // txtBuscarCliente
             // 
-            this.TxtDatoClienteAsistencia.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TxtDatoClienteAsistencia.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDatoClienteAsistencia.Location = new System.Drawing.Point(12, 32);
-            this.TxtDatoClienteAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtDatoClienteAsistencia.Name = "TxtDatoClienteAsistencia";
-            this.TxtDatoClienteAsistencia.Size = new System.Drawing.Size(396, 27);
-            this.TxtDatoClienteAsistencia.TabIndex = 0;
-            this.TxtDatoClienteAsistencia.Text = "Nombre o DNI";
+            this.txtBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtBuscarCliente.Location = new System.Drawing.Point(23, 30);
+            this.txtBuscarCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBuscarCliente.Name = "txtBuscarCliente";
+            this.txtBuscarCliente.Size = new System.Drawing.Size(256, 25);
+            this.txtBuscarCliente.TabIndex = 0;
+            this.txtBuscarCliente.Text = "DNI";
+            this.txtBuscarCliente.Enter += new System.EventHandler(this.txtBuscarCliente_Enter);
+            this.txtBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarCliente_KeyPress);
+            this.txtBuscarCliente.Leave += new System.EventHandler(this.txtBuscarCliente_Leave);
             // 
-            // GbClienteAsistencia
+            // gbClienteAsistencia
             // 
-            this.GbClienteAsistencia.Controls.Add(this.label4);
-            this.GbClienteAsistencia.Controls.Add(this.label8);
-            this.GbClienteAsistencia.Controls.Add(this.label7);
-            this.GbClienteAsistencia.Controls.Add(this.label6);
-            this.GbClienteAsistencia.Controls.Add(this.label5);
-            this.GbClienteAsistencia.Controls.Add(this.label3);
-            this.GbClienteAsistencia.Location = new System.Drawing.Point(12, 65);
-            this.GbClienteAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GbClienteAsistencia.Name = "GbClienteAsistencia";
-            this.GbClienteAsistencia.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GbClienteAsistencia.Size = new System.Drawing.Size(676, 145);
-            this.GbClienteAsistencia.TabIndex = 3;
-            this.GbClienteAsistencia.TabStop = false;
-            this.GbClienteAsistencia.Text = "Datos Personales";
+            this.gbClienteAsistencia.Controls.Add(this.txtBuscarCliente);
+            this.gbClienteAsistencia.Controls.Add(this.lblPlanActual);
+            this.gbClienteAsistencia.Controls.Add(this.btnPago);
+            this.gbClienteAsistencia.Controls.Add(this.btnGuardarAsistencia);
+            this.gbClienteAsistencia.Controls.Add(this.lblTelefono);
+            this.gbClienteAsistencia.Controls.Add(this.lblMail);
+            this.gbClienteAsistencia.Controls.Add(this.lblNro_documento);
+            this.gbClienteAsistencia.Controls.Add(this.lblNombreCliente);
+            this.gbClienteAsistencia.Location = new System.Drawing.Point(12, 11);
+            this.gbClienteAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbClienteAsistencia.Name = "gbClienteAsistencia";
+            this.gbClienteAsistencia.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbClienteAsistencia.Size = new System.Drawing.Size(676, 185);
+            this.gbClienteAsistencia.TabIndex = 3;
+            this.gbClienteAsistencia.TabStop = false;
+            this.gbClienteAsistencia.Text = "Asistencia de clientes";
             // 
-            // label4
+            // lblPlanActual
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 104);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 20);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Telefono:";
+            this.lblPlanActual.AutoSize = true;
+            this.lblPlanActual.Location = new System.Drawing.Point(319, 100);
+            this.lblPlanActual.Name = "lblPlanActual";
+            this.lblPlanActual.Size = new System.Drawing.Size(97, 20);
+            this.lblPlanActual.TabIndex = 18;
+            this.lblPlanActual.Text = "Clase Actual: ";
             // 
-            // label8
+            // btnPago
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(315, 101);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(125, 20);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Estado de cuotas:";
+            this.btnPago.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnPago.FlatAppearance.BorderSize = 0;
+            this.btnPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPago.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPago.Location = new System.Drawing.Point(323, 132);
+            this.btnPago.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPago.Name = "btnPago";
+            this.btnPago.Size = new System.Drawing.Size(115, 33);
+            this.btnPago.TabIndex = 15;
+            this.btnPago.Text = "Realizar Pago";
+            this.btnPago.UseVisualStyleBackColor = false;
             // 
-            // label7
+            // btnGuardarAsistencia
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(315, 68);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 20);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Mail:";
+            this.btnGuardarAsistencia.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnGuardarAsistencia.FlatAppearance.BorderSize = 0;
+            this.btnGuardarAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarAsistencia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGuardarAsistencia.Location = new System.Drawing.Point(479, 25);
+            this.btnGuardarAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGuardarAsistencia.Name = "btnGuardarAsistencia";
+            this.btnGuardarAsistencia.Size = new System.Drawing.Size(173, 33);
+            this.btnGuardarAsistencia.TabIndex = 14;
+            this.btnGuardarAsistencia.Text = "Confirmar Asistencia";
+            this.btnGuardarAsistencia.UseVisualStyleBackColor = false;
+            this.btnGuardarAsistencia.Click += new System.EventHandler(this.btnGuardarAsistencia_Click);
             // 
-            // label6
+            // lblTelefono
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(315, 32);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 20);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Alternativo:";
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Location = new System.Drawing.Point(23, 132);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(74, 20);
+            this.lblTelefono.TabIndex = 13;
+            this.lblTelefono.Text = "Telefono: ";
             // 
-            // label5
+            // lblMail
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 68);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 20);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "DNI:";
+            this.lblMail.AutoSize = true;
+            this.lblMail.Location = new System.Drawing.Point(319, 70);
+            this.lblMail.Name = "lblMail";
+            this.lblMail.Size = new System.Drawing.Size(45, 20);
+            this.lblMail.TabIndex = 11;
+            this.lblMail.Text = "Mail: ";
             // 
-            // label3
+            // lblNro_documento
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 20);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Nombre:";
+            this.lblNro_documento.AutoSize = true;
+            this.lblNro_documento.Location = new System.Drawing.Point(23, 100);
+            this.lblNro_documento.Name = "lblNro_documento";
+            this.lblNro_documento.Size = new System.Drawing.Size(42, 20);
+            this.lblNro_documento.TabIndex = 9;
+            this.lblNro_documento.Text = "DNI: ";
             // 
-            // BtnAltaAsistencia
+            // lblNombreCliente
             // 
-            this.BtnAltaAsistencia.BackColor = System.Drawing.SystemColors.Highlight;
-            this.BtnAltaAsistencia.FlatAppearance.BorderSize = 0;
-            this.BtnAltaAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAltaAsistencia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BtnAltaAsistencia.Location = new System.Drawing.Point(515, 216);
-            this.BtnAltaAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BtnAltaAsistencia.Name = "BtnAltaAsistencia";
-            this.BtnAltaAsistencia.Size = new System.Drawing.Size(173, 40);
-            this.BtnAltaAsistencia.TabIndex = 7;
-            this.BtnAltaAsistencia.Text = "Confirmar Asistencia";
-            this.BtnAltaAsistencia.UseVisualStyleBackColor = false;
+            this.lblNombreCliente.AutoSize = true;
+            this.lblNombreCliente.Location = new System.Drawing.Point(23, 70);
+            this.lblNombreCliente.Name = "lblNombreCliente";
+            this.lblNombreCliente.Size = new System.Drawing.Size(71, 20);
+            this.lblNombreCliente.TabIndex = 7;
+            this.lblNombreCliente.Text = "Nombre: ";
             // 
             // DtgvClienteAsistencia
             // 
             this.DtgvClienteAsistencia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DtgvClienteAsistencia.Location = new System.Drawing.Point(12, 312);
+            this.DtgvClienteAsistencia.Location = new System.Drawing.Point(12, 353);
             this.DtgvClienteAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DtgvClienteAsistencia.Name = "DtgvClienteAsistencia";
             this.DtgvClienteAsistencia.RowHeadersWidth = 51;
             this.DtgvClienteAsistencia.RowTemplate.Height = 29;
-            this.DtgvClienteAsistencia.Size = new System.Drawing.Size(676, 326);
+            this.DtgvClienteAsistencia.Size = new System.Drawing.Size(676, 285);
             this.DtgvClienteAsistencia.TabIndex = 4;
             // 
-            // TxtBuscarClienteAsistencia
+            // txtBuscarAsistencias
             // 
-            this.TxtBuscarClienteAsistencia.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtBuscarClienteAsistencia.Location = new System.Drawing.Point(12, 279);
-            this.TxtBuscarClienteAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtBuscarClienteAsistencia.Name = "TxtBuscarClienteAsistencia";
-            this.TxtBuscarClienteAsistencia.Size = new System.Drawing.Size(296, 27);
-            this.TxtBuscarClienteAsistencia.TabIndex = 6;
-            this.TxtBuscarClienteAsistencia.Text = "Buscar";
+            this.txtBuscarAsistencias.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtBuscarAsistencias.Location = new System.Drawing.Point(12, 322);
+            this.txtBuscarAsistencias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBuscarAsistencias.Name = "txtBuscarAsistencias";
+            this.txtBuscarAsistencias.Size = new System.Drawing.Size(296, 27);
+            this.txtBuscarAsistencias.TabIndex = 6;
+            this.txtBuscarAsistencias.Text = "Buscar";
+            this.txtBuscarAsistencias.Enter += new System.EventHandler(this.txtBuscarAsistencias_Enter);
+            this.txtBuscarAsistencias.Leave += new System.EventHandler(this.txtBuscarAsistencias_Leave);
+            // 
+            // gbAsignarPlan
+            // 
+            this.gbAsignarPlan.Controls.Add(this.CuposTotales);
+            this.gbAsignarPlan.Controls.Add(this.lblCuposRestantes);
+            this.gbAsignarPlan.Controls.Add(this.btnVerJornadas);
+            this.gbAsignarPlan.Controls.Add(this.label12);
+            this.gbAsignarPlan.Controls.Add(this.label14);
+            this.gbAsignarPlan.Controls.Add(this.cmbPlanesActivos);
+            this.gbAsignarPlan.Controls.Add(this.btnAsignarPlan);
+            this.gbAsignarPlan.Controls.Add(this.label20);
+            this.gbAsignarPlan.Location = new System.Drawing.Point(12, 200);
+            this.gbAsignarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbAsignarPlan.Name = "gbAsignarPlan";
+            this.gbAsignarPlan.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbAsignarPlan.Size = new System.Drawing.Size(676, 104);
+            this.gbAsignarPlan.TabIndex = 7;
+            this.gbAsignarPlan.TabStop = false;
+            this.gbAsignarPlan.Text = "Datos de Planes";
+            // 
+            // CuposTotales
+            // 
+            this.CuposTotales.AutoSize = true;
+            this.CuposTotales.Location = new System.Drawing.Point(283, 58);
+            this.CuposTotales.Name = "CuposTotales";
+            this.CuposTotales.Size = new System.Drawing.Size(25, 20);
+            this.CuposTotales.TabIndex = 22;
+            this.CuposTotales.Text = "10";
+            // 
+            // lblCuposRestantes
+            // 
+            this.lblCuposRestantes.AutoSize = true;
+            this.lblCuposRestantes.Location = new System.Drawing.Point(252, 58);
+            this.lblCuposRestantes.Name = "lblCuposRestantes";
+            this.lblCuposRestantes.Size = new System.Drawing.Size(25, 20);
+            this.lblCuposRestantes.TabIndex = 21;
+            this.lblCuposRestantes.Text = "10";
+            // 
+            // btnVerJornadas
+            // 
+            this.btnVerJornadas.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnVerJornadas.FlatAppearance.BorderSize = 0;
+            this.btnVerJornadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerJornadas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnVerJornadas.Location = new System.Drawing.Point(323, 54);
+            this.btnVerJornadas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnVerJornadas.Name = "btnVerJornadas";
+            this.btnVerJornadas.Size = new System.Drawing.Size(88, 28);
+            this.btnVerJornadas.TabIndex = 20;
+            this.btnVerJornadas.Text = "Horarios";
+            this.btnVerJornadas.UseVisualStyleBackColor = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(23, 31);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(131, 20);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Planes disponibles";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(256, 22);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(121, 20);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "Costo mensual: $";
+            // 
+            // cmbPlanesActivos
+            // 
+            this.cmbPlanesActivos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlanesActivos.FormattingEnabled = true;
+            this.cmbPlanesActivos.Location = new System.Drawing.Point(23, 54);
+            this.cmbPlanesActivos.Name = "cmbPlanesActivos";
+            this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 28);
+            this.cmbPlanesActivos.TabIndex = 16;
+            // 
+            // btnAsignarPlan
+            // 
+            this.btnAsignarPlan.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnAsignarPlan.FlatAppearance.BorderSize = 0;
+            this.btnAsignarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsignarPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAsignarPlan.Location = new System.Drawing.Point(479, 48);
+            this.btnAsignarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAsignarPlan.Name = "btnAsignarPlan";
+            this.btnAsignarPlan.Size = new System.Drawing.Size(173, 40);
+            this.btnAsignarPlan.TabIndex = 7;
+            this.btnAsignarPlan.Text = "Asignar Plan";
+            this.btnAsignarPlan.UseVisualStyleBackColor = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(273, 58);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(15, 20);
+            this.label20.TabIndex = 23;
+            this.label20.Text = "/";
             // 
             // Asistencias
             // 
@@ -167,19 +291,20 @@ namespace Gym
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(700, 650);
-            this.Controls.Add(this.BtnAltaAsistencia);
-            this.Controls.Add(this.TxtBuscarClienteAsistencia);
+            this.Controls.Add(this.gbAsignarPlan);
+            this.Controls.Add(this.txtBuscarAsistencias);
             this.Controls.Add(this.DtgvClienteAsistencia);
-            this.Controls.Add(this.GbClienteAsistencia);
-            this.Controls.Add(this.TxtDatoClienteAsistencia);
+            this.Controls.Add(this.gbClienteAsistencia);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Asistencias";
             this.Text = "asistencia";
-            this.GbClienteAsistencia.ResumeLayout(false);
-            this.GbClienteAsistencia.PerformLayout();
+            this.gbClienteAsistencia.ResumeLayout(false);
+            this.gbClienteAsistencia.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgvClienteAsistencia)).EndInit();
+            this.gbAsignarPlan.ResumeLayout(false);
+            this.gbAsignarPlan.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,16 +312,25 @@ namespace Gym
 
         #endregion
 
-        private System.Windows.Forms.TextBox TxtDatoClienteAsistencia;
-        private System.Windows.Forms.GroupBox GbClienteAsistencia;
+        private System.Windows.Forms.TextBox txtBuscarCliente;
+        private System.Windows.Forms.GroupBox gbClienteAsistencia;
         private System.Windows.Forms.DataGridView DtgvClienteAsistencia;
-        private System.Windows.Forms.TextBox TxtBuscarClienteAsistencia;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button BtnAltaAsistencia;
+        private System.Windows.Forms.TextBox txtBuscarAsistencias;
+        private System.Windows.Forms.Label lblMail;
+        private System.Windows.Forms.Label lblNro_documento;
+        private System.Windows.Forms.Label lblNombreCliente;
+        private System.Windows.Forms.Label lblTelefono;
+        private System.Windows.Forms.Button btnPago;
+        private System.Windows.Forms.Button btnGuardarAsistencia;
+        private System.Windows.Forms.Label lblPlanActual;
+        private System.Windows.Forms.GroupBox gbAsignarPlan;
+        private System.Windows.Forms.Label CuposTotales;
+        private System.Windows.Forms.Label lblCuposRestantes;
+        private System.Windows.Forms.Button btnVerJornadas;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox cmbPlanesActivos;
+        private System.Windows.Forms.Button btnAsignarPlan;
+        private System.Windows.Forms.Label label20;
     }
 }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAsistencia.cs" />
     <Compile Include="DataCaja.cs" />
     <Compile Include="DataClientes.cs" />
     <Compile Include="DataConnection.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="DataJornadas.cs" />
     <Compile Include="DataPersonas.cs" />
     <Compile Include="DataPlanes.cs" />
+    <Compile Include="DataRegistrosLogs.cs" />
     <Compile Include="DataTipos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,11 +11,13 @@ namespace Gym
         #region Instancias
         //Capa de negocio
         private readonly BussinessEmpleados _bussinessEmplados;
+        private readonly BussinessRegistrosLogs _bussinessRegistrosLogs;
 
         //Capa de entidades
         private readonly Entities.Empleados _empleados;
         private readonly Tipos_Empleados _tiposEmpleados;
         private readonly Personas _personas = new Personas();
+        private readonly Entities.Registros_Logs _registros_Logs;
 
         //Clases internas de la capa
         private readonly MetodosGenerales _metodosGenerales;
@@ -30,6 +32,8 @@ namespace Gym
             _empleados = new Entities.Empleados();
             _tiposEmpleados = new Tipos_Empleados();
             _metodosGenerales = new MetodosGenerales();
+            _bussinessRegistrosLogs = new BussinessRegistrosLogs();
+            _registros_Logs = new Registros_Logs();
         }
         private void Login_Load(object sender, EventArgs e)
         {
@@ -42,7 +46,8 @@ namespace Gym
         #region Variables
 
         private string clave = string.Empty;
-        private int idPersonaLogin;
+        private int idEmpleadoLogin;
+        private int idLastLogin;
         private bool mainJefe;
 
 
@@ -52,7 +57,7 @@ namespace Gym
 
         private void CerrarForms()
         {
-            MainForm frm = new MainForm(mainJefe, idPersonaLogin);
+            MainForm frm = new MainForm(mainJefe, idEmpleadoLogin, idLastLogin);
             frm.Close();
         }
 
@@ -62,6 +67,16 @@ namespace Gym
             //Encriptamos la clave con un HASH256
             //Y la asignamos al campo de la entidad correspondiente
             clave = EncriptamientoSHA256.GetSHA256(txtClave.Text.ToString());
+        }
+
+        private void RegistrarLogin()
+        {
+            _registros_Logs.Empleado_ID = idEmpleadoLogin;
+            _registros_Logs.Fecha_LogIn = DateTime.Now;
+            _bussinessRegistrosLogs.RegistrarLogin(_registros_Logs);
+            _registros_Logs.Empleado_ID = idEmpleadoLogin;
+            _bussinessRegistrosLogs.GetLastLogID(_registros_Logs);
+            idLastLogin = _registros_Logs.Registro_Log_ID;
         }
 
         #endregion
@@ -149,7 +164,7 @@ namespace Gym
                 if (_tiposEmpleados.Estado == "Activo" && _tiposEmpleados.Acceso_Clave == "Y")
                 {
                     //Vamos a traer los datos del empleado que abrió sesión
-                    idPersonaLogin = _empleados.Persona_ID;
+                    idEmpleadoLogin = _empleados.Empleado_ID;
 
                     //Si mainJefe es true, entonces se habilitan todos los botones
                     //del formulario principal que se va a abrir a continuación,
@@ -163,8 +178,8 @@ namespace Gym
                     {
                         mainJefe = false;
                     }
-
-                    MainForm mj = new MainForm(mainJefe, idPersonaLogin);
+                    RegistrarLogin();
+                    MainForm mj = new MainForm(mainJefe, idEmpleadoLogin, idLastLogin);
                     mj.Show();
                     this.Hide();
                 }

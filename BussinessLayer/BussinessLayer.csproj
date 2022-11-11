@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BussinessAsistencia.cs" />
     <Compile Include="BussinessClientes.cs" />
     <Compile Include="BussinessEmpleados.cs" />
     <Compile Include="BussinessJornadas.cs" />
     <Compile Include="BussinessPersonas.cs" />
     <Compile Include="BussinessPlanes.cs" />
     <Compile Include="BussinessPlanesAsignados.cs" />
+    <Compile Include="BussinessRegistrosLogs.cs" />
     <Compile Include="BussinessTipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

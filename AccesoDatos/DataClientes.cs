@@ -44,7 +44,6 @@ namespace AccesoDatos
 
             return resultado;
         }
-
         public DataSet GetClientes(string buscar)
         {
             string getClientes;
@@ -99,7 +98,6 @@ namespace AccesoDatos
             }
             return ds;
         }
-
         public Clientes GetCliente(Clientes clientes)
         {
             string query = @"select * from Clientes where Cliente_ID = @Cliente_ID";
@@ -134,7 +132,6 @@ namespace AccesoDatos
             }
             return clientes;
         }
-
         public int BajaCliente(Clientes clientes)
         {
             int resultado = -1;
@@ -163,5 +160,96 @@ namespace AccesoDatos
             }
             return resultado;
         }
+        public DataSet BuscarClienteAsistencia(string buscar)
+        {
+            string query = @"select Planes_Asignados.Plan_Asignado_ID, Clientes.Cliente_ID,
+	                                Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Personas.Nro_Telefono, Personas.Mail,
+	                                Planes.Nombre
+                            from Personas
+                            inner join Clientes
+                              on Clientes.Persona_ID = Clientes.Persona_ID
+                            inner join Planes_Asignados
+                              on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
+                            inner join Planes
+                              on Planes_Asignados.Plan_ID = Planes.Plan_ID
+                            where Planes_Asignados.Estado = 'A'
+                              and Planes.Estado = 'A'
+                              and Personas.Nro_documento LIKE @buscar"
+            ;
+            SqlParameter nro_documento = new SqlParameter("@buscar", buscar);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(nro_documento);
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                OpenConnection();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar Empleados", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return ds;
+
+        }
+
+        public DateTime VerClaseQueToca(DateTime fechaAhora)
+        {
+            string query = @"";
+
+            return fechaAhora;
+        }
+
+        //public DataTable BuscarCuotasCliente(int idCliente)
+        //{
+        //    string query = @"select count(Cuotas.Cuota_ID) as TotalCuotas,
+        //                        (select count(Cuotas.Detalle_Caja_ID) from Cuotas) as CuotasPagas,
+        //                        Cuotas.Plan_Asignado_ID
+        //                    from Cuotas 
+        //                    inner join Planes_Asignados
+        //                        on Cuotas.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
+        //                    where Cuotas.Cliente_ID = @Cliente_ID
+        //                    Group by Cuotas.Plan_Asignado_ID"
+        //    ;
+
+        //    SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", idCliente);
+
+        //    SqlCommand cmd = new SqlCommand(query, conexion);
+
+        //    cmd.Parameters.Add(cliente_ID);
+
+        //    DataTable ds = new DataTable();
+        //    SqlDataAdapter da = new SqlDataAdapter();
+
+        //    try
+        //    {
+        //        OpenConnection();
+        //        cmd.ExecuteNonQuery();
+        //        da.SelectCommand = cmd;
+        //        da.Fill(ds);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception("Error al listar Empleados", e);
+        //    }
+        //    finally
+        //    {
+        //        CloseConnection();
+        //        cmd.Dispose();
+        //    }
+        //    return ds;
+        //}
     }
 }

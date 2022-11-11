@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AccesoDatos
 {
-    public class DataPlanes
+    public class DataPlanes : DataConnection
     {
 
         //public DataPlanes GetPlanAsignado(DataPlanes )
@@ -26,5 +29,33 @@ namespace AccesoDatos
 
 
         //}
+
+        public DataTable GetPlanes(Planes planes)
+        {
+            string query = "sp_cargar_planes";
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar tipos de documentos", e);
+            }
+            finally
+            {
+                conexion.Close();
+                cmd.Dispose();
+            }
+            return dt;
+        }
+
     }
 }

@@ -71,7 +71,7 @@ namespace AccesoDatos
 
             try
             {
-                conexion.Open(); 
+                OpenConnection(); 
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())

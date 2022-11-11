@@ -22,10 +22,12 @@ namespace Gym
 
         //Capa de Negocio
         private readonly BussinessPersonas _bussinessPersonas;
+        private readonly BussinessRegistrosLogs _bussinesRegistrosLogs;
 
         //Entidades
         private Personas _personas;
         private readonly Entities.Empleados _empleados;
+        private readonly Entities.Registros_Logs _registrosLogs;
 
 
         #endregion
@@ -33,11 +35,12 @@ namespace Gym
         #region Variables
         private bool sesionJefeOn;
         private int personaLogueada;
+        private int idRegistroLogin;
 
         #endregion
 
         #region Load
-        public MainForm(bool mainJefe, int idPersonaLogin)
+        public MainForm(bool mainJefe, int idPersonaLogin, int idLastLogin)
         {
             InitializeComponent();
             
@@ -48,12 +51,15 @@ namespace Gym
             _personas = new Personas();
             _empleados = new Entities.Empleados();
             _bussinessPersonas = new BussinessPersonas();
+            _bussinesRegistrosLogs = new BussinessRegistrosLogs();
+            _registrosLogs = new Registros_Logs();
 
             //Estos argumentos que recibe el form, son los
             //que me dicen si el jefe es quien se logueó
             //y el Id de la persona que se logueó, para
             //poder utilizarlo luego.
             personaLogueada = idPersonaLogin;
+            idRegistroLogin = idLastLogin;
             sesionJefeOn = mainJefe;
             if (sesionJefeOn)
             {
@@ -76,6 +82,19 @@ namespace Gym
 
         #region Metodos encapsulados
 
+        private void BtnLogout_Click(object sender, EventArgs e)
+        {
+            //Registramos el logout en la bdd
+            _registrosLogs.Empleado_ID = personaLogueada;
+            _registrosLogs.Fecha_LogOut = DateTime.Now;
+            _registrosLogs.Registro_Log_ID = idRegistroLogin;
+            _bussinesRegistrosLogs.RegistrarLogOut(_registrosLogs);
+
+            //deslogueamos la sesión abierta
+            Login frm = new Login();
+            this.Hide();
+            frm.Show();
+        }
         private void AsignarNombre()
         {
             _metodosGenerales.GetPersona();
@@ -164,23 +183,6 @@ namespace Gym
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }        
-        private void BtnLogout_Click(object sender, EventArgs e)
-        {
-            //deslogueamos la sesión abierta
-            Login frm = new Login();
-            this.Hide();
-            frm.Show();
-
-            if (_metodosGenerales.CajaAbierta == false) //Si la caja no está abierta, entonces aún no se abrió o ya se cerró
-            {
-                
-            }
-            else
-            {
-                //Si la caja está abierta, no se puede cerrar sesión hasta cerrar la caja primero.
-
-            }
         }
 
         #endregion
@@ -251,7 +253,5 @@ namespace Gym
         }
 
         #endregion
-
-
     }
 }

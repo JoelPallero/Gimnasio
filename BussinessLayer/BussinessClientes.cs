@@ -38,5 +38,20 @@ namespace BussinessLayer
         {
             return _dataClientes.BajaCliente(clientes);
         }
+
+        public DataSet BuscarClienteAsistencia(string buscar)
+        {
+            return _dataClientes.BuscarClienteAsistencia(buscar);
+        }
+
+        public DateTime VerClaseQueToca(DateTime fechaAhora)
+        {
+            return _dataClientes.VerClaseQueToca(fechaAhora);
+        }
+
+        //public DataTable BuscarCuotasCliente(int idCliente)
+        //{
+        //    return _dataClientes.BuscarCuotasCliente(idCliente);
+        //}
     }
 }
