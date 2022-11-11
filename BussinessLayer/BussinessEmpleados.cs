@@ -69,7 +69,8 @@ namespace BussinessLayer
 
         public bool ConsultarRegistrosLogin(bool primerLogueo)
         {
-            return _dataEmpleados.ConsultarRegistrosLogin(primerLogueo);
+            bool resultado = _dataEmpleados.ConsultarRegistrosLogin(primerLogueo);
+            return resultado;
         }
     }
 }

@@ -44,22 +44,22 @@ namespace Gym
             _metodosGenerales = new MetodosGenerales();
             _bussinessRegistrosLogs = new BussinessRegistrosLogs();
             _registros_Logs = new Registros_Logs();
-            VerificarPrimarLogin();
         }
         private void Login_Load(object sender, EventArgs e)
         {
             btnIngresar.Focus();
             CerrarForms();
+            VerificarPrimerLogin();
         }
 
         #endregion
 
         #region Métodos encapsulados
 
-        private void VerificarPrimarLogin()
+        private void VerificarPrimerLogin()
         {
-            _bussinessEmplados.ConsultarRegistrosLogin(primerLogueo);
-            if (primerLogueo)
+            bool resultado = _bussinessEmplados.ConsultarRegistrosLogin(primerLogueo);
+            if (resultado)
             {
                 lblGenerarPrimerUsuario.Visible = true;
             }
