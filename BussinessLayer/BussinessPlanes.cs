@@ -22,6 +22,11 @@ namespace BussinessLayer
             return _dataPlanes.GetPlanes(planes);
         }
 
+        public Planes GetDatoPlan(Planes planes)
+        {
+            return _dataPlanes.GetDatoPlan(planes);
+        }
+
         //public BussinessPlanes GetPlanAsignado(BussinessPlanes _planes)
         //{
         //    return _dataPlanes.GetPlanAsignado(_planes);

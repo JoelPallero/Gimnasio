@@ -684,3 +684,30 @@ where Plan_ID = 1
 set dateformat dmy
 update Registros_Logs set Fecha_LogOut = 10/10/2022
 where Empleado_ID = 0
+
+
+select * from Asistencias
+
+select * from Registros_Logs
+
+select Registro_Log_ID 
+from Registros_Logs
+where Registro_Log_ID = (select max(Registro_Log_ID) from Registros_Logs)
+
+select * from Planes
+
+select Plan_ID, Importe_Plan, 
+replace(NULL, NULL, 0) Cuota_Total,
+replace(null, null, 0) Cupo_Restante
+from Planes
+where Estado = 'A'
+and Plan_ID = 1
+
+
+select Plan_ID, Importe_Plan,
+Cupo_Total,
+Cupo_Restante
+from Planes
+where Estado = 'A'
+and Plan_ID = 0
+

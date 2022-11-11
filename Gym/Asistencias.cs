@@ -36,6 +36,7 @@ namespace Gym
         private DataTable DtPlanes;
         private bool camposVacios = true;
         private int cliente_ID;
+        private int planSeleccionado;
 
         #endregion
 
@@ -51,6 +52,7 @@ namespace Gym
             _planes = new Entities.Planes();
             _asistencias = new Entities.Asistencias();
             BuscarPlanes();
+            btnAsignarPlan.Enabled = false;
         }
 
         #endregion
@@ -96,6 +98,7 @@ namespace Gym
                 //    }
                 //}
                 camposVacios = false;
+                btnAsignarPlan.Enabled = true;
             }
             else
             {
@@ -110,6 +113,24 @@ namespace Gym
             _asistencias.Estado = "P";
             _asistencias.Empleado_ID = idEmpleadoLogin;
             _bussinessAsistencia.PutAsistencia(_asistencias);
+        }
+
+        private void BuscarDatosPlan()
+        {
+            ResetControls();
+            _planes.Plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
+            _bussinessPlanes.GetDatoPlan(_planes);
+            planSeleccionado = _planes.Plan_ID;
+            lblCostoMensual.Text += _planes.Importe_Plan.ToString();
+            lblCuposRestantes.Text = _planes.Cupo_Restante.ToString();
+            lblCuposTotales.Text = _planes.Cupo_Total.ToString();
+        }
+
+        private void ResetControls()
+        {
+            lblCostoMensual.Text = "Costo mensual: $";
+            lblCuposRestantes.Text = "0";
+            lblCuposTotales.Text = "0";
         }
 
         #endregion
@@ -189,8 +210,14 @@ namespace Gym
                 txtBuscarAsistencias.ForeColor = Color.DimGray;
             }
         }
+
         #endregion
 
-
+        private void cmbPlanesActivos_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            //Me busca el precio, cupo total y restante.
+            BuscarDatosPlan();
+            //Busca los horarios
+        }
     }
 }

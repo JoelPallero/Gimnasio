@@ -178,6 +178,11 @@ namespace Gym
         #region Cerrar y minimizar
         private void btnClose_Click(object sender, EventArgs e)
         {
+            //Registramos el logout en la bdd
+            _registrosLogs.Empleado_ID = personaLogueada;
+            _registrosLogs.Fecha_LogOut = DateTime.Now;
+            _registrosLogs.Registro_Log_ID = idRegistroLogin;
+            _bussinesRegistrosLogs.RegistrarLogOut(_registrosLogs);
             Application.Exit();
         }
         private void btnMinimize_Click(object sender, EventArgs e)

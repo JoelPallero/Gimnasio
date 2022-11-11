@@ -41,11 +41,11 @@ namespace Gym
             this.DtgvClienteAsistencia = new System.Windows.Forms.DataGridView();
             this.txtBuscarAsistencias = new System.Windows.Forms.TextBox();
             this.gbAsignarPlan = new System.Windows.Forms.GroupBox();
-            this.CuposTotales = new System.Windows.Forms.Label();
+            this.lblCuposTotales = new System.Windows.Forms.Label();
             this.lblCuposRestantes = new System.Windows.Forms.Label();
-            this.btnVerJornadas = new System.Windows.Forms.Button();
+            this.btnHorarios = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblCostoMensual = new System.Windows.Forms.Label();
             this.cmbPlanesActivos = new System.Windows.Forms.ComboBox();
             this.btnAsignarPlan = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
@@ -186,11 +186,11 @@ namespace Gym
             // 
             // gbAsignarPlan
             // 
-            this.gbAsignarPlan.Controls.Add(this.CuposTotales);
+            this.gbAsignarPlan.Controls.Add(this.lblCuposTotales);
             this.gbAsignarPlan.Controls.Add(this.lblCuposRestantes);
-            this.gbAsignarPlan.Controls.Add(this.btnVerJornadas);
+            this.gbAsignarPlan.Controls.Add(this.btnHorarios);
             this.gbAsignarPlan.Controls.Add(this.label12);
-            this.gbAsignarPlan.Controls.Add(this.label14);
+            this.gbAsignarPlan.Controls.Add(this.lblCostoMensual);
             this.gbAsignarPlan.Controls.Add(this.cmbPlanesActivos);
             this.gbAsignarPlan.Controls.Add(this.btnAsignarPlan);
             this.gbAsignarPlan.Controls.Add(this.label20);
@@ -203,14 +203,14 @@ namespace Gym
             this.gbAsignarPlan.TabStop = false;
             this.gbAsignarPlan.Text = "Datos de Planes";
             // 
-            // CuposTotales
+            // lblCuposTotales
             // 
-            this.CuposTotales.AutoSize = true;
-            this.CuposTotales.Location = new System.Drawing.Point(283, 58);
-            this.CuposTotales.Name = "CuposTotales";
-            this.CuposTotales.Size = new System.Drawing.Size(25, 20);
-            this.CuposTotales.TabIndex = 22;
-            this.CuposTotales.Text = "10";
+            this.lblCuposTotales.AutoSize = true;
+            this.lblCuposTotales.Location = new System.Drawing.Point(283, 58);
+            this.lblCuposTotales.Name = "lblCuposTotales";
+            this.lblCuposTotales.Size = new System.Drawing.Size(25, 20);
+            this.lblCuposTotales.TabIndex = 22;
+            this.lblCuposTotales.Text = "10";
             // 
             // lblCuposRestantes
             // 
@@ -221,19 +221,19 @@ namespace Gym
             this.lblCuposRestantes.TabIndex = 21;
             this.lblCuposRestantes.Text = "10";
             // 
-            // btnVerJornadas
+            // btnHorarios
             // 
-            this.btnVerJornadas.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnVerJornadas.FlatAppearance.BorderSize = 0;
-            this.btnVerJornadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerJornadas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnVerJornadas.Location = new System.Drawing.Point(323, 54);
-            this.btnVerJornadas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnVerJornadas.Name = "btnVerJornadas";
-            this.btnVerJornadas.Size = new System.Drawing.Size(88, 28);
-            this.btnVerJornadas.TabIndex = 20;
-            this.btnVerJornadas.Text = "Horarios";
-            this.btnVerJornadas.UseVisualStyleBackColor = false;
+            this.btnHorarios.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnHorarios.FlatAppearance.BorderSize = 0;
+            this.btnHorarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHorarios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnHorarios.Location = new System.Drawing.Point(323, 54);
+            this.btnHorarios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHorarios.Name = "btnHorarios";
+            this.btnHorarios.Size = new System.Drawing.Size(88, 28);
+            this.btnHorarios.TabIndex = 20;
+            this.btnHorarios.Text = "Horarios";
+            this.btnHorarios.UseVisualStyleBackColor = false;
             // 
             // label12
             // 
@@ -244,14 +244,14 @@ namespace Gym
             this.label12.TabIndex = 19;
             this.label12.Text = "Planes disponibles";
             // 
-            // label14
+            // lblCostoMensual
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(256, 22);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(121, 20);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "Costo mensual: $";
+            this.lblCostoMensual.AutoSize = true;
+            this.lblCostoMensual.Location = new System.Drawing.Point(256, 22);
+            this.lblCostoMensual.Name = "lblCostoMensual";
+            this.lblCostoMensual.Size = new System.Drawing.Size(121, 20);
+            this.lblCostoMensual.TabIndex = 17;
+            this.lblCostoMensual.Text = "Costo mensual: $";
             // 
             // cmbPlanesActivos
             // 
@@ -261,6 +261,7 @@ namespace Gym
             this.cmbPlanesActivos.Name = "cmbPlanesActivos";
             this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 28);
             this.cmbPlanesActivos.TabIndex = 16;
+            this.cmbPlanesActivos.SelectionChangeCommitted += new System.EventHandler(this.cmbPlanesActivos_SelectionChangeCommitted);
             // 
             // btnAsignarPlan
             // 
@@ -324,11 +325,11 @@ namespace Gym
         private System.Windows.Forms.Button btnGuardarAsistencia;
         private System.Windows.Forms.Label lblPlanActual;
         private System.Windows.Forms.GroupBox gbAsignarPlan;
-        private System.Windows.Forms.Label CuposTotales;
+        private System.Windows.Forms.Label lblCuposTotales;
         private System.Windows.Forms.Label lblCuposRestantes;
-        private System.Windows.Forms.Button btnVerJornadas;
+        private System.Windows.Forms.Button btnHorarios;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblCostoMensual;
         private System.Windows.Forms.ComboBox cmbPlanesActivos;
         private System.Windows.Forms.Button btnAsignarPlan;
         private System.Windows.Forms.Label label20;

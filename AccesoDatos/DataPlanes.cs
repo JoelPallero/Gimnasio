@@ -56,6 +56,58 @@ namespace AccesoDatos
             }
             return dt;
         }
+        public Planes GetDatoPlan(Planes planes)
+        {
+            string query = @"select Plan_ID, Importe_Plan, 
+                                    Cupo_Total,
+                                    Cupo_Restante
+                                from Planes
+                                where Estado = 'A'
+                                and Plan_ID = @Plan_ID";
 
+            SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(plan_ID);
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    planes.Plan_ID = int.Parse(reader["Plan_ID"].ToString());
+                    planes.Importe_Plan = int.Parse(reader["Importe_Plan"].ToString());
+                    if (string.IsNullOrEmpty(reader["Cupo_Total"].ToString()))
+                    {
+                        planes.Cupo_Total = 0;
+                    }
+                    else
+                    {
+                        planes.Cupo_Total = int.Parse(reader["Cupo_Total"].ToString());
+                    }
+                    if (string.IsNullOrEmpty(reader["Cupo_Restante"].ToString()))
+                    {
+                        planes.Cupo_Restante = 0;
+                    }
+                    else
+                    {
+                        planes.Cupo_Restante = int.Parse(reader["Cupo_Restante"].ToString());
+                    }
+                }
+                reader.Close();
+                cmd.ExecuteReader();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return planes;
+        }
     }
 }
