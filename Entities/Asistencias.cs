@@ -13,5 +13,6 @@ namespace Entities
         public string Estado { get; set; }
         public int Cliente_ID { get; set; }
         public int Empleado_ID { get; set; }
+        public int Plan_Asignado_ID { get; set; }
     }
 }

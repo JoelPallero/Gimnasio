@@ -49,6 +49,7 @@
     <Compile Include="DataJornadas.cs" />
     <Compile Include="DataPersonas.cs" />
     <Compile Include="DataPlanes.cs" />
+    <Compile Include="DataPlanesAsignados.cs" />
     <Compile Include="DataRegistrosLogs.cs" />
     <Compile Include="DataTipos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -806,10 +806,25 @@ namespace Gym
                     VerificarCoincidecias();
                     if (!personaRegistrada)
                     {
-                        VerificarClave();
-                        if (claveOK)
+                        //Veo si el empleado es el que tiene acceso al programa
+                        if (cmbTipoEmpleado.SelectedItem.ToString() == "Usuario")
                         {
-                            //Hacemos la edición de la persona.
+                            VerificarClave();
+                            if (claveOK)
+                            {
+                                //Hacemos la edición de la persona.
+                                ABMEmpleado();
+
+                                //Luego verificamos si va con jornada.
+                                if (chkJornadaEmpleados.Checked)
+                                {
+                                    CargarJornada();
+                                }
+                                motivoEdicion = 3;
+                            }
+                        }
+                        else
+                        {
                             ABMEmpleado();
 
                             //Luego verificamos si va con jornada.
@@ -817,15 +832,6 @@ namespace Gym
                             {
                                 CargarJornada();
                                 motivoEdicion = 3;
-                            }
-                        }
-
-                        else
-                        {
-                            VerificarClave();
-                            if (claveOK)
-                            {
-                                ABMEmpleado();
                             }
                         }
                     }

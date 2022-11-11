@@ -18,11 +18,13 @@ namespace Gym
         private readonly BussinessClientes _bussinesClientes;
         private readonly BussinessPlanes _bussinessPlanes;
         private readonly BussinessAsistencia _bussinessAsistencia;
+        private readonly BussinessPlanesAsignados _bussinesPlanesAsignados;
 
         //Entities
         private readonly Entities.Clientes _clientes;
         private readonly Entities.Planes _planes;
         private readonly Entities.Asistencias _asistencias;
+        private readonly Entities.Planes_Asignados _planesAsignados;
 
         //clases internas
 
@@ -34,6 +36,7 @@ namespace Gym
         private string buscar;
         private DataSet DsClienteAsistencia;
         private DataTable DtPlanes;
+        private DataSet DsPlanesAsignados;
         private bool camposVacios = true;
         private int cliente_ID;
         private int planSeleccionado;
@@ -51,6 +54,8 @@ namespace Gym
             _bussinessAsistencia = new BussinessAsistencia();
             _planes = new Entities.Planes();
             _asistencias = new Entities.Asistencias();
+            _bussinesPlanesAsignados = new BussinessPlanesAsignados();
+            _planesAsignados = new Entities.Planes_Asignados();
             BuscarPlanes();
             btnAsignarPlan.Enabled = false;
         }
@@ -69,9 +74,16 @@ namespace Gym
         private void BuscarDatosAlumno()
         {
             DsClienteAsistencia = _bussinesClientes.BuscarClienteAsistencia(buscar);
-            DateTime fechaAhora = DateTime.Now;
-            _bussinesClientes.VerClaseQueToca(fechaAhora);
             AcomodarDatos();
+        }
+
+        private void BuscarPlanesDeCliente()
+        {
+            _planesAsignados.Cliente_ID = cliente_ID;
+            DsPlanesAsignados = _bussinesPlanesAsignados.VerClasesQueTieneElCliente(_planesAsignados);
+            cmbClaseDelCliente.DataSource = DsPlanesAsignados;
+            cmbClaseDelCliente.DisplayMember = "Nombre";
+            cmbClaseDelCliente.ValueMember = "Plan_Asignado_ID";
         }
 
         private void AcomodarDatos()
@@ -102,7 +114,8 @@ namespace Gym
             }
             else
             {
-                MessageBox.Show("No hay clientes con el documento ingresado. Por favor, intente de nuevo!",
+                MessageBox.Show("No hay clientes con el documento ingresado. " +
+                    "Por favor, intente de nuevo, o haga primero el registro del cliente.",
                     "Datos no encontrados");
             }
         }
@@ -112,6 +125,7 @@ namespace Gym
             _asistencias.Fecha = DateTime.Now;
             _asistencias.Estado = "P";
             _asistencias.Empleado_ID = idEmpleadoLogin;
+            _asistencias.Plan_Asignado_ID = Convert.ToInt32(cmbClaseDelCliente.SelectedValue);
             _bussinessAsistencia.PutAsistencia(_asistencias);
         }
 

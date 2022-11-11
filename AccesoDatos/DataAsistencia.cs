@@ -10,17 +10,17 @@ namespace AccesoDatos
 {
     public class DataAsistencia : DataConnection
     {
-
         public int PutAsistencia(Asistencias _asistencias)
         {
             int resultado = -1;
-            string query = @"insert into Asistencias (Cliente_ID, Fecha, Estado, Empleado_ID) 
-                            values (@Cliente_ID, @Fecha, @Estado, @Empleado_ID)";
+            string query = @"insert into Asistencias (Cliente_ID, Fecha, Estado, Empleado_ID, Plan_Asignado_ID) 
+                            values (@Cliente_ID, @Fecha, @Estado, @Empleado_ID, @Plan_Asignado_ID)";
 
             SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", _asistencias.Cliente_ID);
             SqlParameter fecha = new SqlParameter("@Fecha", _asistencias.Fecha);
             SqlParameter estado = new SqlParameter("@Estado", _asistencias.Estado);
             SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", _asistencias.Empleado_ID);
+            SqlParameter plan_Asignado_ID = new SqlParameter("@Plan_Asignado_ID", _asistencias.Plan_Asignado_ID);
 
             SqlCommand cmd = new SqlCommand(query , conexion);
 
@@ -28,6 +28,7 @@ namespace AccesoDatos
             cmd.Parameters.Add(fecha);
             cmd.Parameters.Add(estado);
             cmd.Parameters.Add(empleado_ID);
+            cmd.Parameters.Add(plan_Asignado_ID);
 
             try
             {

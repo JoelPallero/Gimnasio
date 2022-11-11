@@ -49,6 +49,7 @@ namespace Gym
             this.cmbPlanesActivos = new System.Windows.Forms.ComboBox();
             this.btnAsignarPlan = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
+            this.cmbClaseDelCliente = new System.Windows.Forms.ComboBox();
             this.gbClienteAsistencia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgvClienteAsistencia)).BeginInit();
             this.gbAsignarPlan.SuspendLayout();
@@ -70,6 +71,7 @@ namespace Gym
             // 
             // gbClienteAsistencia
             // 
+            this.gbClienteAsistencia.Controls.Add(this.cmbClaseDelCliente);
             this.gbClienteAsistencia.Controls.Add(this.txtBuscarCliente);
             this.gbClienteAsistencia.Controls.Add(this.lblPlanActual);
             this.gbClienteAsistencia.Controls.Add(this.btnPago);
@@ -286,6 +288,15 @@ namespace Gym
             this.label20.TabIndex = 23;
             this.label20.Text = "/";
             // 
+            // cmbClaseDelCliente
+            // 
+            this.cmbClaseDelCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClaseDelCliente.FormattingEnabled = true;
+            this.cmbClaseDelCliente.Location = new System.Drawing.Point(287, 28);
+            this.cmbClaseDelCliente.Name = "cmbClaseDelCliente";
+            this.cmbClaseDelCliente.Size = new System.Drawing.Size(173, 28);
+            this.cmbClaseDelCliente.TabIndex = 19;
+            // 
             // Asistencias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -333,5 +344,6 @@ namespace Gym
         private System.Windows.Forms.ComboBox cmbPlanesActivos;
         private System.Windows.Forms.Button btnAsignarPlan;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox cmbClaseDelCliente;
     }
 }

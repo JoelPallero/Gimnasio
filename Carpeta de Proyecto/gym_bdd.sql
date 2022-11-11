@@ -54,10 +54,22 @@ Asistencia_ID int primary key identity (0, 1),
 Fecha date not null,
 Estado nvarchar(1) not null, --P(resente), T(arde), A(usente)
 Cliente_ID int not null,
-Empleado_ID int not null --quien hizo el registro
+Empleado_ID int not null, --quien hizo el registro
+PlanAsignado_ID int not null
 )
 
 go
+
+/* 
+   Falta tabla donde se guarde cada persona durante cada fecha de clase 
+   Falta una tabla que maneje fechas
+   1 Tabla: (por día de clase)
+   alumno, fechaInscripción, anulaPlan, fechaAnulacion (del día del turno) y asistencia 
+   2 Tabla: Generar distintos horarios para cada fecha.
+   Jornadas, Planes
+*/
+-- fecha de alta generación de plan, falta en PlanAsignado
+-- 
 
 /* Caja */
 
@@ -110,6 +122,8 @@ Importe_Plan decimal (18, 0) not null,
 Duracion int null,
 Cupo_Total int null,
 Cupo_Restante int null,
+Fecha_Inicio date null,  /* fecha de inicio */
+Fecha_Fin date null,     /* fecha de cierre */
 Estado nvarchar (1) not null
 )
 
@@ -120,8 +134,8 @@ Plan_Asignado_ID int primary key identity (0, 1),
 Plan_ID int not null,
 Cliente_ID int not null,
 Empleado_ID int not null,
-Fecha_Inicio date not null,
-Fecha_Fin date null,
+Fecha_Inicio date not null,  /* fecha de inscripción */
+Fecha_Fin date null,         /* fecha de anulación   */
 Estado nvarchar(1) not null
 )
 
@@ -150,9 +164,9 @@ create table Jornadas_Planes(
 Jornada_Plan_ID int primary key identity (0, 1),
 Plan_ID int not null,
 Dia nvarchar(10) not null,
-Desde_Hora nvarchar(5) not null,
-Hasta_Hora nvarchar(5) not null,
-Estado nvarchar(8) not null
+Desde_Hora date not null,
+Hasta_Hora date not null,
+Estado nvarchar(1) not null
 )
 
 go
@@ -161,9 +175,9 @@ create table Jornadas_Empleados(
 Jornada_Empleado_ID int primary key identity (0, 1),
 Empleado_ID int not null,
 Dia nvarchar(10) not null,
-Desde_Hora nvarchar(5) not null,
-Hasta_Hora nvarchar(5) not null,
-Estado nvarchar(8) not null
+Desde_Hora date not null,
+Hasta_Hora date not null,
+Estado nvarchar(1) not null
 )
 
 go
@@ -173,7 +187,7 @@ go
 
 create table Registros_Logs(
 Registro_Log_ID int primary key identity (0, 1),
-Persona_ID int not null,
+Empleado_ID int not null,
 Fecha_LogIn datetime not null,
 Fecha_LogOut datetime null
 )
@@ -541,173 +555,179 @@ where Estado = 'A'
 
 go
 
-set dateformat dmy
+--set dateformat dmy
 
---Desde acá creo el perfil de admin, con la clave encriptada.
-insert into Personas values ('Admin', 'Admin', 0, '123456', 0, '0', null, null, null, GETDATE(), null)
-insert into Empleados values (0, 'Admin', 'c4a0b7848bf1526e502f68b2c296f384d1aeee3857780b90ce2ddf7530875a27', 0, 0)
+----Desde acá creo el perfil de admin, con la clave encriptada.
+--insert into Personas values ('Admin', 'Admin', 0, '123456', 0, '0', null, null, null, GETDATE(), null)
+--insert into Empleados values (0, 'Admin', 'c4a0b7848bf1526e502f68b2c296f384d1aeee3857780b90ce2ddf7530875a27', 0, 0)
 
-go
-select * from Planes_Asignados
-Select * from Planes
-select * from Clientes
-select * from Cuotas
-select * from Personas
-select * from Cajas
-select * from Detalles_Cajas
-select * from Cuotas
-select * from Facturas_Clientes
-Select * from Jornadas_Planes
-go
-insert into Personas values ('Joel', 'Pallero', 0, '36233357', 0, '0', null, null, null, GETDATE(), null)
-insert into Clientes values (1, 'A')
-go
---Bicicleta
-insert into Planes values (0, 'Bicicleta', '4500', null, 30, 29, 'A')
-insert into Planes_Asignados values (0, 0, 0, GETDATE(), null, 'A')
-insert into Cuotas values (0, 0, 0, null, 1500, 0, '10/11/2022')
-insert into Cuotas values (0, 0, 0, null, 1500, 1500, '10/12/2022')
-insert into Cuotas values (0, 0, 0, null, 1500, 3000, '10/01/2023')
-go
---Libre
-insert into Planes values (0, 'Libre', '6000', null, null, null, 'A')
-insert into Planes_Asignados values (1, 0, 0, GETDATE(), null, 'A')
-go
---Plan Danza
-insert into Planes values (0, 'Danza', '6000', null, 15, 14, 'A')
-insert into Planes_Asignados values (2, 0, 0, GETDATE(), null, 'A')
-insert into Cuotas values (3, 0, 0, null, 2000, 0, '11/11/2022')
-insert into Cuotas values (3, 0, 0, null, 2000, 2000, '11/12/2022')
-insert into Cuotas values (3, 0, 0, null, 2000, 4000, '11/01/2023')
+--go
+--select * from Planes_Asignados
+--Select * from Planes
+--select * from Clientes
+--select * from Cuotas
+--select * from Personas
+--select * from Cajas
+--select * from Detalles_Cajas
+--select * from Cuotas
+--select * from Facturas_Clientes
+--Select * from Jornadas_Planes
+--go
+--insert into Personas values ('Joel', 'Pallero', 0, '36233357', 0, '0', null, null, null, GETDATE(), null)
+--insert into Clientes values (1, 'A')
+--go
+----Bicicleta
+--insert into Planes values (0, 'Bicicleta', '4500', null, 30, 29, 'A')
+--insert into Planes_Asignados values (0, 0, 0, GETDATE(), null, 'A')
+--insert into Cuotas values (0, 0, 0, null, 1500, 0, '10/11/2022')
+--insert into Cuotas values (0, 0, 0, null, 1500, 1500, '10/12/2022')
+--insert into Cuotas values (0, 0, 0, null, 1500, 3000, '10/01/2023')
+--go
+----Libre
+--insert into Planes values (0, 'Libre', '6000', null, null, null, 'A')
+--insert into Planes_Asignados values (1, 0, 0, GETDATE(), null, 'A')
+--go
+----Plan Danza
+--insert into Planes values (0, 'Danza', '6000', null, 15, 14, 'A')
+--insert into Planes_Asignados values (2, 0, 0, GETDATE(), null, 'A')
+--insert into Cuotas values (3, 0, 0, null, 2000, 0, '11/11/2022')
+--insert into Cuotas values (3, 0, 0, null, 2000, 2000, '11/12/2022')
+--insert into Cuotas values (3, 0, 0, null, 2000, 4000, '11/01/2023')
 
-go
+--go
 
-insert into Cajas values (0, GETDATE(), 0, null)
---pago bicicleta
-insert into Detalles_Cajas values (0, 0, 0, 1500, null, 'Pago Cuota', null)
-update Cuotas set Detalle_Caja_ID = 0 where Cuota_ID = 4
-update Cuotas set Saldo = 0 where Cuota_ID = 5
-update Cuotas set Saldo = 1500 where Cuota_ID = 6
+--insert into Cajas values (0, GETDATE(), 0, null)
+----pago bicicleta
+--insert into Detalles_Cajas values (0, 0, 0, 1500, null, 'Pago Cuota', null)
+--update Cuotas set Detalle_Caja_ID = 0 where Cuota_ID = 4
+--update Cuotas set Saldo = 0 where Cuota_ID = 5
+--update Cuotas set Saldo = 1500 where Cuota_ID = 6
 
-go
+--go
 
---pago danza
-insert into Detalles_Cajas values (0, 0, 0, 2000, null, 'Pago Cuota', null)
-update Cuotas set Detalle_Caja_ID = 0 where Cuota_ID = 7
-update Cuotas set Saldo = 0 where Cuota_ID = 8
-update Cuotas set Saldo = 2000 where Cuota_ID = 9
+----pago danza
+--insert into Detalles_Cajas values (0, 0, 0, 2000, null, 'Pago Cuota', null)
+--update Cuotas set Detalle_Caja_ID = 0 where Cuota_ID = 7
+--update Cuotas set Saldo = 0 where Cuota_ID = 8
+--update Cuotas set Saldo = 2000 where Cuota_ID = 9
 
 
-go
+--go
 
-/* Revisar al último esta consulta, para no generar errores en la consulta de datos
-respecto a cualquier plan que el cliente tenga */
---select Planes.Nombre, Planes.Importe_Plan, Clientes.Cliente_ID
---from Planes
---inner join Planes_Asignados
---on Planes_Asignados.Plan_ID = Planes.Plan_ID
+--/* Revisar al último esta consulta, para no generar errores en la consulta de datos
+--respecto a cualquier plan que el cliente tenga */
+----select Planes.Nombre, Planes.Importe_Plan, Clientes.Cliente_ID
+----from Planes
+----inner join Planes_Asignados
+----on Planes_Asignados.Plan_ID = Planes.Plan_ID
+----inner join Clientes
+----on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
+----inner join Facturas_Clientes
+----on Facturas_Clientes.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
+----where Clientes.Cliente_ID = @Cliente_ID
+-------------------------
+--go
+
+------ Queries de prueba para consultar desde C#
+
+----Esta query trae los planes en los que el cliente está registrado actualmente
+----mientras los planes están activos
+
+--select Planes_Asignados.Plan_Asignado_ID, Clientes.Cliente_ID,
+--	   Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Personas.Nro_Telefono, Personas.Mail,
+--	   Planes.Nombre as NombreDePlan
+--from Personas
 --inner join Clientes
+--on Clientes.Persona_ID = Clientes.Persona_ID
+--inner join Planes_Asignados
 --on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
---inner join Facturas_Clientes
---on Facturas_Clientes.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
---where Clientes.Cliente_ID = @Cliente_ID
------------------------
-go
+--inner join Planes
+--on Planes_Asignados.Plan_ID = Planes.Plan_ID
+--where Planes_Asignados.Estado = 'A'
+--and Planes.Estado = 'A'
+--and Personas.Nro_documento = @Nro_documento
+--or  Personas.Nombre = @Nombre
+--or Personas.Apellido = @Apellido
 
----- Queries de prueba para consultar desde C#
+--go
 
---Esta query trae los planes en los que el cliente está registrado actualmente
---mientras los planes están activos
+--select count(Cuotas.Cuota_ID) as TotalCuotas,
+--(select count(Cuotas.Detalle_Caja_ID) from Cuotas) as CuotasPagas,
+--Cuotas.Plan_Asignado_ID
+--from Cuotas 
+--inner join Planes_Asignados
+--on Cuotas.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
+--where Cuotas.Cliente_ID = @Cliente_ID
+--Group by Cuotas.Plan_Asignado_ID
 
-select Planes_Asignados.Plan_Asignado_ID, Clientes.Cliente_ID,
-	   Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Personas.Nro_Telefono, Personas.Mail,
-	   Planes.Nombre as NombreDePlan
-from Personas
-inner join Clientes
-on Clientes.Persona_ID = Clientes.Persona_ID
-inner join Planes_Asignados
-on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
+--select min(Cuota_ID) as IdCuota, Vto_Cuota as VtoProximaCuota from Cuotas
+--where Detalle_Caja_ID = null
+--and Cliente_ID = 0
+--Group by Vto_Cuota
+
+--go
+
+--select distinct Plan_Asignado_ID, Vto_Cuota, Cuota_ID
+--from Cuotas
+--where Detalle_Caja_ID is null
+--and Cliente_ID = 0
+--Group by Vto_Cuota, Cuota_ID, Plan_Asignado_ID
+
+--set dateformat dmy
+
+----De esta forma se puede saber la diferencia entre 2 fechas.
+--declare @fecha2 datetime = '11/11/2022'
+--select datediff (day, getdate(), @fecha2)
+
+--use gym
+
+
+
+--select * from Planes
+--select * from Jornadas_Planes
+
+--insert into Jornadas_Planes values (2, 'Martes', '18:00', '20:00', 'Activo')
+--insert into Jornadas_Planes values (1, 'Todos', '08:00', '23:00', 'Activo')
+
+--SELECT 
+--    CONVERT (time, Desde_Hora) as Desde_Hora,
+--    CONVERT (time, Hasta_Hora) as Hasta_Hora
+--FROM Jornadas_Planes
+--where Plan_ID = 1
+
+--set dateformat dmy
+--update Registros_Logs set Fecha_LogOut = 10/10/2022
+--where Empleado_ID = 0
+
+
+--select * from Asistencias
+
+--select * from Registros_Logs
+
+--select Registro_Log_ID 
+--from Registros_Logs
+--where Registro_Log_ID = (select max(Registro_Log_ID) from Registros_Logs)
+
+--select * from Planes
+
+--select Plan_ID, Importe_Plan, 
+--replace(NULL, NULL, 0) Cuota_Total,
+--replace(null, null, 0) Cupo_Restante
+--from Planes
+--where Estado = 'A'
+--and Plan_ID = 1
+
+
+--select Plan_ID, Importe_Plan,
+--Cupo_Total,
+--Cupo_Restante
+--from Planes
+--where Estado = 'A'
+--and Plan_ID = 0
+
+
+select Planes.Nombre, Planes_Asignados.Plan_Asignado_ID
+from Planes_Asignados
 inner join Planes
 on Planes_Asignados.Plan_ID = Planes.Plan_ID
-where Planes_Asignados.Estado = 'A'
-and Planes.Estado = 'A'
-and Personas.Nro_documento = @Nro_documento
-or  Personas.Nombre = @Nombre
-or Personas.Apellido = @Apellido
-
-go
-
-select count(Cuotas.Cuota_ID) as TotalCuotas,
-(select count(Cuotas.Detalle_Caja_ID) from Cuotas) as CuotasPagas,
-Cuotas.Plan_Asignado_ID
-from Cuotas 
-inner join Planes_Asignados
-on Cuotas.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
-where Cuotas.Cliente_ID = @Cliente_ID
-Group by Cuotas.Plan_Asignado_ID
-
-select min(Cuota_ID) as IdCuota, Vto_Cuota as VtoProximaCuota from Cuotas
-where Detalle_Caja_ID = null
-and Cliente_ID = 0
-Group by Vto_Cuota
-
-go
-
-select distinct Plan_Asignado_ID, Vto_Cuota, Cuota_ID
-from Cuotas
-where Detalle_Caja_ID is null
-and Cliente_ID = 0
-Group by Vto_Cuota, Cuota_ID, Plan_Asignado_ID
-
-set dateformat dmy
-
---De esta forma se puede saber la diferencia entre 2 fechas.
-declare @fecha2 datetime = '11/11/2022'
-select datediff (day, getdate(), @fecha2)
-
-use gym
-
-
-
-select * from Planes
-select * from Jornadas_Planes
-
-insert into Jornadas_Planes values (2, 'Martes', '18:00', '20:00', 'Activo')
-insert into Jornadas_Planes values (1, 'Todos', '08:00', '23:00', 'Activo')
-
-SELECT 
-    CONVERT (time, Desde_Hora) as Desde_Hora,
-    CONVERT (time, Hasta_Hora) as Hasta_Hora
-FROM Jornadas_Planes
-where Plan_ID = 1
-
-set dateformat dmy
-update Registros_Logs set Fecha_LogOut = 10/10/2022
-where Empleado_ID = 0
-
-
-select * from Asistencias
-
-select * from Registros_Logs
-
-select Registro_Log_ID 
-from Registros_Logs
-where Registro_Log_ID = (select max(Registro_Log_ID) from Registros_Logs)
-
-select * from Planes
-
-select Plan_ID, Importe_Plan, 
-replace(NULL, NULL, 0) Cuota_Total,
-replace(null, null, 0) Cupo_Restante
-from Planes
-where Estado = 'A'
-and Plan_ID = 1
-
-
-select Plan_ID, Importe_Plan,
-Cupo_Total,
-Cupo_Restante
-from Planes
-where Estado = 'A'
-and Plan_ID = 0
-
+where Planes_Asignados.Cliente_ID = 0
