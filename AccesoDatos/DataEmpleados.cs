@@ -190,7 +190,8 @@ namespace AccesoDatos
                                     or Personas.Nro_Documento LIKE @query
                                     or Tipos_Empleados.Tipo LIKE @query
                                     or Estados_Empleados.Estado LIKE @query
-                                Order by Personas.Fecha_Alta desc";
+                                Order by Personas.Fecha_Alta desc"
+                ;
             }
 
             SqlCommand cmd = new SqlCommand(getBusqueda, conexion)

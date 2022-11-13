@@ -61,7 +61,7 @@ namespace AccesoDatos
                                     or Personas.Apellido LIKE @query
                                     or Personas.Nro_Documento LIKE @query
                                     or Clientes.Estado LIKE @query
-                                and Estado = 'Activo'
+                                and Estado = 'A'
                                 Order by Personas.Fecha_Alta desc"
                 ;
             }
@@ -167,14 +167,14 @@ namespace AccesoDatos
 	                                Planes.Nombre
                             from Personas
                             inner join Clientes
-                              on Clientes.Persona_ID = Clientes.Persona_ID
+                              on Clientes.Persona_ID = Personas.Persona_ID
                             inner join Planes_Asignados
                               on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
                             inner join Planes
                               on Planes_Asignados.Plan_ID = Planes.Plan_ID
                             where Planes_Asignados.Estado = 'A'
-                              and Planes.Estado = 'A'
-                              and Personas.Nro_documento LIKE @buscar"
+                              and Clientes.Estado = 'A'
+                              and Personas.Nro_documento = @buscar"
             ;
             SqlParameter nro_documento = new SqlParameter("@buscar", buscar);
 
@@ -202,14 +202,39 @@ namespace AccesoDatos
                 cmd.Dispose();
             }
             return ds;
-
         }
 
         public DateTime VerClaseQueToca(DateTime fechaAhora)
         {
-            string query = @"";
-
             return fechaAhora;
+        }
+
+        public int EditarCliente(Clientes clientes)
+        {
+            int resultado = -1;
+            string query = @"update Clientes set Estado = @Estado where Cliente_ID = @Cliente_ID";
+
+            SqlParameter cliente_Id = new SqlParameter("@Cliente_ID", clientes.Cliente_ID);
+            SqlParameter estado = new SqlParameter("@Estado", clientes.Estado);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(cliente_Id);
+            cmd.Parameters.Add(estado);
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return resultado;
         }
 
         //public DataTable BuscarCuotasCliente(int idCliente)

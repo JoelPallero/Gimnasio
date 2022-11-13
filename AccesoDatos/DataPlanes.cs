@@ -154,5 +154,34 @@ namespace AccesoDatos
             }
             return resultado;
         }
+
+        public int EditarCupoRestante(Planes planes)
+        {
+            int resultado = -1;
+            string query = @"update Planes set Cupo_Restante = Cupo_Restante - 1 
+                            where Plan_ID = @Plan_ID";
+
+            SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(plan_ID);
+
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return resultado;
+        }
     }
 }

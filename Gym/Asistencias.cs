@@ -37,7 +37,7 @@ namespace Gym
         private string buscar;
         private DataSet DsClienteAsistencia;
         private DataTable DtPlanes;
-        private DataSet DsPlanesAsignados;
+        private DataTable DtPlanesAsignados;
         private bool camposVacios = true;
         private int cliente_ID;
         private int planSeleccionado;
@@ -81,13 +81,14 @@ namespace Gym
         {
             DsClienteAsistencia = _bussinesClientes.BuscarClienteAsistencia(buscar);
             AcomodarDatos();
+            BuscarPlanesDeCliente();
         }
 
         private void BuscarPlanesDeCliente()
         {
             _planesAsignados.Cliente_ID = cliente_ID;
-            DsPlanesAsignados = _bussinesPlanesAsignados.VerClasesQueTieneElCliente(_planesAsignados);
-            cmbClaseDelCliente.DataSource = DsPlanesAsignados;
+            DtPlanesAsignados = _bussinesPlanesAsignados.VerClasesQueTieneElCliente(_planesAsignados);
+            cmbClaseDelCliente.DataSource = DtPlanesAsignados;
             cmbClaseDelCliente.DisplayMember = "Nombre";
             cmbClaseDelCliente.ValueMember = "Plan_Asignado_ID";
         }
@@ -137,7 +138,7 @@ namespace Gym
 
         private void BuscarDatosPlan()
         {
-            ResetControls();
+            ResetControlsPlanes();
             _planes.Plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
             _bussinessPlanes.GetDatoPlan(_planes);
             planSeleccionado = _planes.Plan_ID;
@@ -146,25 +147,57 @@ namespace Gym
             lblCuposTotales.Text = _planes.Cupo_Total.ToString();
         }
 
-        private void ResetControls()
+        private void ResetControlsPlanes()
         {
             lblCostoMensual.Text = "Costo mensual: $";
             lblCuposRestantes.Text = "0";
             lblCuposTotales.Text = "0";
         }
 
-        #endregion
+        private void ResetControlsCliente()
+        {
+            lblNombreCliente.Text = "Nombre: ";
+            lblNro_documento.Text = "DNI: ";
+            lblTelefono.Text = "Telefono: ";
+            lblMail.Text = "Mail: ";
+            lblPlanActual.Text = "Planes Actuales: ";
+        }
 
+        private void AsigarlePlanAlCliente()
+        {
+            _planesAsignados.Plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
+            _planesAsignados.Empleado_ID = idEmpleadoLogin;
+            _planesAsignados.Cliente_ID = cliente_ID;
+            _planesAsignados.Fecha_Inicio = DateTime.Now;
+            _planesAsignados.Estado = "A";
+            _bussinesPlanesAsignados.AsginarPlanAlCliente(_planesAsignados);
+
+            _planes.Plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
+            _bussinessPlanes.EditarCupoRestante(_planes);
+        }
+
+        #endregion
+        
         #region Eventos
         private void txtBuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             buscar = txtBuscarCliente.Text;
             _restricciones.SoloNumeros(e, buscar);
-            if (e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (camposVacios)
                 {
-                    BuscarDatosCliente();
+                    if (!string.IsNullOrEmpty(buscar))
+                    {
+                        ResetControlsCliente();
+                        BuscarDatosCliente();
+                        buscar = string.Empty;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tiene que buscar con un número de documento válido. No se adminten campos vacíos.",
+                           "Gestión en proceso", MessageBoxButtons.OKCancel);
+                    }
                 }
                 else
                 {
@@ -172,7 +205,7 @@ namespace Gym
                         "Gestión en proceso", MessageBoxButtons.OKCancel);
                     if (result == DialogResult.OK)
                     {
-                        buscar = txtBuscarCliente.Text;
+                        ResetControlsCliente();
                         BuscarDatosCliente();
                     }
                 }
@@ -190,6 +223,26 @@ namespace Gym
             else
             {
                 ColocarAsistencia();
+            }
+        }
+        private void btnAsignarPlan_Click(object sender, EventArgs e)
+        {
+            if (camposVacios)
+            {
+                MessageBox.Show("No hay cliente seleccionado para asignarle un plan." +
+                    "Por favor, busque el cliente primero, y luego asigne el plan.");
+            }
+            else
+            {
+                if (Convert.ToInt32(lblCuposRestantes.Text) == 0)
+                {
+                    MessageBox.Show("No hay cupos disponibles para esta clase.");
+                }
+                else
+                {
+                    //Asignarle el plan.
+                    AsigarlePlanAlCliente();
+                }
             }
         }
 
@@ -241,9 +294,18 @@ namespace Gym
             //Busca los horarios
         }
 
-        private void btnAsignarPlan_Click(object sender, EventArgs e)
-        {
 
+        private void lblVerJornadas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            GetJornadaDePlan();
+        }
+
+        private void GetJornadaDePlan()
+        {
+            bool esEmpleado = false;
+            int plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
+            Jornadas jn = new Jornadas(plan_ID, esEmpleado);
+            jn.ShowDialog();
         }
     }
 }

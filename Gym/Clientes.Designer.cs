@@ -30,15 +30,30 @@ namespace Gym
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.dtgvCliente = new System.Windows.Forms.DataGridView();
+            this.Cliente_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Persona_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmClientes = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.verPlanesAsignados = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAsignarPlan = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarPlanAsignado = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEditarDatosCliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbClientes = new System.Windows.Forms.GroupBox();
             this.txtNombreCliente = new System.Windows.Forms.TextBox();
             this.cmbSexo = new System.Windows.Forms.ComboBox();
@@ -50,24 +65,10 @@ namespace Gym
             this.txtAlternativoCliente = new System.Windows.Forms.TextBox();
             this.txtTelefonoCliente = new System.Windows.Forms.TextBox();
             this.btnAltaCliente = new System.Windows.Forms.Button();
-            this.cmClientes = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnEditarDatosCliente = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarPlanAsignado = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnAsignarPlan = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.Cliente_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Persona_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verPlanesAsignados = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCliente)).BeginInit();
-            this.gbClientes.SuspendLayout();
             this.cmClientes.SuspendLayout();
+            this.gbClientes.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtBuscarCliente
@@ -87,14 +88,14 @@ namespace Gym
             // 
             this.dtgvCliente.AllowUserToAddRows = false;
             this.dtgvCliente.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dtgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cliente_ID,
@@ -110,22 +111,159 @@ namespace Gym
             this.dtgvCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvCliente.Name = "dtgvCliente";
             this.dtgvCliente.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dtgvCliente.RowHeadersVisible = false;
             this.dtgvCliente.RowHeadersWidth = 51;
             this.dtgvCliente.RowTemplate.Height = 29;
             this.dtgvCliente.Size = new System.Drawing.Size(666, 340);
             this.dtgvCliente.TabIndex = 60;
             // 
+            // Cliente_ID
+            // 
+            this.Cliente_ID.Frozen = true;
+            this.Cliente_ID.HeaderText = "Cliente ID";
+            this.Cliente_ID.MinimumWidth = 6;
+            this.Cliente_ID.Name = "Cliente_ID";
+            this.Cliente_ID.ReadOnly = true;
+            this.Cliente_ID.Visible = false;
+            this.Cliente_ID.Width = 125;
+            // 
+            // Persona_ID
+            // 
+            this.Persona_ID.Frozen = true;
+            this.Persona_ID.HeaderText = "Persona ID";
+            this.Persona_ID.MinimumWidth = 6;
+            this.Persona_ID.Name = "Persona_ID";
+            this.Persona_ID.ReadOnly = true;
+            this.Persona_ID.Visible = false;
+            this.Persona_ID.Width = 125;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle9;
+            this.Nombre.Frozen = true;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nombre.Width = 130;
+            // 
+            // Apellido
+            // 
+            this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Apellido.DefaultCellStyle = dataGridViewCellStyle10;
+            this.Apellido.Frozen = true;
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.MinimumWidth = 6;
+            this.Apellido.Name = "Apellido";
+            this.Apellido.ReadOnly = true;
+            this.Apellido.Width = 130;
+            // 
+            // Documento
+            // 
+            this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Documento.DefaultCellStyle = dataGridViewCellStyle11;
+            this.Documento.Frozen = true;
+            this.Documento.HeaderText = "Documento";
+            this.Documento.MinimumWidth = 6;
+            this.Documento.Name = "Documento";
+            this.Documento.ReadOnly = true;
+            this.Documento.Width = 130;
+            // 
+            // Telefono
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Telefono.DefaultCellStyle = dataGridViewCellStyle12;
+            this.Telefono.Frozen = true;
+            this.Telefono.HeaderText = "Teléfono";
+            this.Telefono.MinimumWidth = 6;
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
+            this.Telefono.Width = 130;
+            // 
+            // Estado
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Estado.DefaultCellStyle = dataGridViewCellStyle13;
+            this.Estado.Frozen = true;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 142;
+            // 
+            // cmClientes
+            // 
+            this.cmClientes.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmClientes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verPlanesAsignados,
+            this.toolStripSeparator2,
+            this.btnAsignarPlan,
+            this.editarPlanAsignado,
+            this.btnEditarDatosCliente,
+            this.toolStripSeparator1,
+            this.eliminarToolStripMenuItem});
+            this.cmClientes.Name = "cmEmpleado";
+            this.cmClientes.Size = new System.Drawing.Size(217, 136);
+            this.cmClientes.Text = "Edición";
+            // 
+            // verPlanesAsignados
+            // 
+            this.verPlanesAsignados.Name = "verPlanesAsignados";
+            this.verPlanesAsignados.Size = new System.Drawing.Size(216, 24);
+            this.verPlanesAsignados.Text = "Ver Planes de Cliente";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(213, 6);
+            // 
+            // btnAsignarPlan
+            // 
+            this.btnAsignarPlan.Name = "btnAsignarPlan";
+            this.btnAsignarPlan.Size = new System.Drawing.Size(216, 24);
+            this.btnAsignarPlan.Text = "Asignar Plan";
+            // 
+            // editarPlanAsignado
+            // 
+            this.editarPlanAsignado.Name = "editarPlanAsignado";
+            this.editarPlanAsignado.Size = new System.Drawing.Size(216, 24);
+            this.editarPlanAsignado.Text = "Editar Plan Mensual";
+            // 
+            // btnEditarDatosCliente
+            // 
+            this.btnEditarDatosCliente.Name = "btnEditarDatosCliente";
+            this.btnEditarDatosCliente.Size = new System.Drawing.Size(216, 24);
+            this.btnEditarDatosCliente.Text = "Editar Datos";
+            this.btnEditarDatosCliente.Click += new System.EventHandler(this.btnEditarDatosCliente_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(213, 6);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
+            this.eliminarToolStripMenuItem.Text = "Eliminar Cliente";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
             // gbClientes
             // 
+            this.gbClientes.Controls.Add(this.cmbEstado);
             this.gbClientes.Controls.Add(this.txtNombreCliente);
             this.gbClientes.Controls.Add(this.cmbSexo);
             this.gbClientes.Controls.Add(this.txtApellidoCliente);
@@ -207,12 +345,12 @@ namespace Gym
             // txtObservacionesCliente
             // 
             this.txtObservacionesCliente.ForeColor = System.Drawing.Color.DimGray;
-            this.txtObservacionesCliente.Location = new System.Drawing.Point(348, 64);
+            this.txtObservacionesCliente.Location = new System.Drawing.Point(348, 102);
             this.txtObservacionesCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtObservacionesCliente.MaxLength = 200;
             this.txtObservacionesCliente.Multiline = true;
             this.txtObservacionesCliente.Name = "txtObservacionesCliente";
-            this.txtObservacionesCliente.Size = new System.Drawing.Size(286, 102);
+            this.txtObservacionesCliente.Size = new System.Drawing.Size(286, 64);
             this.txtObservacionesCliente.TabIndex = 8;
             this.txtObservacionesCliente.Text = "Observaciones y/o consideraciones";
             this.txtObservacionesCliente.Enter += new System.EventHandler(this.txtObservacionesCliente_Enter);
@@ -271,141 +409,19 @@ namespace Gym
             this.btnAltaCliente.UseVisualStyleBackColor = false;
             this.btnAltaCliente.Click += new System.EventHandler(this.btnAltaCliente_Click);
             // 
-            // cmClientes
+            // cmbEstado
             // 
-            this.cmClientes.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmClientes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verPlanesAsignados,
-            this.toolStripSeparator2,
-            this.btnAsignarPlan,
-            this.editarPlanAsignado,
-            this.btnEditarDatosCliente,
-            this.toolStripSeparator1,
-            this.eliminarToolStripMenuItem});
-            this.cmClientes.Name = "cmEmpleado";
-            this.cmClientes.Size = new System.Drawing.Size(217, 164);
-            this.cmClientes.Text = "Edición";
-            // 
-            // btnEditarDatosCliente
-            // 
-            this.btnEditarDatosCliente.Name = "btnEditarDatosCliente";
-            this.btnEditarDatosCliente.Size = new System.Drawing.Size(216, 24);
-            this.btnEditarDatosCliente.Text = "Editar Datos";
-            this.btnEditarDatosCliente.Click += new System.EventHandler(this.btnEditarDatosCliente_Click);
-            // 
-            // editarPlanAsignado
-            // 
-            this.editarPlanAsignado.Name = "editarPlanAsignado";
-            this.editarPlanAsignado.Size = new System.Drawing.Size(216, 24);
-            this.editarPlanAsignado.Text = "Editar Plan Mensual";
-            // 
-            // btnAsignarPlan
-            // 
-            this.btnAsignarPlan.Name = "btnAsignarPlan";
-            this.btnAsignarPlan.Size = new System.Drawing.Size(216, 24);
-            this.btnAsignarPlan.Text = "Asignar Plan";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(213, 6);
-            // 
-            // Cliente_ID
-            // 
-            this.Cliente_ID.Frozen = true;
-            this.Cliente_ID.HeaderText = "Cliente ID";
-            this.Cliente_ID.MinimumWidth = 6;
-            this.Cliente_ID.Name = "Cliente_ID";
-            this.Cliente_ID.ReadOnly = true;
-            this.Cliente_ID.Visible = false;
-            this.Cliente_ID.Width = 125;
-            // 
-            // Persona_ID
-            // 
-            this.Persona_ID.Frozen = true;
-            this.Persona_ID.HeaderText = "Persona ID";
-            this.Persona_ID.MinimumWidth = 6;
-            this.Persona_ID.Name = "Persona_ID";
-            this.Persona_ID.ReadOnly = true;
-            this.Persona_ID.Visible = false;
-            this.Persona_ID.Width = 125;
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Nombre.Frozen = true;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Nombre.Width = 130;
-            // 
-            // Apellido
-            // 
-            this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Apellido.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Apellido.Frozen = true;
-            this.Apellido.HeaderText = "Apellido";
-            this.Apellido.MinimumWidth = 6;
-            this.Apellido.Name = "Apellido";
-            this.Apellido.ReadOnly = true;
-            this.Apellido.Width = 130;
-            // 
-            // Documento
-            // 
-            this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Documento.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Documento.Frozen = true;
-            this.Documento.HeaderText = "Documento";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 130;
-            // 
-            // Telefono
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Telefono.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Telefono.Frozen = true;
-            this.Telefono.HeaderText = "Teléfono";
-            this.Telefono.MinimumWidth = 6;
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            this.Telefono.Width = 130;
-            // 
-            // Estado
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Estado.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Estado.Frozen = true;
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 142;
-            // 
-            // verPlanesAsignados
-            // 
-            this.verPlanesAsignados.Name = "verPlanesAsignados";
-            this.verPlanesAsignados.Size = new System.Drawing.Size(216, 24);
-            this.verPlanesAsignados.Text = "Ver Planes de Cliente";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(213, 6);
-            // 
-            // eliminarToolStripMenuItem
-            // 
-            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
-            this.eliminarToolStripMenuItem.Text = "Eliminar Cliente";
-            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstado.ForeColor = System.Drawing.Color.Black;
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Items.AddRange(new object[] {
+            "Activo",
+            "Inactivo"});
+            this.cmbEstado.Location = new System.Drawing.Point(348, 65);
+            this.cmbEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(286, 28);
+            this.cmbEstado.TabIndex = 10;
             // 
             // Clientes
             // 
@@ -422,9 +438,9 @@ namespace Gym
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Clientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCliente)).EndInit();
+            this.cmClientes.ResumeLayout(false);
             this.gbClientes.ResumeLayout(false);
             this.gbClientes.PerformLayout();
-            this.cmClientes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -460,5 +476,6 @@ namespace Gym
         private System.Windows.Forms.ToolStripMenuItem verPlanesAsignados;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cmbEstado;
     }
 }

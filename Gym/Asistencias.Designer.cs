@@ -44,12 +44,12 @@ namespace Gym
             this.gbAsignarPlan = new System.Windows.Forms.GroupBox();
             this.lblCuposTotales = new System.Windows.Forms.Label();
             this.lblCuposRestantes = new System.Windows.Forms.Label();
-            this.btnHorarios = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.lblCostoMensual = new System.Windows.Forms.Label();
             this.cmbPlanesActivos = new System.Windows.Forms.ComboBox();
             this.btnAsignarPlan = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
+            this.lblVerJornadas = new System.Windows.Forms.LinkLabel();
             this.gbClienteAsistencia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgvClienteAsistencia)).BeginInit();
             this.gbAsignarPlan.SuspendLayout();
@@ -197,9 +197,9 @@ namespace Gym
             // 
             // gbAsignarPlan
             // 
+            this.gbAsignarPlan.Controls.Add(this.lblVerJornadas);
             this.gbAsignarPlan.Controls.Add(this.lblCuposTotales);
             this.gbAsignarPlan.Controls.Add(this.lblCuposRestantes);
-            this.gbAsignarPlan.Controls.Add(this.btnHorarios);
             this.gbAsignarPlan.Controls.Add(this.label12);
             this.gbAsignarPlan.Controls.Add(this.lblCostoMensual);
             this.gbAsignarPlan.Controls.Add(this.cmbPlanesActivos);
@@ -232,20 +232,6 @@ namespace Gym
             this.lblCuposRestantes.TabIndex = 21;
             this.lblCuposRestantes.Text = "10";
             this.lblCuposRestantes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnHorarios
-            // 
-            this.btnHorarios.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnHorarios.FlatAppearance.BorderSize = 0;
-            this.btnHorarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHorarios.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnHorarios.Location = new System.Drawing.Point(323, 54);
-            this.btnHorarios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnHorarios.Name = "btnHorarios";
-            this.btnHorarios.Size = new System.Drawing.Size(88, 28);
-            this.btnHorarios.TabIndex = 20;
-            this.btnHorarios.Text = "Horarios";
-            this.btnHorarios.UseVisualStyleBackColor = false;
             // 
             // label12
             // 
@@ -299,6 +285,17 @@ namespace Gym
             this.label20.TabIndex = 23;
             this.label20.Text = "/";
             // 
+            // lblVerJornadas
+            // 
+            this.lblVerJornadas.AutoSize = true;
+            this.lblVerJornadas.Location = new System.Drawing.Point(325, 58);
+            this.lblVerJornadas.Name = "lblVerJornadas";
+            this.lblVerJornadas.Size = new System.Drawing.Size(91, 20);
+            this.lblVerJornadas.TabIndex = 33;
+            this.lblVerJornadas.TabStop = true;
+            this.lblVerJornadas.Text = "Ver jornadas";
+            this.lblVerJornadas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVerJornadas_LinkClicked);
+            // 
             // Asistencias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -340,12 +337,12 @@ namespace Gym
         private System.Windows.Forms.GroupBox gbAsignarPlan;
         private System.Windows.Forms.Label lblCuposTotales;
         private System.Windows.Forms.Label lblCuposRestantes;
-        private System.Windows.Forms.Button btnHorarios;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblCostoMensual;
         private System.Windows.Forms.ComboBox cmbPlanesActivos;
         private System.Windows.Forms.Button btnAsignarPlan;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox cmbClaseDelCliente;
+        private System.Windows.Forms.LinkLabel lblVerJornadas;
     }
 }

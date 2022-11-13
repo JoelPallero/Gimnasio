@@ -23,6 +23,25 @@ namespace BussinessLayer
 
         #region Jornada de planes
 
+        public DataTable GetJornadaPlan(Jornadas_Planes jornadas_Planes)
+        {
+            return _dataJornadas.GetJornadaPlan(jornadas_Planes);
+        }
+
+        public int AltaJornadaPlan(Jornadas_Planes jornadas_Planes)
+        {
+            return _dataJornadas.AltaJornadaPlan(jornadas_Planes);
+        }
+
+        public int EditarJornadaPlan(Jornadas_Planes jornadas_Planes)
+        {
+            return _dataJornadas.EditarJornadaPlan(jornadas_Planes);
+        }
+        public int EliminarJornadaPlan(int jornadaID)
+        {
+            return _dataJornadas.EliminarJornadaPlan(jornadaID);
+        }
+
         #endregion
 
         #region Jornadas de Empleados

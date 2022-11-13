@@ -210,5 +210,52 @@ namespace Gym
 
         #endregion
 
+        #region Conversión de horarios
+
+        public String ConvertirfechaAhora(string fecha)
+        {
+            string fechaString = fecha;
+            string horaString;
+
+            //Estraer horas
+            string shora = fechaString.Substring(11, 2);
+            //Estraer minutos
+            string sminutos = fechaString.Substring(14, 2);
+
+            horaString = $"{shora}:{sminutos}";
+            return horaString;
+        }
+
+        public DateTime ConvertirHoraAfecha(string horario)
+        {
+            string fechaString = "2020-10-27";
+            string horaString = horario;
+
+            //Extraer año del fechaString
+            string syear = fechaString.Substring(0, 4);
+            //Extraer mes del fechaString   
+            string smonth = fechaString.Substring(5, 2);
+            //Extraer dia del fechaString   
+            string sday = fechaString.Substring(8, 2);
+            //Estraer horas
+            string shora = horaString.Substring(0, 2);
+            //Estraer minutos
+            string sminuto = horaString.Substring(3, 2);
+
+            //Convertir a int
+            int year, month, day, hora, minuto;
+            int.TryParse(syear, out year);
+            int.TryParse(smonth, out month);
+            int.TryParse(sday, out day);
+            int.TryParse(shora, out hora);
+            int.TryParse(sminuto, out minuto);
+
+
+            DateTime fechaConHora = new DateTime(year, month, day, hora, minuto, 0);
+
+            return fechaConHora;
+        }
+
+        #endregion
     }
 }

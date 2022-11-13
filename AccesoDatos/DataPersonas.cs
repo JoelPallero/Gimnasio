@@ -308,7 +308,6 @@ namespace AccesoDatos
 
             return personas;
         }
-
         public Personas BuscarCoincidencias(int id, string documnento, Personas personas)
         {
             string query = @"select * from Personas where Persona_ID = @id and Nro_Documento = @documnento";
@@ -348,20 +347,17 @@ namespace AccesoDatos
 
             return personas;
         }
-
         #endregion
 
         #region Persona para mostrar plan asignado que tiene (si es que tiene)
 
-        public Personas GetPersonaPlan(string buscar, Personas personas)
+        public DataSet GetPersonaPlan(string buscar, Personas personas)
         {
-            string query = @"SELECT Personas.Persona_ID, Nombre, Apellido, Nro_Documento, Nro_Telefono
+            string query = @"SELECT Personas.Persona_ID, Clientes.Cliente_ID, Nombre, Apellido, Nro_Documento, Nro_Telefono, Mail
                                 FROM Personas
 								inner join Clientes
 								on Clientes.Persona_ID = Personas.Persona_ID
-                                where Nombre LIKE @query
-                                    or Apellido LIKE @query
-                                    or Nro_Documento LIKE @query"
+                                where Nro_Documento LIKE @query"
             ;
 
             SqlCommand cmd = new SqlCommand(query, conexion)
@@ -376,21 +372,15 @@ namespace AccesoDatos
                 Value = string.Format("%{0}%", buscar)
             });
 
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
             try
             {
                 OpenConnection();
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    personas.Persona_ID = int.Parse(reader["Persona_ID"].ToString());
-                    personas.Nombre = reader["Nombre"].ToString();
-                    personas.Apellido = reader["Apellido"].ToString();
-                    personas.Nro_documento = reader["Nro_documento"].ToString();
-                    personas.Nro_Telefono = reader["Nro_Telefono"].ToString();
-                }
-                reader.Close();
                 cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
             }
             catch (Exception e)
             {
@@ -401,7 +391,7 @@ namespace AccesoDatos
                 CloseConnection();
                 cmd.Dispose();
             }
-            return personas;
+            return ds;
 
         }
 

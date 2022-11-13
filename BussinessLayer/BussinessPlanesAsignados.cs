@@ -16,7 +16,7 @@ namespace BussinessLayer
         {
             _dataPlanesAsignados = new DataPlanesAsignados();
         }
-        public DataSet VerClasesQueTieneElCliente(Planes_Asignados planesAsignados)
+        public DataTable VerClasesQueTieneElCliente(Planes_Asignados planesAsignados)
         {
             return _dataPlanesAsignados.VerClasesQueTieneElCliente(planesAsignados);
         }

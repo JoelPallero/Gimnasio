@@ -29,6 +29,20 @@ namespace Gym
 
         #endregion
 
+        #region Variables
+        private int personaLogueada;
+
+        private bool contenidoErroneo;
+        private bool camposObligatoriosVacios;
+        //Verificar coincidencias **************************
+        private bool personaRegistrada;
+        private DataSet dsTablaClientes;
+        private string buscar;
+        private int motivoMenu = 5;
+        private bool edicionCliente = false;
+
+        #endregion
+
         #region Load del formulario
         public Clientes(int idPersonaLog)
         {
@@ -47,21 +61,6 @@ namespace Gym
             Tipos_Sexos();
             GetClientes();
         }
-
-        #endregion
-
-        #region Variables
-        private int personaLogueada;
-
-        private bool contenidoErroneo;
-        private bool camposObligatoriosVacios;
-        //Verificar coincidencias **************************
-        private bool personaRegistrada;
-        private DataSet dsTablaClientes;
-        private string buscar;
-        private int motivoMenu;
-        private bool edicionCliente = false;
-
 
         #endregion
 
@@ -86,8 +85,15 @@ namespace Gym
                 //Y por cada fila que haya en el dataset
                 foreach (DataRow dr in dsTablaClientes.Tables[0].Rows)
                 {
-                    //paso esa fila al datagrid para que se vean los datos
-                    dtgvCliente.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], dr[5]);
+                    if (dr[6].ToString() == "A")
+                    {
+                        //paso esa fila al datagrid para que se vean los datos
+                        dtgvCliente.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], dr[5], "Activo");
+                    }
+                    else
+                    {
+                        dtgvCliente.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], dr[5], "Inactivo");
+                    }
                 }
             }
         }
@@ -114,16 +120,19 @@ namespace Gym
 
         private void ABMCliente()
         {
-            if (motivoMenu == 0)
+            if (motivoMenu == 3)
             {
                 EditarPersona();
+                EditarCliente();
             }
             else
             {
-                AltaPersona();
-                AltaCliente();
+                if (motivoMenu == 5)
+                {
+                    AltaPersona();
+                    AltaCliente();
+                }
             }
-            ResetControls();
         }
 
         private void EditarPersona()
@@ -179,6 +188,19 @@ namespace Gym
                                 Nro_Alternativo,
                                 Mail,
                                 Observaciones);
+        }
+
+        private void EditarCliente()
+        {
+            if (cmbEstado.SelectedIndex == 0)
+            {
+                _clientes.Estado = "A";
+            }
+            else
+            {
+                _clientes.Estado = "I";
+            }
+            _bussinessClientes.EditarCliente(_clientes);
         }
 
         private void AltaPersona()
@@ -247,7 +269,14 @@ namespace Gym
             _clientes.Persona_ID = _metodosGenerales.persona_ID;
 
             //Luego relleno los campos faltantes de la entidad Cliente.
-            _clientes.Estado = "Activo";
+            if (cmbEstado.SelectedIndex == 0 || cmbEstado.SelectedItem == null)
+            {
+                _clientes.Estado = "A";
+            }
+            else
+            {
+                _clientes.Estado = "I";
+            }
             _bussinessClientes.AltaCliente(_clientes);
         }
 
@@ -265,7 +294,7 @@ namespace Gym
             {
                 camposObligatoriosVacios = false;
             }
-        }
+        }        
 
         private void ValidarContenido()
         {
@@ -527,7 +556,6 @@ namespace Gym
             //Nombre, Apellido, etc. Tiene que ser distinto a eso,
             //pára que sea válido
             ValidarContenido();
-
             if (!contenidoErroneo)
             {
                 //Valido si hay campos obligatorios vacíos
@@ -538,6 +566,10 @@ namespace Gym
                     if (!personaRegistrada)
                     {
                         ABMCliente();
+                        ResetControls();
+                        GetClientes();
+                        motivoMenu = 5;
+                        edicionCliente = false;
                     }
                     else
                     {
@@ -550,7 +582,6 @@ namespace Gym
                     MessageBox.Show("Campos obligatorios sin completar. Por favor, complete todos los campos requeridos", "Campos vacios", MessageBoxButtons.OK);
                 }
             }
-            motivoMenu = 0;
         }
         #endregion
 
@@ -614,6 +645,14 @@ namespace Gym
             {
                 txtObservacionesCliente.Text = _personas.Observaciones;
             }
+            if (_clientes.Estado == "A")
+            {
+                cmbEstado.SelectedIndex = 0;
+            }
+            else
+            {
+                cmbEstado.SelectedIndex = 1;
+            }
 
             foreach (Control txt in gbClientes.Controls)
             {
@@ -637,7 +676,7 @@ namespace Gym
         {
             motivoMenu = 4;
             _clientes.Cliente_ID = Convert.ToInt32(dtgvCliente.CurrentRow.Cells[0].Value);
-            _clientes.Estado = "Inactivo";
+            _clientes.Estado = "I";
             _bussinessClientes.BajaCliente(_clientes);
         }
     }

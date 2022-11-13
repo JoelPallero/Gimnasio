@@ -28,5 +28,11 @@ namespace BussinessLayer
         {
             return _dataPlanes.RegistrarNuevoPlan(planes);
         }
+
+        public int EditarCupoRestante(Planes planes)
+        {
+            return _dataPlanes.EditarCupoRestante(planes);
+        }
+
     }
 }

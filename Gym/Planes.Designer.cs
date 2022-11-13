@@ -37,11 +37,11 @@ namespace Gym
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuPlanes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.edit = new System.Windows.Forms.ToolStripMenuItem();
-            this.detele = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEliminarJornadaPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.GbModificarPlan = new System.Windows.Forms.GroupBox();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.lblVerJornadas = new System.Windows.Forms.LinkLabel();
             this.lblCuposTotales = new System.Windows.Forms.Label();
             this.lblCuposRestantes = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -50,7 +50,6 @@ namespace Gym
             this.btnAsignarPlan = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.gbDatosCliente = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblPlanesCliente = new System.Windows.Forms.Label();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblMail = new System.Windows.Forms.Label();
@@ -58,27 +57,36 @@ namespace Gym
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.GbJornadaEmpleado = new System.Windows.Forms.GroupBox();
-            this.ChkTodos = new System.Windows.Forms.CheckBox();
-            this.TxtHastaSabado = new System.Windows.Forms.TextBox();
-            this.TxtDesdeSabado = new System.Windows.Forms.TextBox();
-            this.TxtHastaViernes = new System.Windows.Forms.TextBox();
-            this.TxtDesdeViernes = new System.Windows.Forms.TextBox();
-            this.TxtHastaJueves = new System.Windows.Forms.TextBox();
-            this.TxtDesdeJueves = new System.Windows.Forms.TextBox();
-            this.TxtHastaMiercoles = new System.Windows.Forms.TextBox();
-            this.TxtDesdeMiercoles = new System.Windows.Forms.TextBox();
-            this.TxtHastaMartes = new System.Windows.Forms.TextBox();
-            this.TxtDesdeMartes = new System.Windows.Forms.TextBox();
-            this.ChkSabado = new System.Windows.Forms.CheckBox();
-            this.ChkViernes = new System.Windows.Forms.CheckBox();
-            this.ChkJueves = new System.Windows.Forms.CheckBox();
-            this.ChkMiercoles = new System.Windows.Forms.CheckBox();
-            this.ChkMartes = new System.Windows.Forms.CheckBox();
-            this.ChkLunes = new System.Windows.Forms.CheckBox();
-            this.TxtHastaLunes = new System.Windows.Forms.TextBox();
-            this.TxtDesdeLunes = new System.Windows.Forms.TextBox();
+            this.GbJornadaPlanes = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkTodos = new System.Windows.Forms.CheckBox();
+            this.txtHastaSabado = new System.Windows.Forms.TextBox();
+            this.txtDesdeSabado = new System.Windows.Forms.TextBox();
+            this.txtHastaViernes = new System.Windows.Forms.TextBox();
+            this.txtDesdeViernes = new System.Windows.Forms.TextBox();
+            this.txtHastaJueves = new System.Windows.Forms.TextBox();
+            this.txtDesdeJueves = new System.Windows.Forms.TextBox();
+            this.txtHastaMiercoles = new System.Windows.Forms.TextBox();
+            this.txtDesdeMiercoles = new System.Windows.Forms.TextBox();
+            this.txtHastaMartes = new System.Windows.Forms.TextBox();
+            this.txtDesdeMartes = new System.Windows.Forms.TextBox();
+            this.chkSabado = new System.Windows.Forms.CheckBox();
+            this.chkViernes = new System.Windows.Forms.CheckBox();
+            this.chkJueves = new System.Windows.Forms.CheckBox();
+            this.chkMiercoles = new System.Windows.Forms.CheckBox();
+            this.chkMartes = new System.Windows.Forms.CheckBox();
+            this.chkLunes = new System.Windows.Forms.CheckBox();
+            this.txtHastaLunes = new System.Windows.Forms.TextBox();
+            this.txtDesdeLunes = new System.Windows.Forms.TextBox();
             this.gpDatosPlan = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.txtDuracion = new System.Windows.Forms.TextBox();
             this.txtCupoTotal = new System.Windows.Forms.TextBox();
             this.txtNombrePlan = new System.Windows.Forms.TextBox();
@@ -91,14 +99,13 @@ namespace Gym
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Profesor_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dias_horarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.menuPlanes.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.GbModificarPlan.SuspendLayout();
             this.gbDatosCliente.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.GbJornadaEmpleado.SuspendLayout();
+            this.GbJornadaPlanes.SuspendLayout();
             this.gpDatosPlan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPlanes)).BeginInit();
             this.SuspendLayout();
@@ -108,21 +115,22 @@ namespace Gym
             this.menuPlanes.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuPlanes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.edit,
-            this.detele});
+            this.btnEliminarJornadaPlan});
             this.menuPlanes.Name = "contextMenuStrip1";
-            this.menuPlanes.Size = new System.Drawing.Size(133, 52);
+            this.menuPlanes.Size = new System.Drawing.Size(211, 80);
             // 
             // edit
             // 
             this.edit.Name = "edit";
-            this.edit.Size = new System.Drawing.Size(132, 24);
+            this.edit.Size = new System.Drawing.Size(210, 24);
             this.edit.Text = "Editar";
             // 
-            // detele
+            // btnEliminarJornadaPlan
             // 
-            this.detele.Name = "detele";
-            this.detele.Size = new System.Drawing.Size(132, 24);
-            this.detele.Text = "Eliminar";
+            this.btnEliminarJornadaPlan.Name = "btnEliminarJornadaPlan";
+            this.btnEliminarJornadaPlan.Size = new System.Drawing.Size(210, 24);
+            this.btnEliminarJornadaPlan.Text = "Eliminar";
+            this.btnEliminarJornadaPlan.Click += new System.EventHandler(this.btnEliminarJornadaPlan_Click);
             // 
             // tabControl1
             // 
@@ -151,7 +159,7 @@ namespace Gym
             // 
             // GbModificarPlan
             // 
-            this.GbModificarPlan.Controls.Add(this.linkLabel2);
+            this.GbModificarPlan.Controls.Add(this.lblVerJornadas);
             this.GbModificarPlan.Controls.Add(this.lblCuposTotales);
             this.GbModificarPlan.Controls.Add(this.lblCuposRestantes);
             this.GbModificarPlan.Controls.Add(this.label12);
@@ -168,20 +176,21 @@ namespace Gym
             this.GbModificarPlan.TabStop = false;
             this.GbModificarPlan.Text = "Planes vigentes";
             // 
-            // linkLabel2
+            // lblVerJornadas
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(22, 103);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(91, 20);
-            this.linkLabel2.TabIndex = 32;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Ver jornadas";
+            this.lblVerJornadas.AutoSize = true;
+            this.lblVerJornadas.Location = new System.Drawing.Point(267, 22);
+            this.lblVerJornadas.Name = "lblVerJornadas";
+            this.lblVerJornadas.Size = new System.Drawing.Size(91, 20);
+            this.lblVerJornadas.TabIndex = 34;
+            this.lblVerJornadas.TabStop = true;
+            this.lblVerJornadas.Text = "Ver jornadas";
+            this.lblVerJornadas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVerJornadas_LinkClicked);
             // 
             // lblCuposTotales
             // 
             this.lblCuposTotales.AutoSize = true;
-            this.lblCuposTotales.Location = new System.Drawing.Point(280, 60);
+            this.lblCuposTotales.Location = new System.Drawing.Point(298, 59);
             this.lblCuposTotales.Name = "lblCuposTotales";
             this.lblCuposTotales.Size = new System.Drawing.Size(25, 20);
             this.lblCuposTotales.TabIndex = 30;
@@ -190,7 +199,7 @@ namespace Gym
             // lblCuposRestantes
             // 
             this.lblCuposRestantes.AutoSize = true;
-            this.lblCuposRestantes.Location = new System.Drawing.Point(249, 60);
+            this.lblCuposRestantes.Location = new System.Drawing.Point(267, 59);
             this.lblCuposRestantes.Name = "lblCuposRestantes";
             this.lblCuposRestantes.Size = new System.Drawing.Size(25, 20);
             this.lblCuposRestantes.TabIndex = 29;
@@ -200,7 +209,7 @@ namespace Gym
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(20, 33);
+            this.label12.Location = new System.Drawing.Point(22, 33);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(131, 20);
             this.label12.TabIndex = 27;
@@ -209,7 +218,7 @@ namespace Gym
             // lblCostoMensual
             // 
             this.lblCostoMensual.AutoSize = true;
-            this.lblCostoMensual.Location = new System.Drawing.Point(253, 24);
+            this.lblCostoMensual.Location = new System.Drawing.Point(22, 108);
             this.lblCostoMensual.Name = "lblCostoMensual";
             this.lblCostoMensual.Size = new System.Drawing.Size(121, 20);
             this.lblCostoMensual.TabIndex = 26;
@@ -223,6 +232,7 @@ namespace Gym
             this.cmbPlanesActivos.Name = "cmbPlanesActivos";
             this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 28);
             this.cmbPlanesActivos.TabIndex = 25;
+            this.cmbPlanesActivos.SelectionChangeCommitted += new System.EventHandler(this.cmbPlanesActivos_SelectionChangeCommitted);
             // 
             // btnAsignarPlan
             // 
@@ -230,19 +240,19 @@ namespace Gym
             this.btnAsignarPlan.FlatAppearance.BorderSize = 0;
             this.btnAsignarPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAsignarPlan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAsignarPlan.Location = new System.Drawing.Point(487, 88);
+            this.btnAsignarPlan.Location = new System.Drawing.Point(461, 88);
             this.btnAsignarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAsignarPlan.Name = "btnAsignarPlan";
-            this.btnAsignarPlan.Size = new System.Drawing.Size(173, 40);
+            this.btnAsignarPlan.Size = new System.Drawing.Size(199, 40);
             this.btnAsignarPlan.TabIndex = 24;
-            this.btnAsignarPlan.Text = "Asignar Plan";
+            this.btnAsignarPlan.Text = "Asignar plan al Cliente";
             this.btnAsignarPlan.UseVisualStyleBackColor = false;
             this.btnAsignarPlan.Click += new System.EventHandler(this.btnAsignarPlan_Click);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(270, 60);
+            this.label20.Location = new System.Drawing.Point(288, 59);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(15, 20);
             this.label20.TabIndex = 31;
@@ -250,7 +260,6 @@ namespace Gym
             // 
             // gbDatosCliente
             // 
-            this.gbDatosCliente.Controls.Add(this.linkLabel1);
             this.gbDatosCliente.Controls.Add(this.lblPlanesCliente);
             this.gbDatosCliente.Controls.Add(this.lblTelefono);
             this.gbDatosCliente.Controls.Add(this.lblMail);
@@ -265,60 +274,51 @@ namespace Gym
             this.gbDatosCliente.TabStop = false;
             this.gbDatosCliente.Text = "Datos del Cliente";
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(353, 75);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(91, 20);
-            this.linkLabel1.TabIndex = 19;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Ver jornadas";
-            // 
             // lblPlanesCliente
             // 
             this.lblPlanesCliente.AutoSize = true;
-            this.lblPlanesCliente.Location = new System.Drawing.Point(353, 32);
+            this.lblPlanesCliente.Location = new System.Drawing.Point(358, 60);
+            this.lblPlanesCliente.MaximumSize = new System.Drawing.Size(250, 0);
             this.lblPlanesCliente.Name = "lblPlanesCliente";
-            this.lblPlanesCliente.Size = new System.Drawing.Size(86, 20);
+            this.lblPlanesCliente.Size = new System.Drawing.Size(90, 20);
             this.lblPlanesCliente.TabIndex = 14;
-            this.lblPlanesCliente.Text = "Plan Actual:";
+            this.lblPlanesCliente.Text = "Plan Actual: ";
             // 
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(22, 75);
+            this.lblTelefono.Location = new System.Drawing.Point(22, 91);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(70, 20);
+            this.lblTelefono.Size = new System.Drawing.Size(74, 20);
             this.lblTelefono.TabIndex = 13;
-            this.lblTelefono.Text = "Telefono:";
+            this.lblTelefono.Text = "Telefono: ";
             // 
             // lblMail
             // 
             this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(22, 97);
+            this.lblMail.Location = new System.Drawing.Point(358, 32);
             this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(41, 20);
+            this.lblMail.Size = new System.Drawing.Size(45, 20);
             this.lblMail.TabIndex = 11;
-            this.lblMail.Text = "Mail:";
+            this.lblMail.Text = "Mail: ";
             // 
             // lblDocumento
             // 
             this.lblDocumento.AutoSize = true;
-            this.lblDocumento.Location = new System.Drawing.Point(22, 53);
+            this.lblDocumento.Location = new System.Drawing.Point(22, 60);
             this.lblDocumento.Name = "lblDocumento";
-            this.lblDocumento.Size = new System.Drawing.Size(38, 20);
+            this.lblDocumento.Size = new System.Drawing.Size(42, 20);
             this.lblDocumento.TabIndex = 9;
-            this.lblDocumento.Text = "DNI:";
+            this.lblDocumento.Text = "DNI: ";
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Location = new System.Drawing.Point(22, 32);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(67, 20);
+            this.lblNombre.Size = new System.Drawing.Size(71, 20);
             this.lblNombre.TabIndex = 7;
-            this.lblNombre.Text = "Nombre:";
+            this.lblNombre.Text = "Nombre: ";
             // 
             // txtBuscarCliente
             // 
@@ -336,7 +336,7 @@ namespace Gym
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.GbJornadaEmpleado);
+            this.tabPage2.Controls.Add(this.GbJornadaPlanes);
             this.tabPage2.Controls.Add(this.gpDatosPlan);
             this.tabPage2.Controls.Add(this.btnAltaPlan);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
@@ -348,235 +348,340 @@ namespace Gym
             this.tabPage2.Text = "Alta de Planes";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // GbJornadaEmpleado
+            // GbJornadaPlanes
             // 
-            this.GbJornadaEmpleado.Controls.Add(this.ChkTodos);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaSabado);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeSabado);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaViernes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeViernes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaJueves);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeJueves);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaMiercoles);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeMiercoles);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaMartes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeMartes);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkSabado);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkViernes);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkJueves);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkMiercoles);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkMartes);
-            this.GbJornadaEmpleado.Controls.Add(this.ChkLunes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtHastaLunes);
-            this.GbJornadaEmpleado.Controls.Add(this.TxtDesdeLunes);
-            this.GbJornadaEmpleado.Location = new System.Drawing.Point(375, 9);
-            this.GbJornadaEmpleado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GbJornadaEmpleado.Name = "GbJornadaEmpleado";
-            this.GbJornadaEmpleado.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GbJornadaEmpleado.Size = new System.Drawing.Size(307, 257);
-            this.GbJornadaEmpleado.TabIndex = 87;
-            this.GbJornadaEmpleado.TabStop = false;
-            this.GbJornadaEmpleado.Text = "Días y horarios";
+            this.GbJornadaPlanes.Controls.Add(this.label2);
+            this.GbJornadaPlanes.Controls.Add(this.label1);
+            this.GbJornadaPlanes.Controls.Add(this.chkTodos);
+            this.GbJornadaPlanes.Controls.Add(this.txtHastaSabado);
+            this.GbJornadaPlanes.Controls.Add(this.txtDesdeSabado);
+            this.GbJornadaPlanes.Controls.Add(this.txtHastaViernes);
+            this.GbJornadaPlanes.Controls.Add(this.txtDesdeViernes);
+            this.GbJornadaPlanes.Controls.Add(this.txtHastaJueves);
+            this.GbJornadaPlanes.Controls.Add(this.txtDesdeJueves);
+            this.GbJornadaPlanes.Controls.Add(this.txtHastaMiercoles);
+            this.GbJornadaPlanes.Controls.Add(this.txtDesdeMiercoles);
+            this.GbJornadaPlanes.Controls.Add(this.txtHastaMartes);
+            this.GbJornadaPlanes.Controls.Add(this.txtDesdeMartes);
+            this.GbJornadaPlanes.Controls.Add(this.chkSabado);
+            this.GbJornadaPlanes.Controls.Add(this.chkViernes);
+            this.GbJornadaPlanes.Controls.Add(this.chkJueves);
+            this.GbJornadaPlanes.Controls.Add(this.chkMiercoles);
+            this.GbJornadaPlanes.Controls.Add(this.chkMartes);
+            this.GbJornadaPlanes.Controls.Add(this.chkLunes);
+            this.GbJornadaPlanes.Controls.Add(this.txtHastaLunes);
+            this.GbJornadaPlanes.Controls.Add(this.txtDesdeLunes);
+            this.GbJornadaPlanes.Location = new System.Drawing.Point(375, 9);
+            this.GbJornadaPlanes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GbJornadaPlanes.Name = "GbJornadaPlanes";
+            this.GbJornadaPlanes.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GbJornadaPlanes.Size = new System.Drawing.Size(307, 257);
+            this.GbJornadaPlanes.TabIndex = 87;
+            this.GbJornadaPlanes.TabStop = false;
+            this.GbJornadaPlanes.Text = "Días y horarios";
             // 
-            // ChkTodos
+            // label2
             // 
-            this.ChkTodos.AutoSize = true;
-            this.ChkTodos.Location = new System.Drawing.Point(17, 29);
-            this.ChkTodos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ChkTodos.Name = "ChkTodos";
-            this.ChkTodos.Size = new System.Drawing.Size(149, 24);
-            this.ChkTodos.TabIndex = 106;
-            this.ChkTodos.Text = "Seleccionar todos";
-            this.ChkTodos.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(225, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 20);
+            this.label2.TabIndex = 50;
+            this.label2.Text = "Hasta";
             // 
-            // TxtHastaSabado
+            // label1
             // 
-            this.TxtHastaSabado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaSabado.Location = new System.Drawing.Point(215, 214);
-            this.TxtHastaSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtHastaSabado.Name = "TxtHastaSabado";
-            this.TxtHastaSabado.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaSabado.TabIndex = 105;
-            this.TxtHastaSabado.Text = "Hasta";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(141, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "Desde";
             // 
-            // TxtDesdeSabado
+            // chkTodos
             // 
-            this.TxtDesdeSabado.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeSabado.Location = new System.Drawing.Point(128, 214);
-            this.TxtDesdeSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtDesdeSabado.Name = "TxtDesdeSabado";
-            this.TxtDesdeSabado.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeSabado.TabIndex = 104;
-            this.TxtDesdeSabado.Text = "Desde";
+            this.chkTodos.AutoSize = true;
+            this.chkTodos.Location = new System.Drawing.Point(123, 24);
+            this.chkTodos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkTodos.Name = "chkTodos";
+            this.chkTodos.Size = new System.Drawing.Size(149, 24);
+            this.chkTodos.TabIndex = 30;
+            this.chkTodos.Text = "Seleccionar todos";
+            this.chkTodos.UseVisualStyleBackColor = true;
+            this.chkTodos.Click += new System.EventHandler(this.chkTodos_Click);
             // 
-            // TxtHastaViernes
+            // txtHastaSabado
             // 
-            this.TxtHastaViernes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaViernes.Location = new System.Drawing.Point(215, 184);
-            this.TxtHastaViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtHastaViernes.Name = "TxtHastaViernes";
-            this.TxtHastaViernes.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaViernes.TabIndex = 103;
-            this.TxtHastaViernes.Text = "Hasta";
+            this.txtHastaSabado.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaSabado.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtHastaSabado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtHastaSabado.Location = new System.Drawing.Point(215, 221);
+            this.txtHastaSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaSabado.MaxLength = 5;
+            this.txtHastaSabado.Name = "txtHastaSabado";
+            this.txtHastaSabado.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaSabado.TabIndex = 48;
+            this.txtHastaSabado.Text = "hh:mm";
+            this.txtHastaSabado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHastaSabado.Enter += new System.EventHandler(this.txtHastaSabado_Enter);
+            this.txtHastaSabado.Leave += new System.EventHandler(this.txtHastaSabado_Leave);
             // 
-            // TxtDesdeViernes
+            // txtDesdeSabado
             // 
-            this.TxtDesdeViernes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeViernes.Location = new System.Drawing.Point(128, 184);
-            this.TxtDesdeViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtDesdeViernes.Name = "TxtDesdeViernes";
-            this.TxtDesdeViernes.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeViernes.TabIndex = 102;
-            this.TxtDesdeViernes.Text = "Desde";
+            this.txtDesdeSabado.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeSabado.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtDesdeSabado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDesdeSabado.Location = new System.Drawing.Point(128, 221);
+            this.txtDesdeSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeSabado.MaxLength = 5;
+            this.txtDesdeSabado.Name = "txtDesdeSabado";
+            this.txtDesdeSabado.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeSabado.TabIndex = 47;
+            this.txtDesdeSabado.Text = "hh:mm";
+            this.txtDesdeSabado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDesdeSabado.Enter += new System.EventHandler(this.txtDesdeSabado_Enter);
+            this.txtDesdeSabado.Leave += new System.EventHandler(this.txtDesdeSabado_Leave);
             // 
-            // TxtHastaJueves
+            // txtHastaViernes
             // 
-            this.TxtHastaJueves.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaJueves.Location = new System.Drawing.Point(215, 154);
-            this.TxtHastaJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtHastaJueves.Name = "TxtHastaJueves";
-            this.TxtHastaJueves.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaJueves.TabIndex = 101;
-            this.TxtHastaJueves.Text = "Hasta";
+            this.txtHastaViernes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaViernes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtHastaViernes.ForeColor = System.Drawing.Color.DimGray;
+            this.txtHastaViernes.Location = new System.Drawing.Point(215, 191);
+            this.txtHastaViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaViernes.MaxLength = 5;
+            this.txtHastaViernes.Name = "txtHastaViernes";
+            this.txtHastaViernes.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaViernes.TabIndex = 45;
+            this.txtHastaViernes.Text = "hh:mm";
+            this.txtHastaViernes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHastaViernes.Enter += new System.EventHandler(this.txtHastaViernes_Enter);
+            this.txtHastaViernes.Leave += new System.EventHandler(this.txtHastaViernes_Leave);
             // 
-            // TxtDesdeJueves
+            // txtDesdeViernes
             // 
-            this.TxtDesdeJueves.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeJueves.Location = new System.Drawing.Point(128, 154);
-            this.TxtDesdeJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtDesdeJueves.Name = "TxtDesdeJueves";
-            this.TxtDesdeJueves.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeJueves.TabIndex = 100;
-            this.TxtDesdeJueves.Text = "Desde";
+            this.txtDesdeViernes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeViernes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtDesdeViernes.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDesdeViernes.Location = new System.Drawing.Point(128, 191);
+            this.txtDesdeViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeViernes.MaxLength = 5;
+            this.txtDesdeViernes.Name = "txtDesdeViernes";
+            this.txtDesdeViernes.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeViernes.TabIndex = 44;
+            this.txtDesdeViernes.Text = "hh:mm";
+            this.txtDesdeViernes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDesdeViernes.Enter += new System.EventHandler(this.txtDesdeViernes_Enter);
+            this.txtDesdeViernes.Leave += new System.EventHandler(this.txtDesdeViernes_Leave);
             // 
-            // TxtHastaMiercoles
+            // txtHastaJueves
             // 
-            this.TxtHastaMiercoles.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaMiercoles.Location = new System.Drawing.Point(215, 124);
-            this.TxtHastaMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtHastaMiercoles.Name = "TxtHastaMiercoles";
-            this.TxtHastaMiercoles.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaMiercoles.TabIndex = 99;
-            this.TxtHastaMiercoles.Text = "Hasta";
+            this.txtHastaJueves.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaJueves.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtHastaJueves.ForeColor = System.Drawing.Color.DimGray;
+            this.txtHastaJueves.Location = new System.Drawing.Point(215, 161);
+            this.txtHastaJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaJueves.MaxLength = 5;
+            this.txtHastaJueves.Name = "txtHastaJueves";
+            this.txtHastaJueves.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaJueves.TabIndex = 42;
+            this.txtHastaJueves.Text = "hh:mm";
+            this.txtHastaJueves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHastaJueves.Enter += new System.EventHandler(this.txtHastaJueves_Enter);
+            this.txtHastaJueves.Leave += new System.EventHandler(this.txtHastaJueves_Leave);
             // 
-            // TxtDesdeMiercoles
+            // txtDesdeJueves
             // 
-            this.TxtDesdeMiercoles.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeMiercoles.Location = new System.Drawing.Point(128, 124);
-            this.TxtDesdeMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtDesdeMiercoles.Name = "TxtDesdeMiercoles";
-            this.TxtDesdeMiercoles.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeMiercoles.TabIndex = 98;
-            this.TxtDesdeMiercoles.Text = "Desde";
+            this.txtDesdeJueves.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeJueves.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtDesdeJueves.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDesdeJueves.Location = new System.Drawing.Point(128, 161);
+            this.txtDesdeJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeJueves.MaxLength = 5;
+            this.txtDesdeJueves.Name = "txtDesdeJueves";
+            this.txtDesdeJueves.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeJueves.TabIndex = 41;
+            this.txtDesdeJueves.Text = "hh:mm";
+            this.txtDesdeJueves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDesdeJueves.Enter += new System.EventHandler(this.txtDesdeJueves_Enter);
+            this.txtDesdeJueves.Leave += new System.EventHandler(this.txtDesdeJueves_Leave);
             // 
-            // TxtHastaMartes
+            // txtHastaMiercoles
             // 
-            this.TxtHastaMartes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaMartes.Location = new System.Drawing.Point(215, 94);
-            this.TxtHastaMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtHastaMartes.Name = "TxtHastaMartes";
-            this.TxtHastaMartes.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaMartes.TabIndex = 97;
-            this.TxtHastaMartes.Text = "Hasta";
+            this.txtHastaMiercoles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaMiercoles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtHastaMiercoles.ForeColor = System.Drawing.Color.DimGray;
+            this.txtHastaMiercoles.Location = new System.Drawing.Point(215, 131);
+            this.txtHastaMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaMiercoles.MaxLength = 5;
+            this.txtHastaMiercoles.Name = "txtHastaMiercoles";
+            this.txtHastaMiercoles.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaMiercoles.TabIndex = 39;
+            this.txtHastaMiercoles.Text = "hh:mm";
+            this.txtHastaMiercoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHastaMiercoles.Enter += new System.EventHandler(this.txtHastaMiercoles_Enter);
+            this.txtHastaMiercoles.Leave += new System.EventHandler(this.txtHastaMiercoles_Leave);
             // 
-            // TxtDesdeMartes
+            // txtDesdeMiercoles
             // 
-            this.TxtDesdeMartes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeMartes.Location = new System.Drawing.Point(128, 94);
-            this.TxtDesdeMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtDesdeMartes.Name = "TxtDesdeMartes";
-            this.TxtDesdeMartes.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeMartes.TabIndex = 96;
-            this.TxtDesdeMartes.Text = "Desde";
+            this.txtDesdeMiercoles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeMiercoles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtDesdeMiercoles.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDesdeMiercoles.Location = new System.Drawing.Point(128, 131);
+            this.txtDesdeMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeMiercoles.MaxLength = 5;
+            this.txtDesdeMiercoles.Name = "txtDesdeMiercoles";
+            this.txtDesdeMiercoles.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeMiercoles.TabIndex = 38;
+            this.txtDesdeMiercoles.Text = "hh:mm";
+            this.txtDesdeMiercoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDesdeMiercoles.Enter += new System.EventHandler(this.txtDesdeMiercoles_Enter);
+            this.txtDesdeMiercoles.Leave += new System.EventHandler(this.txtDesdeMiercoles_Leave);
             // 
-            // ChkSabado
+            // txtHastaMartes
             // 
-            this.ChkSabado.AutoSize = true;
-            this.ChkSabado.Location = new System.Drawing.Point(17, 216);
-            this.ChkSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ChkSabado.Name = "ChkSabado";
-            this.ChkSabado.Size = new System.Drawing.Size(82, 24);
-            this.ChkSabado.TabIndex = 95;
-            this.ChkSabado.Text = "Sábado";
-            this.ChkSabado.UseVisualStyleBackColor = true;
+            this.txtHastaMartes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaMartes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtHastaMartes.ForeColor = System.Drawing.Color.DimGray;
+            this.txtHastaMartes.Location = new System.Drawing.Point(215, 101);
+            this.txtHastaMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaMartes.MaxLength = 5;
+            this.txtHastaMartes.Name = "txtHastaMartes";
+            this.txtHastaMartes.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaMartes.TabIndex = 36;
+            this.txtHastaMartes.Text = "hh:mm";
+            this.txtHastaMartes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHastaMartes.Enter += new System.EventHandler(this.txtHastaMartes_Enter);
+            this.txtHastaMartes.Leave += new System.EventHandler(this.txtHastaMartes_Leave);
             // 
-            // ChkViernes
+            // txtDesdeMartes
             // 
-            this.ChkViernes.AutoSize = true;
-            this.ChkViernes.Location = new System.Drawing.Point(17, 186);
-            this.ChkViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ChkViernes.Name = "ChkViernes";
-            this.ChkViernes.Size = new System.Drawing.Size(79, 24);
-            this.ChkViernes.TabIndex = 94;
-            this.ChkViernes.Text = "Viernes";
-            this.ChkViernes.UseVisualStyleBackColor = true;
+            this.txtDesdeMartes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeMartes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtDesdeMartes.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDesdeMartes.Location = new System.Drawing.Point(128, 101);
+            this.txtDesdeMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeMartes.MaxLength = 5;
+            this.txtDesdeMartes.Name = "txtDesdeMartes";
+            this.txtDesdeMartes.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeMartes.TabIndex = 35;
+            this.txtDesdeMartes.Text = "hh:mm";
+            this.txtDesdeMartes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDesdeMartes.Enter += new System.EventHandler(this.txtDesdeMartes_Enter);
+            this.txtDesdeMartes.Leave += new System.EventHandler(this.txtDesdeMartes_Leave);
             // 
-            // ChkJueves
+            // chkSabado
             // 
-            this.ChkJueves.AutoSize = true;
-            this.ChkJueves.Location = new System.Drawing.Point(17, 156);
-            this.ChkJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ChkJueves.Name = "ChkJueves";
-            this.ChkJueves.Size = new System.Drawing.Size(73, 24);
-            this.ChkJueves.TabIndex = 93;
-            this.ChkJueves.Text = "Jueves";
-            this.ChkJueves.UseVisualStyleBackColor = true;
+            this.chkSabado.AutoSize = true;
+            this.chkSabado.Location = new System.Drawing.Point(10, 224);
+            this.chkSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkSabado.Name = "chkSabado";
+            this.chkSabado.Size = new System.Drawing.Size(82, 24);
+            this.chkSabado.TabIndex = 46;
+            this.chkSabado.Text = "Sabado";
+            this.chkSabado.UseVisualStyleBackColor = true;
+            this.chkSabado.Click += new System.EventHandler(this.chkSabado_Click);
             // 
-            // ChkMiercoles
+            // chkViernes
             // 
-            this.ChkMiercoles.AutoSize = true;
-            this.ChkMiercoles.Location = new System.Drawing.Point(17, 126);
-            this.ChkMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ChkMiercoles.Name = "ChkMiercoles";
-            this.ChkMiercoles.Size = new System.Drawing.Size(95, 24);
-            this.ChkMiercoles.TabIndex = 92;
-            this.ChkMiercoles.Text = "Miércoles";
-            this.ChkMiercoles.UseVisualStyleBackColor = true;
+            this.chkViernes.AutoSize = true;
+            this.chkViernes.Location = new System.Drawing.Point(10, 194);
+            this.chkViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkViernes.Name = "chkViernes";
+            this.chkViernes.Size = new System.Drawing.Size(79, 24);
+            this.chkViernes.TabIndex = 43;
+            this.chkViernes.Text = "Viernes";
+            this.chkViernes.UseVisualStyleBackColor = true;
+            this.chkViernes.Click += new System.EventHandler(this.chkViernes_Click);
             // 
-            // ChkMartes
+            // chkJueves
             // 
-            this.ChkMartes.AutoSize = true;
-            this.ChkMartes.Location = new System.Drawing.Point(17, 96);
-            this.ChkMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ChkMartes.Name = "ChkMartes";
-            this.ChkMartes.Size = new System.Drawing.Size(76, 24);
-            this.ChkMartes.TabIndex = 91;
-            this.ChkMartes.Text = "Martes";
-            this.ChkMartes.UseVisualStyleBackColor = true;
+            this.chkJueves.AutoSize = true;
+            this.chkJueves.Location = new System.Drawing.Point(10, 164);
+            this.chkJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkJueves.Name = "chkJueves";
+            this.chkJueves.Size = new System.Drawing.Size(73, 24);
+            this.chkJueves.TabIndex = 40;
+            this.chkJueves.Text = "Jueves";
+            this.chkJueves.UseVisualStyleBackColor = true;
+            this.chkJueves.Click += new System.EventHandler(this.chkJueves_Click);
             // 
-            // ChkLunes
+            // chkMiercoles
             // 
-            this.ChkLunes.AutoSize = true;
-            this.ChkLunes.Location = new System.Drawing.Point(17, 68);
-            this.ChkLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ChkLunes.Name = "ChkLunes";
-            this.ChkLunes.Size = new System.Drawing.Size(68, 24);
-            this.ChkLunes.TabIndex = 90;
-            this.ChkLunes.Text = "Lunes";
-            this.ChkLunes.UseVisualStyleBackColor = true;
+            this.chkMiercoles.AutoSize = true;
+            this.chkMiercoles.Location = new System.Drawing.Point(10, 134);
+            this.chkMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkMiercoles.Name = "chkMiercoles";
+            this.chkMiercoles.Size = new System.Drawing.Size(95, 24);
+            this.chkMiercoles.TabIndex = 37;
+            this.chkMiercoles.Text = "Miercoles";
+            this.chkMiercoles.UseVisualStyleBackColor = true;
+            this.chkMiercoles.Click += new System.EventHandler(this.chkMiercoles_Click);
             // 
-            // TxtHastaLunes
+            // chkMartes
             // 
-            this.TxtHastaLunes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtHastaLunes.Location = new System.Drawing.Point(215, 62);
-            this.TxtHastaLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtHastaLunes.Name = "TxtHastaLunes";
-            this.TxtHastaLunes.Size = new System.Drawing.Size(81, 27);
-            this.TxtHastaLunes.TabIndex = 89;
-            this.TxtHastaLunes.Text = "Hasta";
+            this.chkMartes.AutoSize = true;
+            this.chkMartes.Location = new System.Drawing.Point(10, 104);
+            this.chkMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkMartes.Name = "chkMartes";
+            this.chkMartes.Size = new System.Drawing.Size(76, 24);
+            this.chkMartes.TabIndex = 34;
+            this.chkMartes.Text = "Martes";
+            this.chkMartes.UseVisualStyleBackColor = true;
+            this.chkMartes.Click += new System.EventHandler(this.chkMartes_Click);
             // 
-            // TxtDesdeLunes
+            // chkLunes
             // 
-            this.TxtDesdeLunes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.TxtDesdeLunes.Location = new System.Drawing.Point(128, 62);
-            this.TxtDesdeLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TxtDesdeLunes.Name = "TxtDesdeLunes";
-            this.TxtDesdeLunes.Size = new System.Drawing.Size(81, 27);
-            this.TxtDesdeLunes.TabIndex = 88;
-            this.TxtDesdeLunes.Text = "Desde";
+            this.chkLunes.AutoSize = true;
+            this.chkLunes.Location = new System.Drawing.Point(10, 74);
+            this.chkLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkLunes.Name = "chkLunes";
+            this.chkLunes.Size = new System.Drawing.Size(68, 24);
+            this.chkLunes.TabIndex = 31;
+            this.chkLunes.Text = "Lunes";
+            this.chkLunes.UseVisualStyleBackColor = true;
+            this.chkLunes.Click += new System.EventHandler(this.chkLunes_Click);
+            // 
+            // txtHastaLunes
+            // 
+            this.txtHastaLunes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtHastaLunes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtHastaLunes.ForeColor = System.Drawing.Color.DimGray;
+            this.txtHastaLunes.Location = new System.Drawing.Point(215, 72);
+            this.txtHastaLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHastaLunes.MaxLength = 5;
+            this.txtHastaLunes.Name = "txtHastaLunes";
+            this.txtHastaLunes.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaLunes.TabIndex = 33;
+            this.txtHastaLunes.Text = "hh:mm";
+            this.txtHastaLunes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHastaLunes.Enter += new System.EventHandler(this.txtHastaLunes_Enter);
+            this.txtHastaLunes.Leave += new System.EventHandler(this.txtHastaLunes_Leave);
+            // 
+            // txtDesdeLunes
+            // 
+            this.txtDesdeLunes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtDesdeLunes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.txtDesdeLunes.ForeColor = System.Drawing.Color.DimGray;
+            this.txtDesdeLunes.Location = new System.Drawing.Point(128, 72);
+            this.txtDesdeLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDesdeLunes.MaxLength = 5;
+            this.txtDesdeLunes.Name = "txtDesdeLunes";
+            this.txtDesdeLunes.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeLunes.TabIndex = 32;
+            this.txtDesdeLunes.Text = "hh:mm";
+            this.txtDesdeLunes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDesdeLunes.Enter += new System.EventHandler(this.txtDesdeLunes_Enter);
+            this.txtDesdeLunes.Leave += new System.EventHandler(this.txtDesdeLunes_Leave);
             // 
             // gpDatosPlan
             // 
+            this.gpDatosPlan.Controls.Add(this.label8);
+            this.gpDatosPlan.Controls.Add(this.label7);
+            this.gpDatosPlan.Controls.Add(this.label6);
+            this.gpDatosPlan.Controls.Add(this.label5);
+            this.gpDatosPlan.Controls.Add(this.label4);
+            this.gpDatosPlan.Controls.Add(this.label3);
             this.gpDatosPlan.Controls.Add(this.dtpFechaInicio);
             this.gpDatosPlan.Controls.Add(this.txtDuracion);
             this.gpDatosPlan.Controls.Add(this.txtCupoTotal);
@@ -592,56 +697,113 @@ namespace Gym
             this.gpDatosPlan.TabStop = false;
             this.gpDatosPlan.Text = "Datos de Plan";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(25, 240);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(108, 20);
+            this.label8.TabIndex = 95;
+            this.label8.Text = "Fecha de Inicio";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(200, 188);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(99, 20);
+            this.label7.TabIndex = 94;
+            this.label7.Text = "Cupos totales";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(25, 188);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 20);
+            this.label6.TabIndex = 93;
+            this.label6.Text = "Duración";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 133);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 20);
+            this.label5.TabIndex = 92;
+            this.label5.Text = "Profesor";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 80);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(106, 20);
+            this.label4.TabIndex = 91;
+            this.label4.Text = "Costo Mensual";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(138, 20);
+            this.label3.TabIndex = 90;
+            this.label3.Text = "Nombre de la clase";
+            // 
+            // dtpFechaInicio
+            // 
+            this.dtpFechaInicio.Location = new System.Drawing.Point(19, 263);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(317, 27);
+            this.dtpFechaInicio.TabIndex = 6;
+            // 
             // txtDuracion
             // 
-            this.txtDuracion.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtDuracion.Location = new System.Drawing.Point(19, 178);
+            this.txtDuracion.ForeColor = System.Drawing.Color.Black;
+            this.txtDuracion.Location = new System.Drawing.Point(19, 210);
             this.txtDuracion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDuracion.Name = "txtDuracion";
-            this.txtDuracion.Size = new System.Drawing.Size(317, 27);
-            this.txtDuracion.TabIndex = 88;
-            this.txtDuracion.Text = "Duración";
+            this.txtDuracion.Size = new System.Drawing.Size(144, 27);
+            this.txtDuracion.TabIndex = 4;
             // 
             // txtCupoTotal
             // 
-            this.txtCupoTotal.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtCupoTotal.Location = new System.Drawing.Point(19, 221);
+            this.txtCupoTotal.ForeColor = System.Drawing.Color.Black;
+            this.txtCupoTotal.Location = new System.Drawing.Point(192, 210);
             this.txtCupoTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCupoTotal.Name = "txtCupoTotal";
-            this.txtCupoTotal.Size = new System.Drawing.Size(317, 27);
-            this.txtCupoTotal.TabIndex = 87;
-            this.txtCupoTotal.Text = "Cupo total";
+            this.txtCupoTotal.Size = new System.Drawing.Size(144, 27);
+            this.txtCupoTotal.TabIndex = 5;
             // 
             // txtNombrePlan
             // 
-            this.txtNombrePlan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtNombrePlan.Location = new System.Drawing.Point(19, 52);
+            this.txtNombrePlan.ForeColor = System.Drawing.Color.Black;
+            this.txtNombrePlan.Location = new System.Drawing.Point(19, 49);
             this.txtNombrePlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombrePlan.Name = "txtNombrePlan";
             this.txtNombrePlan.Size = new System.Drawing.Size(317, 27);
             this.txtNombrePlan.TabIndex = 86;
-            this.txtNombrePlan.Text = "Nombre de clase";
             // 
             // txtImporte
             // 
-            this.txtImporte.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtImporte.Location = new System.Drawing.Point(19, 93);
+            this.txtImporte.ForeColor = System.Drawing.Color.Black;
+            this.txtImporte.Location = new System.Drawing.Point(19, 101);
             this.txtImporte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtImporte.Name = "txtImporte";
             this.txtImporte.Size = new System.Drawing.Size(317, 27);
-            this.txtImporte.TabIndex = 85;
-            this.txtImporte.Text = "Importe $$";
+            this.txtImporte.TabIndex = 1;
             // 
             // cmbProfesores
             // 
             this.cmbProfesores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProfesores.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cmbProfesores.FormattingEnabled = true;
-            this.cmbProfesores.Location = new System.Drawing.Point(19, 135);
+            this.cmbProfesores.Location = new System.Drawing.Point(19, 153);
             this.cmbProfesores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbProfesores.Name = "cmbProfesores";
             this.cmbProfesores.Size = new System.Drawing.Size(317, 28);
-            this.cmbProfesores.TabIndex = 84;
+            this.cmbProfesores.TabIndex = 3;
             // 
             // btnAltaPlan
             // 
@@ -653,7 +815,7 @@ namespace Gym
             this.btnAltaPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAltaPlan.Name = "btnAltaPlan";
             this.btnAltaPlan.Size = new System.Drawing.Size(307, 46);
-            this.btnAltaPlan.TabIndex = 83;
+            this.btnAltaPlan.TabIndex = 49;
             this.btnAltaPlan.Text = "Guardar Clase";
             this.btnAltaPlan.UseVisualStyleBackColor = false;
             this.btnAltaPlan.Click += new System.EventHandler(this.btnAltaPlan_Click);
@@ -665,7 +827,7 @@ namespace Gym
             this.TxtBuscarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtBuscarPlan.Name = "TxtBuscarPlan";
             this.TxtBuscarPlan.Size = new System.Drawing.Size(304, 27);
-            this.TxtBuscarPlan.TabIndex = 85;
+            this.TxtBuscarPlan.TabIndex = 50;
             this.TxtBuscarPlan.Text = "Buscar Clase";
             // 
             // dtgvPlanes
@@ -752,13 +914,6 @@ namespace Gym
             this.Dias_horarios.ReadOnly = true;
             this.Dias_horarios.Width = 308;
             // 
-            // dtpFechaInicio
-            // 
-            this.dtpFechaInicio.Location = new System.Drawing.Point(19, 263);
-            this.dtpFechaInicio.Name = "dtpFechaInicio";
-            this.dtpFechaInicio.Size = new System.Drawing.Size(317, 27);
-            this.dtpFechaInicio.TabIndex = 89;
-            // 
             // Planes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -781,8 +936,8 @@ namespace Gym
             this.gbDatosCliente.ResumeLayout(false);
             this.gbDatosCliente.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.GbJornadaEmpleado.ResumeLayout(false);
-            this.GbJornadaEmpleado.PerformLayout();
+            this.GbJornadaPlanes.ResumeLayout(false);
+            this.GbJornadaPlanes.PerformLayout();
             this.gpDatosPlan.ResumeLayout(false);
             this.gpDatosPlan.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPlanes)).EndInit();
@@ -794,7 +949,7 @@ namespace Gym
         #endregion
         private System.Windows.Forms.ContextMenuStrip menuPlanes;
         private System.Windows.Forms.ToolStripMenuItem edit;
-        private System.Windows.Forms.ToolStripMenuItem detele;
+        private System.Windows.Forms.ToolStripMenuItem btnEliminarJornadaPlan;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -803,26 +958,7 @@ namespace Gym
         private System.Windows.Forms.TextBox txtImporte;
         private System.Windows.Forms.ComboBox cmbProfesores;
         private System.Windows.Forms.Button btnAltaPlan;
-        private System.Windows.Forms.GroupBox GbJornadaEmpleado;
-        private System.Windows.Forms.CheckBox ChkTodos;
-        private System.Windows.Forms.TextBox TxtHastaSabado;
-        private System.Windows.Forms.TextBox TxtDesdeSabado;
-        private System.Windows.Forms.TextBox TxtHastaViernes;
-        private System.Windows.Forms.TextBox TxtDesdeViernes;
-        private System.Windows.Forms.TextBox TxtHastaJueves;
-        private System.Windows.Forms.TextBox TxtDesdeJueves;
-        private System.Windows.Forms.TextBox TxtHastaMiercoles;
-        private System.Windows.Forms.TextBox TxtDesdeMiercoles;
-        private System.Windows.Forms.TextBox TxtHastaMartes;
-        private System.Windows.Forms.TextBox TxtDesdeMartes;
-        private System.Windows.Forms.CheckBox ChkSabado;
-        private System.Windows.Forms.CheckBox ChkViernes;
-        private System.Windows.Forms.CheckBox ChkJueves;
-        private System.Windows.Forms.CheckBox ChkMiercoles;
-        private System.Windows.Forms.CheckBox ChkMartes;
-        private System.Windows.Forms.CheckBox ChkLunes;
-        private System.Windows.Forms.TextBox TxtHastaLunes;
-        private System.Windows.Forms.TextBox TxtDesdeLunes;
+        private System.Windows.Forms.GroupBox GbJornadaPlanes;
         private System.Windows.Forms.TextBox txtBuscarCliente;
         private System.Windows.Forms.GroupBox GbModificarPlan;
         private System.Windows.Forms.GroupBox gbDatosCliente;
@@ -834,7 +970,6 @@ namespace Gym
         private System.Windows.Forms.TextBox txtDuracion;
         private System.Windows.Forms.TextBox txtCupoTotal;
         private System.Windows.Forms.TextBox TxtBuscarPlan;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.DataGridView dtgvPlanes;
         private System.Windows.Forms.DataGridViewTextBoxColumn Persona_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
@@ -847,7 +982,34 @@ namespace Gym
         private System.Windows.Forms.ComboBox cmbPlanesActivos;
         private System.Windows.Forms.Button btnAsignarPlan;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.DateTimePicker dtpFechaInicio;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkTodos;
+        private System.Windows.Forms.TextBox txtHastaSabado;
+        private System.Windows.Forms.TextBox txtDesdeSabado;
+        private System.Windows.Forms.TextBox txtHastaViernes;
+        private System.Windows.Forms.TextBox txtDesdeViernes;
+        private System.Windows.Forms.TextBox txtHastaJueves;
+        private System.Windows.Forms.TextBox txtDesdeJueves;
+        private System.Windows.Forms.TextBox txtHastaMiercoles;
+        private System.Windows.Forms.TextBox txtDesdeMiercoles;
+        private System.Windows.Forms.TextBox txtHastaMartes;
+        private System.Windows.Forms.TextBox txtDesdeMartes;
+        private System.Windows.Forms.CheckBox chkSabado;
+        private System.Windows.Forms.CheckBox chkViernes;
+        private System.Windows.Forms.CheckBox chkJueves;
+        private System.Windows.Forms.CheckBox chkMiercoles;
+        private System.Windows.Forms.CheckBox chkMartes;
+        private System.Windows.Forms.CheckBox chkLunes;
+        private System.Windows.Forms.TextBox txtHastaLunes;
+        private System.Windows.Forms.TextBox txtDesdeLunes;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.LinkLabel lblVerJornadas;
     }
 }

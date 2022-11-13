@@ -24,6 +24,8 @@ Fecha_Alta date not null,
 Fecha_Baja date null,
 )
 
+go
+
 create table Empleados(
 Empleado_ID int primary key identity (0, 1),
 Persona_ID int not null,
@@ -44,8 +46,9 @@ go
 create table Clientes(
 Cliente_ID int primary key identity (0, 1),
 Persona_ID int not null,
-Estado nvarchar(20) not null
+Estado nvarchar(1) not null
 )
+
 
 go
 
@@ -55,7 +58,7 @@ Fecha date not null,
 Estado nvarchar(1) not null, --P(resente), T(arde), A(usente)
 Cliente_ID int not null,
 Empleado_ID int not null, --quien hizo el registro
-PlanAsignado_ID int not null
+Plan_Asignado_ID int not null
 )
 
 go
@@ -75,8 +78,8 @@ go
 
 create table Cajas(
 Caja_ID int primary key identity (0, 1),
-Persona_ID int not null,
-Fecha date not null,
+Empleado_ID int not null,
+Fecha datetime not null,
 Importe_Inicial decimal(18,0) not null,
 Importe_Final decimal(18,0) null,
 )
@@ -87,7 +90,7 @@ create table Detalles_Cajas(
 Detalle_Caja_ID int primary key identity (0, 1),
 Caja_ID int not null,
 Plan_Asignado_ID int not null,
-Persona_ID int not null,
+Empleado_ID int not null,
 Importe_Ingreso decimal (18, 0) null,
 Importe_Egreso decimal (18, 0) null,
 Motivo nvarchar(50) null,
@@ -117,7 +120,7 @@ go
 create table Planes(
 Plan_ID int primary key identity (0, 1),
 Persona_ID int not null, /*quien hace el registro*/
-Empleado_ID int not null,  /* el profesor */
+Empleado_ID int null,  /* el profesor */
 Nombre nvarchar(20) not null,
 Importe_Plan decimal (18, 0) not null,
 Duracion int null,
@@ -151,7 +154,7 @@ go
 create table Facturas_Clientes(
 Factura_Cliente_ID int primary key identity (0, 1),
 Plan_Asignado_ID int not null,
-Persona_ID int not null,
+Empleado_ID int not null,
 Importe decimal(18, 0) not null,
 Fecha_Emision date not null,
 Fecha_Vencimiento date not null,
@@ -166,8 +169,8 @@ create table Jornadas_Planes(
 Jornada_Plan_ID int primary key identity (0, 1),
 Plan_ID int not null,
 Dia nvarchar(10) not null,
-Desde_Hora date not null,
-Hasta_Hora date not null,
+Desde_Hora datetime not null,
+Hasta_Hora datetime not null,
 Estado nvarchar(1) not null
 )
 
@@ -177,8 +180,8 @@ create table Jornadas_Empleados(
 Jornada_Empleado_ID int primary key identity (0, 1),
 Empleado_ID int not null,
 Dia nvarchar(10) not null,
-Desde_Hora date not null,
-Hasta_Hora date not null,
+Desde_Hora datetime not null,
+Hasta_Hora datetime not null,
 Estado nvarchar(1) not null
 )
 
@@ -331,8 +334,8 @@ go
 /* Caja */
 
 alter table Cajas
-add CONSTRAINT FK_Cajas_Empleado FOREIGN KEY (Persona_ID) 
-REFERENCES Personas (Persona_ID)
+add CONSTRAINT FK_Cajas_Empleado FOREIGN KEY (Empleado_ID) 
+REFERENCES Empleados (Empleado_ID)
 
 go
 
@@ -351,8 +354,8 @@ REFERENCES Planes_Asignados (Plan_Asignado_ID)
 go
 
 alter table Detalles_Cajas
-add CONSTRAINT FK_Detalles_Cajas_Empleado FOREIGN KEY (Persona_ID) 
-REFERENCES Personas (Persona_ID)
+add CONSTRAINT FK_Detalles_Cajas_Empleado FOREIGN KEY (Empleado_ID) 
+REFERENCES Empleados (Empleado_ID)
 
 go
 
@@ -425,8 +428,8 @@ REFERENCES Planes_Asignados (Plan_Asignado_ID)
 go
 
 alter table Facturas_Clientes
-add CONSTRAINT FK_Facturas_Clientes_Cliente FOREIGN KEY (Persona_ID) 
-REFERENCES Personas (Persona_ID)
+add CONSTRAINT FK_Facturas_Clientes_Cliente FOREIGN KEY (Empleado_ID) 
+REFERENCES Empleados (Empleado_ID)
 
 go
 
@@ -441,9 +444,10 @@ go
 /* Jornada_Empleados */
 
 alter table Jornadas_Empleados
-add CONSTRAINT FK_Jornada_Empleados_Empleados FOREIGN KEY (Empleado_ID) 
+add CONSTRAINT FK_Jornada_Empleados FOREIGN KEY (Empleado_ID) 
 REFERENCES Empleados (Empleado_ID)
 
+go
 
 /* Registro de Login */
 
@@ -492,6 +496,10 @@ and Estado = 'Activo'
 
 go
 
+select * from Tipos_Empleados
+select * from Tipos_Documentos
+select * from Tipos_Sexos
+
 create proc sp_cargar_tipos_empleados_Admin
 as
 select Tipo_Empleado_ID, Tipo
@@ -535,7 +543,7 @@ FROM Personas
 INNER JOIN Clientes
 ON Personas.Persona_ID=Clientes.Persona_ID
 WHERE Personas.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
-and Estado = 'Activo'
+and Estado = 'A'
 ORDER BY Personas.Fecha_Alta desc
 
 go
@@ -744,7 +752,4 @@ go
 --from Planes
 --where Estado = 'A'
 --and Plan_ID = 0
-
-select * from Planes
-select * from Planes_Asignados
 

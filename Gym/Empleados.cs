@@ -52,17 +52,25 @@ namespace Gym
         #endregion
 
         #region Load del form
-        public Empleados(int idPersonaLog)
+        public Empleados()
         {
             InitializeComponent();
-            personaLogueada = idPersonaLog;
+
             _restricciones = new Restricciones();
             _metodosGenerales = new MetodosGenerales();
+
             _bussinessEmpleados = new BussinessEmpleados();
-            _empleados = new Entities.Empleados();
             _bussinessPersonas = new BussinessPersonas();
-            _personas = new Personas();
             _bussinessJornadas = new BussinessJornadas();
+
+
+            _empleados = new Entities.Empleados();
+            _personas = new Personas();
+        }
+
+        public Empleados(int idPersonaLog)
+        {
+            personaLogueada = idPersonaLog;
         }
 
         private void Empleados_Load(object sender, EventArgs e)
@@ -84,7 +92,17 @@ namespace Gym
             //enviándole el dato correspondiente para que cargue
             //las jornadas del empleado si es que hay, o directamente
             //haga la gestión que el usuario desee.
-            Jornadas jn = new Jornadas(persona_Jor);
+            bool empleado = true;
+            bool darBaja;
+            if (Convert.ToInt32(cmbEstados.SelectedValue) == 3)
+            {
+                darBaja = true;
+            }
+            else
+            {
+                darBaja = false;
+            }
+            Jornadas jn = new Jornadas(persona_Jor, empleado, darBaja);
             jn.ShowDialog();
         }
         private void BuscarEmpleado()
@@ -198,9 +216,9 @@ namespace Gym
             int Persona_ID = _personas.Persona_ID;
             string Nombre = Convert.ToString(txtNombreEmpleado.Text);
             string Apellido = Convert.ToString(txtApellidoEmpleado.Text);
-            int Tipo_Documento_ID = cmbTipoDocumentoEmpleado.SelectedIndex;
+            int Tipo_Documento_ID = Convert.ToInt32(cmbTipoDocumentoEmpleado.SelectedValue);
             string Nro_documento = Convert.ToString(txtDocumentoEmpleado.Text);
-            int Tipo_Sexo_ID = cmbSexoEmpleado.SelectedIndex;
+            int Tipo_Sexo_ID = Convert.ToInt32(cmbSexoEmpleado.SelectedValue);
             string Nro_Telefono = Convert.ToString(txtTelefonoEmpleado.Text);
             string Nro_Alternativo, Mail, Observaciones;
 
@@ -250,9 +268,9 @@ namespace Gym
         {
             string Nombre = Convert.ToString(txtNombreEmpleado.Text);
             string Apellido = Convert.ToString(txtApellidoEmpleado.Text);
-            int Tipo_Documento_ID = cmbTipoDocumentoEmpleado.SelectedIndex;
+            int Tipo_Documento_ID = Convert.ToInt32(cmbTipoDocumentoEmpleado.SelectedValue);
             string Nro_documento = Convert.ToString(txtDocumentoEmpleado.Text);
-            int Tipo_Sexo_ID = cmbSexoEmpleado.SelectedIndex;
+            int Tipo_Sexo_ID = Convert.ToInt32(cmbSexoEmpleado.SelectedValue);
             string Nro_Telefono = Convert.ToString(txtTelefonoEmpleado.Text);
             DateTime FechaAlta = DateTime.Now;
             string Nro_Alternativo, Mail, Observaciones;
@@ -303,10 +321,10 @@ namespace Gym
             //cosa de saber si hace falta o no que tenga una clave.
             _empleados.Empleado_ID = _metodosGenerales.empleadoID;
             _empleados.Persona_ID = _metodosGenerales.personaID;
-            _empleados.Estado_Empleado_ID = cmbEstados.SelectedIndex;
+            _empleados.Estado_Empleado_ID = Convert.ToInt32(cmbEstados.SelectedValue);
             if (cmbTipoEmpleado.SelectedIndex == 0)
             {                
-                _empleados.Tipo_Empleado_ID = cmbTipoEmpleado.SelectedIndex + 2;
+                _empleados.Tipo_Empleado_ID = Convert.ToInt32(cmbTipoEmpleado.SelectedValue);
                 _empleados.Usuario = txtUsuario.Text.ToString();
                 _empleados.Clave = clave;
             }
@@ -323,9 +341,20 @@ namespace Gym
         private void AltaEmpleado()
         {
             _empleados.Persona_ID = _metodosGenerales.persona_ID;
-            _empleados.Tipo_Empleado_ID = cmbTipoEmpleado.SelectedIndex + 2;
-            _empleados.Estado_Empleado_ID = 0;
-            _empleados.Usuario = txtUsuario.Text.ToString();
+            _empleados.Tipo_Empleado_ID = Convert.ToInt32(cmbTipoEmpleado.SelectedValue);
+            _empleados.Estado_Empleado_ID = Convert.ToInt32(cmbEstados.SelectedValue);
+            if (cmbTipoEmpleado.SelectedIndex == 0)
+            {
+                _empleados.Tipo_Empleado_ID = Convert.ToInt32(cmbTipoEmpleado.SelectedValue);
+                _empleados.Usuario = txtUsuario.Text.ToString();
+                _empleados.Clave = clave;
+            }
+            else
+            {
+                //Caso contrario, si el perfil no requiere clave, se envían los campos vacíos.
+                _empleados.Usuario = string.Empty;
+                _empleados.Clave = string.Empty;
+            }
             //Envío toda la data a la capa de negocio para ser mandada a la bdd.
             _bussinessEmpleados.AltaEmpleado(_empleados);
         }

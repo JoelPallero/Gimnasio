@@ -11,9 +11,9 @@ namespace AccesoDatos
 {
     public class DataPlanesAsignados : DataConnection
     {
-        public DataSet VerClasesQueTieneElCliente(Planes_Asignados planes_Asignados)
+        public DataTable VerClasesQueTieneElCliente(Planes_Asignados planes_Asignados)
         {
-            string query = @"select Planes.Nombre, Planes_Asignados.Plan_Asignado_ID
+            string query = @"select Planes_Asignados.Plan_Asignado_ID, Planes.Nombre
                             from Planes_Asignados
                             inner join Planes
                             on Planes_Asignados.Plan_ID = Planes.Plan_ID
@@ -24,7 +24,7 @@ namespace AccesoDatos
             SqlCommand cmd = new SqlCommand(query, conexion);
             cmd.Parameters.Add(cliente_ID);
 
-            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter();
 
             try
@@ -32,7 +32,7 @@ namespace AccesoDatos
                 OpenConnection();
                 cmd.ExecuteNonQuery();
                 da.SelectCommand = cmd;
-                da.Fill(ds);
+                da.Fill(dt);
             }
             catch (Exception)
             {
@@ -42,7 +42,7 @@ namespace AccesoDatos
             {
                 CloseConnection();
             }
-            return ds;
+            return dt;
         }
 
         public int AsginarPlanAlCliente(Planes_Asignados planes_Asignados)
