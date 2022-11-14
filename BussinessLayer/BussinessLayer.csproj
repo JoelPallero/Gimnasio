@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BussinessAsistencia.cs" />
+    <Compile Include="BussinessCaja.cs" />
     <Compile Include="BussinessClientes.cs" />
     <Compile Include="BussinessEmpleados.cs" />
     <Compile Include="BussinessJornadas.cs" />

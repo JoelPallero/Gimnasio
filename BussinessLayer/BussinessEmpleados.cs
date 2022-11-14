@@ -72,5 +72,10 @@ namespace BussinessLayer
             bool resultado = _dataEmpleados.ConsultarRegistrosLogin(primerLogueo);
             return resultado;
         }
+
+        public Empleados GetLastEmpleadoID(Empleados empleados)
+        {
+            return _dataEmpleados.GetLastEmpleadoID(empleados);
+        }
     }
 }

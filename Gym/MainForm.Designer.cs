@@ -120,7 +120,7 @@ namespace Gym
             this.btnCaja.Font = new System.Drawing.Font("Century Gothic", 11.25F);
             this.btnCaja.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCaja.Location = new System.Drawing.Point(5, 431);
+            this.btnCaja.Location = new System.Drawing.Point(5, 200);
             this.btnCaja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCaja.Name = "btnCaja";
             this.btnCaja.Size = new System.Drawing.Size(245, 50);
@@ -139,7 +139,7 @@ namespace Gym
             this.btnPlanes.Font = new System.Drawing.Font("Century Gothic", 11.25F);
             this.btnPlanes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPlanes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPlanes.Location = new System.Drawing.Point(5, 369);
+            this.btnPlanes.Location = new System.Drawing.Point(5, 376);
             this.btnPlanes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPlanes.Name = "btnPlanes";
             this.btnPlanes.Size = new System.Drawing.Size(245, 50);
@@ -158,7 +158,7 @@ namespace Gym
             this.btnPagos.Font = new System.Drawing.Font("Century Gothic", 11.25F);
             this.btnPagos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPagos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPagos.Location = new System.Drawing.Point(5, 308);
+            this.btnPagos.Location = new System.Drawing.Point(5, 317);
             this.btnPagos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPagos.Name = "btnPagos";
             this.btnPagos.Size = new System.Drawing.Size(245, 50);
@@ -177,7 +177,7 @@ namespace Gym
             this.btnRegistro.Font = new System.Drawing.Font("Century Gothic", 11.25F);
             this.btnRegistro.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistro.Location = new System.Drawing.Point(5, 245);
+            this.btnRegistro.Location = new System.Drawing.Point(5, 435);
             this.btnRegistro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.Size = new System.Drawing.Size(245, 50);
@@ -196,7 +196,7 @@ namespace Gym
             this.btnAsistencia.Font = new System.Drawing.Font("Century Gothic", 11.25F);
             this.btnAsistencia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAsistencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAsistencia.Location = new System.Drawing.Point(5, 182);
+            this.btnAsistencia.Location = new System.Drawing.Point(5, 258);
             this.btnAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAsistencia.Name = "btnAsistencia";
             this.btnAsistencia.Size = new System.Drawing.Size(245, 50);
@@ -215,7 +215,7 @@ namespace Gym
             this.btnEmpleados.Font = new System.Drawing.Font("Century Gothic", 11.25F);
             this.btnEmpleados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnEmpleados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEmpleados.Location = new System.Drawing.Point(5, 492);
+            this.btnEmpleados.Location = new System.Drawing.Point(5, 493);
             this.btnEmpleados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEmpleados.Name = "btnEmpleados";
             this.btnEmpleados.Size = new System.Drawing.Size(245, 50);
@@ -242,7 +242,7 @@ namespace Gym
             // 
             this.focoRegistro.AutoSize = true;
             this.focoRegistro.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoRegistro.Location = new System.Drawing.Point(0, 245);
+            this.focoRegistro.Location = new System.Drawing.Point(0, 435);
             this.focoRegistro.MinimumSize = new System.Drawing.Size(5, 50);
             this.focoRegistro.Name = "focoRegistro";
             this.focoRegistro.Size = new System.Drawing.Size(5, 50);
@@ -253,7 +253,7 @@ namespace Gym
             // 
             this.focoCaja.AutoSize = true;
             this.focoCaja.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoCaja.Location = new System.Drawing.Point(0, 431);
+            this.focoCaja.Location = new System.Drawing.Point(0, 200);
             this.focoCaja.MinimumSize = new System.Drawing.Size(5, 50);
             this.focoCaja.Name = "focoCaja";
             this.focoCaja.Size = new System.Drawing.Size(5, 50);
@@ -264,7 +264,7 @@ namespace Gym
             // 
             this.focoPagos.AutoSize = true;
             this.focoPagos.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoPagos.Location = new System.Drawing.Point(0, 308);
+            this.focoPagos.Location = new System.Drawing.Point(0, 317);
             this.focoPagos.MinimumSize = new System.Drawing.Size(5, 50);
             this.focoPagos.Name = "focoPagos";
             this.focoPagos.Size = new System.Drawing.Size(5, 50);
@@ -275,7 +275,7 @@ namespace Gym
             // 
             this.focoPlanes.AutoSize = true;
             this.focoPlanes.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoPlanes.Location = new System.Drawing.Point(0, 369);
+            this.focoPlanes.Location = new System.Drawing.Point(0, 376);
             this.focoPlanes.MinimumSize = new System.Drawing.Size(5, 50);
             this.focoPlanes.Name = "focoPlanes";
             this.focoPlanes.Size = new System.Drawing.Size(5, 50);
@@ -286,7 +286,7 @@ namespace Gym
             // 
             this.focoAsistencia.AutoSize = true;
             this.focoAsistencia.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoAsistencia.Location = new System.Drawing.Point(0, 182);
+            this.focoAsistencia.Location = new System.Drawing.Point(0, 258);
             this.focoAsistencia.MinimumSize = new System.Drawing.Size(5, 50);
             this.focoAsistencia.Name = "focoAsistencia";
             this.focoAsistencia.Size = new System.Drawing.Size(5, 50);
@@ -297,7 +297,7 @@ namespace Gym
             // 
             this.focoEmpleados.AutoSize = true;
             this.focoEmpleados.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.focoEmpleados.Location = new System.Drawing.Point(0, 492);
+            this.focoEmpleados.Location = new System.Drawing.Point(0, 493);
             this.focoEmpleados.MinimumSize = new System.Drawing.Size(5, 50);
             this.focoEmpleados.Name = "focoEmpleados";
             this.focoEmpleados.Size = new System.Drawing.Size(5, 50);
@@ -373,7 +373,7 @@ namespace Gym
             this.lblBienvenido.Size = new System.Drawing.Size(0, 23);
             this.lblBienvenido.TabIndex = 62;
             // 
-            // MainJefe
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -402,7 +402,7 @@ namespace Gym
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "MainJefe";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MainJefe_Load);
             ((System.ComponentModel.ISupportInitialize)(this.menuboxMain)).EndInit();

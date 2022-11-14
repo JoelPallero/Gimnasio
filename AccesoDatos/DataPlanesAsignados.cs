@@ -44,7 +44,6 @@ namespace AccesoDatos
             }
             return dt;
         }
-
         public int AsginarPlanAlCliente(Planes_Asignados planes_Asignados)
         {
             int resultado = -1;
@@ -68,6 +67,38 @@ namespace AccesoDatos
             cmd.Parameters.Add(fecha_Inicio);
             cmd.Parameters.Add(estado);
 
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return resultado;
+        }
+
+        public int EliminarAsignacion(Planes_Asignados planes_Asignados, string NombrePlan)
+        {
+            int resultado = -1;
+            string query = @"update Planes_Asignados set Estado = @Estado
+                            inner join Planes
+                            on Planes_Asignados.Plan_ID = Planes.Plan_ID
+                            where Planes.Nombre = @NombrePlan"
+            ;
+
+            SqlParameter estado = new SqlParameter("@Estado", planes_Asignados.Estado);
+            SqlParameter nombrePlan = new SqlParameter("@NombrePlan", NombrePlan);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(nombrePlan);
             try
             {
                 OpenConnection();

@@ -55,16 +55,16 @@ namespace Gym
             this.txtMailEmpleado = new System.Windows.Forms.TextBox();
             this.txtNombreEmpleado = new System.Windows.Forms.TextBox();
             this.dtgvEmpleados = new System.Windows.Forms.DataGridView();
-            this.cmEmpleado = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editarEmpleado = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarJornada = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarClave = new System.Windows.Forms.ToolStripMenuItem();
             this.Persona_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo_Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmEmpleado = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editarEmpleado = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarJornada = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarClave = new System.Windows.Forms.ToolStripMenuItem();
             this.gbEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleados)).BeginInit();
             this.cmEmpleado.SuspendLayout();
@@ -124,8 +124,6 @@ namespace Gym
             this.cmbEstados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstados.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.cmbEstados.FormattingEnabled = true;
-            this.cmbEstados.Items.AddRange(new object[] {
-            "Seleccionar Estado del empleado"});
             this.cmbEstados.Location = new System.Drawing.Point(336, 108);
             this.cmbEstados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbEstados.Name = "cmbEstados";
@@ -338,38 +336,6 @@ namespace Gym
             this.dtgvEmpleados.Size = new System.Drawing.Size(666, 230);
             this.dtgvEmpleados.TabIndex = 16;
             // 
-            // cmEmpleado
-            // 
-            this.cmEmpleado.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmEmpleado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editarEmpleado,
-            this.editarJornada,
-            this.editarClave});
-            this.cmEmpleado.Name = "cmEmpleado";
-            this.cmEmpleado.Size = new System.Drawing.Size(203, 76);
-            this.cmEmpleado.Text = "Edición";
-            // 
-            // editarEmpleado
-            // 
-            this.editarEmpleado.Name = "editarEmpleado";
-            this.editarEmpleado.Size = new System.Drawing.Size(202, 24);
-            this.editarEmpleado.Text = "Editar Datos";
-            this.editarEmpleado.Click += new System.EventHandler(this.editarEmpleado_Click);
-            // 
-            // editarJornada
-            // 
-            this.editarJornada.Name = "editarJornada";
-            this.editarJornada.Size = new System.Drawing.Size(202, 24);
-            this.editarJornada.Text = "Editar Jornadas";
-            this.editarJornada.Click += new System.EventHandler(this.editarJornada_Click);
-            // 
-            // editarClave
-            // 
-            this.editarClave.Name = "editarClave";
-            this.editarClave.Size = new System.Drawing.Size(202, 24);
-            this.editarClave.Text = "Blanqueo de Clave";
-            this.editarClave.Click += new System.EventHandler(this.editarClave_Click);
-            // 
             // Persona_ID
             // 
             this.Persona_ID.Frozen = true;
@@ -438,6 +404,38 @@ namespace Gym
             this.Estado.ReadOnly = true;
             this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Estado.Width = 142;
+            // 
+            // cmEmpleado
+            // 
+            this.cmEmpleado.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmEmpleado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editarEmpleado,
+            this.editarJornada,
+            this.editarClave});
+            this.cmEmpleado.Name = "cmEmpleado";
+            this.cmEmpleado.Size = new System.Drawing.Size(203, 76);
+            this.cmEmpleado.Text = "Edición";
+            // 
+            // editarEmpleado
+            // 
+            this.editarEmpleado.Name = "editarEmpleado";
+            this.editarEmpleado.Size = new System.Drawing.Size(202, 24);
+            this.editarEmpleado.Text = "Editar Datos";
+            this.editarEmpleado.Click += new System.EventHandler(this.editarEmpleado_Click);
+            // 
+            // editarJornada
+            // 
+            this.editarJornada.Name = "editarJornada";
+            this.editarJornada.Size = new System.Drawing.Size(202, 24);
+            this.editarJornada.Text = "Editar Jornadas";
+            this.editarJornada.Click += new System.EventHandler(this.editarJornada_Click);
+            // 
+            // editarClave
+            // 
+            this.editarClave.Name = "editarClave";
+            this.editarClave.Size = new System.Drawing.Size(202, 24);
+            this.editarClave.Text = "Blanqueo de Clave";
+            this.editarClave.Click += new System.EventHandler(this.editarClave_Click);
             // 
             // Empleados
             // 

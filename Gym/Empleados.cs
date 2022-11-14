@@ -52,7 +52,7 @@ namespace Gym
         #endregion
 
         #region Load del form
-        public Empleados()
+        public Empleados(int idPersonaLog)
         {
             InitializeComponent();
 
@@ -63,16 +63,11 @@ namespace Gym
             _bussinessPersonas = new BussinessPersonas();
             _bussinessJornadas = new BussinessJornadas();
 
+            personaLogueada = idPersonaLog;
 
             _empleados = new Entities.Empleados();
             _personas = new Personas();
         }
-
-        public Empleados(int idPersonaLog)
-        {
-            personaLogueada = idPersonaLog;
-        }
-
         private void Empleados_Load(object sender, EventArgs e)
         {
             Tipos_Documentos();
@@ -202,6 +197,8 @@ namespace Gym
                     //Alta empleado
                     AltaPersona();
                     AltaEmpleado();
+                    _bussinessEmpleados.GetLastEmpleadoID(_empleados);
+                    persona_Jor = _empleados.Empleado_ID;
                     break;
             }
             dsTablaEmpleados.Clear();
@@ -425,7 +422,7 @@ namespace Gym
             _metodosGenerales.Bring_Tipos_Empleados();
             cmbTipoEmpleado.DataSource = _metodosGenerales.DtTipos_Empleados;
             cmbTipoEmpleado.DisplayMember = "Tipo"; //Pero solo esta columna es la que muestro
-            cmbTipoEmpleado.ValueMember = "Acceso_Clave";
+            cmbTipoEmpleado.ValueMember = "Tipo_Empleado_ID";
         }
         private void Estados_Empleados()
         {
@@ -836,7 +833,7 @@ namespace Gym
                     if (!personaRegistrada)
                     {
                         //Veo si el empleado es el que tiene acceso al programa
-                        if (cmbTipoEmpleado.SelectedItem.ToString() == "Usuario")
+                        if (Convert.ToInt32(cmbTipoEmpleado.SelectedValue) == 2)
                         {
                             VerificarClave();
                             if (claveOK)
@@ -920,7 +917,6 @@ namespace Gym
         private void editarJornada_Click(object sender, EventArgs e)
         {
             motivoEdicion = 1;
-            ABMEmpleado();
             CargarJornada();
         }
 

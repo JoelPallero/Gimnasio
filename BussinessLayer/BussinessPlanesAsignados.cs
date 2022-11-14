@@ -26,5 +26,10 @@ namespace BussinessLayer
             return _dataPlanesAsignados.AsginarPlanAlCliente(planes_Asignados);
         }
 
+        public int EliminarAsignacion(Planes_Asignados planes_Asignados, string nombrePlan)
+        {
+            return _dataPlanesAsignados.EliminarAsignacion(planes_Asignados, nombrePlan);
+        }
+
     }
 }

@@ -303,8 +303,9 @@ namespace Gym
         private void GetJornadaDePlan()
         {
             bool esEmpleado = false;
+            bool darBaja = false;
             int plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
-            Jornadas jn = new Jornadas(plan_ID, esEmpleado);
+            Jornadas jn = new Jornadas(plan_ID, esEmpleado, darBaja);
             jn.ShowDialog();
         }
     }

@@ -89,7 +89,7 @@ namespace AccesoDatos
 
             try
             {
-                conexion.Open();
+                OpenConnection();
                 cmd.ExecuteNonQuery();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
@@ -100,7 +100,7 @@ namespace AccesoDatos
             }
             finally
             {
-                conexion.Close();
+                CloseConnection();
                 cmd.Dispose();
             }
             return dt;

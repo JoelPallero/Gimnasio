@@ -1,13 +1,8 @@
 ﻿using BussinessLayer;
 using Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Gym
@@ -45,10 +40,11 @@ namespace Gym
         private string buscar;
         private DataSet DsClienteDatos;
         private DataSet DsPlanesAsignados;
+        private DataSet DsPlanes;
         private DataTable DtJornadaDePlan;
-        private DataTable DsProfesores;
+        private DataTable DtProfesores;
         private DataTable DtPlanes;
-        private bool camposVacios = true;
+        private bool camposVacios = false;
         private int cliente_ID;
         private int planSeleccionado;
         private int contador;
@@ -69,8 +65,6 @@ namespace Gym
         public Planes(int idPersonaLog)
         {
             InitializeComponent();
-            personaLogueada = idPersonaLog;
-
             _bussinessPlanes = new BussinessPlanes();
             _bussinesClientes = new BussinessClientes();
             _bussinesPersonas = new BussinessPersonas();
@@ -88,19 +82,39 @@ namespace Gym
             _restricciones = new Restricciones();
             _metodosGenerales = new MetodosGenerales();
 
+            personaLogueada = idPersonaLog;
+            btnAsignarPlan.Enabled = false;
+        }
+        private void Planes_Load(object sender, EventArgs e)
+        {
             BuscarPlanes();
             BuscarProfesores();
-            btnAsignarPlan.Enabled = false;
+            CargarPlanes();
         }
 
         #endregion
 
         #region Encapsulamiento
 
+        private void CargarPlanes()
+        {
+            dtgvPlanes.Rows.Clear();
+            DsPlanes = _bussinessPlanes.GetPlanesActuales(_planes, buscar);
+            buscar = string.Empty;
+
+            if (DsPlanes.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in DsPlanes.Tables[0].Rows)
+                {
+                    dtgvPlanes.Rows.Add(dr[0].ToString(), dr[1], dr[2]);
+                }
+            }
+        }
+
         private void BuscarProfesores()
         {
-            DsProfesores = _bussinesPersonas.BuscarProfesores(_personas);
-            cmbProfesores.DataSource = DsProfesores;
+            DtProfesores = _bussinesPersonas.BuscaProfesores(_personas);
+            cmbProfesores.DataSource = DtProfesores;
             cmbProfesores.DisplayMember = "Nombre";
             cmbProfesores.ValueMember = "Persona_ID";
         }
@@ -193,7 +207,7 @@ namespace Gym
 
         }
 
-        
+
         private void AsignacionHoras()
         {
             int contadorDesde = desde.Length;
@@ -212,7 +226,7 @@ namespace Gym
         private void AltaJornadaDePlan()
         {
             bool chkSeleccionados = false;
-            foreach (Control chk in GbJornadaPlanes.Controls)
+            foreach (Control chk in gbJornadaPlanes.Controls)
             {
                 if (chk is CheckBox box)
                 {
@@ -244,7 +258,7 @@ namespace Gym
                 }
                 else
                 {
-                    foreach (Control chk in GbJornadaPlanes.Controls)
+                    foreach (Control chk in gbJornadaPlanes.Controls)
                     {
                         if (chk is CheckBox box)
                         {
@@ -314,20 +328,21 @@ namespace Gym
                             }
                         }
                     }
-                }                
+                }
             }
         }
 
         private void GetJornadaDePlan()
         {
             bool esEmpleado = false;
+            bool darBaja = false;
             int plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
-            Jornadas jn = new Jornadas(plan_ID, esEmpleado);
+            Jornadas jn = new Jornadas(plan_ID, esEmpleado, darBaja);
             jn.ShowDialog();
         }
         private void RevisarTodosChk()
         {
-            foreach (Control chk in GbJornadaPlanes.Controls)
+            foreach (Control chk in gbJornadaPlanes.Controls)
             {
                 if (chk is CheckBox box)
                 {
@@ -360,7 +375,7 @@ namespace Gym
         {
             if (!chkTodos.Checked && contador < 7 && !todosChk)
             {
-                foreach (Control chk in GbJornadaPlanes.Controls)
+                foreach (Control chk in gbJornadaPlanes.Controls)
                 {
                     if (chk is CheckBox box)
                     {
@@ -378,7 +393,7 @@ namespace Gym
                     //Si el chk que dice "Seleccionar todos" está seleccionado
                     //Entonces todos los otros chk se van a seleccionar
                     //Caso contrario, se les quitará el chkeck
-                    foreach (Control chk in this.GbJornadaPlanes.Controls)
+                    foreach (Control chk in this.gbJornadaPlanes.Controls)
                     {
                         if (chk is CheckBox box)
                         {
@@ -392,7 +407,7 @@ namespace Gym
                 }
                 else
                 {
-                    foreach (Control chk in this.GbJornadaPlanes.Controls)
+                    foreach (Control chk in this.gbJornadaPlanes.Controls)
                     {
                         if (chk is CheckBox box)
                         {
@@ -456,7 +471,7 @@ namespace Gym
             lblDocumento.Text = "DNI: ";
             lblTelefono.Text = "Telefono: ";
             lblMail.Text = "Mail: ";
-            lblPlanesCliente.Text = "Planes Actuales: ";
+            lblPlanesAsignadosCliente.Text = string.Empty;
         }
 
         #endregion
@@ -513,7 +528,7 @@ namespace Gym
             RevisarCamposVacios();
             if (camposVacios)
             {
-                MessageBox.Show("Para registrar un nuevo plan, no deben haber campos vacíos", 
+                MessageBox.Show("Para registrar un nuevo plan, no deben haber campos vacíos",
                     "Campos incompletos");
             }
             else
@@ -552,6 +567,25 @@ namespace Gym
             {
                 txtBuscarCliente.Text = "DNI";
                 txtBuscarCliente.ForeColor = Color.DimGray;
+            }
+        }
+
+
+        private void txtBuscarClase_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscarClase.Text == "Buscar Clase")
+            {
+                txtBuscarClase.Text = string.Empty;
+                txtBuscarClase.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtBuscarClase_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBuscarClase.Text))
+            {
+                txtBuscarClase.Text = "Buscar Clase";
+                txtBuscarClase.ForeColor = Color.DimGray;
             }
         }
 
@@ -939,5 +973,20 @@ namespace Gym
             Jornadas jn = new Jornadas(plan_ID, esEmpleado, darBaja);
             jn.ShowDialog();
         }
+
+        private void btnEliminarPlanes_Click(object sender, EventArgs e)
+        {
+            string lim = lblPlanesAsignadosCliente.Text;
+            EditarPlanesDeCliente ep = new EditarPlanesDeCliente(lim);
+            ep.ShowDialog();
+
+        }
+
+        private void txtBuscarClase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            buscar = txtBuscarClase.Text;
+
+        }
+
     }
 }

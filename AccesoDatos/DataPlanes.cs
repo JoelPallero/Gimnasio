@@ -37,6 +37,69 @@ namespace AccesoDatos
             }
             return dt;
         }
+        public DataSet GetPlanesActuales(Planes planes, string buscar)
+        {
+            string query;
+
+            if (string.IsNullOrEmpty(buscar))
+            {
+                query = "sp_cargar_planes_Actuales";
+            }
+            else
+            {
+                query = @"select Planes.Nombre as Nombre_Planes, Personas.Nombre as Nombre_Empleado, replace(Planes.Estado, 'A', 'Activo') as Estado
+                        from Planes
+                        inner join Empleados
+                        on Empleados.Empleado_ID = Planes.Persona_ID
+                        inner join Personas
+                        on Personas.Persona_ID = Empleados.Persona_ID
+                        inner join Tipos_Empleados
+                        on Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
+                        where Planes.Estado = @Estado
+                        and Tipos_Empleados.Tipo = @Profesor
+                        or Planes.Estado = (select replace(Planes.Estado, 'I', 'Inactivo') as Estado)
+                        and Planes.Nombre Like @Parametro
+                        or Personas.Nombre like @Parametro
+                        or Planes.Estado like @Parametro";
+            }
+            SqlParameter estado = new SqlParameter("@Estado", "A");
+            SqlParameter profesor = new SqlParameter("@Profesor", "Profesor");
+
+            SqlCommand cmd = new SqlCommand(query, conexion)
+            {
+                CommandType = CommandType.Text
+            };
+
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(profesor);
+            cmd.Parameters.Add(new SqlParameter()
+            {
+                ParameterName = "@Parametro",
+                SqlDbType = SqlDbType.NVarChar,
+                Value = string.Format("%{0}%", buscar)
+            });
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar tipos de documentos", e);
+            }
+            finally
+            {
+                conexion.Close();
+                cmd.Dispose();
+            }
+            return ds;
+        }
         public Planes GetDatoPlan(Planes planes)
         {
             string query = @"select Plan_ID, Importe_Plan, 
@@ -154,7 +217,6 @@ namespace AccesoDatos
             }
             return resultado;
         }
-
         public int EditarCupoRestante(Planes planes)
         {
             int resultado = -1;

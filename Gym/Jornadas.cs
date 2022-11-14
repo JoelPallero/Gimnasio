@@ -55,7 +55,7 @@ namespace Gym
         #endregion
 
         #region Load
-        public Jornadas()
+        public Jornadas(int jornadaID, bool empleado, bool darBaja)
         {
             InitializeComponent();
             _bussinessJornadas = new BussinessJornadas();
@@ -65,32 +65,13 @@ namespace Gym
             _bussinessEmpleados = new BussinessEmpleados();
             _restricciones = new Restricciones();
             _jornadasPlanes = new Entities.Jornadas_Planes();
-        }
 
-        public Jornadas(int jornadaID, bool empleado, bool darBaja)
-        {
+
             idJornada = jornadaID;
             esEmpleado = empleado;
             darleLaBaja = darBaja;
-            //El que pregunte si es para dar la baja
+
             DarDeBajaLaJornada();
-        }
-
-        public Jornadas(int jornadaID, bool empleado)
-        {
-            idJornada = jornadaID;
-            esEmpleado = empleado;
-
-            //Va directo a cargar las jornadas, si es de empleado o no.
-            if (esEmpleado)
-            {
-                GetJornadaEmpleado();
-            }
-            else
-            {
-                EsJornadaDePlanes();
-                GetJornadaPlan();
-            }
         }
         #endregion
 
@@ -460,13 +441,15 @@ namespace Gym
 
         private void CrearJornadaEmpleado()
         {
-            //Si esto es así, es xq lo que hay que hacer es editar y no crear
+            //Acá editamos
             if (cargarJornada)
             {
                 GuardarJornada();
             }
             else
             {
+                //Acá creamos:
+
                 //Ahora tenemos 2 opciones.
                 // 1 es que se haya seleccionado el check "todos"
                 if (todosChk)
@@ -540,6 +523,27 @@ namespace Gym
                         {
                             contenidoIncorrecto = false;
                         }
+                    }
+                }
+            }
+        }
+
+        private void VerificarFormatoHora()
+        {
+            foreach (Control ctrl in gbJornadaEmpleado.Controls)
+            {
+                if (ctrl is TextBox box)
+                {
+                    TextBox t;
+                    t = box;
+                    if (t.Text.Length < 5)
+                    {
+                        contenidoIncorrecto = true; ;
+                        break;
+                    }
+                    else
+                    {
+                        contenidoIncorrecto = false;
                     }
                 }
             }
@@ -809,6 +813,7 @@ namespace Gym
         private void btnAltaJornada_Click(object sender, EventArgs e)
         {
             RevisarContenido();
+            VerificarFormatoHora();
             if (contenidoIncorrecto)
             {
                 MessageBox.Show("Si selecciona un día, el horario correspondiente " +

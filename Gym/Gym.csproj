@@ -91,6 +91,12 @@
     <Compile Include="Configuracion.Designer.cs">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarPlanesDeCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarPlanesDeCliente.Designer.cs">
+      <DependentUpon>EditarPlanesDeCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarPlanesDeCliente.resx">
+      <DependentUpon>EditarPlanesDeCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Empleados.resx">
       <DependentUpon>Empleados.cs</DependentUpon>

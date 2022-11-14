@@ -11,12 +11,6 @@ namespace AccesoDatos
 {
     public class DataPersonas : DataConnection
     {
-        /*
-         Acá vamos a realizar los ABM de todas las personas
-         Sean empleados o clientes.
-         
-         */
-
         public int AltaPersona(Personas personas)
         {
             int resultado = -1;
@@ -225,7 +219,6 @@ namespace AccesoDatos
         }
 
         #region Consulta cliente único
-
         public Personas GetPersonaUnica(Personas personas)
         {
             string query = @"select *
@@ -272,7 +265,6 @@ namespace AccesoDatos
 
             return personas;
         }
-
         public Personas GetPersona(Personas personas)
         {
             string query = @"select Nombre, Persona_ID
@@ -308,18 +300,19 @@ namespace AccesoDatos
 
             return personas;
         }
-        public Personas BuscarCoincidencias(int id, string documnento, Personas personas)
+        public Personas BuscarCoincidencias(int Persona_ID, string Nro_Documento, Personas personas)
         {
-            string query = @"select * from Personas where Persona_ID = @id and Nro_Documento = @documnento";
+            string query = @"select Persona_ID, Nro_documento from Personas 
+                             where Persona_ID = @Persona_ID and Nro_Documento = @Nro_Documento";
             
 
-            SqlParameter idpersona = new SqlParameter("@id", id);
-            SqlParameter docPersona = new SqlParameter("@documnento", documnento);
+            SqlParameter persona_ID = new SqlParameter("@Persona_ID", Persona_ID);
+            SqlParameter nro_Documento = new SqlParameter("@Nro_Documento", Nro_Documento);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
-            cmd.Parameters.Add(idpersona);
-            cmd.Parameters.Add(docPersona);
+            cmd.Parameters.Add(persona_ID);
+            cmd.Parameters.Add(nro_Documento);
 
 
             try
@@ -347,10 +340,10 @@ namespace AccesoDatos
 
             return personas;
         }
+
         #endregion
 
         #region Persona para mostrar plan asignado que tiene (si es que tiene)
-
         public DataSet GetPersonaPlan(string buscar, Personas personas)
         {
             string query = @"SELECT Personas.Persona_ID, Clientes.Cliente_ID, Nombre, Apellido, Nro_Documento, Nro_Telefono, Mail
@@ -398,13 +391,14 @@ namespace AccesoDatos
         #endregion
 
         #region Consulta Profesores
-        public DataTable BuscarProfesores(Personas personas)
+        public DataTable BuscaProfesores(Personas personas)
         {
-            string query = @"sp_cargar_Profesores";
+            string query = @"sp_cargar_Profesores_Actuales";
 
             SqlCommand cmd = new SqlCommand(query, conexion);
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter();
+
             try
             {
                 OpenConnection();

@@ -57,9 +57,9 @@ namespace BussinessLayer
             return _dataPersonas.GetPersonaPlan(buscar, personas);
         }
 
-        public DataTable BuscarProfesores(Personas personas)
+        public DataTable BuscaProfesores(Personas personas)
         {
-            return _dataPersonas.BuscarProfesores(personas);
+            return _dataPersonas.BuscaProfesores(personas);
         }
     }
 }

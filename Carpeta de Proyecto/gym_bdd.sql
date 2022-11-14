@@ -14,7 +14,7 @@ Persona_ID int primary key identity (0, 1),
 Nombre nvarchar(50) not null,
 Apellido nvarchar(50) not null,
 Tipo_Documento_ID int not null,
-Nro_documento nvarchar(24) not null,
+Nro_documento varchar(50) not null,
 Tipo_Sexo_ID int not null,
 Nro_Telefono nvarchar(24) not null,
 Nro_Alternativo nvarchar(24) null,
@@ -480,7 +480,7 @@ go
 
 create proc sp_cargar_tipos_empleados
 as
-select Tipo, Acceso_Clave
+select Tipo, Tipo_Empleado_ID
 from Tipos_Empleados
 where Tipo != 'Admin'
 and Tipo != 'Jefe'
@@ -496,10 +496,6 @@ and Estado = 'Activo'
 
 go
 
-select * from Tipos_Empleados
-select * from Tipos_Documentos
-select * from Tipos_Sexos
-
 create proc sp_cargar_tipos_empleados_Admin
 as
 select Tipo_Empleado_ID, Tipo
@@ -508,7 +504,8 @@ where Estado = 'Activo'
 
 go
 
-create proc sp_cargar_Profesores
+
+create proc sp_cargar_Profesores_Actuales
 as
 select Personas.Nombre, Personas.Persona_ID
 from Personas
@@ -517,6 +514,7 @@ on Empleados.Persona_ID = Personas.Persona_ID
 inner join Tipos_Empleados
 on Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
 where Tipos_Empleados.Tipo = 'Profesor'
+and Empleados.Estado_Empleado_ID = 0
 
 go
 
@@ -549,7 +547,6 @@ ORDER BY Personas.Fecha_Alta desc
 go
 
 create proc sp_Cargar_Empleados_Desc
-
 AS
 SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
 	   Tipos_Empleados.Tipo, Estados_Empleados.Estado_Empleado
@@ -582,6 +579,40 @@ from Planes
 where Estado = 'A'
 
 go
+
+create procedure sp_cargar_planes_Actuales
+as
+select Planes.Nombre as Nombre_Planes, Personas.Nombre as Nombre_Empleado, replace(Planes.Estado, 'A', 'Activo') as Estado
+from Planes
+inner join Empleados
+on Empleados.Empleado_ID = Planes.Persona_ID
+inner join Personas
+on Personas.Persona_ID = Empleados.Persona_ID
+inner join Tipos_Empleados
+on Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
+where Planes.Estado = 'A'
+and Tipos_Empleados.Tipo = 'Profesor'
+or Planes.Estado = (select replace(Planes.Estado, 'I', 'Inactivo') as Estado)
+
+go
+
+create procedure sp_Get_Las_Caja_ID
+as
+select Caja_ID from Cajas
+where Caja_ID = (select max(Caja_ID) from Cajas)
+and Importe_Final = null
+
+go
+
+create procedure sp_get_cajas
+as
+select Cajas.Caja_ID, Cajas.Fecha, Cajas.Importe_Inicial, Cajas.Importe_Final, Personas.Nombre
+from Cajas
+inner join Empleados
+on Empleados.Empleado_ID = Cajas.Empleado_ID
+inner join Personas
+on Empleados.Persona_ID = Personas.Persona_ID
+order by Cajas.Fecha desc
 
 --set dateformat dmy
 
@@ -752,4 +783,3 @@ go
 --from Planes
 --where Estado = 'A'
 --and Plan_ID = 0
-

@@ -34,5 +34,9 @@ namespace BussinessLayer
             return _dataPlanes.EditarCupoRestante(planes);
         }
 
+        public DataSet GetPlanesActuales(Planes planes, string buscar)
+        {
+            return _dataPlanes.GetPlanesActuales(planes, buscar);
+        }
     }
 }

@@ -64,6 +64,36 @@ namespace AccesoDatos
         #endregion
 
         #region Consultas de ID
+
+        public Empleados GetLastEmpleadoID(Empleados empleados)
+        {
+            string query = @"sp_cargar_ultimo_ID";
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    empleados.Empleado_ID = int.Parse(reader["Empleado_ID"].ToString());
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudo concretar la solicitud requerida", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+
+            return empleados;
+        }
+
         public Empleados GetLastID(int personaJor, Empleados empleados)
         {
             string query = @"sp_cargar_ultimo_ID";
@@ -227,8 +257,6 @@ namespace AccesoDatos
             }
             return ds;
         }
-
-
         public Empleados GetTipoEmpleado(Empleados empleados)
         {
             string query = @"select * from Empleados 
@@ -270,7 +298,6 @@ namespace AccesoDatos
 
             return empleados;
         }
-
         public int EditarEmpleado(Empleados empleados)
         {
             int resultado = -1;
@@ -310,7 +337,6 @@ namespace AccesoDatos
             }
             return resultado;
         }
-
         public Empleados GetLastEmpleado(int PersonaId, Empleados _empleados)
         {
             string query = @"select Empleado_ID from Empleados where Persona_ID = @Persona_ID";

@@ -8,7 +8,6 @@ namespace Entities
     {
         public int Detalle_Caja_ID { get; set; }
         public int Plan_Asignado_ID { get; set; }
-        public int Persona_ID { get; set; }
         public decimal Importe_Ingreso { get; set; }
         public decimal Importe_Egreso { get; set; }
         public string Motivo { get; set; }
