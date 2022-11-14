@@ -14,6 +14,8 @@ namespace AccesoDatos
         #region Alta de Empleados
         public int AltaEmpleado(Empleados empleados)
         {
+            //como su nombre lo especifica es el alta. Totalmente igual a cualquier alta que se verá en este proyecto.
+            //Siempre con la parametrización correspondiente a la query para la bdd.
             int resultado = -1;
             string query = @"Insert into Empleados (Persona_ID,
                                                      Usuario,
@@ -64,9 +66,9 @@ namespace AccesoDatos
         #endregion
 
         #region Consultas de ID
-
         public Empleados GetLastEmpleadoID(Empleados empleados)
         {
+            /*Obtendremos con este método, el último ID resgitrado de la tabla de empleados*/
             string query = @"sp_cargar_ultimo_ID";
             SqlCommand cmd = new SqlCommand(query, conexion);
 
@@ -93,9 +95,10 @@ namespace AccesoDatos
 
             return empleados;
         }
-
         public Empleados GetLastID(int personaJor, Empleados empleados)
         {
+            /* Realiza una búsqueda similar a la anterior, solo que acá vamos a pasar 
+             * un argumento como parámetro de búsqueda específico*/
             string query = @"sp_cargar_ultimo_ID";
             SqlCommand cmd = new SqlCommand(query, conexion);
 
@@ -122,9 +125,12 @@ namespace AccesoDatos
 
             return empleados;
         }
-
         public DataTable GetEstadosEmpleados(Tipos_Empleados tipos_Empleados)
         {
+            /*
+             Los empleados tienen distintos tipos de Estados. ACtivo, baja, vacaciones, etc
+            Esos son los estados que traemos para que el usuario pueda utilizarlos.
+             */
             string query = @"select * from Estados_Empleados";
             SqlCommand cmd = new SqlCommand(query, conexion);
             DataTable dt = new DataTable();
@@ -148,9 +154,9 @@ namespace AccesoDatos
             }
             return dt;
         }
-
         public Empleados GetEmleadoID(Empleados empleados)
         {
+            /*Acá vamos a solicitar el id de un empleado específico, ayudado con otro campo de la misma tabla.*/
             string query = @"select Empleado_ID from Empleados
                             where Persona_ID = @Persona_ID"
             ;
@@ -259,6 +265,8 @@ namespace AccesoDatos
         }
         public Empleados GetTipoEmpleado(Empleados empleados)
         {
+            /*Acá solicitamos los datos de 1 solo empleado, dado un parámetro de búsqueda.
+             */
             string query = @"select * from Empleados 
                             where Persona_ID = @Persona_ID"
             ;
@@ -300,6 +308,7 @@ namespace AccesoDatos
         }
         public int EditarEmpleado(Empleados empleados)
         {
+            //Edición de datos como usuario y clave del empleado.
             int resultado = -1;
             string orden = @"update Empleados set Usuario = @Usuario, 
                                                      Clave = @Clave,   
@@ -339,6 +348,7 @@ namespace AccesoDatos
         }
         public Empleados GetLastEmpleado(int PersonaId, Empleados _empleados)
         {
+            /*Acá vamos a buscar el ID del último empleado dado un parámetro x.*/
             string query = @"select Empleado_ID from Empleados where Persona_ID = @Persona_ID";
 
             SqlParameter personaId = new SqlParameter("@Persona_ID", PersonaId);
@@ -377,6 +387,7 @@ namespace AccesoDatos
 
         public bool ConsultarRegistrosLogin(bool primerLogueo)
         {
+            /*Acá hacemos un método booleano que nos va a decir si es la primera vez que se loguean o no*/
             string query = @"select count(distinct Empleado_ID) as Cuenta from Empleados";
             SqlCommand cmd = new SqlCommand(query, conexion);
 
@@ -409,9 +420,9 @@ namespace AccesoDatos
             }
             return primerLogueo;
         }
-
         public Empleados VerificarClaveEnBdd(Tipos_Empleados _tiposEmpleados, Empleados _empleados)
         {
+            /*Dados los parámetros de búsqueda, usuario y clave, vamos a verificar si existen en la bdd.*/
             string query = @"select Empleados.Empleado_ID,Empleados.Persona_ID, Empleados.Usuario, Empleados.Clave, 
                                     Tipos_Empleados.Tipo, Tipos_Empleados.Acceso_Clave, Tipos_Empleados.Estado
                             from Empleados
@@ -461,22 +472,24 @@ namespace AccesoDatos
         #endregion
 
         #region Edición de clave y usuario
-
         public int EditarClave(Empleados empleados)
         {
+            //Edición de clave y usuario
             int resultado = -1;
             string query = @"update Empleados set Usuario = @Usuario, 
                              Clave = @Clave,   
-                             Where Persona_ID = '" + empleados.Persona_ID + "'"
+                             Where Persona_ID = @Persona_ID"
             ;
 
             SqlParameter usuario = new SqlParameter("@Usuario", empleados.Usuario);
             SqlParameter clave = new SqlParameter("@Clave", empleados.Clave);
+            SqlParameter persona_ID = new SqlParameter("@Persona_ID", empleados.Persona_ID);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
             cmd.Parameters.Add(usuario);
             cmd.Parameters.Add(clave);
+            cmd.Parameters.Add(persona_ID);
 
             try
             {

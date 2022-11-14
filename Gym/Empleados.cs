@@ -505,29 +505,6 @@ namespace Gym
                 txtUsuario.Enabled = false;
                 txtClave.Enabled = false;
             }
-            //switch (motivoEdicion)
-            //{
-            //    case 0:
-            //        if (cmbTipoEmpleado.SelectedIndex == 0)
-            //        {
-            //            txtUsuario.Enabled = true;
-            //            txtClave.Enabled = true;
-            //        }
-            //        else
-            //        {
-            //            txtUsuario.Enabled = false;
-            //            txtClave.Enabled = false;
-            //        }
-            //        break;
-            //    case 1:
-            //        break;
-            //    case 2:
-            //        txtClave.Enabled = true;
-            //        txtUsuario.Enabled = true;
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
 
         public void FormIncompleto(bool formIncompleto)

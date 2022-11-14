@@ -10,6 +10,10 @@ namespace AccesoDatos
 {
     public class DataConnection
     {
+        /*
+         Esta clase, es de la que van a heredar todas las clases de este proyecto o capa de datos.
+        Ya que acá se encuentra la cadena de conexión a la base de datos, y los métodos para abrir y cerrar la conexión a la misma.
+         */
         public SqlConnection conexion;
         public string CadenaDeConexion = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=gym;Data Source=DESKTOP-94J33F0";
         public DataConnection()

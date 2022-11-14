@@ -14,6 +14,7 @@ namespace AccesoDatos
         #region Jornadas de Planes
         public DataTable GetJornadaPlan(Jornadas_Planes jornadas_Planes)
         {
+            /*traeremos todas las jornadas activas*/
             string query = @"select * from Jornadas_Planes 
                             where Plan_ID = @Plan_ID
                             and Estado = 'A'";
@@ -46,11 +47,6 @@ namespace AccesoDatos
         public int AltaJornadaPlan(Jornadas_Planes jornadas_Planes)
         {
             int resultado = -1;
-
-            //Hay que convertir los horarios antes de pasarlos
-            //El campo de la bdd es de tipo Time. Por lo que solo admite horarios.
-            //Para convertirlo solo vamos a utlilzar este método:
-
 
             string query = @"insert into Jornadas_Planes (Plan_ID, Dia, Desde_Hora, Hasta_Hora, Estado)
                                                     values (@Plan_ID, @Dia, @Desde_Hora, @Hasta_Hora, @Estado)"
@@ -125,9 +121,9 @@ namespace AccesoDatos
             }
             return resultado;
         }
-
         public int EliminarJornadaPlan(int jornadaID)
         {
+            /*En caso de las jornadas, cuando se sliminan también solo se editan.*/
             int resultado = -1;
             string query = @"update Jonadas_Planes set Estados = @Estado
                             where Jornada_Plan_ID = @Jornada_Plan_ID"

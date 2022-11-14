@@ -13,6 +13,7 @@ namespace AccesoDatos
     {
         public int AltaCliente(Clientes clientes)
         {
+            //Como cada alta, hecha en entero, para recibir el resultado de que se hizo correctamente.
             int resultado = -1;
             string query = @"Insert into Clientes (Persona_ID,
                                                      Estado) 
@@ -46,6 +47,7 @@ namespace AccesoDatos
         }
         public DataSet GetClientes(string buscar)
         {
+            //Esto es un filtro de búsqueda, tomando como parámetro el argumento recibido en el método.
             string getClientes;
             if (string.IsNullOrEmpty(buscar))
             {
@@ -100,6 +102,8 @@ namespace AccesoDatos
         }
         public Clientes GetCliente(Clientes clientes)
         {
+            /*En este método traigo los datos de un cliente particularmente
+             pasando como parámetro de búsqueda el ID del cliente.*/
             string query = @"select * from Clientes where Cliente_ID = @Cliente_ID";
 
             SqlParameter clienteID = new SqlParameter("@Cliente_ID", clientes.Cliente_ID);
@@ -134,6 +138,10 @@ namespace AccesoDatos
         }
         public int BajaCliente(Clientes clientes)
         {
+            /*
+             Las bajas son solo modificaciones de las tablas, por lo que acá se realiza un update
+            para cambiar el estado de un cliente. Siemrpe de forma parametrizada.
+             */
             int resultado = -1;
             string query = @"Update Clientes set Estado = @Estado where Cliente_ID = @Cliente_ID";
             SqlParameter estado = new SqlParameter("@Estado", clientes.Estado);
@@ -162,6 +170,9 @@ namespace AccesoDatos
         }
         public DataSet BuscarClienteAsistencia(string buscar)
         {
+            /*Acá se filtran las asistencias diarias de los clientes
+             También como parámetro de busqueda, el argumento recibido.
+             */
             string query = @"select Planes_Asignados.Plan_Asignado_ID, Clientes.Cliente_ID,
 	                                Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Personas.Nro_Telefono, Personas.Mail,
 	                                Planes.Nombre
@@ -204,13 +215,10 @@ namespace AccesoDatos
             return ds;
         }
 
-        public DateTime VerClaseQueToca(DateTime fechaAhora)
-        {
-            return fechaAhora;
-        }
-
         public int EditarCliente(Clientes clientes)
         {
+            /*Nuevamente otra edición pero en este caso es directamente del estado únicamente. 
+             */
             int resultado = -1;
             string query = @"update Clientes set Estado = @Estado where Cliente_ID = @Cliente_ID";
 
@@ -236,45 +244,5 @@ namespace AccesoDatos
             }
             return resultado;
         }
-
-        //public DataTable BuscarCuotasCliente(int idCliente)
-        //{
-        //    string query = @"select count(Cuotas.Cuota_ID) as TotalCuotas,
-        //                        (select count(Cuotas.Detalle_Caja_ID) from Cuotas) as CuotasPagas,
-        //                        Cuotas.Plan_Asignado_ID
-        //                    from Cuotas 
-        //                    inner join Planes_Asignados
-        //                        on Cuotas.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
-        //                    where Cuotas.Cliente_ID = @Cliente_ID
-        //                    Group by Cuotas.Plan_Asignado_ID"
-        //    ;
-
-        //    SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", idCliente);
-
-        //    SqlCommand cmd = new SqlCommand(query, conexion);
-
-        //    cmd.Parameters.Add(cliente_ID);
-
-        //    DataTable ds = new DataTable();
-        //    SqlDataAdapter da = new SqlDataAdapter();
-
-        //    try
-        //    {
-        //        OpenConnection();
-        //        cmd.ExecuteNonQuery();
-        //        da.SelectCommand = cmd;
-        //        da.Fill(ds);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception("Error al listar Empleados", e);
-        //    }
-        //    finally
-        //    {
-        //        CloseConnection();
-        //        cmd.Dispose();
-        //    }
-        //    return ds;
-        //}
     }
 }
