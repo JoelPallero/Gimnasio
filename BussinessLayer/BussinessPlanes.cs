@@ -38,5 +38,10 @@ namespace BussinessLayer
         {
             return _dataPlanes.GetPlanesActuales(planes, buscar);
         }
+
+        public Planes GetLastID(Planes planes)
+        {
+            return _dataPlanes.GetLastID(planes);
+        }
     }
 }

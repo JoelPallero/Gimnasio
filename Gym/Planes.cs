@@ -45,6 +45,7 @@ namespace Gym
         private DataTable DtProfesores;
         private DataTable DtPlanes;
         private bool camposVacios = false;
+        private bool datosVacios = false;
         private int cliente_ID;
         private int planSeleccionado;
         private int contador;
@@ -58,6 +59,8 @@ namespace Gym
         private int pSabadoId = -1;
         private int idJornada;
         private int check;
+        private bool esAlta = true;
+        private int idPlanAeditar;
 
         #endregion
 
@@ -106,7 +109,7 @@ namespace Gym
             {
                 foreach (DataRow dr in DsPlanes.Tables[0].Rows)
                 {
-                    dtgvPlanes.Rows.Add(dr[0].ToString(), dr[1], dr[2]);
+                    dtgvPlanes.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3]);
                 }
             }
         }
@@ -116,7 +119,7 @@ namespace Gym
             DtProfesores = _bussinesPersonas.BuscaProfesores(_personas);
             cmbProfesores.DataSource = DtProfesores;
             cmbProfesores.DisplayMember = "Nombre";
-            cmbProfesores.ValueMember = "Persona_ID";
+            cmbProfesores.ValueMember = "Empleado_ID";
         }
 
         private void BuscarPlanes()
@@ -184,6 +187,10 @@ namespace Gym
                         break;
                     }
                 }
+                else
+                {
+                    camposVacios = false;
+                }
             }
         }
 
@@ -200,13 +207,7 @@ namespace Gym
             _planes.Fecha_Alta_Plan = DateTime.Now;
             _planes.Estado = "A";
             _bussinessPlanes.RegistrarNuevoPlan(_planes);
-
-            AltaJornadaDePlan();
-
-            //Una vez dado de alta, actualizamos la lista.
-
         }
-
 
         private void AsignacionHoras()
         {
@@ -223,7 +224,8 @@ namespace Gym
                 MessageBox.Show("El campo de horas, está mal registrado. Desde registrarse con este formato: ##:##", "Formato incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void AltaJornadaDePlan()
+
+        private void EdicionJornadaDePlan()
         {
             bool chkSeleccionados = false;
             foreach (Control chk in gbJornadaPlanes.Controls)
@@ -314,15 +316,7 @@ namespace Gym
                                         break;
                                 }
                                 _jornadasPlanes.Estado = "A";
-                                _jornadasPlanes.Plan_ID = idJornada;
-                                if (_jornadasPlanes.Jornada_Plan_ID != -1)
-                                {
-                                    _bussinessJornadas.EditarJornadaPlan(_jornadasPlanes);
-                                }
-                                else
-                                {
-                                    _bussinessJornadas.AltaJornadaPlan(_jornadasPlanes);
-                                }
+                                _bussinessJornadas.EditarJornadaPlan(_jornadasPlanes);
                                 desde = string.Empty;
                                 hasta = string.Empty;
                             }
@@ -331,7 +325,119 @@ namespace Gym
                 }
             }
         }
+        private void EditarPlanes()
+        {
+            _planes.Persona_ID = personaLogueada;
+            _planes.Nombre = txtNombrePlan.Text;
+            _planes.Importe_Plan = Convert.ToDecimal(txtImporte.Text);
+            _planes.Empleado_ID = Convert.ToInt32(cmbProfesores.SelectedValue);
+            _planes.Duracion = Convert.ToInt32(txtDuracion.Text);
+            _planes.Cupo_Total = Convert.ToInt32(txtCupoTotal.Text);
+            _planes.Cupo_Restante = Convert.ToInt32(txtCupoTotal.Text);
+            _planes.Fecha_Inicio = dtpFechaInicio.Value;
+            _planes.Fecha_Alta_Plan = DateTime.Now;
+            _planes.Estado = "A";
+            _bussinessPlanes.RegistrarNuevoPlan(_planes);
+        }
+        private void AltaJornadaDePlan()
+        {
+            bool chkSeleccionados = false;
+            foreach (Control chk in gbJornadaPlanes.Controls)
+            {
+                if (chk is CheckBox box)
+                {
+                    CheckBox c;
+                    c = box;
+                    if (c.Checked)
+                    {
+                        chkSeleccionados = true;
+                        break;
+                    }
+                    else
+                    {
+                        chkSeleccionados = false;
+                    }
+                }
+            }
 
+            if (chkSeleccionados)
+            {
+                if (todosChk)
+                {
+                    _jornadasPlanes.Dia = "Todos";
+                    _jornadasPlanes.Estado = "A";
+                    desde = txtDesdeLunes.Text.ToString();
+                    hasta = txtHastaLunes.Text.ToString();
+                    _jornadasPlanes.Plan_ID = idJornada;
+
+                    AsignacionHoras();
+
+                    _bussinessJornadas.AltaJornadaPlan(_jornadasPlanes);
+                    desde = string.Empty;
+                    hasta = string.Empty;
+                }
+                else
+                {
+                    foreach (Control chk in gbJornadaPlanes.Controls)
+                    {
+                        if (chk is CheckBox box)
+                        {
+                            CheckBox c;
+                            c = box;
+                            //Y luego de cada checkbox le asignamos el horario.
+                            //Lunes
+                            if (c.Checked)
+                            {
+                                switch (c.Text)
+                                {
+                                    case "Lunes":
+                                        _jornadasPlanes.Dia = "Lunes";
+                                        desde = txtDesdeLunes.Text.ToString();
+                                        hasta = txtHastaLunes.Text.ToString();
+                                        AsignacionHoras();
+                                        break;
+                                    case "Martes":
+                                        _jornadasPlanes.Dia = "Martes";
+                                        desde = txtDesdeMartes.Text.ToString();
+                                        hasta = txtHastaMartes.Text.ToString();
+                                        AsignacionHoras();
+                                        break;
+                                    case "Miercoles":
+                                        _jornadasPlanes.Dia = "Miercoles";
+                                        desde = txtDesdeMiercoles.Text.ToString();
+                                        hasta = txtHastaMiercoles.Text.ToString();
+                                        AsignacionHoras();
+                                        break;
+                                    case "Jueves":
+                                        _jornadasPlanes.Dia = "Jueves";
+                                        desde = txtDesdeJueves.Text.ToString();
+                                        hasta = txtHastaJueves.Text.ToString();
+                                        AsignacionHoras();
+                                        break;
+                                    case "Viernes":
+                                        _jornadasPlanes.Dia = "Viernes";
+                                        desde = txtDesdeViernes.Text.ToString();
+                                        hasta = txtHastaViernes.Text.ToString();
+                                        AsignacionHoras();
+                                        break;
+                                    case "Sabado":
+                                        _jornadasPlanes.Dia = "Sabado";
+                                        desde = txtDesdeSabado.Text.ToString();
+                                        hasta = txtHastaSabado.Text.ToString();
+                                        AsignacionHoras();
+                                        break;
+                                }
+                                _jornadasPlanes.Estado = "A";
+                                _jornadasPlanes.Plan_ID = idJornada;
+                                _bussinessJornadas.AltaJornadaPlan(_jornadasPlanes);
+                                desde = string.Empty;
+                                hasta = string.Empty;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         private void GetJornadaDePlan()
         {
             bool esEmpleado = false;
@@ -474,6 +580,19 @@ namespace Gym
             lblPlanesAsignadosCliente.Text = string.Empty;
         }
 
+        private void ResetControlsAltaPlan()
+        {
+            foreach (Control ctrl in gpDatosPlan.Controls)
+            {
+                if (ctrl is TextBox box)
+                {
+                    TextBox txt;
+                    txt = box;
+                    txt.Text = string.Empty;
+                }
+            }
+        }
+
         #endregion
 
         #region Eventos Keypress
@@ -483,7 +602,7 @@ namespace Gym
             _restricciones.SoloNumeros(e, buscar);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                if (camposVacios)
+                if (!datosVacios)
                 {
                     if (string.IsNullOrEmpty(buscar))
                     {
@@ -494,7 +613,7 @@ namespace Gym
                     {
                         ResetControlsCliente();
                         MostrarCliente();
-                        buscar = string.Empty;
+                        datosVacios = true;
                     }
                 }
                 else
@@ -533,18 +652,22 @@ namespace Gym
             }
             else
             {
-                if (cmbProfesores.Items.Count > 0)
+                if (esAlta)
                 {
-                    //Guardamos el plan
                     RegistrarNuevoPlan();
+                    AltaJornadaDePlan();
+                    _bussinessPlanes.GetLastID(_planes);
+                    idJornada = _planes.Plan_ID;
+                    //Una vez dado de alta, actualizamos la lista.
+                    CargarPlanes();
+                    ResetControlsAltaPlan();
                 }
                 else
                 {
-                    DialogResult result = MessageBox.Show("No hay profesores para la clase. ¿Es un plan libre? Eliga 'Si' para dar de alta sin profesor particular.", "Alta de Plan", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.OK)
-                    {
-                        RegistrarNuevoPlan();
-                    }
+                    EditarPlanes();
+                    EdicionJornadaDePlan();
+                    CargarPlanes();
+                    ResetControlsAltaPlan();
                 }
             }
         }
@@ -609,6 +732,8 @@ namespace Gym
                 {
                     //Asignarle el plan.
                     AsigarlePlanAlCliente();
+                    //Actualizar planes
+                    cmbPlanesActivos_SelectionChangeCommitted(sender, e);
                 }
             }
         }
@@ -988,5 +1113,16 @@ namespace Gym
 
         }
 
+        private void btnEditarPlan_Click(object sender, EventArgs e)
+        {
+            esAlta = false;
+            idPlanAeditar = Convert.ToInt32(dtgvPlanes.CurrentRow.Cells[0].Value);
+            CargarPlanParaEdicion();
+        }
+
+        private void CargarPlanParaEdicion()
+        {
+            
+        }
     }
 }

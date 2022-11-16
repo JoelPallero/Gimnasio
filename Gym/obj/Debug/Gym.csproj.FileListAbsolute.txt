@@ -14,7 +14,6 @@ G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Clientes.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Configuracion.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.EditarPlanesDeCliente.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Empleados.resources
-G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Estados.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Jornadas.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.Login.resources
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Gym\obj\Debug\Gym.MainForm.resources

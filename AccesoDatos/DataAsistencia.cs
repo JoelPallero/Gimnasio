@@ -1,6 +1,7 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -69,6 +70,65 @@ namespace AccesoDatos
 
             //por último devovlermos el entero que necesitamos
             return resultado;
+        }
+
+        public DataSet GetAsistenciasDiarias(string buscar)
+        {
+            string query;
+            if (string.IsNullOrEmpty(buscar))
+            {
+                query = @"sp_get_Asistencias_diarias";
+            }
+            else
+            {
+                query = @"select Clientes.Cliente_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Planes.Nombre, Asistencias.Estado
+                            from Asistencias
+                            inner join Clientes
+                            on Clientes.Cliente_ID = Asistencias.Cliente_ID
+                            inner join Personas
+                            on Clientes.Persona_ID = Personas.Persona_ID
+                            inner join Planes_Asignados
+                            on Asistencias.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
+                            inner join Planes
+                            on Planes.Plan_ID = Planes_Asignados.Plan_ID
+                            where Personas.Nombre like @Parametro
+                            or Personas.Apellido like @Parametro
+                            or Asistencias.Fecha like @Parametro
+                            or Planes.Nombre like @Parametro"
+                ;
+            }
+
+            SqlCommand cmd = new SqlCommand(query, conexion)
+            {
+                CommandType = CommandType.Text
+            };
+            cmd.Parameters.Add(new SqlParameter()
+            {
+                ParameterName = "@Parametro",
+                SqlDbType = SqlDbType.NVarChar,
+                Value = string.Format("%{0}%", buscar)
+            });
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                OpenConnection();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar asistencias", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return ds;
         }
     }
 }

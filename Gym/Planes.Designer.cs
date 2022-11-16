@@ -30,19 +30,16 @@ namespace Gym
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuPlanes = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.edit = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnEliminarJornadaPlan = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEditarPlan = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEliminarPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.TxtBuscarPlan = new System.Windows.Forms.TextBox();
             this.dtgvPlanes = new System.Windows.Forms.DataGridView();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Profesor_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.pEliminarPlanes = new System.Windows.Forms.Panel();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -52,6 +49,7 @@ namespace Gym
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblVerJornadas = new System.Windows.Forms.LinkLabel();
             this.lblCuposTotales = new System.Windows.Forms.Label();
@@ -110,7 +108,10 @@ namespace Gym
             this.txtHastaLunes = new System.Windows.Forms.TextBox();
             this.txtDesdeLunes = new System.Windows.Forms.TextBox();
             this.txtBuscarClase = new System.Windows.Forms.TextBox();
-            this.txtBuscarCliente = new System.Windows.Forms.TextBox();
+            this.Plan_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Profesor_n = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuPlanes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPlanes)).BeginInit();
             this.pEliminarPlanes.SuspendLayout();
@@ -130,23 +131,24 @@ namespace Gym
             // 
             this.menuPlanes.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuPlanes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.edit,
-            this.btnEliminarJornadaPlan});
+            this.btnEditarPlan,
+            this.btnEliminarPlan});
             this.menuPlanes.Name = "contextMenuStrip1";
             this.menuPlanes.Size = new System.Drawing.Size(133, 52);
             // 
-            // edit
+            // btnEditarPlan
             // 
-            this.edit.Name = "edit";
-            this.edit.Size = new System.Drawing.Size(132, 24);
-            this.edit.Text = "Editar";
+            this.btnEditarPlan.Name = "btnEditarPlan";
+            this.btnEditarPlan.Size = new System.Drawing.Size(132, 24);
+            this.btnEditarPlan.Text = "Editar";
+            this.btnEditarPlan.Click += new System.EventHandler(this.btnEditarPlan_Click);
             // 
-            // btnEliminarJornadaPlan
+            // btnEliminarPlan
             // 
-            this.btnEliminarJornadaPlan.Name = "btnEliminarJornadaPlan";
-            this.btnEliminarJornadaPlan.Size = new System.Drawing.Size(132, 24);
-            this.btnEliminarJornadaPlan.Text = "Eliminar";
-            this.btnEliminarJornadaPlan.Click += new System.EventHandler(this.btnEliminarJornadaPlan_Click);
+            this.btnEliminarPlan.Name = "btnEliminarPlan";
+            this.btnEliminarPlan.Size = new System.Drawing.Size(132, 24);
+            this.btnEliminarPlan.Text = "Eliminar";
+            this.btnEliminarPlan.Click += new System.EventHandler(this.btnEliminarJornadaPlan_Click);
             // 
             // TxtBuscarPlan
             // 
@@ -162,74 +164,39 @@ namespace Gym
             // 
             this.dtgvPlanes.AllowUserToAddRows = false;
             this.dtgvPlanes.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvPlanes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvPlanes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvPlanes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Plan_ID,
             this.Nombre,
             this.Profesor_n,
             this.Estado});
+            this.dtgvPlanes.ContextMenuStrip = this.menuPlanes;
             this.dtgvPlanes.GridColor = System.Drawing.SystemColors.Control;
             this.dtgvPlanes.Location = new System.Drawing.Point(4, 409);
             this.dtgvPlanes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvPlanes.Name = "dtgvPlanes";
             this.dtgvPlanes.ReadOnly = true;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvPlanes.RowHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvPlanes.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dtgvPlanes.RowHeadersVisible = false;
             this.dtgvPlanes.RowHeadersWidth = 51;
             this.dtgvPlanes.RowTemplate.Height = 29;
             this.dtgvPlanes.Size = new System.Drawing.Size(692, 230);
             this.dtgvPlanes.TabIndex = 86;
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle22;
-            this.Nombre.Frozen = true;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Nombre.Width = 250;
-            // 
-            // Profesor_n
-            // 
-            this.Profesor_n.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Profesor_n.DefaultCellStyle = dataGridViewCellStyle23;
-            this.Profesor_n.Frozen = true;
-            this.Profesor_n.HeaderText = "Profesor";
-            this.Profesor_n.MinimumWidth = 6;
-            this.Profesor_n.Name = "Profesor_n";
-            this.Profesor_n.ReadOnly = true;
-            this.Profesor_n.Width = 200;
-            // 
-            // Estado
-            // 
-            this.Estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Estado.DefaultCellStyle = dataGridViewCellStyle24;
-            this.Estado.Frozen = true;
-            this.Estado.HeaderText = "Estado del Plan";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 240;
             // 
             // button2
             // 
@@ -332,6 +299,19 @@ namespace Gym
             this.tabPage3.Text = "Asignar Plan";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // txtBuscarCliente
+            // 
+            this.txtBuscarCliente.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtBuscarCliente.Location = new System.Drawing.Point(28, 22);
+            this.txtBuscarCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBuscarCliente.Name = "txtBuscarCliente";
+            this.txtBuscarCliente.Size = new System.Drawing.Size(304, 27);
+            this.txtBuscarCliente.TabIndex = 51;
+            this.txtBuscarCliente.Text = "DNI";
+            this.txtBuscarCliente.Enter += new System.EventHandler(this.txtBuscarCliente_Enter);
+            this.txtBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarCliente_KeyPress);
+            this.txtBuscarCliente.Leave += new System.EventHandler(this.txtBuscarCliente_Leave);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblVerJornadas);
@@ -360,6 +340,7 @@ namespace Gym
             this.lblVerJornadas.TabIndex = 34;
             this.lblVerJornadas.TabStop = true;
             this.lblVerJornadas.Text = "Ver jornadas";
+            this.lblVerJornadas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVerJornadas_LinkClicked);
             // 
             // lblCuposTotales
             // 
@@ -406,6 +387,7 @@ namespace Gym
             this.cmbPlanesActivos.Name = "cmbPlanesActivos";
             this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 28);
             this.cmbPlanesActivos.TabIndex = 25;
+            this.cmbPlanesActivos.SelectionChangeCommitted += new System.EventHandler(this.cmbPlanesActivos_SelectionChangeCommitted);
             // 
             // btnAsignarPlan
             // 
@@ -1050,18 +1032,52 @@ namespace Gym
             this.txtBuscarClase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarClase_KeyPress);
             this.txtBuscarClase.Leave += new System.EventHandler(this.txtBuscarClase_Leave);
             // 
-            // txtBuscarCliente
+            // Plan_ID
             // 
-            this.txtBuscarCliente.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtBuscarCliente.Location = new System.Drawing.Point(28, 22);
-            this.txtBuscarCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBuscarCliente.Name = "txtBuscarCliente";
-            this.txtBuscarCliente.Size = new System.Drawing.Size(304, 27);
-            this.txtBuscarCliente.TabIndex = 51;
-            this.txtBuscarCliente.Text = "DNI";
-            this.txtBuscarCliente.Enter += new System.EventHandler(this.txtBuscarCliente_Enter);
-            this.txtBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarCliente_KeyPress);
-            this.txtBuscarCliente.Leave += new System.EventHandler(this.txtBuscarCliente_Leave);
+            this.Plan_ID.Frozen = true;
+            this.Plan_ID.HeaderText = "Plan ID";
+            this.Plan_ID.MinimumWidth = 6;
+            this.Plan_ID.Name = "Plan_ID";
+            this.Plan_ID.ReadOnly = true;
+            this.Plan_ID.Visible = false;
+            this.Plan_ID.Width = 125;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Nombre.Frozen = true;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nombre.Width = 250;
+            // 
+            // Profesor_n
+            // 
+            this.Profesor_n.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Profesor_n.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Profesor_n.Frozen = true;
+            this.Profesor_n.HeaderText = "Profesor";
+            this.Profesor_n.MinimumWidth = 6;
+            this.Profesor_n.Name = "Profesor_n";
+            this.Profesor_n.ReadOnly = true;
+            this.Profesor_n.Width = 200;
+            // 
+            // Estado
+            // 
+            this.Estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Estado.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Estado.Frozen = true;
+            this.Estado.HeaderText = "Estado del Plan";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 240;
             // 
             // Planes
             // 
@@ -1106,13 +1122,10 @@ namespace Gym
 
         #endregion
         private System.Windows.Forms.ContextMenuStrip menuPlanes;
-        private System.Windows.Forms.ToolStripMenuItem edit;
-        private System.Windows.Forms.ToolStripMenuItem btnEliminarJornadaPlan;
+        private System.Windows.Forms.ToolStripMenuItem btnEditarPlan;
+        private System.Windows.Forms.ToolStripMenuItem btnEliminarPlan;
         private System.Windows.Forms.TextBox TxtBuscarPlan;
         private System.Windows.Forms.DataGridView dtgvPlanes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Profesor_n;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel pEliminarPlanes;
         private System.Windows.Forms.TabPage tabPage2;
@@ -1182,5 +1195,9 @@ namespace Gym
         private System.Windows.Forms.Button btnAsignarPlan;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtBuscarCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Plan_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Profesor_n;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }

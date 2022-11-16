@@ -19,7 +19,7 @@ namespace Gym
         //entidades
         private Entities.Empleados _empleados;
         private readonly Personas _personas;
-        //realizar el registro de logueos ***************************
+        //realizar el registro de logueos 
         private Registros_Logs _registroLogs;
 
         //clases internas

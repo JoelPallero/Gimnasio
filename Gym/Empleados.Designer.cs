@@ -413,27 +413,27 @@ namespace Gym
             this.editarJornada,
             this.editarClave});
             this.cmEmpleado.Name = "cmEmpleado";
-            this.cmEmpleado.Size = new System.Drawing.Size(203, 76);
+            this.cmEmpleado.Size = new System.Drawing.Size(211, 104);
             this.cmEmpleado.Text = "Edición";
             // 
             // editarEmpleado
             // 
             this.editarEmpleado.Name = "editarEmpleado";
-            this.editarEmpleado.Size = new System.Drawing.Size(202, 24);
+            this.editarEmpleado.Size = new System.Drawing.Size(210, 24);
             this.editarEmpleado.Text = "Editar Datos";
             this.editarEmpleado.Click += new System.EventHandler(this.editarEmpleado_Click);
             // 
             // editarJornada
             // 
             this.editarJornada.Name = "editarJornada";
-            this.editarJornada.Size = new System.Drawing.Size(202, 24);
+            this.editarJornada.Size = new System.Drawing.Size(210, 24);
             this.editarJornada.Text = "Editar Jornadas";
             this.editarJornada.Click += new System.EventHandler(this.editarJornada_Click);
             // 
             // editarClave
             // 
             this.editarClave.Name = "editarClave";
-            this.editarClave.Size = new System.Drawing.Size(202, 24);
+            this.editarClave.Size = new System.Drawing.Size(210, 24);
             this.editarClave.Text = "Blanqueo de Clave";
             this.editarClave.Click += new System.EventHandler(this.editarClave_Click);
             // 

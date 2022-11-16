@@ -44,19 +44,9 @@ namespace BussinessLayer
             return _dataClientes.BuscarClienteAsistencia(buscar);
         }
 
-        public DateTime VerClaseQueToca(DateTime fechaAhora)
-        {
-            return _dataClientes.VerClaseQueToca(fechaAhora);
-        }
-
         public int EditarCliente(Clientes clientes)
         {
             return _dataClientes.EditarCliente(clientes);
         }
-
-        //public DataTable BuscarCuotasCliente(int idCliente)
-        //{
-        //    return _dataClientes.BuscarCuotasCliente(idCliente);
-        //}
     }
 }

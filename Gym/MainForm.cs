@@ -64,10 +64,12 @@ namespace Gym
             if (sesionJefeOn)
             {
                 btnConfiguracion.Visible = true;
+                btnEmpleados.Visible = true;
             }
             else
             {
                 btnConfiguracion.Visible = false;
+                btnEmpleados.Visible = false;
             }
         }
 

@@ -104,12 +104,6 @@
       <DependentUpon>Empleados.cs</DependentUpon>
     </Compile>
     <Compile Include="EncriptamientoSHA256.cs" />
-    <Compile Include="Estados.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Estados.Designer.cs">
-      <DependentUpon>Estados.cs</DependentUpon>
-    </Compile>
     <Compile Include="Jornadas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,9 +161,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Empleados.resx">
       <DependentUpon>Empleados.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Estados.resx">
-      <DependentUpon>Estados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Jornadas.resx">
       <DependentUpon>Jornadas.cs</DependentUpon>

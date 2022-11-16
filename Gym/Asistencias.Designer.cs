@@ -56,7 +56,7 @@ namespace Gym
             this.cmbPlanesActivos = new System.Windows.Forms.ComboBox();
             this.btnAsignarPlan = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.dtgvEmpleados = new System.Windows.Forms.DataGridView();
+            this.dtgvAsistencias = new System.Windows.Forms.DataGridView();
             this.Persona_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,7 +65,7 @@ namespace Gym
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbClienteAsistencia.SuspendLayout();
             this.gbAsignarPlan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvAsistencias)).BeginInit();
             this.SuspendLayout();
             // 
             // txtBuscarCliente
@@ -116,9 +116,9 @@ namespace Gym
             this.lblPlanActual.AutoSize = true;
             this.lblPlanActual.Location = new System.Drawing.Point(319, 100);
             this.lblPlanActual.Name = "lblPlanActual";
-            this.lblPlanActual.Size = new System.Drawing.Size(97, 20);
+            this.lblPlanActual.Size = new System.Drawing.Size(117, 20);
             this.lblPlanActual.TabIndex = 18;
-            this.lblPlanActual.Text = "Clase Actual: ";
+            this.lblPlanActual.Text = "Clases Actuales: ";
             // 
             // btnPago
             // 
@@ -298,10 +298,10 @@ namespace Gym
             this.label20.TabIndex = 23;
             this.label20.Text = "/";
             // 
-            // dtgvEmpleados
+            // dtgvAsistencias
             // 
-            this.dtgvEmpleados.AllowUserToAddRows = false;
-            this.dtgvEmpleados.AllowUserToDeleteRows = false;
+            this.dtgvAsistencias.AllowUserToAddRows = false;
+            this.dtgvAsistencias.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -309,20 +309,20 @@ namespace Gym
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvEmpleados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dtgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvEmpleados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dtgvAsistencias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgvAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvAsistencias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Persona_ID,
             this.Nombre,
             this.Apellido,
             this.Documento,
             this.Tipo_Empleado,
             this.Estado});
-            this.dtgvEmpleados.GridColor = System.Drawing.SystemColors.Control;
-            this.dtgvEmpleados.Location = new System.Drawing.Point(12, 353);
-            this.dtgvEmpleados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtgvEmpleados.Name = "dtgvEmpleados";
-            this.dtgvEmpleados.ReadOnly = true;
+            this.dtgvAsistencias.GridColor = System.Drawing.SystemColors.Control;
+            this.dtgvAsistencias.Location = new System.Drawing.Point(12, 353);
+            this.dtgvAsistencias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtgvAsistencias.Name = "dtgvAsistencias";
+            this.dtgvAsistencias.ReadOnly = true;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -330,17 +330,17 @@ namespace Gym
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvEmpleados.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dtgvEmpleados.RowHeadersVisible = false;
-            this.dtgvEmpleados.RowHeadersWidth = 51;
-            this.dtgvEmpleados.RowTemplate.Height = 29;
-            this.dtgvEmpleados.Size = new System.Drawing.Size(676, 286);
-            this.dtgvEmpleados.TabIndex = 17;
+            this.dtgvAsistencias.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dtgvAsistencias.RowHeadersVisible = false;
+            this.dtgvAsistencias.RowHeadersWidth = 51;
+            this.dtgvAsistencias.RowTemplate.Height = 29;
+            this.dtgvAsistencias.Size = new System.Drawing.Size(676, 286);
+            this.dtgvAsistencias.TabIndex = 17;
             // 
             // Persona_ID
             // 
             this.Persona_ID.Frozen = true;
-            this.Persona_ID.HeaderText = "ID de Persona";
+            this.Persona_ID.HeaderText = "Cliente ID";
             this.Persona_ID.MinimumWidth = 6;
             this.Persona_ID.Name = "Persona_ID";
             this.Persona_ID.ReadOnly = true;
@@ -412,7 +412,7 @@ namespace Gym
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(700, 650);
-            this.Controls.Add(this.dtgvEmpleados);
+            this.Controls.Add(this.dtgvAsistencias);
             this.Controls.Add(this.gbAsignarPlan);
             this.Controls.Add(this.txtBuscarAsistencias);
             this.Controls.Add(this.gbClienteAsistencia);
@@ -425,7 +425,7 @@ namespace Gym
             this.gbClienteAsistencia.PerformLayout();
             this.gbAsignarPlan.ResumeLayout(false);
             this.gbAsignarPlan.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpleados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvAsistencias)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,7 +453,7 @@ namespace Gym
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox cmbClaseDelCliente;
         private System.Windows.Forms.LinkLabel lblVerJornadas;
-        private System.Windows.Forms.DataGridView dtgvEmpleados;
+        private System.Windows.Forms.DataGridView dtgvAsistencias;
         private System.Windows.Forms.DataGridViewTextBoxColumn Persona_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;

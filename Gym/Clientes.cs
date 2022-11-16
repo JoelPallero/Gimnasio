@@ -672,12 +672,14 @@ namespace Gym
             edicionCliente = true;
         }
 
-        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
-            motivoMenu = 4;
             _clientes.Cliente_ID = Convert.ToInt32(dtgvCliente.CurrentRow.Cells[0].Value);
             _clientes.Estado = "I";
             _bussinessClientes.BajaCliente(_clientes);
+            GetClientes();
+            motivoMenu = 5;
+            edicionCliente = false;
         }
     }
 }

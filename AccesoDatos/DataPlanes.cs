@@ -47,10 +47,10 @@ namespace AccesoDatos
             }
             else
             {
-                query = @"select Planes.Nombre as Nombre_Planes, Personas.Nombre as Nombre_Empleado, replace(Planes.Estado, 'A', 'Activo') as Estado
+                query = @"select Planes.Plan_ID, Planes.Nombre as Nombre_Planes, Personas.Nombre as Nombre_Empleado, replace(Planes.Estado, 'A', 'Activo') as Estado
                         from Planes
                         inner join Empleados
-                        on Empleados.Empleado_ID = Planes.Persona_ID
+                        on Empleados.Empleado_ID = Planes.Empleado_ID
                         inner join Personas
                         on Personas.Persona_ID = Empleados.Persona_ID
                         inner join Tipos_Empleados
@@ -186,8 +186,8 @@ namespace AccesoDatos
             SqlParameter cupo_Total = new SqlParameter("@Cupo_Total", planes.Cupo_Total);
             SqlParameter estado = new SqlParameter("@Estado", planes.Estado);
             SqlParameter persona_ID = new SqlParameter("@Persona_ID", planes.Persona_ID);
-            SqlParameter cupo_Restante = new SqlParameter("@Cupo_Restante", planes.Cupo_Restante);
             SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", planes.Empleado_ID);
+            SqlParameter cupo_Restante = new SqlParameter("@Cupo_Restante", planes.Cupo_Restante);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
             cmd.Parameters.Add(nombre);
@@ -198,8 +198,8 @@ namespace AccesoDatos
             cmd.Parameters.Add(cupo_Total);
             cmd.Parameters.Add(estado);
             cmd.Parameters.Add(persona_ID);
-            cmd.Parameters.Add(cupo_Restante);
             cmd.Parameters.Add(empleado_ID);
+            cmd.Parameters.Add(cupo_Restante);
 
             try
             {
@@ -244,6 +244,35 @@ namespace AccesoDatos
                 cmd.Dispose();
             }
             return resultado;
+        }
+        public Planes GetLastID(Planes planes)
+        {
+            string query = @"select Plan_ID from Planes where Plan_ID = (select max(Plan_ID) from Planes)";
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    planes.Plan_ID = int.Parse(reader["Plan_ID"].ToString());                    
+                }
+                reader.Close();
+                cmd.ExecuteReader();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return planes;
         }
     }
 }
