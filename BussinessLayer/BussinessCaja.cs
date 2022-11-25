@@ -31,9 +31,20 @@ namespace BussinessLayer
             return _dataCaja.ConsultarIDCajaAbierta(caja);
         }
 
-        public DataSet GetCajas(string buscar)
+        public DataSet GetDetallesCajas(string buscar)
         {
-            return _dataCaja.GetCajas(buscar);
+            return _dataCaja.GetDetallesCajas(buscar);
+        }
+
+        public bool VerificarCajaAbierta(DateTime fecha)
+        {
+            bool cajaAbierta = _dataCaja.CajaAbierta(fecha);
+            return cajaAbierta;
+        }
+
+        public Cajas GetLastCajaID(Cajas caja)
+        {
+            return _dataCaja.GetLastCajaID(caja);
         }
     }
 }

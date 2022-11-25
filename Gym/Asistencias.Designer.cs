@@ -29,23 +29,26 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.gbClienteAsistencia = new System.Windows.Forms.GroupBox();
-            this.cmbClaseDelCliente = new System.Windows.Forms.ComboBox();
+            this.listAlumnosPresentes = new System.Windows.Forms.ListBox();
+            this.listAlumnosTotales = new System.Windows.Forms.ListBox();
+            this.cmbClasesParaAsistencia = new System.Windows.Forms.ComboBox();
             this.lblPlanActual = new System.Windows.Forms.Label();
-            this.btnPago = new System.Windows.Forms.Button();
             this.btnGuardarAsistencia = new System.Windows.Forms.Button();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblMail = new System.Windows.Forms.Label();
             this.lblNro_documento = new System.Windows.Forms.Label();
             this.lblNombreCliente = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarAsistencias = new System.Windows.Forms.TextBox();
             this.gbAsignarPlan = new System.Windows.Forms.GroupBox();
             this.lblVerJornadas = new System.Windows.Forms.LinkLabel();
@@ -63,6 +66,7 @@ namespace Gym
             this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo_Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtFechabusqueda = new System.Windows.Forms.DateTimePicker();
             this.gbClienteAsistencia.SuspendLayout();
             this.gbAsignarPlan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAsistencias)).BeginInit();
@@ -72,11 +76,11 @@ namespace Gym
             // 
             this.txtBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscarCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtBuscarCliente.Location = new System.Drawing.Point(23, 30);
+            this.txtBuscarCliente.Location = new System.Drawing.Point(23, 77);
             this.txtBuscarCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
-            this.txtBuscarCliente.Size = new System.Drawing.Size(256, 25);
-            this.txtBuscarCliente.TabIndex = 0;
+            this.txtBuscarCliente.Size = new System.Drawing.Size(228, 25);
+            this.txtBuscarCliente.TabIndex = 1;
             this.txtBuscarCliente.Text = "DNI";
             this.txtBuscarCliente.Enter += new System.EventHandler(this.txtBuscarCliente_Enter);
             this.txtBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarCliente_KeyPress);
@@ -84,55 +88,65 @@ namespace Gym
             // 
             // gbClienteAsistencia
             // 
-            this.gbClienteAsistencia.Controls.Add(this.cmbClaseDelCliente);
+            this.gbClienteAsistencia.Controls.Add(this.dtFechabusqueda);
+            this.gbClienteAsistencia.Controls.Add(this.listAlumnosPresentes);
+            this.gbClienteAsistencia.Controls.Add(this.listAlumnosTotales);
+            this.gbClienteAsistencia.Controls.Add(this.cmbClasesParaAsistencia);
             this.gbClienteAsistencia.Controls.Add(this.txtBuscarCliente);
             this.gbClienteAsistencia.Controls.Add(this.lblPlanActual);
-            this.gbClienteAsistencia.Controls.Add(this.btnPago);
             this.gbClienteAsistencia.Controls.Add(this.btnGuardarAsistencia);
             this.gbClienteAsistencia.Controls.Add(this.lblTelefono);
             this.gbClienteAsistencia.Controls.Add(this.lblMail);
             this.gbClienteAsistencia.Controls.Add(this.lblNro_documento);
             this.gbClienteAsistencia.Controls.Add(this.lblNombreCliente);
+            this.gbClienteAsistencia.Controls.Add(this.label2);
+            this.gbClienteAsistencia.Controls.Add(this.label1);
             this.gbClienteAsistencia.Location = new System.Drawing.Point(12, 11);
             this.gbClienteAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbClienteAsistencia.Name = "gbClienteAsistencia";
             this.gbClienteAsistencia.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbClienteAsistencia.Size = new System.Drawing.Size(676, 185);
+            this.gbClienteAsistencia.Size = new System.Drawing.Size(676, 280);
             this.gbClienteAsistencia.TabIndex = 3;
             this.gbClienteAsistencia.TabStop = false;
             this.gbClienteAsistencia.Text = "Asistencia de clientes";
             // 
-            // cmbClaseDelCliente
+            // listAlumnosPresentes
             // 
-            this.cmbClaseDelCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbClaseDelCliente.FormattingEnabled = true;
-            this.cmbClaseDelCliente.Location = new System.Drawing.Point(287, 28);
-            this.cmbClaseDelCliente.Name = "cmbClaseDelCliente";
-            this.cmbClaseDelCliente.Size = new System.Drawing.Size(173, 28);
-            this.cmbClaseDelCliente.TabIndex = 19;
+            this.listAlumnosPresentes.FormattingEnabled = true;
+            this.listAlumnosPresentes.ItemHeight = 20;
+            this.listAlumnosPresentes.Location = new System.Drawing.Point(433, 191);
+            this.listAlumnosPresentes.Name = "listAlumnosPresentes";
+            this.listAlumnosPresentes.Size = new System.Drawing.Size(237, 84);
+            this.listAlumnosPresentes.TabIndex = 4;
+            // 
+            // listAlumnosTotales
+            // 
+            this.listAlumnosTotales.FormattingEnabled = true;
+            this.listAlumnosTotales.ItemHeight = 20;
+            this.listAlumnosTotales.Location = new System.Drawing.Point(433, 85);
+            this.listAlumnosTotales.Name = "listAlumnosTotales";
+            this.listAlumnosTotales.Size = new System.Drawing.Size(237, 84);
+            this.listAlumnosTotales.TabIndex = 3;
+            this.listAlumnosTotales.DoubleClick += new System.EventHandler(this.listAlumnos_DoubleClick);
+            // 
+            // cmbClasesParaAsistencia
+            // 
+            this.cmbClasesParaAsistencia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClasesParaAsistencia.FormattingEnabled = true;
+            this.cmbClasesParaAsistencia.Location = new System.Drawing.Point(23, 32);
+            this.cmbClasesParaAsistencia.Name = "cmbClasesParaAsistencia";
+            this.cmbClasesParaAsistencia.Size = new System.Drawing.Size(228, 28);
+            this.cmbClasesParaAsistencia.TabIndex = 0;
+            this.cmbClasesParaAsistencia.SelectionChangeCommitted += new System.EventHandler(this.cmbClasesParaAsistencia_SelectionChangeCommitted);
             // 
             // lblPlanActual
             // 
             this.lblPlanActual.AutoSize = true;
-            this.lblPlanActual.Location = new System.Drawing.Point(319, 100);
+            this.lblPlanActual.Location = new System.Drawing.Point(23, 237);
             this.lblPlanActual.Name = "lblPlanActual";
             this.lblPlanActual.Size = new System.Drawing.Size(117, 20);
             this.lblPlanActual.TabIndex = 18;
             this.lblPlanActual.Text = "Clases Actuales: ";
-            // 
-            // btnPago
-            // 
-            this.btnPago.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnPago.FlatAppearance.BorderSize = 0;
-            this.btnPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPago.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPago.Location = new System.Drawing.Point(323, 132);
-            this.btnPago.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPago.Name = "btnPago";
-            this.btnPago.Size = new System.Drawing.Size(115, 33);
-            this.btnPago.TabIndex = 15;
-            this.btnPago.Text = "Realizar Pago";
-            this.btnPago.UseVisualStyleBackColor = false;
             // 
             // btnGuardarAsistencia
             // 
@@ -140,19 +154,19 @@ namespace Gym
             this.btnGuardarAsistencia.FlatAppearance.BorderSize = 0;
             this.btnGuardarAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarAsistencia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGuardarAsistencia.Location = new System.Drawing.Point(479, 25);
+            this.btnGuardarAsistencia.Location = new System.Drawing.Point(277, 72);
             this.btnGuardarAsistencia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardarAsistencia.Name = "btnGuardarAsistencia";
-            this.btnGuardarAsistencia.Size = new System.Drawing.Size(173, 33);
-            this.btnGuardarAsistencia.TabIndex = 14;
-            this.btnGuardarAsistencia.Text = "Confirmar Asistencia";
+            this.btnGuardarAsistencia.Size = new System.Drawing.Size(122, 33);
+            this.btnGuardarAsistencia.TabIndex = 5;
+            this.btnGuardarAsistencia.Text = "Confirmar";
             this.btnGuardarAsistencia.UseVisualStyleBackColor = false;
             this.btnGuardarAsistencia.Click += new System.EventHandler(this.btnGuardarAsistencia_Click);
             // 
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(23, 132);
+            this.lblTelefono.Location = new System.Drawing.Point(23, 178);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(74, 20);
             this.lblTelefono.TabIndex = 13;
@@ -161,7 +175,7 @@ namespace Gym
             // lblMail
             // 
             this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(319, 70);
+            this.lblMail.Location = new System.Drawing.Point(23, 207);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(45, 20);
             this.lblMail.TabIndex = 11;
@@ -170,7 +184,7 @@ namespace Gym
             // lblNro_documento
             // 
             this.lblNro_documento.AutoSize = true;
-            this.lblNro_documento.Location = new System.Drawing.Point(23, 100);
+            this.lblNro_documento.Location = new System.Drawing.Point(23, 146);
             this.lblNro_documento.Name = "lblNro_documento";
             this.lblNro_documento.Size = new System.Drawing.Size(42, 20);
             this.lblNro_documento.TabIndex = 9;
@@ -179,20 +193,38 @@ namespace Gym
             // lblNombreCliente
             // 
             this.lblNombreCliente.AutoSize = true;
-            this.lblNombreCliente.Location = new System.Drawing.Point(23, 70);
+            this.lblNombreCliente.Location = new System.Drawing.Point(23, 116);
             this.lblNombreCliente.Name = "lblNombreCliente";
             this.lblNombreCliente.Size = new System.Drawing.Size(71, 20);
             this.lblNombreCliente.TabIndex = 7;
             this.lblNombreCliente.Text = "Nombre: ";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(429, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 20);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Ausentes: ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(429, 172);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 20);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Presentes: ";
+            // 
             // txtBuscarAsistencias
             // 
             this.txtBuscarAsistencias.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtBuscarAsistencias.Location = new System.Drawing.Point(12, 322);
+            this.txtBuscarAsistencias.Location = new System.Drawing.Point(12, 413);
             this.txtBuscarAsistencias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBuscarAsistencias.Name = "txtBuscarAsistencias";
             this.txtBuscarAsistencias.Size = new System.Drawing.Size(296, 27);
-            this.txtBuscarAsistencias.TabIndex = 6;
+            this.txtBuscarAsistencias.TabIndex = 9;
             this.txtBuscarAsistencias.Text = "Buscar";
             this.txtBuscarAsistencias.Enter += new System.EventHandler(this.txtBuscarAsistencias_Enter);
             this.txtBuscarAsistencias.Leave += new System.EventHandler(this.txtBuscarAsistencias_Leave);
@@ -207,7 +239,7 @@ namespace Gym
             this.gbAsignarPlan.Controls.Add(this.cmbPlanesActivos);
             this.gbAsignarPlan.Controls.Add(this.btnAsignarPlan);
             this.gbAsignarPlan.Controls.Add(this.label20);
-            this.gbAsignarPlan.Location = new System.Drawing.Point(12, 200);
+            this.gbAsignarPlan.Location = new System.Drawing.Point(12, 295);
             this.gbAsignarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbAsignarPlan.Name = "gbAsignarPlan";
             this.gbAsignarPlan.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -222,7 +254,7 @@ namespace Gym
             this.lblVerJornadas.Location = new System.Drawing.Point(325, 58);
             this.lblVerJornadas.Name = "lblVerJornadas";
             this.lblVerJornadas.Size = new System.Drawing.Size(91, 20);
-            this.lblVerJornadas.TabIndex = 33;
+            this.lblVerJornadas.TabIndex = 7;
             this.lblVerJornadas.TabStop = true;
             this.lblVerJornadas.Text = "Ver jornadas";
             this.lblVerJornadas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVerJornadas_LinkClicked);
@@ -271,7 +303,7 @@ namespace Gym
             this.cmbPlanesActivos.Location = new System.Drawing.Point(23, 54);
             this.cmbPlanesActivos.Name = "cmbPlanesActivos";
             this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 28);
-            this.cmbPlanesActivos.TabIndex = 16;
+            this.cmbPlanesActivos.TabIndex = 6;
             this.cmbPlanesActivos.SelectionChangeCommitted += new System.EventHandler(this.cmbPlanesActivos_SelectionChangeCommitted);
             // 
             // btnAsignarPlan
@@ -284,7 +316,7 @@ namespace Gym
             this.btnAsignarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAsignarPlan.Name = "btnAsignarPlan";
             this.btnAsignarPlan.Size = new System.Drawing.Size(173, 40);
-            this.btnAsignarPlan.TabIndex = 7;
+            this.btnAsignarPlan.TabIndex = 8;
             this.btnAsignarPlan.Text = "Asignar Plan";
             this.btnAsignarPlan.UseVisualStyleBackColor = false;
             this.btnAsignarPlan.Click += new System.EventHandler(this.btnAsignarPlan_Click);
@@ -302,14 +334,14 @@ namespace Gym
             // 
             this.dtgvAsistencias.AllowUserToAddRows = false;
             this.dtgvAsistencias.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvAsistencias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvAsistencias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
             this.dtgvAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvAsistencias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Persona_ID,
@@ -319,22 +351,22 @@ namespace Gym
             this.Tipo_Empleado,
             this.Estado});
             this.dtgvAsistencias.GridColor = System.Drawing.SystemColors.Control;
-            this.dtgvAsistencias.Location = new System.Drawing.Point(12, 353);
+            this.dtgvAsistencias.Location = new System.Drawing.Point(12, 444);
             this.dtgvAsistencias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvAsistencias.Name = "dtgvAsistencias";
             this.dtgvAsistencias.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvAsistencias.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvAsistencias.RowHeadersDefaultCellStyle = dataGridViewCellStyle35;
             this.dtgvAsistencias.RowHeadersVisible = false;
             this.dtgvAsistencias.RowHeadersWidth = 51;
             this.dtgvAsistencias.RowTemplate.Height = 29;
-            this.dtgvAsistencias.Size = new System.Drawing.Size(676, 286);
+            this.dtgvAsistencias.Size = new System.Drawing.Size(676, 195);
             this.dtgvAsistencias.TabIndex = 17;
             // 
             // Persona_ID
@@ -350,8 +382,8 @@ namespace Gym
             // Nombre
             // 
             this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle30;
             this.Nombre.Frozen = true;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.MinimumWidth = 6;
@@ -363,8 +395,8 @@ namespace Gym
             // Apellido
             // 
             this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Apellido.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Apellido.DefaultCellStyle = dataGridViewCellStyle31;
             this.Apellido.Frozen = true;
             this.Apellido.HeaderText = "Apellido";
             this.Apellido.MinimumWidth = 6;
@@ -375,8 +407,8 @@ namespace Gym
             // Documento
             // 
             this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Documento.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Documento.DefaultCellStyle = dataGridViewCellStyle32;
             this.Documento.Frozen = true;
             this.Documento.HeaderText = "Documento";
             this.Documento.MinimumWidth = 6;
@@ -386,8 +418,8 @@ namespace Gym
             // 
             // Tipo_Empleado
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Tipo_Empleado.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Tipo_Empleado.DefaultCellStyle = dataGridViewCellStyle33;
             this.Tipo_Empleado.Frozen = true;
             this.Tipo_Empleado.HeaderText = "Clase";
             this.Tipo_Empleado.MinimumWidth = 6;
@@ -397,14 +429,24 @@ namespace Gym
             // 
             // Estado
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Estado.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Estado.DefaultCellStyle = dataGridViewCellStyle34;
             this.Estado.HeaderText = "Asistencia";
             this.Estado.MinimumWidth = 6;
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
             this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Estado.Width = 142;
+            // 
+            // dtFechabusqueda
+            // 
+            this.dtFechabusqueda.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechabusqueda.Location = new System.Drawing.Point(500, 30);
+            this.dtFechabusqueda.Name = "dtFechabusqueda";
+            this.dtFechabusqueda.Size = new System.Drawing.Size(170, 27);
+            this.dtFechabusqueda.TabIndex = 2;
+            this.dtFechabusqueda.Value = new System.DateTime(2022, 11, 23, 0, 0, 0, 0);
+            this.dtFechabusqueda.ValueChanged += new System.EventHandler(this.dtFechabusqueda_ValueChanged);
             // 
             // Asistencias
             // 
@@ -440,7 +482,6 @@ namespace Gym
         private System.Windows.Forms.Label lblNro_documento;
         private System.Windows.Forms.Label lblNombreCliente;
         private System.Windows.Forms.Label lblTelefono;
-        private System.Windows.Forms.Button btnPago;
         private System.Windows.Forms.Button btnGuardarAsistencia;
         private System.Windows.Forms.Label lblPlanActual;
         private System.Windows.Forms.GroupBox gbAsignarPlan;
@@ -451,7 +492,7 @@ namespace Gym
         private System.Windows.Forms.ComboBox cmbPlanesActivos;
         private System.Windows.Forms.Button btnAsignarPlan;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ComboBox cmbClaseDelCliente;
+        private System.Windows.Forms.ComboBox cmbClasesParaAsistencia;
         private System.Windows.Forms.LinkLabel lblVerJornadas;
         private System.Windows.Forms.DataGridView dtgvAsistencias;
         private System.Windows.Forms.DataGridViewTextBoxColumn Persona_ID;
@@ -460,5 +501,10 @@ namespace Gym
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_Empleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.ListBox listAlumnosTotales;
+        private System.Windows.Forms.ListBox listAlumnosPresentes;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtFechabusqueda;
     }
 }

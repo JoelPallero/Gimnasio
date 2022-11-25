@@ -44,6 +44,10 @@ namespace BussinessLayer
             return _dataClientes.BuscarClienteAsistencia(buscar);
         }
 
+        public DataSet BuscarClienteAsistenciaById(Planes_Asignados _planesAsignados)
+        {
+            return _dataClientes.BuscarClienteAsistenciaById(_planesAsignados);
+        }
         public int EditarCliente(Clientes clientes)
         {
             return _dataClientes.EditarCliente(clientes);

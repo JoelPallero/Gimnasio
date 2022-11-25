@@ -13,7 +13,7 @@ namespace AccesoDatos
     {
         public DataTable GetPlanes(Planes planes)
         {
-            string query = "sp_cargar_planes";
+            string query = @"sp_cargar_planes";
 
             SqlCommand cmd = new SqlCommand(query, conexion);
             DataTable dt = new DataTable();
@@ -37,6 +37,136 @@ namespace AccesoDatos
             }
             return dt;
         }
+
+        public DataTable GetPlanesParaAsistencia(Planes planes, string diaDeLaSemana)
+        {
+            string query = @"select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
+                            from Planes
+                            inner join Jornadas_Planes
+                            on Jornadas_Planes.Jornada_Plan_ID = Planes.Plan_ID
+                            where Planes.Estado = @Estado
+                            and Jornadas_Planes.Dia = @Todos
+                            or Jornadas_Planes.Dia = @diaDeLaSemana";
+
+            SqlParameter estado = new SqlParameter("@Estado", "A");
+            SqlParameter todos = new SqlParameter("@Todos", "Todos");
+            SqlParameter DiaDeLaSemana = new SqlParameter("@diaDeLaSemana", diaDeLaSemana);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(todos);
+            cmd.Parameters.Add(DiaDeLaSemana);
+
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar tipos de documentos", e);
+            }
+            finally
+            {
+                conexion.Close();
+                cmd.Dispose();
+            }
+            return dt;
+        }
+
+        public DataTable GetPlanesConFecha(Planes planes, string diaDeLaSemana, string fecha)
+        {
+            string query = @"";
+
+            SqlParameter estado = new SqlParameter("@Estado", "A");
+            SqlParameter todos = new SqlParameter("@Todos", fecha);
+            SqlParameter DiaDeLaSemana = new SqlParameter("@diaDeLaSemana", diaDeLaSemana);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(todos);
+            cmd.Parameters.Add(DiaDeLaSemana);
+
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar tipos de documentos", e);
+            }
+            finally
+            {
+                conexion.Close();
+                cmd.Dispose();
+            }
+            return dt;
+        }
+
+        public DataTable GetAlumnoPresentes(Planes planes, string fechaPresente)
+        {
+            string query = @"set dateformat dmy;
+                            select Personas.Nombre + ' ' + Personas.Apellido as Nombre, Clientes.Cliente_ID
+                            from Personas
+                            inner join Clientes
+                                on Clientes.Persona_ID = Personas.Persona_ID
+                            inner join Planes_Asignados
+                                on Planes_Asignados.Cliente_ID = Clientes.Cliente_ID
+                            inner join Planes
+                                on Planes.Plan_ID = Planes_Asignados.Plan_ID
+                            inner join Asistencias
+                            on Asistencias.Cliente_ID = Clientes.Cliente_ID
+                            where Planes_Asignados.Estado like @Estado
+                            and Clientes.Estado = @Estado
+                            and Planes.Plan_ID = @Plan_ID
+                            and Asistencias.Fecha = @Fecha"
+            ;
+
+            SqlParameter estado = new SqlParameter("@Estado", planes.Estado);
+            SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
+            SqlParameter fecha = new SqlParameter("@Fecha", fechaPresente);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(plan_ID);
+            cmd.Parameters.Add(fecha);
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar tipos de documentos", e);
+            }
+            finally
+            {
+                conexion.Close();
+                cmd.Dispose();
+            }
+            return dt;
+        }
+
         public DataSet GetPlanesActuales(Planes planes, string buscar)
         {
             string query;
@@ -100,18 +230,72 @@ namespace AccesoDatos
             }
             return ds;
         }
+
+        public DataTable GetAlumnoPorClase(Planes planes, string diaDeLaSemana)
+        {
+            string query = @"select Personas.Nombre + ' ' + Personas.Apellido as Nombre, Clientes.Cliente_ID
+                            from Personas
+                            inner join Clientes
+                                on Clientes.Persona_ID = Personas.Persona_ID
+                            inner join Planes_Asignados
+                                on Planes_Asignados.Cliente_ID = Clientes.Cliente_ID
+                            inner join Planes
+                                on Planes.Plan_ID = Planes_Asignados.Plan_ID
+                            where Planes_Asignados.Estado like @Estado
+                            and Clientes.Estado like @Estado
+                            and Planes.Plan_ID = @Plan_ID"
+            ;
+
+            SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(plan_ID);
+            cmd.Parameters.Add(new SqlParameter()
+            {
+                ParameterName = "@Estado",
+                SqlDbType = SqlDbType.NVarChar,
+                Value = string.Format("%{0}%", planes.Estado)
+            });
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar tipos de documentos", e);
+            }
+            finally
+            {
+                conexion.Close();
+                cmd.Dispose();
+            }
+            return dt;
+        }
+
         public Planes GetDatoPlan(Planes planes)
         {
             string query = @"select Plan_ID, Importe_Plan, 
                                     Cupo_Total,
                                     Cupo_Restante
                                 from Planes
-                                where Estado = 'A'
+                                where Estado = @Estado
                                 and Plan_ID = @Plan_ID";
 
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
+            SqlParameter estado = new SqlParameter("@Estado", "A");
+
             SqlCommand cmd = new SqlCommand(query, conexion);
+
             cmd.Parameters.Add(plan_ID);
+            cmd.Parameters.Add(estado);
 
             try
             {

@@ -36,6 +36,8 @@ namespace Gym
         private DataSet DsCajas;
         private int idCajaAbierta;
         private string buscar;
+        private bool cajaAbierta;
+        private bool primeraCaja;
 
 
         #endregion
@@ -49,19 +51,39 @@ namespace Gym
             _caja = new Entities.Cajas();
             _detalles_Cajas = new Entities.Detalles_Cajas();
             personaLogueada = idPersonaLog;
+            VerificarCajaAbierta();
             ActualizacionDeImportes();
-            GetCajas();
+            GetDetallesCajas();
         }
 
         #region Encapsulamientos
 
-        private void TotalMomentaneo(decimal egreso, decimal ingreso)
+        private void VerificarCajaAbierta()
         {
-            lblTotalMomentaneo.Text = (ingreso - egreso).ToString();
+            DateTime fecha = DateTime.Now;
+            cajaAbierta = _bussinessCaja.VerificarCajaAbierta(fecha);
+            if (cajaAbierta)
+            {
+                gbAperturaCaja.Enabled = false;
+                gbCierreCaja.Enabled = true;
+                GetLastCajaID();
+            }
+            else
+            {
+                gbAperturaCaja.Enabled = true;
+                gbCierreCaja.Enabled = false;
+            }
         }
 
+        private void GetLastCajaID()
+        {
+            _bussinessCaja.GetLastCajaID(_caja);
+            idCajaAbierta = _caja.Caja_ID;
+        }
         private void ActualizacionDeImportes()
         {
+            //Falta tener en cuenta el importe de ingreso que se registra en caja
+            //cuando se abre la caja.
             _detalles_Cajas.Caja_ID = idCajaAbierta;
             DsSaldosActuales = _bussinessCaja.ConsultarSaldos(_detalles_Cajas);
             if (DsSaldosActuales.Tables[0].Rows.Count > 0)
@@ -70,16 +92,15 @@ namespace Gym
                 {
                     lblIngresos.Text = dr[0].ToString();
                     lblEgresos.Text = dr[1].ToString();
-                    lblTotalMomentaneo.Text = dr[2].ToString();
+                    lblTotal.Text = dr[2].ToString();
                     break;
                 }
             }
-            TotalMomentaneo(egreso, ingreso);
         }
 
-        private void GetCajas()
+        private void GetDetallesCajas()
         {
-            DsCajas = _bussinessCaja.GetCajas(buscar);
+            DsCajas = _bussinessCaja.GetDetallesCajas(buscar);
 
             dtgvCajas.Rows.Clear();
             //Vacío el textbox para resetear en caso de búsqueda específica
@@ -96,20 +117,40 @@ namespace Gym
                 }
             }
         }
+        private void MostrarDiferencia()
+        {
+            lblDiferenciaFinal.Text = Convert.ToString(Convert.ToDecimal(txtImporteFinal.Text) - Convert.ToDecimal(lblTotal.Text));
+        }
 
         #endregion
 
         private void txtImporteEfectivo_Click(object sender, EventArgs e)
         {
-            _caja.Importe_Inicial = Convert.ToDecimal(txtImporteEfectivo.Text);
-            _caja.Empleado_ID = personaLogueada;
-            _caja.Fecha = DateTime.Now;
-            _bussinessCaja.AbrirCaja(_caja);
-            _bussinessCaja.ConsultarIDCajaAbierta(_caja);
-            idCajaAbierta = _caja.Caja_ID;
+            if (string.IsNullOrEmpty(txtImporteEfectivo.Text))
+            {
+                MessageBox.Show("Tiene que ingresar el importe de inicio. Si la caja está vacía, " +
+                                "ingrese un 0.", "Campos vacíos!");
+            }
+            else
+            {
+                _caja.Importe_Inicial = Convert.ToDecimal(txtImporteEfectivo.Text);
+                _caja.Empleado_ID_Apertura = personaLogueada;
+                _caja.Fecha = DateTime.Now;
+
+                //Abro la caja del día
+                _bussinessCaja.AbrirCaja(_caja);
+                cajaAbierta = true;
+
+                //consultamos el último ID
+                _bussinessCaja.ConsultarIDCajaAbierta(_caja);
+                idCajaAbierta = _caja.Caja_ID;
+
+                gbAperturaCaja.Enabled = false;
+                gbCierreCaja.Enabled = true;
+            }
         }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtImporteEfectivo_KeyPress(object sender, KeyPressEventArgs e)
         {
             string importe = txtImporteEfectivo.Text;
             _restricciones.SoloNumeros(e, importe);
@@ -120,7 +161,14 @@ namespace Gym
             buscar = txtBuscarCajas.Text;
             if (e.KeyChar == (char)Keys.Enter)
             {
-                GetCajas();
+                GetDetallesCajas();
+            }
+        }
+        private void txtImporteFinal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                MostrarDiferencia();
             }
         }
     }

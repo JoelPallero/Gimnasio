@@ -58,16 +58,104 @@ namespace AccesoDatos
             // por último, retornamos el dataset.
             return ds;
         }
+
+        public Cajas GetLastCajaID(Cajas caja)
+        {
+            string query = "sp_Get_Last_Caja_ID";
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (!string.IsNullOrEmpty(reader["Caja_ID"].ToString()))
+                    {
+                        caja.Caja_ID = int.Parse(reader["Caja_ID"].ToString());
+                    }
+                    else
+                    {
+                        caja.Caja_ID = -1;
+                    }
+                }
+                reader.Close();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return caja;
+        }
+
+        public bool CajaAbierta(DateTime Fecha)
+        {
+            bool cajaAbierta = true;
+
+            string query = @"if exists (select max(Importe_Final) from Cajas 
+                                where Importe_Final != null or Importe_Final != 0 
+                                and Fecha = @Fecha)
+                            begin
+                                select max(Importe_Final) as Resultado from Cajas 
+                                where Importe_Final != null or Importe_Final != 0 
+                                and Fecha = @Fecha)
+                            end"
+            ;
+
+            SqlParameter fecha = new SqlParameter("@Fecha", Fecha);
+            
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(fecha);
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    //Si el importe aparece, significa que la ultima caja abierta
+                    //está cerrada
+                    if (reader["Resultado"].ToString() != null)
+                    {
+                        cajaAbierta = false;
+                    }
+                    else
+                    {
+                        cajaAbierta = true;
+                    }
+                }
+                reader.Close();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return cajaAbierta;
+        }
+
         public int AbrirCaja(Cajas caja)
         {
             /*Este método es tipo int. Ya lo vimos antes.*/
             int resultado = -1;
-            string query = @"insert into Cajas values(@Empleado_ID,
+            string query = @"insert into Cajas values(@Empleado_ID_Apertura,
                                                       @Fecha, 
                                                       @Importe_Inicial)"
             ;
 
-            SqlParameter empleado_Id = new SqlParameter("@Empleado_ID", caja.Empleado_ID);
+            SqlParameter empleado_Id = new SqlParameter("@Empleado_ID_Apertura", caja.Empleado_ID_Apertura);
             SqlParameter fecha = new SqlParameter("@Empleado_ID", caja.Fecha);
             SqlParameter importe_Inicial = new SqlParameter("@Importe_Inicial", caja.Importe_Inicial);
             
@@ -98,7 +186,7 @@ namespace AccesoDatos
             /*Siempre que el método sea un objeto de la entidad, solo vamos a poder traer 1 entidad por consulta
              Por lo que, al no ser muchos datos o una lista. Lo único que traemos acá es la consulta de 1 tabla
             Y solo 1 dato por propiedad de la entidad*/
-            string query = @"sp_Get_Las_Caja_ID";
+            string query = @"sp_Get_Last_Caja_ID";
             SqlCommand cmd = new SqlCommand(query, conexion);
 
             try
@@ -130,7 +218,7 @@ namespace AccesoDatos
             return caja;
         }
 
-        public DataSet GetCajas(string buscar)
+        public DataSet GetDetallesCajas(string buscar)
         {
             /*Acá hay otro DataSet
              Este lo creamos de tal forma que podamos recibir un argumento que va a servir como parámetro de búsqueda
@@ -146,7 +234,7 @@ namespace AccesoDatos
                 query = @"select Cajas.Caja_ID, Cajas.Fecha, Cajas.Importe_Inicial, Cajas.Importe_Final, Personas.Nombre
                         from Cajas
                         inner join Empleados
-                        on Empleados.Empleado_ID = Cajas.Empleado_ID
+                        on Empleados.Empleado_ID = Cajas.Empleado_ID_Apertura
                         inner join Personas
                         on Empleados.Persona_ID = Personas.Persona_ID
                         where Cajas.Caja_ID like @Parametro
@@ -154,7 +242,7 @@ namespace AccesoDatos
                         or Cajas.Importe_Inicial like @Parametro
                         or Cajas.Importe_Final like @Parametro
                         or Personas.Nombre like @Parametro
-                        order by Cajas.Fecha desc"
+                        order by Cajas.Fecha asc"
                 ;                
             }
             SqlCommand cmd = new SqlCommand(query, conexion)

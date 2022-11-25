@@ -78,7 +78,8 @@ go
 
 create table Cajas(
 Caja_ID int primary key identity (0, 1),
-Empleado_ID int not null,
+Empleado_ID_Apertura int not null,
+Empleado_ID_Cierre int null,
 Fecha datetime not null,
 Importe_Inicial decimal(18,0) not null,
 Importe_Final decimal(18,0) null,
@@ -89,7 +90,7 @@ go
 create table Detalles_Cajas(
 Detalle_Caja_ID int primary key identity (0, 1),
 Caja_ID int not null,
-Plan_Asignado_ID int not null,
+Plan_Asignado_ID int null,
 Empleado_ID int not null,
 Importe_Ingreso decimal (18, 0) null,
 Importe_Egreso decimal (18, 0) null,
@@ -139,8 +140,7 @@ Plan_Asignado_ID int primary key identity (0, 1),
 Plan_ID int not null,
 Cliente_ID int not null,
 Empleado_ID int not null,
-Fecha_Inicio date not null,  /* fecha de inscripción */
-Fecha_Fin date null,         /* fecha de anulación   */
+Fecha_Inscripcion date not null,
 Estado nvarchar(1) not null
 )
 
@@ -348,12 +348,6 @@ REFERENCES Cajas (Caja_ID)
 go
 
 alter table Detalles_Cajas
-add CONSTRAINT FK_Detalles_Plan_Asignado FOREIGN KEY (Plan_Asignado_ID) 
-REFERENCES Planes_Asignados (Plan_Asignado_ID)
-
-go
-
-alter table Detalles_Cajas
 add CONSTRAINT FK_Detalles_Cajas_Empleado FOREIGN KEY (Empleado_ID) 
 REFERENCES Empleados (Empleado_ID)
 
@@ -517,7 +511,6 @@ where Tipos_Empleados.Tipo = 'Profesor'
 and Empleados.Estado_Empleado_ID = 0
 
 go
-select * from Estados_Empleados
 
 create proc sp_cargar_ultimo_ID
 as
@@ -597,7 +590,7 @@ or Planes.Estado = (select replace(Planes.Estado, 'I', 'Inactivo') as Estado)
 
 go
 
-create procedure sp_Get_Las_Caja_ID
+create procedure sp_Get_Last_Caja_ID
 as
 select Caja_ID from Cajas
 where Caja_ID = (select max(Caja_ID) from Cajas)
@@ -629,9 +622,58 @@ inner join Planes_Asignados
 on Asistencias.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
 inner join Planes
 on Planes.Plan_ID = Planes_Asignados.Plan_ID
-where Asistencias.Fecha = (select Asistencias.Fecha from Asistencias where Fecha < GETDATE() and Fecha > GETDATE() - 1)
+where Asistencias.Fecha between GETDATE() - 1 and GETDATE()
 order by Asistencias.Fecha desc
 
+go
+
+/* Tablas de consulta interna */
+
+--set dateformat dmy;
+--select Personas.Nombre + ' ' + Personas.Apellido as Nombre, Clientes.Cliente_ID
+--from Personas
+--inner join Clientes
+--    on Clientes.Persona_ID = Personas.Persona_ID
+--inner join Planes_Asignados
+--    on Planes_Asignados.Cliente_ID = Clientes.Cliente_ID
+--inner join Planes
+--    on Planes.Plan_ID = Planes_Asignados.Plan_ID
+--inner join Asistencias
+--on Asistencias.Cliente_ID = Clientes.Cliente_ID
+--where Planes_Asignados.Estado like 'A'
+--and Clientes.Estado = 'A'
+--and Planes.Plan_ID = 0
+--and Asistencias.Fecha = '22/11/2022'
 
 
-select * from Empleados where Tipo_Empleado_ID = 3
+--use gym
+
+set dateformat dmy;
+
+select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
+from Planes
+inner join Jornadas_Planes
+on Jornadas_Planes.Plan_ID = Planes.Plan_ID
+where Planes.Estado = 'A'
+and Planes.Fecha_Inicio <= '21/11/2022'
+and Jornadas_Planes.Dia = 'Todos'
+or Jornadas_Planes.Dia = 'Lunes'
+
+select * from Planes
+select * from Jornadas_Planes
+
+
+set dateformat dmy;
+if exists (select max(Importe_Final) from Cajas where Importe_Final != null or Importe_Final != 0 and Fecha = '23/11/2022' and Empleado_ID_Apertura = 0)
+begin
+select max(Importe_Final) as Resultado from Cajas where Importe_Final != null or Importe_Final != 0 and Fecha = '23/11/2022' and Empleado_ID_Apertura = 0
+end
+
+if exists (select Caja_ID from Cajas
+where Caja_ID = (select max(Caja_ID) from Cajas)
+and Importe_Final = null)
+begin 
+select Caja_ID as Caja_ID from Cajas
+where Caja_ID = (select max(Caja_ID) from Cajas)
+and Importe_Final = null
+end

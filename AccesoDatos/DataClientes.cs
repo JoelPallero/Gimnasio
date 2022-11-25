@@ -185,13 +185,17 @@ namespace AccesoDatos
                               on Planes_Asignados.Plan_ID = Planes.Plan_ID
                             where Planes_Asignados.Estado = 'A'
                               and Clientes.Estado = 'A'
-                              and Personas.Nro_documento = @buscar"
+                              and Clientes.Cliente_ID like @buscar
+                              or Personas.Nro_documento like @buscar"
             ;
-            SqlParameter nro_documento = new SqlParameter("@buscar", buscar);
-
             SqlCommand cmd = new SqlCommand(query, conexion);
 
-            cmd.Parameters.Add(nro_documento);
+            cmd.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@buscar",
+                SqlDbType = SqlDbType.NVarChar,
+                Value = string.Format("%{0}%", buscar)
+            });
 
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -215,6 +219,55 @@ namespace AccesoDatos
             return ds;
         }
 
+        public DataSet BuscarClienteAsistenciaById(Planes_Asignados _planesAsignados)
+        {
+            /*Acá se filtran las asistencias diarias de los clientes
+             También como parámetro de busqueda, el argumento recibido.
+             */
+            string query = @"select Planes_Asignados.Plan_Asignado_ID, Clientes.Cliente_ID,
+	                                Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Personas.Nro_Telefono, Personas.Mail,
+	                                Planes.Nombre
+                            from Personas
+                            inner join Clientes
+                              on Clientes.Persona_ID = Personas.Persona_ID
+                            inner join Planes_Asignados
+                              on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
+                            inner join Planes
+                              on Planes_Asignados.Plan_ID = Planes.Plan_ID
+                            where Planes_Asignados.Estado = 'A'
+                              and Clientes.Estado = 'A'
+                              and Planes_Asignados.Plan_ID = @Plan_ID
+                              and Clientes.Cliente_ID = @Cliente_ID"
+            ;
+            SqlParameter plan_ID = new SqlParameter("@Plan_ID", _planesAsignados.Plan_ID);
+            SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", _planesAsignados.Cliente_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(plan_ID);
+            cmd.Parameters.Add(cliente_ID);
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                OpenConnection();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar Empleados", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return ds;
+        }
         public int EditarCliente(Clientes clientes)
         {
             /*Nuevamente otra edición pero en este caso es directamente del estado únicamente. 

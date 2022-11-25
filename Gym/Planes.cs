@@ -590,6 +590,30 @@ namespace Gym
                     txt = box;
                     txt.Text = string.Empty;
                 }
+
+                if (ctrl is CheckBox chk)
+                {
+                    CheckBox c;
+                    c = chk;
+                    c.Checked = false;
+                }
+            }
+            foreach (Control ctrl in gbJornadaPlanes.Controls)
+            {
+                if (ctrl is TextBox box)
+                {
+                    TextBox txt;
+                    txt = box;
+                    txt.Text = string.Empty;
+                }
+
+                if (ctrl is CheckBox chk)
+                {
+                    CheckBox c;
+                    c = chk;
+                    c.Text = "hh:mm";
+                    c.ForeColor = Color.DimGray;
+                }
             }
         }
 
@@ -655,9 +679,9 @@ namespace Gym
                 if (esAlta)
                 {
                     RegistrarNuevoPlan();
-                    AltaJornadaDePlan();
                     _bussinessPlanes.GetLastID(_planes);
                     idJornada = _planes.Plan_ID;
+                    AltaJornadaDePlan();
                     //Una vez dado de alta, actualizamos la lista.
                     CargarPlanes();
                     ResetControlsAltaPlan();

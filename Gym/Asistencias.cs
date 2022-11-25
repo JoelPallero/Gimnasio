@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,10 +40,13 @@ namespace Gym
         private DataSet DsAsistencias;
         private DataTable DtPlanes;
         private DataTable DtPlanesAsignados;
+        private DataTable dtAlumnosTotales;
+        private DataTable dtAlumnosPresentes;
         private bool camposVacios = true;
         private int cliente_ID;
         private int planSeleccionado;
-
+        private string diaDeLaSemana;
+        private string fechaBusqueda;
 
         #endregion
 
@@ -66,12 +70,51 @@ namespace Gym
 
             BuscarPlanes();
             buscarAsistenciasDiarias();
+
+            diaDeLaSemana = GetDiaDeLaSemana(DateTime.Now.ToString());
+            BuscarPlanesParaAsistenciaAlumnos();
+
             btnAsignarPlan.Enabled = false;
         }
+
+
+        //Si no busco un cliente enparticular, debería poder tmb cargar los planes del día
+        //y buscar el listado de alumnos por plan.
 
         #endregion
 
         #region Métodos encapsulados
+        private void GetJornadaDePlan()
+        {
+            bool esEmpleado = false;
+            bool darBaja = false;
+            int plan_ID = planSeleccionado;
+            Jornadas jn = new Jornadas(plan_ID, esEmpleado, darBaja);
+            jn.ShowDialog();
+        }
+
+        private void GetAlumosDeLaClase(string diaDeLaSemana)
+        {
+            //alumnos totales
+            _planes.Plan_ID = Convert.ToInt32(cmbClasesParaAsistencia.SelectedValue);
+            dtAlumnosTotales = _bussinessPlanes.GetAlumnoPorClase(_planes, diaDeLaSemana);
+
+            listAlumnosTotales.DataSource = dtAlumnosTotales;
+            listAlumnosTotales.DisplayMember = "Nombre";
+            listAlumnosTotales.ValueMember = "Cliente_ID";
+
+            //Vamos a convertir la fecha en el formato que corresponde.
+            string fechaPresente = dtFechabusqueda.Value.ToString();
+            fechaPresente = fechaPresente.Substring(0, 10);
+
+            //Alumnos presentes en la clase por fecha
+            _planes.Plan_ID = Convert.ToInt32(cmbClasesParaAsistencia.SelectedValue);
+            dtAlumnosPresentes = _bussinessPlanes.GetAlumnoPresentes(_planes, fechaPresente);
+
+            listAlumnosPresentes.DataSource = dtAlumnosPresentes;
+            listAlumnosPresentes.DisplayMember = "Nombre";
+            listAlumnosPresentes.ValueMember = "Cliente_ID";
+        }
         private void buscarAsistenciasDiarias()
         {
             if (txtBuscarAsistencias.Text == "Buscar")
@@ -110,19 +153,95 @@ namespace Gym
             cmbPlanesActivos.DisplayMember = "Nombre";
             cmbPlanesActivos.ValueMember = "Plan_ID";
         }
+
+        private void BusquedaDeClientesById()
+        {
+            DsClienteAsistencia = _bussinesClientes.BuscarClienteAsistenciaById(_planesAsignados);
+            ResetControlsCliente();
+            AcomodarDatos();
+            if (camposVacios)
+            {
+                camposVacios = false;
+            }
+        }
         private void BuscarDatosCliente()
         {
             DsClienteAsistencia = _bussinesClientes.BuscarClienteAsistencia(buscar);
             AcomodarDatos();
-            BuscarPlanesDeCliente();
+            camposVacios = false;
         }
-        private void BuscarPlanesDeCliente()
+        private void BuscarPlanesParaAsistenciaAlumnos()
         {
-            _planesAsignados.Cliente_ID = cliente_ID;
-            DtPlanesAsignados = _bussinesPlanesAsignados.VerClasesQueTieneElCliente(_planesAsignados);
-            cmbClaseDelCliente.DataSource = DtPlanesAsignados;
-            cmbClaseDelCliente.DisplayMember = "Nombre";
-            cmbClaseDelCliente.ValueMember = "Plan_Asignado_ID";
+            diaDeLaSemana = Normalizar(diaDeLaSemana);
+            _planes.Estado = "A";
+            DtPlanes = _bussinessPlanes.GetPlanesParaAsistencia(_planes, diaDeLaSemana);
+            cmbClasesParaAsistencia.DataSource = DtPlanes;
+            cmbClasesParaAsistencia.DisplayMember = "Nombre";
+            cmbClasesParaAsistencia.ValueMember = "Plan_ID";
+        }
+
+        private string Normalizar(string strDato)
+        {
+            /*se crean dos variables que van a contener las vocales con tilde y sin tilde
+             para luego poder reemplazar las uqe tengan tilde, por las que no y 
+            poder hacer una busqueda más exhaustiva*/
+            string strVocales = "aeiou";
+            string strVocalesTilde = "áéíóú";
+
+
+            //agarra la primer letra del parámetro de busqueda
+            for (int i = 0; i < strDato.Length; i++)
+            {
+                //hace el recoorido sobre el length de las vocales.
+                //como miden lo mismo, se puede poner 4. Sino, podría reemplazarse
+                // por "strVocales.length - 1" que sería 4.
+                //va 4 porque se cuenta el 0, contando el 0 no son 4 sino 5.
+                for (int j = 0; j < 4; j++)
+                {
+                    //la condición dice que si la letra que se está utilizando del parámetro de búsqueda
+                    //es igual a una de las vocales de las variables con tilde que se está recorriendo (con tilde
+                    //porque recordemos que hay que reemplazar las uqe tienen tilde por las uqe no)
+                    //entonces va a entrar en este if.
+                    if (strDato[i] == strVocalesTilde[j])
+                    {
+                        //para hacer que esa letra sea reemplazada por su vocal sin tilde.
+                        strDato = strDato.Replace(strDato[i], strVocales[j]);
+
+                        //rompe este último for, y pasa a la siguiente letra del parámetro de búsqueda
+                        break;
+                    }
+                }
+            }
+
+            //Colcaremos la primera letra del string, en mayúscula tmb.
+            string letras = "lmjvs";
+            string Letrotas = "LMJVS";
+            //agarra la primer letra del parámetro de busqueda
+            for (int i = 0; i < 1; i++)
+            {
+                //hace el recoorido sobre el length de las vocales.
+                //como miden lo mismo, se puede poner 4. Sino, podría reemplazarse
+                // por "strVocales.length - 1" que sería 4.
+                //va 4 porque se cuenta el 0, contando el 0 no son 4 sino 5.
+                for (int j = 0; j < 4; j++)
+                {
+                    //la condición dice que si la letra que se está utilizando del parámetro de búsqueda
+                    //es igual a una de las vocales de las variables con tilde que se está recorriendo (con tilde
+                    //porque recordemos que hay que reemplazar las uqe tienen tilde por las uqe no)
+                    //entonces va a entrar en este if.
+                    if (strDato[i] == letras[j])
+                    {
+                        //para hacer que esa letra sea reemplazada por su vocal sin tilde.
+                        strDato = strDato.Replace(strDato[i], Letrotas[j]);
+
+                        //rompe este último for, y pasa a la siguiente letra del parámetro de búsqueda
+                        break;
+                    }
+                }
+            }
+
+            //como el método es un string, debe devolver un string
+            return strDato;
         }
         private void AcomodarDatos()
         {
@@ -163,7 +282,7 @@ namespace Gym
             _asistencias.Fecha = DateTime.Now;
             _asistencias.Estado = "P";
             _asistencias.Empleado_ID = idEmpleadoLogin;
-            _asistencias.Plan_Asignado_ID = Convert.ToInt32(cmbClaseDelCliente.SelectedValue);
+            _asistencias.Plan_Asignado_ID = Convert.ToInt32(cmbClasesParaAsistencia.SelectedValue);
             _bussinessAsistencia.PutAsistencia(_asistencias);
         }
         private void BuscarDatosPlan()
@@ -214,38 +333,104 @@ namespace Gym
             _bussinessPlanes.EditarCupoRestante(_planes);
         }
 
+        private void BusquedaDeClientes()
+        {
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                ResetControlsCliente();
+                BuscarDatosCliente();
+                buscar = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("Tiene que buscar con un número de documento válido. No se adminten campos vacíos.",
+                   "Gestión en proceso", MessageBoxButtons.OKCancel);
+            }
+        }
+
         #endregion
-        
+
         #region Eventos
+        private void cmbPlanesActivos_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            //Me busca el precio, cupo total y restante.
+            BuscarDatosPlan();
+            //Busca los horarios
+        }
+        private void lblVerJornadas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            GetJornadaDePlan();
+        }
+        private void cmbClasesParaAsistencia_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            //verificar el día de la semana y buscar por día
+            //debo obtener qué día de la semana es ya sea para una búsqueda
+            //para ahora, o para otro día del pasado.
+            //sabiendo el día, puedo buscar determinado día en las jornadas
+            //y ya para búsquedas del pasado, solamente debo saber la fecha y buscar
+            //en las asistencias y hacer las comparaciones correspondientes.
+
+            diaDeLaSemana = GetDiaDeLaSemana(dtFechabusqueda.Value.ToString());
+            GetAlumosDeLaClase(diaDeLaSemana);
+        }
+
+        private string GetDiaDeLaSemana(string fecha)
+        {
+            //separo por partes la fecha
+            int dia = Convert.ToInt32(fecha.Substring(0, 2));
+            int mes = Convert.ToInt32(fecha.Substring(3, 2));
+            int anio = Convert.ToInt32(fecha.Substring(6, 4));
+
+            //paso los parametros a una nueva variable (no pude hacerlo
+            //directo desde el datetimepicker)
+            DateTime dateValue = new DateTime(anio, mes, dia);
+
+            //y devuelvo en string el día de la semana en español
+            return dateValue.ToString("dddd", new CultureInfo("es-ES"));
+        }
+
+        private void listAlumnos_DoubleClick(object sender, EventArgs e)
+        {
+
+            _planesAsignados.Cliente_ID = Convert.ToInt32(listAlumnosTotales.SelectedValue);
+            _planesAsignados.Plan_ID = Convert.ToInt32(cmbClasesParaAsistencia.SelectedValue);
+            if (cliente_ID != _planesAsignados.Cliente_ID)
+            {
+                if (camposVacios)
+                {
+                    BusquedaDeClientesById();
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Tiene un cliente cargado. ¿Quiere interrumpir la gestión y buscar un cliente nuevo?",
+                           "Gestión en proceso", MessageBoxButtons.OKCancel);
+                    if (result == DialogResult.OK)
+                    {
+                        BusquedaDeClientesById();
+                    }
+                }
+            }
+        }
         private void txtBuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
+            listAlumnosTotales.ClearSelected();
             buscar = txtBuscarCliente.Text;
             _restricciones.SoloNumeros(e, buscar);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (camposVacios)
                 {
-                    if (!string.IsNullOrEmpty(buscar))
-                    {
-                        ResetControlsCliente();
-                        BuscarDatosCliente();
-                        buscar = string.Empty;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Tiene que buscar con un número de documento válido. No se adminten campos vacíos.",
-                           "Gestión en proceso", MessageBoxButtons.OKCancel);
-                    }
+                    BusquedaDeClientes();
                 }
                 else
                 {
                     DialogResult result = MessageBox.Show("Tiene un cliente cargado. ¿Quiere interrumpir la gestión y buscar un cliente nuevo?",
-                        "Gestión en proceso", MessageBoxButtons.OKCancel);
+                           "Gestión en proceso", MessageBoxButtons.OKCancel);
                     if (result == DialogResult.OK)
                     {
-                        ResetControlsCliente();
-                        BuscarDatosCliente();
+                        BusquedaDeClientes();
                     }
+
                 }
             }
         }
@@ -263,8 +448,7 @@ namespace Gym
                 ColocarAsistencia();
                 buscarAsistenciasDiarias();
 
-                MessageBox.Show($"Asistencia registrada correctamente para {lblNombreCliente.Text}, el día de la fecha." +
-                    "colocar la asistencia.",
+                MessageBox.Show($"Asistencia registrada correctamente para {(listAlumnosTotales.SelectedItem.ToString())}, el día de la fecha.",
                            "Asistencia OK.", MessageBoxButtons.OKCancel);
             }
         }
@@ -330,26 +514,22 @@ namespace Gym
 
         #endregion
 
-        private void cmbPlanesActivos_SelectionChangeCommitted(object sender, EventArgs e)
+
+        private void BuscarPlanesAsistenchaConFecha()
         {
-            //Me busca el precio, cupo total y restante.
-            BuscarDatosPlan();
-            //Busca los horarios
+            diaDeLaSemana = Normalizar(diaDeLaSemana);
+            _planes.Estado = "A";
+            DtPlanes = _bussinessPlanes.GetPlanesConFecha(_planes, diaDeLaSemana, fechaBusqueda);
+            cmbClasesParaAsistencia.DataSource = DtPlanes;
+            cmbClasesParaAsistencia.DisplayMember = "Nombre";
+            cmbClasesParaAsistencia.ValueMember = "Plan_ID";
         }
 
-
-        private void lblVerJornadas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void dtFechabusqueda_ValueChanged(object sender, EventArgs e)
         {
-            GetJornadaDePlan();
-        }
-
-        private void GetJornadaDePlan()
-        {
-            bool esEmpleado = false;
-            bool darBaja = false;
-            int plan_ID = planSeleccionado;
-            Jornadas jn = new Jornadas(plan_ID, esEmpleado, darBaja);
-            jn.ShowDialog();
+            diaDeLaSemana = GetDiaDeLaSemana(dtFechabusqueda.Value.ToString());
+            fechaBusqueda = dtFechabusqueda.Value.ToString();
+            BuscarPlanesAsistenchaConFecha();
         }
     }
 }
