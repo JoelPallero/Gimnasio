@@ -231,18 +231,22 @@ namespace AccesoDatos
             }
             else
             {
-                query = @"select Cajas.Caja_ID, Cajas.Fecha, Cajas.Importe_Inicial, Cajas.Importe_Final, Personas.Nombre
-                        from Cajas
+                query = @"select Cajas.Caja_ID, Cajas.Fecha, Cajas.Importe_Inicial, Cajas.Importe_Final,
+                            Detalles_Cajas.Importe_Ingreso, Detalles_Cajas.Importe_Egreso, Detalles_Cajas.Motivo, 
+                            Personas.Apellido
+                        from Detalles_Cajas
+                        inner join Cajas
+                            on Cajas.Caja_ID = Detalles_Cajas.Caja_ID
                         inner join Empleados
-                        on Empleados.Empleado_ID = Cajas.Empleado_ID_Apertura
+                            on Empleados.Empleado_ID = Detalles_Cajas.Empleado_ID
                         inner join Personas
-                        on Empleados.Persona_ID = Personas.Persona_ID
-                        where Cajas.Caja_ID like @Parametro
-                        or Cajas.Fecha like @Parametro
-                        or Cajas.Importe_Inicial like @Parametro
-                        or Cajas.Importe_Final like @Parametro
-                        or Personas.Nombre like @Parametro
-                        order by Cajas.Fecha asc"
+                            on Personas.Persona_ID = Empleados.Persona_ID
+                        where Cajas.Caja_ID like @Parametro 
+                            or Cajas.Fecha like @Parametro
+                            or Detalles_Cajas.Fecha = @Parametro
+                            or Personas.Apellido like @Parametro
+                            or Detalles_Cajas.Motivo like @Parametro
+                        order by Fecha asc"
                 ;                
             }
             SqlCommand cmd = new SqlCommand(query, conexion)

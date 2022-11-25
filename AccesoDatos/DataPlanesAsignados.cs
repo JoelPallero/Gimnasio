@@ -49,14 +49,14 @@ namespace AccesoDatos
             int resultado = -1;
 
             string query = @"insert into Planes_Asignados 
-                            (Plan_ID, Cliente_ID, Empleado_ID, Fecha_Inicio, Estado)
-                            values (@Plan_ID, @Cliente_ID, @Empleado_ID, @Fecha_Inicio, @Estado)"
+                            (Plan_ID, Cliente_ID, Empleado_ID, Fecha_Inscripcion, Estado)
+                            values (@Plan_ID, @Cliente_ID, @Empleado_ID, @Fecha_Inscripcion, @Estado)"
             ;
 
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes_Asignados.Plan_ID);
             SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", planes_Asignados.Cliente_ID);
             SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", planes_Asignados.Empleado_ID);
-            SqlParameter fecha_Inicio = new SqlParameter("@Fecha_Inicio", planes_Asignados.Fecha_Inicio);
+            SqlParameter fecha_Inscripcion = new SqlParameter("@Fecha_Inscripcion", planes_Asignados.Fecha_Inscripcion);
             SqlParameter estado = new SqlParameter("@Estado", planes_Asignados.Estado);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
@@ -64,7 +64,7 @@ namespace AccesoDatos
             cmd.Parameters.Add(plan_ID);
             cmd.Parameters.Add(cliente_ID);
             cmd.Parameters.Add(empleado_ID);
-            cmd.Parameters.Add(fecha_Inicio);
+            cmd.Parameters.Add(fecha_Inscripcion);
             cmd.Parameters.Add(estado);
 
             try

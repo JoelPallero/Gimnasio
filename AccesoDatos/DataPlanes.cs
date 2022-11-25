@@ -80,6 +80,40 @@ namespace AccesoDatos
             return dt;
         }
 
+        public int EliminarPlan(Planes planes)
+        {
+            int resultado = -1;
+
+            string query = @"update Planes set Estado = @Estado where Plan_ID = @Plan_ID;
+                             update Planes_Asignados set Estado = @Estado where Plan_ID = @Plan_ID;
+                             update Jornadas_Planes set Estado = @Estado where Plan_ID = @Plan_ID"
+            ;
+
+            SqlParameter estado = new SqlParameter("@Estado", "I");
+            SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(estado);
+
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return resultado;
+        }
+
         public DataTable GetPlanesConFecha(Planes planes, string diaDeLaSemana, string fecha)
         {
             string query = @"";

@@ -64,5 +64,10 @@ namespace BussinessLayer
         {
             return _dataPlanes.GetAlumnoPresentes(planes, fechaPresente);
         }
+
+        public int EliminarPlan(Planes planes)
+        {
+            return _dataPlanes.EliminarPlan(planes);
+        }
     }
 }

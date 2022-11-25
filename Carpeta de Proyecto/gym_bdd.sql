@@ -127,10 +127,10 @@ Importe_Plan decimal (18, 0) not null,
 Duracion int null,
 Cupo_Total int null,
 Cupo_Restante int null,
-Fecha_Inicio date null,  /* fecha de inicio */
-Fecha_Fin date null,     /* fecha de cierre */
 Estado nvarchar (1) not null,
-Fecha_Alta_Plan date null
+Fecha_Alta_Plan date null,
+Fecha_Inicio date null,  /* fecha de inicio */
+Fecha_Fin date null     /* fecha de cierre */
 )
 
 go
@@ -334,7 +334,13 @@ go
 /* Caja */
 
 alter table Cajas
-add CONSTRAINT FK_Cajas_Empleado FOREIGN KEY (Empleado_ID) 
+add CONSTRAINT FK_Cajas_Empleado_Apertura FOREIGN KEY (Empleado_ID_Apertura) 
+REFERENCES Empleados (Empleado_ID)
+
+go
+
+alter table Cajas
+add CONSTRAINT FK_Cajas_Empleado_Cierre FOREIGN KEY (Empleado_ID_Cierre) 
 REFERENCES Empleados (Empleado_ID)
 
 go
@@ -598,18 +604,6 @@ and Importe_Final = null
 
 go
 
-create procedure sp_get_cajas
-as
-select Cajas.Caja_ID, Cajas.Fecha, Cajas.Importe_Inicial, Cajas.Importe_Final, Personas.Nombre
-from Cajas
-inner join Empleados
-on Empleados.Empleado_ID = Cajas.Empleado_ID
-inner join Personas
-on Empleados.Persona_ID = Personas.Persona_ID
-order by Cajas.Fecha desc
-
-go
-
 create procedure sp_get_Asistencias_diarias
 as
 select Clientes.Cliente_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Planes.Nombre, Asistencias.Estado
@@ -624,6 +618,22 @@ inner join Planes
 on Planes.Plan_ID = Planes_Asignados.Plan_ID
 where Asistencias.Fecha between GETDATE() - 1 and GETDATE()
 order by Asistencias.Fecha desc
+
+go
+
+create procedure sp_get_cajas
+as
+select Cajas.Caja_ID, Cajas.Fecha, Cajas.Importe_Inicial, Cajas.Importe_Final,
+Detalles_Cajas.Importe_Ingreso, Detalles_Cajas.Importe_Egreso, Detalles_Cajas.Motivo, 
+Personas.Apellido
+from Detalles_Cajas
+inner join Cajas
+on Cajas.Caja_ID = Detalles_Cajas.Caja_ID
+inner join Empleados
+on Empleados.Empleado_ID = Detalles_Cajas.Empleado_ID
+inner join Personas
+on Personas.Persona_ID = Empleados.Persona_ID
+order by Fecha desc
 
 go
 
@@ -646,34 +656,43 @@ go
 --and Asistencias.Fecha = '22/11/2022'
 
 
---use gym
+----use gym
 
-set dateformat dmy;
+--set dateformat dmy;
 
-select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
-from Planes
-inner join Jornadas_Planes
-on Jornadas_Planes.Plan_ID = Planes.Plan_ID
-where Planes.Estado = 'A'
-and Planes.Fecha_Inicio <= '21/11/2022'
-and Jornadas_Planes.Dia = 'Todos'
-or Jornadas_Planes.Dia = 'Lunes'
+--select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
+--from Planes
+--inner join Jornadas_Planes
+--on Jornadas_Planes.Plan_ID = Planes.Plan_ID
+--where Planes.Estado = 'A'
+--and Planes.Fecha_Inicio <= '21/11/2022'
+--and Jornadas_Planes.Dia = 'Todos'
+--or Jornadas_Planes.Dia = 'Lunes'
 
-select * from Planes
-select * from Jornadas_Planes
+--select * from Planes
+--select * from Jornadas_Planes
 
 
-set dateformat dmy;
-if exists (select max(Importe_Final) from Cajas where Importe_Final != null or Importe_Final != 0 and Fecha = '23/11/2022' and Empleado_ID_Apertura = 0)
-begin
-select max(Importe_Final) as Resultado from Cajas where Importe_Final != null or Importe_Final != 0 and Fecha = '23/11/2022' and Empleado_ID_Apertura = 0
-end
+--set dateformat dmy;
+--if exists (select max(Importe_Final) from Cajas where Importe_Final != null or Importe_Final != 0 and Fecha = '23/11/2022' and Empleado_ID_Apertura = 0)
+--begin
+--select max(Importe_Final) as Resultado from Cajas where Importe_Final != null or Importe_Final != 0 and Fecha = '23/11/2022' and Empleado_ID_Apertura = 0
+--end
 
-if exists (select Caja_ID from Cajas
-where Caja_ID = (select max(Caja_ID) from Cajas)
-and Importe_Final = null)
-begin 
-select Caja_ID as Caja_ID from Cajas
-where Caja_ID = (select max(Caja_ID) from Cajas)
-and Importe_Final = null
-end
+--if exists (select Caja_ID from Cajas
+--where Caja_ID = (select max(Caja_ID) from Cajas)
+--and Importe_Final = null)
+--begin 
+--select Caja_ID as Caja_ID from Cajas
+--where Caja_ID = (select max(Caja_ID) from Cajas)
+--and Importe_Final = null
+--end
+
+--go
+
+
+
+
+
+
+

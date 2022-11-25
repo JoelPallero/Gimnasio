@@ -38,7 +38,7 @@ namespace Gym
             this.menuPlanes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnEditarPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEliminarPlan = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtBuscarPlan = new System.Windows.Forms.TextBox();
+            this.txtBuscarClase = new System.Windows.Forms.TextBox();
             this.dtgvPlanes = new System.Windows.Forms.DataGridView();
             this.Plan_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,8 +80,6 @@ namespace Gym
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.gbJornadaPlanes = new System.Windows.Forms.GroupBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
             this.chkTodos = new System.Windows.Forms.CheckBox();
             this.txtHastaSabado = new System.Windows.Forms.TextBox();
             this.txtDesdeSabado = new System.Windows.Forms.TextBox();
@@ -101,6 +99,8 @@ namespace Gym
             this.chkLunes = new System.Windows.Forms.CheckBox();
             this.txtHastaLunes = new System.Windows.Forms.TextBox();
             this.txtDesdeLunes = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.menuPlanes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPlanes)).BeginInit();
             this.tabControl2.SuspendLayout();
@@ -119,31 +119,31 @@ namespace Gym
             this.btnEditarPlan,
             this.btnEliminarPlan});
             this.menuPlanes.Name = "contextMenuStrip1";
-            this.menuPlanes.Size = new System.Drawing.Size(118, 48);
+            this.menuPlanes.Size = new System.Drawing.Size(133, 52);
             // 
             // btnEditarPlan
             // 
             this.btnEditarPlan.Name = "btnEditarPlan";
-            this.btnEditarPlan.Size = new System.Drawing.Size(117, 22);
+            this.btnEditarPlan.Size = new System.Drawing.Size(132, 24);
             this.btnEditarPlan.Text = "Editar";
             this.btnEditarPlan.Click += new System.EventHandler(this.btnEditarPlan_Click);
             // 
             // btnEliminarPlan
             // 
             this.btnEliminarPlan.Name = "btnEliminarPlan";
-            this.btnEliminarPlan.Size = new System.Drawing.Size(117, 22);
+            this.btnEliminarPlan.Size = new System.Drawing.Size(132, 24);
             this.btnEliminarPlan.Text = "Eliminar";
-            this.btnEliminarPlan.Click += new System.EventHandler(this.btnEliminarJornadaPlan_Click);
+            this.btnEliminarPlan.Click += new System.EventHandler(this.btnEliminarPlan_Click);
             // 
-            // txtBuscarPlan
+            // txtBuscarClase
             // 
-            this.txtBuscarPlan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtBuscarPlan.Location = new System.Drawing.Point(392, 338);
-            this.txtBuscarPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBuscarPlan.Name = "txtBuscarPlan";
-            this.txtBuscarPlan.Size = new System.Drawing.Size(304, 23);
-            this.txtBuscarPlan.TabIndex = 50;
-            this.txtBuscarPlan.Text = "Buscar Clase";
+            this.txtBuscarClase.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtBuscarClase.Location = new System.Drawing.Point(392, 338);
+            this.txtBuscarClase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBuscarClase.Name = "txtBuscarClase";
+            this.txtBuscarClase.Size = new System.Drawing.Size(304, 27);
+            this.txtBuscarClase.TabIndex = 26;
+            this.txtBuscarClase.Text = "Buscar Clase";
             // 
             // dtgvPlanes
             // 
@@ -246,11 +246,11 @@ namespace Gym
             this.tabPage3.Controls.Add(this.txtBuscarCliente);
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.groupBox2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage3.Size = new System.Drawing.Size(692, 296);
+            this.tabPage3.Size = new System.Drawing.Size(692, 291);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Asignar Plan";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -261,7 +261,7 @@ namespace Gym
             this.txtBuscarCliente.Location = new System.Drawing.Point(28, 11);
             this.txtBuscarCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
-            this.txtBuscarCliente.Size = new System.Drawing.Size(304, 23);
+            this.txtBuscarCliente.Size = new System.Drawing.Size(304, 27);
             this.txtBuscarCliente.TabIndex = 51;
             this.txtBuscarCliente.Text = "DNI";
             this.txtBuscarCliente.Enter += new System.EventHandler(this.txtBuscarCliente_Enter);
@@ -292,7 +292,7 @@ namespace Gym
             this.lblVerJornadas.AutoSize = true;
             this.lblVerJornadas.Location = new System.Drawing.Point(267, 22);
             this.lblVerJornadas.Name = "lblVerJornadas";
-            this.lblVerJornadas.Size = new System.Drawing.Size(71, 15);
+            this.lblVerJornadas.Size = new System.Drawing.Size(91, 20);
             this.lblVerJornadas.TabIndex = 34;
             this.lblVerJornadas.TabStop = true;
             this.lblVerJornadas.Text = "Ver jornadas";
@@ -303,7 +303,7 @@ namespace Gym
             this.lblCuposTotales.AutoSize = true;
             this.lblCuposTotales.Location = new System.Drawing.Point(298, 59);
             this.lblCuposTotales.Name = "lblCuposTotales";
-            this.lblCuposTotales.Size = new System.Drawing.Size(19, 15);
+            this.lblCuposTotales.Size = new System.Drawing.Size(25, 20);
             this.lblCuposTotales.TabIndex = 30;
             this.lblCuposTotales.Text = "10";
             // 
@@ -312,7 +312,7 @@ namespace Gym
             this.lblCuposRestantes.AutoSize = true;
             this.lblCuposRestantes.Location = new System.Drawing.Point(267, 59);
             this.lblCuposRestantes.Name = "lblCuposRestantes";
-            this.lblCuposRestantes.Size = new System.Drawing.Size(19, 15);
+            this.lblCuposRestantes.Size = new System.Drawing.Size(25, 20);
             this.lblCuposRestantes.TabIndex = 29;
             this.lblCuposRestantes.Text = "10";
             this.lblCuposRestantes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -322,7 +322,7 @@ namespace Gym
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(22, 33);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(104, 15);
+            this.label13.Size = new System.Drawing.Size(131, 20);
             this.label13.TabIndex = 27;
             this.label13.Text = "Planes disponibles";
             // 
@@ -331,7 +331,7 @@ namespace Gym
             this.lblCostoMensual.AutoSize = true;
             this.lblCostoMensual.Location = new System.Drawing.Point(22, 89);
             this.lblCostoMensual.Name = "lblCostoMensual";
-            this.lblCostoMensual.Size = new System.Drawing.Size(98, 15);
+            this.lblCostoMensual.Size = new System.Drawing.Size(121, 20);
             this.lblCostoMensual.TabIndex = 26;
             this.lblCostoMensual.Text = "Costo mensual: $";
             // 
@@ -341,7 +341,7 @@ namespace Gym
             this.cmbPlanesActivos.FormattingEnabled = true;
             this.cmbPlanesActivos.Location = new System.Drawing.Point(20, 56);
             this.cmbPlanesActivos.Name = "cmbPlanesActivos";
-            this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 23);
+            this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 28);
             this.cmbPlanesActivos.TabIndex = 25;
             this.cmbPlanesActivos.SelectionChangeCommitted += new System.EventHandler(this.cmbPlanesActivos_SelectionChangeCommitted);
             // 
@@ -365,7 +365,7 @@ namespace Gym
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(288, 59);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(12, 15);
+            this.label15.Size = new System.Drawing.Size(15, 20);
             this.label15.TabIndex = 31;
             this.label15.Text = "/";
             // 
@@ -393,7 +393,7 @@ namespace Gym
             this.lblPlanesAsignadosCliente.Location = new System.Drawing.Point(453, 54);
             this.lblPlanesAsignadosCliente.MaximumSize = new System.Drawing.Size(250, 0);
             this.lblPlanesAsignadosCliente.Name = "lblPlanesAsignadosCliente";
-            this.lblPlanesAsignadosCliente.Size = new System.Drawing.Size(0, 15);
+            this.lblPlanesAsignadosCliente.Size = new System.Drawing.Size(0, 20);
             this.lblPlanesAsignadosCliente.TabIndex = 26;
             // 
             // btnEliminarPlanes
@@ -417,7 +417,7 @@ namespace Gym
             this.lblPlanesCliente.Location = new System.Drawing.Point(358, 54);
             this.lblPlanesCliente.MaximumSize = new System.Drawing.Size(250, 0);
             this.lblPlanesCliente.Name = "lblPlanesCliente";
-            this.lblPlanesCliente.Size = new System.Drawing.Size(70, 15);
+            this.lblPlanesCliente.Size = new System.Drawing.Size(86, 20);
             this.lblPlanesCliente.TabIndex = 14;
             this.lblPlanesCliente.Text = "Plan Actual:";
             // 
@@ -426,7 +426,7 @@ namespace Gym
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Location = new System.Drawing.Point(22, 80);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(58, 15);
+            this.lblTelefono.Size = new System.Drawing.Size(74, 20);
             this.lblTelefono.TabIndex = 13;
             this.lblTelefono.Text = "Telefono: ";
             // 
@@ -435,7 +435,7 @@ namespace Gym
             this.lblMail.AutoSize = true;
             this.lblMail.Location = new System.Drawing.Point(358, 32);
             this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(36, 15);
+            this.lblMail.Size = new System.Drawing.Size(45, 20);
             this.lblMail.TabIndex = 11;
             this.lblMail.Text = "Mail: ";
             // 
@@ -444,7 +444,7 @@ namespace Gym
             this.lblDocumento.AutoSize = true;
             this.lblDocumento.Location = new System.Drawing.Point(22, 54);
             this.lblDocumento.Name = "lblDocumento";
-            this.lblDocumento.Size = new System.Drawing.Size(33, 15);
+            this.lblDocumento.Size = new System.Drawing.Size(42, 20);
             this.lblDocumento.TabIndex = 9;
             this.lblDocumento.Text = "DNI: ";
             // 
@@ -453,7 +453,7 @@ namespace Gym
             this.lblNombre.AutoSize = true;
             this.lblNombre.Location = new System.Drawing.Point(22, 32);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(57, 15);
+            this.lblNombre.Size = new System.Drawing.Size(71, 20);
             this.lblNombre.TabIndex = 7;
             this.lblNombre.Text = "Nombre: ";
             // 
@@ -462,11 +462,11 @@ namespace Gym
             this.tabPage4.Controls.Add(this.btnAltaPlan);
             this.tabPage4.Controls.Add(this.gpDatosPlan);
             this.tabPage4.Controls.Add(this.gbJornadaPlanes);
-            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage4.Size = new System.Drawing.Size(692, 296);
+            this.tabPage4.Size = new System.Drawing.Size(692, 291);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Alta de Planes";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -481,7 +481,7 @@ namespace Gym
             this.btnAltaPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAltaPlan.Name = "btnAltaPlan";
             this.btnAltaPlan.Size = new System.Drawing.Size(307, 46);
-            this.btnAltaPlan.TabIndex = 88;
+            this.btnAltaPlan.TabIndex = 25;
             this.btnAltaPlan.Text = "Guardar Clase";
             this.btnAltaPlan.UseVisualStyleBackColor = false;
             this.btnAltaPlan.Click += new System.EventHandler(this.btnAltaPlan_Click);
@@ -512,55 +512,55 @@ namespace Gym
             // txtImporte
             // 
             this.txtImporte.ForeColor = System.Drawing.Color.Black;
-            this.txtImporte.Location = new System.Drawing.Point(19, 101);
+            this.txtImporte.Location = new System.Drawing.Point(19, 104);
             this.txtImporte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtImporte.Name = "txtImporte";
-            this.txtImporte.Size = new System.Drawing.Size(156, 23);
+            this.txtImporte.Size = new System.Drawing.Size(156, 27);
             this.txtImporte.TabIndex = 1;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(15, 181);
+            this.label26.Location = new System.Drawing.Point(15, 196);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(51, 15);
+            this.label26.Size = new System.Drawing.Size(64, 20);
             this.label26.TabIndex = 92;
             this.label26.Text = "Profesor";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(15, 82);
+            this.label27.Location = new System.Drawing.Point(15, 85);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(86, 15);
+            this.label27.Size = new System.Drawing.Size(106, 20);
             this.label27.TabIndex = 91;
             this.label27.Text = "Costo Mensual";
             // 
             // dtpFechaInicio
             // 
             this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaInicio.Location = new System.Drawing.Point(181, 153);
+            this.dtpFechaInicio.Location = new System.Drawing.Point(181, 160);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
-            this.dtpFechaInicio.Size = new System.Drawing.Size(154, 23);
-            this.dtpFechaInicio.TabIndex = 6;
+            this.dtpFechaInicio.Size = new System.Drawing.Size(154, 27);
+            this.dtpFechaInicio.TabIndex = 4;
             // 
             // txtDuracion
             // 
             this.txtDuracion.ForeColor = System.Drawing.Color.Black;
-            this.txtDuracion.Location = new System.Drawing.Point(19, 153);
+            this.txtDuracion.Location = new System.Drawing.Point(19, 160);
             this.txtDuracion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDuracion.Name = "txtDuracion";
-            this.txtDuracion.Size = new System.Drawing.Size(156, 23);
-            this.txtDuracion.TabIndex = 4;
+            this.txtDuracion.Size = new System.Drawing.Size(156, 27);
+            this.txtDuracion.TabIndex = 3;
             // 
             // txtCupoTotal
             // 
             this.txtCupoTotal.ForeColor = System.Drawing.Color.Black;
-            this.txtCupoTotal.Location = new System.Drawing.Point(181, 101);
+            this.txtCupoTotal.Location = new System.Drawing.Point(181, 104);
             this.txtCupoTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCupoTotal.Name = "txtCupoTotal";
-            this.txtCupoTotal.Size = new System.Drawing.Size(155, 23);
-            this.txtCupoTotal.TabIndex = 5;
+            this.txtCupoTotal.Size = new System.Drawing.Size(155, 27);
+            this.txtCupoTotal.TabIndex = 2;
             // 
             // txtNombrePlan
             // 
@@ -568,53 +568,53 @@ namespace Gym
             this.txtNombrePlan.Location = new System.Drawing.Point(19, 49);
             this.txtNombrePlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombrePlan.Name = "txtNombrePlan";
-            this.txtNombrePlan.Size = new System.Drawing.Size(317, 23);
-            this.txtNombrePlan.TabIndex = 86;
+            this.txtNombrePlan.Size = new System.Drawing.Size(317, 27);
+            this.txtNombrePlan.TabIndex = 0;
             // 
             // cmbProfesores
             // 
             this.cmbProfesores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProfesores.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cmbProfesores.FormattingEnabled = true;
-            this.cmbProfesores.Location = new System.Drawing.Point(18, 198);
+            this.cmbProfesores.Location = new System.Drawing.Point(18, 216);
             this.cmbProfesores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbProfesores.Name = "cmbProfesores";
-            this.cmbProfesores.Size = new System.Drawing.Size(317, 23);
-            this.cmbProfesores.TabIndex = 3;
+            this.cmbProfesores.Size = new System.Drawing.Size(317, 28);
+            this.cmbProfesores.TabIndex = 5;
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(25, 30);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(108, 15);
+            this.label28.Size = new System.Drawing.Size(138, 20);
             this.label28.TabIndex = 90;
             this.label28.Text = "Nombre de la clase";
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(178, 82);
+            this.label29.Location = new System.Drawing.Point(178, 85);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(79, 15);
+            this.label29.Size = new System.Drawing.Size(99, 20);
             this.label29.TabIndex = 94;
             this.label29.Text = "Cupos totales";
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(16, 136);
+            this.label30.Location = new System.Drawing.Point(16, 143);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(55, 15);
+            this.label30.Size = new System.Drawing.Size(69, 20);
             this.label30.TabIndex = 93;
             this.label30.Text = "Duración";
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(178, 137);
+            this.label31.Location = new System.Drawing.Point(178, 144);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(86, 15);
+            this.label31.Size = new System.Drawing.Size(108, 20);
             this.label31.TabIndex = 95;
             this.label31.Text = "Fecha de Inicio";
             // 
@@ -650,32 +650,14 @@ namespace Gym
             this.gbJornadaPlanes.TabStop = false;
             this.gbJornadaPlanes.Text = "Días y horarios";
             // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(233, 48);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(37, 15);
-            this.label23.TabIndex = 29;
-            this.label23.Text = "Hasta";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(149, 48);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(39, 15);
-            this.label24.TabIndex = 28;
-            this.label24.Text = "Desde";
-            // 
             // chkTodos
             // 
             this.chkTodos.AutoSize = true;
             this.chkTodos.Location = new System.Drawing.Point(10, 27);
             this.chkTodos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkTodos.Name = "chkTodos";
-            this.chkTodos.Size = new System.Drawing.Size(119, 19);
-            this.chkTodos.TabIndex = 9;
+            this.chkTodos.Size = new System.Drawing.Size(149, 24);
+            this.chkTodos.TabIndex = 6;
             this.chkTodos.Text = "Seleccionar todos";
             this.chkTodos.UseVisualStyleBackColor = true;
             this.chkTodos.Click += new System.EventHandler(this.chkTodos_Click);
@@ -689,8 +671,8 @@ namespace Gym
             this.txtHastaSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHastaSabado.MaxLength = 5;
             this.txtHastaSabado.Name = "txtHastaSabado";
-            this.txtHastaSabado.Size = new System.Drawing.Size(81, 23);
-            this.txtHastaSabado.TabIndex = 27;
+            this.txtHastaSabado.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaSabado.TabIndex = 24;
             this.txtHastaSabado.Text = "hh:mm";
             this.txtHastaSabado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaSabado.Enter += new System.EventHandler(this.txtHastaSabado_Enter);
@@ -705,8 +687,8 @@ namespace Gym
             this.txtDesdeSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDesdeSabado.MaxLength = 5;
             this.txtDesdeSabado.Name = "txtDesdeSabado";
-            this.txtDesdeSabado.Size = new System.Drawing.Size(81, 23);
-            this.txtDesdeSabado.TabIndex = 26;
+            this.txtDesdeSabado.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeSabado.TabIndex = 23;
             this.txtDesdeSabado.Text = "hh:mm";
             this.txtDesdeSabado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeSabado.Enter += new System.EventHandler(this.txtDesdeSabado_Enter);
@@ -721,8 +703,8 @@ namespace Gym
             this.txtHastaViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHastaViernes.MaxLength = 5;
             this.txtHastaViernes.Name = "txtHastaViernes";
-            this.txtHastaViernes.Size = new System.Drawing.Size(81, 23);
-            this.txtHastaViernes.TabIndex = 24;
+            this.txtHastaViernes.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaViernes.TabIndex = 21;
             this.txtHastaViernes.Text = "hh:mm";
             this.txtHastaViernes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaViernes.Enter += new System.EventHandler(this.txtHastaViernes_Enter);
@@ -737,8 +719,8 @@ namespace Gym
             this.txtDesdeViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDesdeViernes.MaxLength = 5;
             this.txtDesdeViernes.Name = "txtDesdeViernes";
-            this.txtDesdeViernes.Size = new System.Drawing.Size(81, 23);
-            this.txtDesdeViernes.TabIndex = 23;
+            this.txtDesdeViernes.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeViernes.TabIndex = 20;
             this.txtDesdeViernes.Text = "hh:mm";
             this.txtDesdeViernes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeViernes.Enter += new System.EventHandler(this.txtDesdeViernes_Enter);
@@ -753,8 +735,8 @@ namespace Gym
             this.txtHastaJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHastaJueves.MaxLength = 5;
             this.txtHastaJueves.Name = "txtHastaJueves";
-            this.txtHastaJueves.Size = new System.Drawing.Size(81, 23);
-            this.txtHastaJueves.TabIndex = 21;
+            this.txtHastaJueves.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaJueves.TabIndex = 18;
             this.txtHastaJueves.Text = "hh:mm";
             this.txtHastaJueves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaJueves.Enter += new System.EventHandler(this.txtHastaJueves_Enter);
@@ -769,8 +751,8 @@ namespace Gym
             this.txtDesdeJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDesdeJueves.MaxLength = 5;
             this.txtDesdeJueves.Name = "txtDesdeJueves";
-            this.txtDesdeJueves.Size = new System.Drawing.Size(81, 23);
-            this.txtDesdeJueves.TabIndex = 20;
+            this.txtDesdeJueves.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeJueves.TabIndex = 17;
             this.txtDesdeJueves.Text = "hh:mm";
             this.txtDesdeJueves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeJueves.Enter += new System.EventHandler(this.txtDesdeJueves_Enter);
@@ -785,8 +767,8 @@ namespace Gym
             this.txtHastaMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHastaMiercoles.MaxLength = 5;
             this.txtHastaMiercoles.Name = "txtHastaMiercoles";
-            this.txtHastaMiercoles.Size = new System.Drawing.Size(81, 23);
-            this.txtHastaMiercoles.TabIndex = 18;
+            this.txtHastaMiercoles.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaMiercoles.TabIndex = 15;
             this.txtHastaMiercoles.Text = "hh:mm";
             this.txtHastaMiercoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaMiercoles.Enter += new System.EventHandler(this.txtHastaMiercoles_Enter);
@@ -801,8 +783,8 @@ namespace Gym
             this.txtDesdeMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDesdeMiercoles.MaxLength = 5;
             this.txtDesdeMiercoles.Name = "txtDesdeMiercoles";
-            this.txtDesdeMiercoles.Size = new System.Drawing.Size(81, 23);
-            this.txtDesdeMiercoles.TabIndex = 17;
+            this.txtDesdeMiercoles.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeMiercoles.TabIndex = 14;
             this.txtDesdeMiercoles.Text = "hh:mm";
             this.txtDesdeMiercoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeMiercoles.Enter += new System.EventHandler(this.txtDesdeMiercoles_Enter);
@@ -817,8 +799,8 @@ namespace Gym
             this.txtHastaMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHastaMartes.MaxLength = 5;
             this.txtHastaMartes.Name = "txtHastaMartes";
-            this.txtHastaMartes.Size = new System.Drawing.Size(81, 23);
-            this.txtHastaMartes.TabIndex = 15;
+            this.txtHastaMartes.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaMartes.TabIndex = 12;
             this.txtHastaMartes.Text = "hh:mm";
             this.txtHastaMartes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaMartes.Enter += new System.EventHandler(this.txtHastaMartes_Enter);
@@ -833,8 +815,8 @@ namespace Gym
             this.txtDesdeMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDesdeMartes.MaxLength = 5;
             this.txtDesdeMartes.Name = "txtDesdeMartes";
-            this.txtDesdeMartes.Size = new System.Drawing.Size(81, 23);
-            this.txtDesdeMartes.TabIndex = 14;
+            this.txtDesdeMartes.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeMartes.TabIndex = 11;
             this.txtDesdeMartes.Text = "hh:mm";
             this.txtDesdeMartes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeMartes.Enter += new System.EventHandler(this.txtDesdeMartes_Enter);
@@ -846,8 +828,8 @@ namespace Gym
             this.chkSabado.Location = new System.Drawing.Point(10, 188);
             this.chkSabado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkSabado.Name = "chkSabado";
-            this.chkSabado.Size = new System.Drawing.Size(65, 19);
-            this.chkSabado.TabIndex = 25;
+            this.chkSabado.Size = new System.Drawing.Size(82, 24);
+            this.chkSabado.TabIndex = 22;
             this.chkSabado.Text = "Sabado";
             this.chkSabado.UseVisualStyleBackColor = true;
             this.chkSabado.Click += new System.EventHandler(this.chkSabado_Click);
@@ -858,8 +840,8 @@ namespace Gym
             this.chkViernes.Location = new System.Drawing.Point(10, 164);
             this.chkViernes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkViernes.Name = "chkViernes";
-            this.chkViernes.Size = new System.Drawing.Size(64, 19);
-            this.chkViernes.TabIndex = 22;
+            this.chkViernes.Size = new System.Drawing.Size(79, 24);
+            this.chkViernes.TabIndex = 19;
             this.chkViernes.Text = "Viernes";
             this.chkViernes.UseVisualStyleBackColor = true;
             this.chkViernes.Click += new System.EventHandler(this.chkViernes_Click);
@@ -870,8 +852,8 @@ namespace Gym
             this.chkJueves.Location = new System.Drawing.Point(10, 140);
             this.chkJueves.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkJueves.Name = "chkJueves";
-            this.chkJueves.Size = new System.Drawing.Size(60, 19);
-            this.chkJueves.TabIndex = 19;
+            this.chkJueves.Size = new System.Drawing.Size(73, 24);
+            this.chkJueves.TabIndex = 16;
             this.chkJueves.Text = "Jueves";
             this.chkJueves.UseVisualStyleBackColor = true;
             this.chkJueves.Click += new System.EventHandler(this.chkJueves_Click);
@@ -882,8 +864,8 @@ namespace Gym
             this.chkMiercoles.Location = new System.Drawing.Point(10, 116);
             this.chkMiercoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkMiercoles.Name = "chkMiercoles";
-            this.chkMiercoles.Size = new System.Drawing.Size(77, 19);
-            this.chkMiercoles.TabIndex = 16;
+            this.chkMiercoles.Size = new System.Drawing.Size(95, 24);
+            this.chkMiercoles.TabIndex = 13;
             this.chkMiercoles.Text = "Miercoles";
             this.chkMiercoles.UseVisualStyleBackColor = true;
             this.chkMiercoles.Click += new System.EventHandler(this.chkMiercoles_Click);
@@ -894,8 +876,8 @@ namespace Gym
             this.chkMartes.Location = new System.Drawing.Point(10, 92);
             this.chkMartes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkMartes.Name = "chkMartes";
-            this.chkMartes.Size = new System.Drawing.Size(62, 19);
-            this.chkMartes.TabIndex = 13;
+            this.chkMartes.Size = new System.Drawing.Size(76, 24);
+            this.chkMartes.TabIndex = 10;
             this.chkMartes.Text = "Martes";
             this.chkMartes.UseVisualStyleBackColor = true;
             this.chkMartes.Click += new System.EventHandler(this.chkMartes_Click);
@@ -906,8 +888,8 @@ namespace Gym
             this.chkLunes.Location = new System.Drawing.Point(10, 67);
             this.chkLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkLunes.Name = "chkLunes";
-            this.chkLunes.Size = new System.Drawing.Size(57, 19);
-            this.chkLunes.TabIndex = 10;
+            this.chkLunes.Size = new System.Drawing.Size(68, 24);
+            this.chkLunes.TabIndex = 7;
             this.chkLunes.Text = "Lunes";
             this.chkLunes.UseVisualStyleBackColor = true;
             this.chkLunes.Click += new System.EventHandler(this.chkLunes_Click);
@@ -921,8 +903,8 @@ namespace Gym
             this.txtHastaLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHastaLunes.MaxLength = 5;
             this.txtHastaLunes.Name = "txtHastaLunes";
-            this.txtHastaLunes.Size = new System.Drawing.Size(81, 23);
-            this.txtHastaLunes.TabIndex = 12;
+            this.txtHastaLunes.Size = new System.Drawing.Size(81, 27);
+            this.txtHastaLunes.TabIndex = 9;
             this.txtHastaLunes.Text = "hh:mm";
             this.txtHastaLunes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHastaLunes.Enter += new System.EventHandler(this.txtHastaLunes_Enter);
@@ -937,20 +919,38 @@ namespace Gym
             this.txtDesdeLunes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDesdeLunes.MaxLength = 5;
             this.txtDesdeLunes.Name = "txtDesdeLunes";
-            this.txtDesdeLunes.Size = new System.Drawing.Size(81, 23);
-            this.txtDesdeLunes.TabIndex = 11;
+            this.txtDesdeLunes.Size = new System.Drawing.Size(81, 27);
+            this.txtDesdeLunes.TabIndex = 8;
             this.txtDesdeLunes.Text = "hh:mm";
             this.txtDesdeLunes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDesdeLunes.Enter += new System.EventHandler(this.txtDesdeLunes_Enter);
             this.txtDesdeLunes.Leave += new System.EventHandler(this.txtDesdeLunes_Leave);
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(233, 48);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(47, 20);
+            this.label23.TabIndex = 29;
+            this.label23.Text = "Hasta";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(149, 48);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(51, 20);
+            this.label24.TabIndex = 28;
+            this.label24.Text = "Desde";
+            // 
             // Planes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 650);
             this.Controls.Add(this.dtgvPlanes);
-            this.Controls.Add(this.txtBuscarPlan);
+            this.Controls.Add(this.txtBuscarClase);
             this.Controls.Add(this.tabControl2);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -981,7 +981,7 @@ namespace Gym
         private System.Windows.Forms.ContextMenuStrip menuPlanes;
         private System.Windows.Forms.ToolStripMenuItem btnEditarPlan;
         private System.Windows.Forms.ToolStripMenuItem btnEliminarPlan;
-        private System.Windows.Forms.TextBox txtBuscarPlan;
+        private System.Windows.Forms.TextBox txtBuscarClase;
         private System.Windows.Forms.DataGridView dtgvPlanes;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabControl tabControl2;

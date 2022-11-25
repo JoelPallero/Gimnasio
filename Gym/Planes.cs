@@ -604,15 +604,15 @@ namespace Gym
                 {
                     TextBox txt;
                     txt = box;
-                    txt.Text = string.Empty;
+                    txt.Text = "hh:mm";
+                    txt.ForeColor = Color.DimGray;
                 }
 
                 if (ctrl is CheckBox chk)
                 {
                     CheckBox c;
                     c = chk;
-                    c.Text = "hh:mm";
-                    c.ForeColor = Color.DimGray;
+                    c.Checked = false;
                 }
             }
         }
@@ -1114,27 +1114,16 @@ namespace Gym
         }
         #endregion
 
-        private void btnEliminarJornadaPlan_Click(object sender, EventArgs e)
-        {
-            bool esEmpleado = false;
-            bool darBaja = true;
-            int plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
-            Jornadas jn = new Jornadas(plan_ID, esEmpleado, darBaja);
-            jn.ShowDialog();
-        }
-
         private void btnEliminarPlanes_Click(object sender, EventArgs e)
         {
             string lim = lblPlanesAsignadosCliente.Text;
             EditarPlanesDeCliente ep = new EditarPlanesDeCliente(lim);
             ep.ShowDialog();
-
         }
 
         private void txtBuscarClase_KeyPress(object sender, KeyPressEventArgs e)
         {
             buscar = txtBuscarClase.Text;
-
         }
 
         private void btnEditarPlan_Click(object sender, EventArgs e)
@@ -1147,6 +1136,20 @@ namespace Gym
         private void CargarPlanParaEdicion()
         {
             
+        }
+
+        private void btnEliminarPlan_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Está seguro de querer eliminar el plan? Si es así, presione 'Aceptar'",
+                "Atención! Eliminación de Plan",MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                _planes.Plan_ID = Convert.ToInt32(dtgvPlanes.CurrentRow.Cells[0].Value);
+                _bussinessPlanes.EliminarPlan(_planes);
+
+                MessageBox.Show("¿Está seguro de querer eliminar el plan?",
+                "Atención! Eliminación de Plan", MessageBoxButtons.OKCancel);
+            }
         }
     }
 }

@@ -29,12 +29,11 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBuscarCajas = new System.Windows.Forms.TextBox();
             this.gbAperturaCaja = new System.Windows.Forms.GroupBox();
             this.txtObservacionesCaja = new System.Windows.Forms.TextBox();
@@ -59,7 +58,10 @@ namespace Gym
             this.Apertura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImporteInicial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImporteFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbAperturaCaja.SuspendLayout();
             this.gbCierreCaja.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -282,34 +284,37 @@ namespace Gym
             // 
             this.dtgvCajas.AllowUserToAddRows = false;
             this.dtgvCajas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvCajas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCajas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvCajas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCajas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Caja_ID,
             this.Apertura,
             this.ImporteInicial,
             this.ImporteFinal,
-            this.Empleado});
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
             this.dtgvCajas.GridColor = System.Drawing.SystemColors.Control;
             this.dtgvCajas.Location = new System.Drawing.Point(12, 301);
             this.dtgvCajas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvCajas.Name = "dtgvCajas";
             this.dtgvCajas.ReadOnly = true;
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle36.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvCajas.RowHeadersDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCajas.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dtgvCajas.RowHeadersVisible = false;
             this.dtgvCajas.RowHeadersWidth = 51;
             this.dtgvCajas.RowTemplate.Height = 29;
@@ -323,55 +328,71 @@ namespace Gym
             this.Caja_ID.MinimumWidth = 6;
             this.Caja_ID.Name = "Caja_ID";
             this.Caja_ID.ReadOnly = true;
-            this.Caja_ID.Visible = false;
-            this.Caja_ID.Width = 125;
+            this.Caja_ID.Width = 84;
             // 
             // Apertura
             // 
             this.Apertura.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Apertura.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Apertura.DefaultCellStyle = dataGridViewCellStyle2;
             this.Apertura.Frozen = true;
             this.Apertura.HeaderText = "Fecha";
             this.Apertura.MinimumWidth = 6;
             this.Apertura.Name = "Apertura";
             this.Apertura.ReadOnly = true;
             this.Apertura.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Apertura.Width = 160;
+            this.Apertura.Width = 84;
             // 
             // ImporteInicial
             // 
             this.ImporteInicial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ImporteInicial.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ImporteInicial.DefaultCellStyle = dataGridViewCellStyle3;
             this.ImporteInicial.Frozen = true;
-            this.ImporteInicial.HeaderText = "Importe de Inicio";
+            this.ImporteInicial.HeaderText = "Apertura Caja";
             this.ImporteInicial.MinimumWidth = 6;
             this.ImporteInicial.Name = "ImporteInicial";
             this.ImporteInicial.ReadOnly = true;
-            this.ImporteInicial.Width = 180;
+            this.ImporteInicial.Width = 84;
             // 
             // ImporteFinal
             // 
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ImporteFinal.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ImporteFinal.DefaultCellStyle = dataGridViewCellStyle4;
             this.ImporteFinal.Frozen = true;
-            this.ImporteFinal.HeaderText = "Importe de Cierre";
+            this.ImporteFinal.HeaderText = "Cierre Caja";
             this.ImporteFinal.MinimumWidth = 6;
             this.ImporteFinal.Name = "ImporteFinal";
             this.ImporteFinal.ReadOnly = true;
-            this.ImporteFinal.Width = 180;
+            this.ImporteFinal.Width = 84;
             // 
-            // Empleado
+            // Column1
             // 
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Empleado.DefaultCellStyle = dataGridViewCellStyle35;
-            this.Empleado.HeaderText = "Empleado";
-            this.Empleado.MinimumWidth = 6;
-            this.Empleado.Name = "Empleado";
-            this.Empleado.ReadOnly = true;
-            this.Empleado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Empleado.Width = 153;
+            this.Column1.HeaderText = "Ingreso";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 84;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Egreso";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 84;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Motivo";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 84;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Empleado";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 84;
             // 
             // Cajas
             // 
@@ -421,11 +442,14 @@ namespace Gym
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.DataGridView dtgvCajas;
+        private System.Windows.Forms.Label lblDiferenciaFinal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Caja_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apertura;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImporteInicial;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImporteFinal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Empleado;
-        private System.Windows.Forms.Label lblDiferenciaFinal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

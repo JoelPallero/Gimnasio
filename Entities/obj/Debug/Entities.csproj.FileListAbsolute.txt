@@ -1,5 +1,6 @@
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\bin\Debug\Entities.dll
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\bin\Debug\Entities.pdb
+G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.csproj.AssemblyReference.cache
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.dll
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.pdb

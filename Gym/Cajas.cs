@@ -113,7 +113,7 @@ namespace Gym
                 //Y por cada fila que haya en el dataset
                 foreach (DataRow dr in DsCajas.Tables[0].Rows)
                 {
-                    dtgvCajas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4]);
+                    dtgvCajas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], dr[5], dr[6], dr[7]);
                 }
             }
         }
