@@ -145,6 +145,9 @@ namespace Gym
                 _bussinessCaja.ConsultarIDCajaAbierta(_caja);
                 idCajaAbierta = _caja.Caja_ID;
 
+                //Actualizamos los datos para que se muestren los detalles de cada día.
+                GetDetallesCajas();
+
                 gbAperturaCaja.Enabled = false;
                 gbCierreCaja.Enabled = true;
             }

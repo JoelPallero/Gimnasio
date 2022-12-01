@@ -164,7 +164,7 @@ namespace Gym
             _planesAsignados.Plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
             _planesAsignados.Empleado_ID = personaLogueada;
             _planesAsignados.Cliente_ID = cliente_ID;
-            _planesAsignados.Fecha_Inicio = DateTime.Now;
+            _planesAsignados.Fecha_Inscripcion = DateTime.Now;
             _planesAsignados.Estado = "A";
             _bussinesPlanesAsignados.AsginarPlanAlCliente(_planesAsignados);
 
@@ -748,7 +748,7 @@ namespace Gym
             }
             else
             {
-                if (Convert.ToInt32(lblCuposRestantes.Text) == 0)
+                if (Convert.ToInt32(lblCuposRestantes.Text) == 0 && Convert.ToInt32(lblCuposTotales.Text) > 0)
                 {
                     MessageBox.Show("No hay cupos disponibles para esta clase.");
                 }

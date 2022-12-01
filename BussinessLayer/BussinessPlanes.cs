@@ -55,12 +55,12 @@ namespace BussinessLayer
             return _dataPlanes.GetLastID(planes);
         }
 
-        public DataTable GetAlumnoPorClase(Planes planes, string diaDeLaSemana)
+        public DataTable GetAlumnoPorClase(Planes planes, DateTime fechaPresente)
         {
-            return _dataPlanes.GetAlumnoPorClase(planes, diaDeLaSemana);
+            return _dataPlanes.GetAlumnoPorClase(planes, fechaPresente);
         }
 
-        public DataTable GetAlumnoPresentes(Planes planes, string fechaPresente)
+        public DataTable GetAlumnoPresentes(Planes planes, DateTime fechaPresente)
         {
             return _dataPlanes.GetAlumnoPresentes(planes, fechaPresente);
         }

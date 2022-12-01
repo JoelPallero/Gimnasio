@@ -140,7 +140,7 @@ namespace AccesoDatos
             }
             catch (Exception e)
             {
-                throw new Exception("Error al listar tipos de documentos", e);
+                throw new Exception("Error al listar alumnos", e);
             }
             finally
             {
@@ -150,32 +150,15 @@ namespace AccesoDatos
             return dt;
         }
 
-        public DataTable GetAlumnoPresentes(Planes planes, string fechaPresente)
+        public DataTable GetAlumnoPresentes(Planes planes, DateTime fechaPresente)
         {
-            string query = @"set dateformat dmy;
-                            select Personas.Nombre + ' ' + Personas.Apellido as Nombre, Clientes.Cliente_ID
-                            from Personas
-                            inner join Clientes
-                                on Clientes.Persona_ID = Personas.Persona_ID
-                            inner join Planes_Asignados
-                                on Planes_Asignados.Cliente_ID = Clientes.Cliente_ID
-                            inner join Planes
-                                on Planes.Plan_ID = Planes_Asignados.Plan_ID
-                            inner join Asistencias
-                            on Asistencias.Cliente_ID = Clientes.Cliente_ID
-                            where Planes_Asignados.Estado like @Estado
-                            and Clientes.Estado = @Estado
-                            and Planes.Plan_ID = @Plan_ID
-                            and Asistencias.Fecha = @Fecha"
-            ;
+            string query = @"sp_Cargar_Presentes @Plan_ID, @Fecha";
 
-            SqlParameter estado = new SqlParameter("@Estado", planes.Estado);
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
             SqlParameter fecha = new SqlParameter("@Fecha", fechaPresente);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
-            cmd.Parameters.Add(estado);
             cmd.Parameters.Add(plan_ID);
             cmd.Parameters.Add(fecha);
 
@@ -191,7 +174,7 @@ namespace AccesoDatos
             }
             catch (Exception e)
             {
-                throw new Exception("Error al listar tipos de documentos", e);
+                throw new Exception("Error al listar alumnos presentes", e);
             }
             finally
             {
@@ -265,32 +248,17 @@ namespace AccesoDatos
             return ds;
         }
 
-        public DataTable GetAlumnoPorClase(Planes planes, string diaDeLaSemana)
+        public DataTable GetAlumnoPorClase(Planes planes, DateTime fechaPresente)
         {
-            string query = @"select Personas.Nombre + ' ' + Personas.Apellido as Nombre, Clientes.Cliente_ID
-                            from Personas
-                            inner join Clientes
-                                on Clientes.Persona_ID = Personas.Persona_ID
-                            inner join Planes_Asignados
-                                on Planes_Asignados.Cliente_ID = Clientes.Cliente_ID
-                            inner join Planes
-                                on Planes.Plan_ID = Planes_Asignados.Plan_ID
-                            where Planes_Asignados.Estado like @Estado
-                            and Clientes.Estado like @Estado
-                            and Planes.Plan_ID = @Plan_ID"
-            ;
+            string query = "sp_Cargar_Ausentes @Plan_ID, @Fecha";
 
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
+            SqlParameter fecha = new SqlParameter("@Fecha", fechaPresente);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
             cmd.Parameters.Add(plan_ID);
-            cmd.Parameters.Add(new SqlParameter()
-            {
-                ParameterName = "@Estado",
-                SqlDbType = SqlDbType.NVarChar,
-                Value = string.Format("%{0}%", planes.Estado)
-            });
+            cmd.Parameters.Add(fecha);
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -438,8 +406,12 @@ namespace AccesoDatos
         public int EditarCupoRestante(Planes planes)
         {
             int resultado = -1;
-            string query = @"update Planes set Cupo_Restante = Cupo_Restante - 1 
-                            where Plan_ID = @Plan_ID";
+            string query = @"if exists (select Cupo_Restante from Planes where Cupo_Restante > 0 and Plan_ID = @Plan_ID)
+                             begin
+	                            update Planes set Cupo_Restante = Cupo_Restante - 1 
+	                            where Plan_ID = @Plan_ID
+                             end"
+            ;
 
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
 

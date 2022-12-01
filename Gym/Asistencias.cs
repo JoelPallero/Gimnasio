@@ -47,6 +47,7 @@ namespace Gym
         private int planSeleccionado;
         private string diaDeLaSemana;
         private string fechaBusqueda;
+        private bool listadoCargado = false;
 
         #endregion
 
@@ -93,26 +94,31 @@ namespace Gym
             jn.ShowDialog();
         }
 
-        private void GetAlumosDeLaClase(string diaDeLaSemana)
+        private void GetAlumosDeLaClase()
         {
-            //alumnos totales
-            _planes.Plan_ID = Convert.ToInt32(cmbClasesParaAsistencia.SelectedValue);
-            dtAlumnosTotales = _bussinessPlanes.GetAlumnoPorClase(_planes, diaDeLaSemana);
-
-            listAlumnosTotales.DataSource = dtAlumnosTotales;
-            listAlumnosTotales.DisplayMember = "Nombre";
-            listAlumnosTotales.ValueMember = "Cliente_ID";
-
             //Vamos a convertir la fecha en el formato que corresponde.
-            string fechaPresente = dtFechabusqueda.Value.ToString();
-            fechaPresente = fechaPresente.Substring(0, 10);
+            DateTime fechaPresente = dtFechabusqueda.Value;
+            //fechaPresente = fechaPresente.Substring(0, 10);
+
+            //alumnos totales
+            listAlumnosAusentes.DisplayMember = string.Empty;
+            listAlumnosPresentes.DisplayMember = string.Empty;
+
+            //Necesito traer solo los ausentes
+            _planes.Plan_ID = Convert.ToInt32(cmbClasesParaAsistencia.SelectedValue);
+            dtAlumnosTotales = _bussinessPlanes.GetAlumnoPorClase(_planes, fechaPresente);
+
+            listAlumnosAusentes.DataSource = dtAlumnosTotales;
+            listAlumnosAusentes.DisplayMember = "NombreCliente";
+            listAlumnosAusentes.ValueMember = "Cliente_ID";
+
 
             //Alumnos presentes en la clase por fecha
             _planes.Plan_ID = Convert.ToInt32(cmbClasesParaAsistencia.SelectedValue);
             dtAlumnosPresentes = _bussinessPlanes.GetAlumnoPresentes(_planes, fechaPresente);
 
             listAlumnosPresentes.DataSource = dtAlumnosPresentes;
-            listAlumnosPresentes.DisplayMember = "Nombre";
+            listAlumnosPresentes.DisplayMember = "NombreCliente";
             listAlumnosPresentes.ValueMember = "Cliente_ID";
         }
         private void buscarAsistenciasDiarias()
@@ -168,7 +174,6 @@ namespace Gym
         {
             DsClienteAsistencia = _bussinesClientes.BuscarClienteAsistencia(buscar);
             AcomodarDatos();
-            camposVacios = false;
         }
         private void BuscarPlanesParaAsistenciaAlumnos()
         {
@@ -274,11 +279,12 @@ namespace Gym
                 MessageBox.Show("No hay clientes con el documento ingresado. " +
                     "Por favor, intente de nuevo, o haga primero el registro del cliente.",
                     "Datos no encontrados");
+                camposVacios = true;
             }
         }
         private void ColocarAsistencia()
         {
-            _asistencias.Cliente_ID = cliente_ID;
+            _asistencias.Cliente_ID = Convert.ToInt32(listAlumnosAusentes.SelectedValue);
             _asistencias.Fecha = DateTime.Now;
             _asistencias.Estado = "P";
             _asistencias.Empleado_ID = idEmpleadoLogin;
@@ -325,7 +331,7 @@ namespace Gym
             _planesAsignados.Plan_ID = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
             _planesAsignados.Empleado_ID = idEmpleadoLogin;
             _planesAsignados.Cliente_ID = cliente_ID;
-            _planesAsignados.Fecha_Inicio = DateTime.Now;
+            _planesAsignados.Fecha_Inscripcion = DateTime.Now;
             _planesAsignados.Estado = "A";
             _bussinesPlanesAsignados.AsginarPlanAlCliente(_planesAsignados);
 
@@ -371,7 +377,8 @@ namespace Gym
             //en las asistencias y hacer las comparaciones correspondientes.
 
             diaDeLaSemana = GetDiaDeLaSemana(dtFechabusqueda.Value.ToString());
-            GetAlumosDeLaClase(diaDeLaSemana);
+            GetAlumosDeLaClase();
+            listadoCargado = true;
         }
 
         private string GetDiaDeLaSemana(string fecha)
@@ -391,29 +398,33 @@ namespace Gym
 
         private void listAlumnos_DoubleClick(object sender, EventArgs e)
         {
-
-            _planesAsignados.Cliente_ID = Convert.ToInt32(listAlumnosTotales.SelectedValue);
+            _planesAsignados.Cliente_ID = Convert.ToInt32(listAlumnosAusentes.SelectedValue);
             _planesAsignados.Plan_ID = Convert.ToInt32(cmbClasesParaAsistencia.SelectedValue);
-            if (cliente_ID != _planesAsignados.Cliente_ID)
+
+            if (camposVacios)
             {
-                if (camposVacios)
+                BusquedaDeClientesById();
+                camposVacios = false;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Tiene un cliente cargado. ¿Quiere interrumpir la gestión y buscar un cliente nuevo?",
+                       "Gestión en proceso", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
                 {
                     BusquedaDeClientesById();
-                }
-                else
-                {
-                    DialogResult result = MessageBox.Show("Tiene un cliente cargado. ¿Quiere interrumpir la gestión y buscar un cliente nuevo?",
-                           "Gestión en proceso", MessageBoxButtons.OKCancel);
-                    if (result == DialogResult.OK)
-                    {
-                        BusquedaDeClientesById();
-                    }
+                    camposVacios = false;
                 }
             }
+
+            //if (cliente_ID != _planesAsignados.Cliente_ID)
+            //{
+                
+            //}
         }
         private void txtBuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            listAlumnosTotales.ClearSelected();
+            listAlumnosAusentes.ClearSelected();
             buscar = txtBuscarCliente.Text;
             _restricciones.SoloNumeros(e, buscar);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
@@ -434,22 +445,40 @@ namespace Gym
                 }
             }
         }
+
+        private void LlamadoALaAsistencia()
+        {
+            ColocarAsistencia();
+            buscarAsistenciasDiarias();
+            if (lblNombreCliente.Text == "Nombre: ")
+            {
+                string nombreAlumno = listAlumnosAusentes.SelectedItem.ToString();
+                MessageBox.Show($"Asistencia registrada correctamente para {nombreAlumno}, el día de la fecha.",
+                           "Asistencia OK.", MessageBoxButtons.OKCancel);
+            }
+            else
+            {
+                string nombre = lblNombreCliente.Text;
+                nombre = nombre.Substring(8, nombre.Length);
+                MessageBox.Show($"Asistencia registrada correctamente para {nombre.ToString()}, el día de la fecha.",
+                           "Asistencia OK.", MessageBoxButtons.OKCancel);
+            }
+            GetAlumosDeLaClase();
+        }
         private void btnGuardarAsistencia_Click(object sender, EventArgs e)
         {
             if (camposVacios)
             {
-                MessageBox.Show("No hay cliente seleccionado para marcar asistencia. Primero," +
-                    "ingrese el nro de documento del cliente para realizar la búsqueda y luego" +
-                    "colocar la asistencia.",
-                           "Sin datos", MessageBoxButtons.OKCancel);
+                DialogResult result = MessageBox.Show("No hay alumno cargado, pero si el listado. ¿Desea colocarle asistencia al alumno seleccionado?",
+                           "Asistencia", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    LlamadoALaAsistencia();
+                }
             }
             else
             {
-                ColocarAsistencia();
-                buscarAsistenciasDiarias();
-
-                MessageBox.Show($"Asistencia registrada correctamente para {(listAlumnosTotales.SelectedItem.ToString())}, el día de la fecha.",
-                           "Asistencia OK.", MessageBoxButtons.OKCancel);
+                LlamadoALaAsistencia();
             }
         }
         private void btnAsignarPlan_Click(object sender, EventArgs e)
@@ -527,9 +556,9 @@ namespace Gym
 
         private void dtFechabusqueda_ValueChanged(object sender, EventArgs e)
         {
-            diaDeLaSemana = GetDiaDeLaSemana(dtFechabusqueda.Value.ToString());
-            fechaBusqueda = dtFechabusqueda.Value.ToString();
-            BuscarPlanesAsistenchaConFecha();
+            //diaDeLaSemana = GetDiaDeLaSemana(dtFechabusqueda.Value.ToString());
+            //fechaBusqueda = dtFechabusqueda.Value.ToString();
+            //BuscarPlanesAsistenchaConFecha();
         }
     }
 }

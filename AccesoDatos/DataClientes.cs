@@ -51,21 +51,11 @@ namespace AccesoDatos
             string getClientes;
             if (string.IsNullOrEmpty(buscar))
             {
-                getClientes = @"sp_Cargar_Clientes_Desc";
+                getClientes = @"sp_Cargar_Clientes_Desc"; /*es asc*/
             }
             else
             {
-                getClientes = @"SELECT Clientes.Cliente_ID, Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
-                                FROM Personas
-                                INNER JOIN Clientes
-                                ON Personas.Persona_ID=Clientes.Persona_ID
-                                where Personas.Nombre LIKE @query 
-                                    or Personas.Apellido LIKE @query
-                                    or Personas.Nro_Documento LIKE @query
-                                    or Clientes.Estado LIKE @query
-                                and Estado = 'A'
-                                Order by Personas.Fecha_Alta desc"
-                ;
+                getClientes = @"sp_Buscar_Listado_Clientes @query";
             }
 
             SqlCommand cmd = new SqlCommand(getClientes, conexion)
@@ -173,21 +163,7 @@ namespace AccesoDatos
             /*Acá se filtran las asistencias diarias de los clientes
              También como parámetro de busqueda, el argumento recibido.
              */
-            string query = @"select Planes_Asignados.Plan_Asignado_ID, Clientes.Cliente_ID,
-	                                Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Personas.Nro_Telefono, Personas.Mail,
-	                                Planes.Nombre
-                            from Personas
-                            inner join Clientes
-                              on Clientes.Persona_ID = Personas.Persona_ID
-                            inner join Planes_Asignados
-                              on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
-                            inner join Planes
-                              on Planes_Asignados.Plan_ID = Planes.Plan_ID
-                            where Planes_Asignados.Estado = 'A'
-                              and Clientes.Estado = 'A'
-                              and Clientes.Cliente_ID like @buscar
-                              or Personas.Nro_documento like @buscar"
-            ;
+            string query = @"sp_Buscar_Cliente_Ausentismo @buscar";
             SqlCommand cmd = new SqlCommand(query, conexion);
 
             cmd.Parameters.Add(new SqlParameter
@@ -224,20 +200,7 @@ namespace AccesoDatos
             /*Acá se filtran las asistencias diarias de los clientes
              También como parámetro de busqueda, el argumento recibido.
              */
-            string query = @"select Planes_Asignados.Plan_Asignado_ID, Clientes.Cliente_ID,
-	                                Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Personas.Nro_Telefono, Personas.Mail,
-	                                Planes.Nombre
-                            from Personas
-                            inner join Clientes
-                              on Clientes.Persona_ID = Personas.Persona_ID
-                            inner join Planes_Asignados
-                              on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
-                            inner join Planes
-                              on Planes_Asignados.Plan_ID = Planes.Plan_ID
-                            where Planes_Asignados.Estado = 'A'
-                              and Clientes.Estado = 'A'
-                              and Planes_Asignados.Plan_ID = @Plan_ID
-                              and Clientes.Cliente_ID = @Cliente_ID"
+            string query = @"sp_Buscar_Cliente_Por_ID @Plan_ID, @Cliente_ID"
             ;
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", _planesAsignados.Plan_ID);
             SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", _planesAsignados.Cliente_ID);

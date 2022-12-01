@@ -265,7 +265,6 @@ namespace Gym
             this.txtHastaSabado.Enter += new System.EventHandler(this.txtHastaSabado_Enter);
             this.txtHastaSabado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaSabado_KeyPress);
             this.txtHastaSabado.Leave += new System.EventHandler(this.txtHastaSabado_Leave);
-            this.txtHastaSabado.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeSabado
             // 
@@ -283,7 +282,6 @@ namespace Gym
             this.txtDesdeSabado.Enter += new System.EventHandler(this.txtDesdeSabado_Enter);
             this.txtDesdeSabado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeSabado_KeyPress);
             this.txtDesdeSabado.Leave += new System.EventHandler(this.txtDesdeSabado_Leave);
-            this.txtDesdeSabado.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtHastaViernes
             // 
@@ -301,7 +299,6 @@ namespace Gym
             this.txtHastaViernes.Enter += new System.EventHandler(this.txtHastaViernes_Enter);
             this.txtHastaViernes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaViernes_KeyPress);
             this.txtHastaViernes.Leave += new System.EventHandler(this.txtHastaViernes_Leave);
-            this.txtHastaViernes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeViernes
             // 
@@ -319,7 +316,6 @@ namespace Gym
             this.txtDesdeViernes.Enter += new System.EventHandler(this.txtDesdeViernes_Enter);
             this.txtDesdeViernes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeViernes_KeyPress);
             this.txtDesdeViernes.Leave += new System.EventHandler(this.txtDesdeViernes_Leave);
-            this.txtDesdeViernes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtHastaJueves
             // 
@@ -337,7 +333,6 @@ namespace Gym
             this.txtHastaJueves.Enter += new System.EventHandler(this.txtHastaJueves_Enter);
             this.txtHastaJueves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaJueves_KeyPress);
             this.txtHastaJueves.Leave += new System.EventHandler(this.txtHastaJueves_Leave);
-            this.txtHastaJueves.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeJueves
             // 
@@ -355,7 +350,6 @@ namespace Gym
             this.txtDesdeJueves.Enter += new System.EventHandler(this.txtDesdeJueves_Enter);
             this.txtDesdeJueves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeJueves_KeyPress);
             this.txtDesdeJueves.Leave += new System.EventHandler(this.txtDesdeJueves_Leave);
-            this.txtDesdeJueves.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtHastaMiercoles
             // 
@@ -373,7 +367,6 @@ namespace Gym
             this.txtHastaMiercoles.Enter += new System.EventHandler(this.txtHastaMiercoles_Enter);
             this.txtHastaMiercoles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaMiercoles_KeyPress);
             this.txtHastaMiercoles.Leave += new System.EventHandler(this.txtHastaMiercoles_Leave);
-            this.txtHastaMiercoles.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeMiercoles
             // 
@@ -391,7 +384,6 @@ namespace Gym
             this.txtDesdeMiercoles.Enter += new System.EventHandler(this.txtDesdeMiercoles_Enter);
             this.txtDesdeMiercoles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeMiercoles_KeyPress);
             this.txtDesdeMiercoles.Leave += new System.EventHandler(this.txtDesdeMiercoles_Leave);
-            this.txtDesdeMiercoles.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtHastaMartes
             // 
@@ -409,7 +401,6 @@ namespace Gym
             this.txtHastaMartes.Enter += new System.EventHandler(this.txtHastaMartes_Enter);
             this.txtHastaMartes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaMartes_KeyPress);
             this.txtHastaMartes.Leave += new System.EventHandler(this.txtHastaMartes_Leave);
-            this.txtHastaMartes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeMartes
             // 
@@ -427,7 +418,6 @@ namespace Gym
             this.txtDesdeMartes.Enter += new System.EventHandler(this.txtDesdeMartes_Enter);
             this.txtDesdeMartes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeMartes_KeyPress);
             this.txtDesdeMartes.Leave += new System.EventHandler(this.txtDesdeMartes_Leave);
-            this.txtDesdeMartes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // chkSabado
             // 
@@ -517,7 +507,6 @@ namespace Gym
             this.txtHastaLunes.Enter += new System.EventHandler(this.txtHastaLunes_Enter);
             this.txtHastaLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHastaLunes_KeyPress);
             this.txtHastaLunes.Leave += new System.EventHandler(this.txtHastaLunes_Leave);
-            this.txtHastaLunes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // txtDesdeLunes
             // 
@@ -535,7 +524,6 @@ namespace Gym
             this.txtDesdeLunes.Enter += new System.EventHandler(this.txtDesdeLunes_Enter);
             this.txtDesdeLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesdeLunes_KeyPress);
             this.txtDesdeLunes.Leave += new System.EventHandler(this.txtDesdeLunes_Leave);
-            this.txtDesdeLunes.MouseHover += new System.EventHandler(this.txtDesdeLunes_MouseHover);
             // 
             // lblCancelar
             // 

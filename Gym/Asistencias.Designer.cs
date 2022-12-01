@@ -29,17 +29,18 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.gbClienteAsistencia = new System.Windows.Forms.GroupBox();
+            this.dtFechabusqueda = new System.Windows.Forms.DateTimePicker();
             this.listAlumnosPresentes = new System.Windows.Forms.ListBox();
-            this.listAlumnosTotales = new System.Windows.Forms.ListBox();
+            this.listAlumnosAusentes = new System.Windows.Forms.ListBox();
             this.cmbClasesParaAsistencia = new System.Windows.Forms.ComboBox();
             this.lblPlanActual = new System.Windows.Forms.Label();
             this.btnGuardarAsistencia = new System.Windows.Forms.Button();
@@ -66,7 +67,6 @@ namespace Gym
             this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo_Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtFechabusqueda = new System.Windows.Forms.DateTimePicker();
             this.gbClienteAsistencia.SuspendLayout();
             this.gbAsignarPlan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAsistencias)).BeginInit();
@@ -90,7 +90,7 @@ namespace Gym
             // 
             this.gbClienteAsistencia.Controls.Add(this.dtFechabusqueda);
             this.gbClienteAsistencia.Controls.Add(this.listAlumnosPresentes);
-            this.gbClienteAsistencia.Controls.Add(this.listAlumnosTotales);
+            this.gbClienteAsistencia.Controls.Add(this.listAlumnosAusentes);
             this.gbClienteAsistencia.Controls.Add(this.cmbClasesParaAsistencia);
             this.gbClienteAsistencia.Controls.Add(this.txtBuscarCliente);
             this.gbClienteAsistencia.Controls.Add(this.lblPlanActual);
@@ -110,6 +110,16 @@ namespace Gym
             this.gbClienteAsistencia.TabStop = false;
             this.gbClienteAsistencia.Text = "Asistencia de clientes";
             // 
+            // dtFechabusqueda
+            // 
+            this.dtFechabusqueda.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechabusqueda.Location = new System.Drawing.Point(500, 30);
+            this.dtFechabusqueda.Name = "dtFechabusqueda";
+            this.dtFechabusqueda.Size = new System.Drawing.Size(170, 27);
+            this.dtFechabusqueda.TabIndex = 2;
+            this.dtFechabusqueda.Value = new System.DateTime(2022, 12, 1, 0, 0, 0, 0);
+            this.dtFechabusqueda.ValueChanged += new System.EventHandler(this.dtFechabusqueda_ValueChanged);
+            // 
             // listAlumnosPresentes
             // 
             this.listAlumnosPresentes.FormattingEnabled = true;
@@ -119,15 +129,15 @@ namespace Gym
             this.listAlumnosPresentes.Size = new System.Drawing.Size(237, 84);
             this.listAlumnosPresentes.TabIndex = 4;
             // 
-            // listAlumnosTotales
+            // listAlumnosAusentes
             // 
-            this.listAlumnosTotales.FormattingEnabled = true;
-            this.listAlumnosTotales.ItemHeight = 20;
-            this.listAlumnosTotales.Location = new System.Drawing.Point(433, 85);
-            this.listAlumnosTotales.Name = "listAlumnosTotales";
-            this.listAlumnosTotales.Size = new System.Drawing.Size(237, 84);
-            this.listAlumnosTotales.TabIndex = 3;
-            this.listAlumnosTotales.DoubleClick += new System.EventHandler(this.listAlumnos_DoubleClick);
+            this.listAlumnosAusentes.FormattingEnabled = true;
+            this.listAlumnosAusentes.ItemHeight = 20;
+            this.listAlumnosAusentes.Location = new System.Drawing.Point(433, 85);
+            this.listAlumnosAusentes.Name = "listAlumnosAusentes";
+            this.listAlumnosAusentes.Size = new System.Drawing.Size(237, 84);
+            this.listAlumnosAusentes.TabIndex = 3;
+            this.listAlumnosAusentes.DoubleClick += new System.EventHandler(this.listAlumnos_DoubleClick);
             // 
             // cmbClasesParaAsistencia
             // 
@@ -334,14 +344,14 @@ namespace Gym
             // 
             this.dtgvAsistencias.AllowUserToAddRows = false;
             this.dtgvAsistencias.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvAsistencias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvAsistencias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvAsistencias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Persona_ID,
@@ -355,14 +365,14 @@ namespace Gym
             this.dtgvAsistencias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvAsistencias.Name = "dtgvAsistencias";
             this.dtgvAsistencias.ReadOnly = true;
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvAsistencias.RowHeadersDefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvAsistencias.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dtgvAsistencias.RowHeadersVisible = false;
             this.dtgvAsistencias.RowHeadersWidth = 51;
             this.dtgvAsistencias.RowTemplate.Height = 29;
@@ -382,8 +392,8 @@ namespace Gym
             // Nombre
             // 
             this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle2;
             this.Nombre.Frozen = true;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.MinimumWidth = 6;
@@ -395,8 +405,8 @@ namespace Gym
             // Apellido
             // 
             this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Apellido.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Apellido.DefaultCellStyle = dataGridViewCellStyle3;
             this.Apellido.Frozen = true;
             this.Apellido.HeaderText = "Apellido";
             this.Apellido.MinimumWidth = 6;
@@ -407,8 +417,8 @@ namespace Gym
             // Documento
             // 
             this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Documento.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Documento.DefaultCellStyle = dataGridViewCellStyle4;
             this.Documento.Frozen = true;
             this.Documento.HeaderText = "Documento";
             this.Documento.MinimumWidth = 6;
@@ -418,8 +428,8 @@ namespace Gym
             // 
             // Tipo_Empleado
             // 
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Tipo_Empleado.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Tipo_Empleado.DefaultCellStyle = dataGridViewCellStyle5;
             this.Tipo_Empleado.Frozen = true;
             this.Tipo_Empleado.HeaderText = "Clase";
             this.Tipo_Empleado.MinimumWidth = 6;
@@ -429,24 +439,14 @@ namespace Gym
             // 
             // Estado
             // 
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Estado.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Estado.DefaultCellStyle = dataGridViewCellStyle6;
             this.Estado.HeaderText = "Asistencia";
             this.Estado.MinimumWidth = 6;
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
             this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Estado.Width = 142;
-            // 
-            // dtFechabusqueda
-            // 
-            this.dtFechabusqueda.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechabusqueda.Location = new System.Drawing.Point(500, 30);
-            this.dtFechabusqueda.Name = "dtFechabusqueda";
-            this.dtFechabusqueda.Size = new System.Drawing.Size(170, 27);
-            this.dtFechabusqueda.TabIndex = 2;
-            this.dtFechabusqueda.Value = new System.DateTime(2022, 11, 23, 0, 0, 0, 0);
-            this.dtFechabusqueda.ValueChanged += new System.EventHandler(this.dtFechabusqueda_ValueChanged);
             // 
             // Asistencias
             // 
@@ -501,7 +501,7 @@ namespace Gym
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_Empleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.ListBox listAlumnosTotales;
+        private System.Windows.Forms.ListBox listAlumnosAusentes;
         private System.Windows.Forms.ListBox listAlumnosPresentes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

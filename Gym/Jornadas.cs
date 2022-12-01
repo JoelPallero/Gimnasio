@@ -792,10 +792,6 @@ namespace Gym
                 txtHastaSabado.ForeColor = Color.DimGray;
             }
         }
-        private void txtDesdeLunes_MouseHover(object sender, EventArgs e)
-        {
-            ttFormatoHora.Show(formatoHora, txtDesdeLunes);
-        }
         #endregion
 
         #region Clicks

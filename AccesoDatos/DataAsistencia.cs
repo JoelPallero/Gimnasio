@@ -81,21 +81,7 @@ namespace AccesoDatos
             }
             else
             {
-                query = @"select Clientes.Cliente_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Planes.Nombre, Asistencias.Estado
-                            from Asistencias
-                            inner join Clientes
-                            on Clientes.Cliente_ID = Asistencias.Cliente_ID
-                            inner join Personas
-                            on Clientes.Persona_ID = Personas.Persona_ID
-                            inner join Planes_Asignados
-                            on Asistencias.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
-                            inner join Planes
-                            on Planes.Plan_ID = Planes_Asignados.Plan_ID
-                            where Personas.Nombre like @Parametro
-                            or Personas.Apellido like @Parametro
-                            or Asistencias.Fecha like @Parametro
-                            or Planes.Nombre like @Parametro"
-                ;
+                query = @"sp_Buscar_Listado_Asistencia_Total @Parametro";
             }
 
             SqlCommand cmd = new SqlCommand(query, conexion)

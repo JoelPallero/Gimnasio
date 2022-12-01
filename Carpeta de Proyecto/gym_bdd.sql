@@ -54,7 +54,7 @@ go
 
 create table Asistencias(
 Asistencia_ID int primary key identity (0, 1),
-Fecha date not null,
+Fecha datetime not null,
 Estado nvarchar(1) not null, --P(resente), T(arde), A(usente)
 Cliente_ID int not null,
 Empleado_ID int not null, --quien hizo el registro
@@ -79,9 +79,9 @@ go
 create table Cajas(
 Caja_ID int primary key identity (0, 1),
 Empleado_ID_Apertura int not null,
-Empleado_ID_Cierre int null,
 Fecha datetime not null,
 Importe_Inicial decimal(18,0) not null,
+Empleado_ID_Cierre int null,
 Importe_Final decimal(18,0) null,
 )
 
@@ -421,17 +421,17 @@ go
 
 /* Facturas_Clientes */
 
-alter table Facturas_Clientes
-add CONSTRAINT FK_Facturas_Clientes_Constrain FOREIGN KEY (Plan_Asignado_ID) 
-REFERENCES Planes_Asignados (Plan_Asignado_ID)
+--alter table Facturas_Clientes
+--add CONSTRAINT FK_Facturas_Clientes_Constrain FOREIGN KEY (Plan_Asignado_ID) 
+--REFERENCES Planes_Asignados (Plan_Asignado_ID)
 
-go
+--go
 
-alter table Facturas_Clientes
-add CONSTRAINT FK_Facturas_Clientes_Cliente FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+--alter table Facturas_Clientes
+--add CONSTRAINT FK_Facturas_Clientes_Cliente FOREIGN KEY (Empleado_ID) 
+--REFERENCES Empleados (Empleado_ID)
 
-go
+--go
 
 /* Jornadas_Planes  */
 
@@ -507,14 +507,14 @@ go
 
 create proc sp_cargar_Profesores_Actuales
 as
-select Personas.Nombre, Empleados.Empleado_ID
-from Personas
-inner join Empleados
-on Empleados.Persona_ID = Personas.Persona_ID
-inner join Tipos_Empleados
-on Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
-where Tipos_Empleados.Tipo = 'Profesor'
-and Empleados.Estado_Empleado_ID = 0
+select p.Nombre, e.Empleado_ID
+from Personas as p
+inner join Empleados as e
+on e.Persona_ID = p.Persona_ID
+inner join Tipos_Empleados as tp
+on e.Tipo_Empleado_ID = tp.Tipo_Empleado_ID
+where tp.Tipo = 'Profesor'
+and e.Estado_Empleado_ID = 0
 
 go
 
@@ -536,31 +536,33 @@ go
 
 create proc sp_Cargar_Clientes_Desc
 as
-SELECT Clientes.Cliente_ID, Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono, Clientes.Estado
-FROM Personas
-INNER JOIN Clientes
-ON Personas.Persona_ID=Clientes.Persona_ID
-WHERE Personas.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
-and Estado = 'A'
-ORDER BY Personas.Fecha_Alta desc
+SELECT c.Cliente_ID, 
+p.Persona_ID, p.Nombre, p.Apellido, p.Nro_Documento, p.Nro_telefono, 
+c.Estado
+FROM Personas as p
+INNER JOIN Clientes as c
+ON p.Persona_ID = c.Persona_ID
+WHERE p.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+and c.Estado = 'A'
+ORDER BY p.Fecha_Alta asc
 
 go
 
 create proc sp_Cargar_Empleados_Desc
 AS
-SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
-	   Tipos_Empleados.Tipo, Estados_Empleados.Estado_Empleado
-FROM Personas
-INNER JOIN Empleados
-ON Personas.Persona_ID = Empleados.Persona_ID
-INNER JOIN Tipos_Empleados
-ON Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
-INNER JOIN Estados_Empleados
-ON Empleados.Estado_Empleado_ID = Estados_Empleados.Estado_Empleado_ID
-WHERE Personas.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
-and Empleados.Tipo_Empleado_ID != 0
-and Empleados.Tipo_Empleado_ID != 1
-ORDER BY Personas.Fecha_Alta desc
+SELECT p.Persona_ID, p.Nombre, p.Apellido, p.Nro_Documento, 
+	   tp.Tipo, ep.Estado_Empleado
+FROM Personas as p
+INNER JOIN Empleados as em
+ON p.Persona_ID = em.Persona_ID
+INNER JOIN Tipos_Empleados tp
+ON em.Tipo_Empleado_ID = tp.Tipo_Empleado_ID
+INNER JOIN Estados_Empleados as ep
+ON em.Estado_Empleado_ID = ep.Estado_Empleado_ID
+WHERE p.Fecha_Alta BETWEEN GETDATE()-7 AND GETDATE()
+and em.Tipo_Empleado_ID != 0
+and em.Tipo_Empleado_ID != 1
+ORDER BY p.Fecha_Alta asc
 
 go
 
@@ -582,17 +584,17 @@ go
 
 create procedure sp_cargar_planes_Actuales
 as
-select Planes.Plan_ID as Plan_ID, Planes.Nombre as Nombre_Planes, Personas.Nombre as Nombre_Empleado, replace(Planes.Estado, 'A', 'Activo') as Estado
-from Planes
-inner join Empleados
-on Empleados.Empleado_ID = Planes.Empleado_ID
-inner join Personas
-on Personas.Persona_ID = Empleados.Persona_ID
-inner join Tipos_Empleados
-on Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
-where Planes.Estado = 'A'
-and Tipos_Empleados.Tipo = 'Profesor'
-or Planes.Estado = (select replace(Planes.Estado, 'I', 'Inactivo') as Estado)
+select pl.Plan_ID, pl.Nombre, p.Nombre, replace(pl.Estado, 'A', 'Activo') as Estado
+from Planes as pl
+inner join Empleados as e
+on e.Empleado_ID = pl.Empleado_ID
+inner join Personas as p
+on p.Persona_ID = e.Persona_ID
+inner join Tipos_Empleados tp
+on e.Tipo_Empleado_ID = tp.Tipo_Empleado_ID
+where pl.Estado = 'A'
+and tp.Tipo = 'Profesor'
+or pl.Estado = (select replace(pl.Estado, 'I', 'Inactivo') as Estado)
 
 go
 
@@ -606,89 +608,170 @@ go
 
 create procedure sp_get_Asistencias_diarias
 as
-select Clientes.Cliente_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Planes.Nombre, Asistencias.Estado
-from Asistencias
-inner join Clientes
-on Clientes.Cliente_ID = Asistencias.Cliente_ID
-inner join Personas
-on Clientes.Persona_ID = Personas.Persona_ID
-inner join Planes_Asignados
-on Asistencias.Plan_Asignado_ID = Planes_Asignados.Plan_Asignado_ID
-inner join Planes
-on Planes.Plan_ID = Planes_Asignados.Plan_ID
-where Asistencias.Fecha between GETDATE() - 1 and GETDATE()
-order by Asistencias.Fecha desc
+select c.Cliente_ID, pe.Nombre, pe.Apellido, pe.Nro_documento, pl.Nombre, a.Estado
+from Asistencias as a
+inner join Clientes as c
+on c.Cliente_ID = a.Cliente_ID
+inner join Personas as pe
+on c.Persona_ID = pe.Persona_ID
+inner join Planes_Asignados as pa
+on a.Plan_Asignado_ID = pa.Plan_Asignado_ID
+inner join Planes as pl
+on pl.Plan_ID = pa.Plan_ID
+where a.Fecha between GETDATE() - 1 and GETDATE()
+order by a.Fecha asc
 
 go
 
 create procedure sp_get_cajas
 as
-select Cajas.Caja_ID, Cajas.Fecha, Cajas.Importe_Inicial, Cajas.Importe_Final,
-Detalles_Cajas.Importe_Ingreso, Detalles_Cajas.Importe_Egreso, Detalles_Cajas.Motivo, 
-Personas.Apellido
-from Detalles_Cajas
-inner join Cajas
-on Cajas.Caja_ID = Detalles_Cajas.Caja_ID
-inner join Empleados
-on Empleados.Empleado_ID = Detalles_Cajas.Empleado_ID
-inner join Personas
-on Personas.Persona_ID = Empleados.Persona_ID
-order by Fecha desc
+select c.Caja_ID, c.Fecha, c.Importe_Inicial, c.Importe_Final,
+dc.Importe_Ingreso, dc.Importe_Egreso, dc.Motivo, 
+p.Apellido
+from Cajas as c
+left join Detalles_Cajas as dc
+on dc.Caja_ID = c.Caja_ID
+and dc.Empleado_ID = c.Empleado_ID_Apertura
+left join Empleados as em
+on em.Empleado_ID = c.Empleado_ID_Apertura
+inner join Personas as p
+on p.Persona_ID = em.Persona_ID
+order by c.Fecha asc
 
 go
 
-/* Tablas de consulta interna */
+/* queries para realizar registros */
 
---set dateformat dmy;
---select Personas.Nombre + ' ' + Personas.Apellido as Nombre, Clientes.Cliente_ID
---from Personas
---inner join Clientes
---    on Clientes.Persona_ID = Personas.Persona_ID
---inner join Planes_Asignados
---    on Planes_Asignados.Cliente_ID = Clientes.Cliente_ID
---inner join Planes
---    on Planes.Plan_ID = Planes_Asignados.Plan_ID
---inner join Asistencias
---on Asistencias.Cliente_ID = Clientes.Cliente_ID
---where Planes_Asignados.Estado like 'A'
---and Clientes.Estado = 'A'
---and Planes.Plan_ID = 0
---and Asistencias.Fecha = '22/11/2022'
+create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Inicial decimal
+as
+insert into Cajas values(@Empleado_ID_Apertura, @Fecha, @Importe_Inicial, null, null)
 
 
-----use gym
+go
 
---set dateformat dmy;
-
---select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
---from Planes
---inner join Jornadas_Planes
---on Jornadas_Planes.Plan_ID = Planes.Plan_ID
---where Planes.Estado = 'A'
---and Planes.Fecha_Inicio <= '21/11/2022'
---and Jornadas_Planes.Dia = 'Todos'
---or Jornadas_Planes.Dia = 'Lunes'
-
---select * from Planes
---select * from Jornadas_Planes
+/* - - */
 
 
---set dateformat dmy;
---if exists (select max(Importe_Final) from Cajas where Importe_Final != null or Importe_Final != 0 and Fecha = '23/11/2022' and Empleado_ID_Apertura = 0)
---begin
---select max(Importe_Final) as Resultado from Cajas where Importe_Final != null or Importe_Final != 0 and Fecha = '23/11/2022' and Empleado_ID_Apertura = 0
---end
+create procedure sp_Cargar_Presentes @Plan_ID int, @Fecha date
+as
+begin
+set dateformat dmy;
+Select p.Nombre + ' ' + p.Apellido as NombreCliente, c.Cliente_ID as Cliente_ID
+from Personas as p
+left join Clientes as c
+on p.Persona_ID = c.Persona_ID
+inner join Planes_Asignados as pa
+on c.Cliente_ID = pa.Cliente_ID
+inner join Planes as pl
+on pa.Plan_ID = pl.Plan_ID
+left join Asistencias as a
+on a.Cliente_ID = c.Cliente_ID
+where pl.Plan_ID = @Plan_ID
+and a.Fecha = @Fecha
+and a.Cliente_ID is not null
+end
 
---if exists (select Caja_ID from Cajas
---where Caja_ID = (select max(Caja_ID) from Cajas)
---and Importe_Final = null)
---begin 
---select Caja_ID as Caja_ID from Cajas
---where Caja_ID = (select max(Caja_ID) from Cajas)
---and Importe_Final = null
---end
+go
 
---go
+create procedure sp_Cargar_Ausentes @Plan_ID int, @Fecha date
+as
+begin
+set dateformat dmy;
+Select  p.Nombre + ' ' + p.Apellido as NombreCliente, c.Cliente_ID
+from Personas as p
+inner join Clientes as c
+on p.Persona_ID = c.Persona_ID
+inner join Planes_Asignados as pa
+on c.Cliente_ID = pa.Cliente_ID
+inner join Planes as pl
+on pa.Plan_ID = pl.Plan_ID
+where pl.Plan_ID = @Plan_ID
+and c.Cliente_ID not in (select Cliente_ID from Asistencias where Fecha = @Fecha)
+end
+
+go
+
+create procedure sp_Buscar_Cliente_Ausentismo @buscar nvarchar
+as
+begin
+select pa.Plan_Asignado_ID, c.Cliente_ID,
+p.Nombre, p.Apellido, p.Nro_documento, p.Nro_Telefono, p.Mail,
+pl.Nombre
+from Personas as p
+inner join Clientes c
+on c.Persona_ID = p.Persona_ID
+inner join Planes_Asignados as pa
+on c.Cliente_ID = pa.Cliente_ID
+inner join Planes as pl
+on pa.Plan_ID = pl.Plan_ID
+where pa.Estado = 'A'
+and c.Estado = 'A'
+and p.Nro_documento like @buscar
+end
+
+go
+
+create procedure sp_Buscar_Listado_Asistencia_Total @Parametro nvarchar
+as
+begin
+select distinct(c.Cliente_ID) as Cliente_ID, p.Nombre, p.Apellido, p.Nro_documento, pl.Nombre, a.Estado
+from Asistencias as a
+inner join Clientes as c
+on c.Cliente_ID = a.Cliente_ID
+inner join Personas as p
+on c.Persona_ID = p.Persona_ID
+inner join Planes_Asignados pa
+on a.Plan_Asignado_ID = pa.Plan_Asignado_ID
+inner join Planes pl
+on pl.Plan_ID = pa.Plan_ID
+where p.Nombre like @Parametro
+or p.Apellido like @Parametro
+or a.Fecha like @Parametro
+or pl.Nombre like @Parametro
+end
+
+go
+
+
+create procedure sp_Buscar_Cliente_Por_ID @Plan_ID int, @Cliente_ID int
+as
+begin
+select Planes_Asignados.Plan_Asignado_ID, Clientes.Cliente_ID,
+Personas.Nombre, Personas.Apellido, Personas.Nro_documento, Personas.Nro_Telefono, Personas.Mail,
+Planes.Nombre
+from Personas
+inner join Clientes
+on Clientes.Persona_ID = Personas.Persona_ID
+inner join Planes_Asignados
+on Clientes.Cliente_ID = Planes_Asignados.Cliente_ID
+inner join Planes
+on Planes_Asignados.Plan_ID = Planes.Plan_ID
+where Planes_Asignados.Estado = 'A'
+and Clientes.Estado = 'A'
+and Planes_Asignados.Plan_ID = @Plan_ID
+and Clientes.Cliente_ID = @Cliente_ID
+end
+
+go
+
+create procedure sp_Buscar_Listado_Clientes @query nvarchar
+as
+begin
+SELECT Clientes.Cliente_ID, Personas.Persona_ID, Personas.Nombre,
+Personas.Apellido, Personas.Nro_Documento, Personas.Nro_telefono,
+Clientes.Estado
+FROM Personas
+INNER JOIN Clientes
+ON Personas.Persona_ID = Clientes.Persona_ID
+where Personas.Nombre LIKE @query 
+or Personas.Apellido LIKE @query
+or Personas.Nro_Documento LIKE @query
+or Clientes.Estado LIKE @query
+and Estado = 'A'
+Order by Personas.Fecha_Alta asc
+end
+
+go
 
 
 
@@ -696,3 +779,48 @@ go
 
 
 
+
+
+
+
+
+/*  Pruebas  */
+
+create procedure sp_Buscar_Datos_Cliente_Con_DNI @Documento
+as
+begin
+
+declare @Documento nvarchar set @Documento = '41852963'
+
+select pa.Plan_Asignado_ID, c.Cliente_ID,
+p.Nombre, p.Apellido, p.Nro_documento, p.Nro_Telefono, p.Mail,
+pl.Nombre
+from Personas as p
+inner join Clientes as c
+on c.Persona_ID = p.Persona_ID
+left join Planes_Asignados as pa
+on c.Cliente_ID = pa.Cliente_ID
+left join Planes as pl
+on pa.Plan_ID = pl.Plan_ID
+where p.Nro_documento = '41852963'
+and c.Estado = 'A'
+and pa.Estado = 'A'
+end
+
+use gym
+
+Select * from Clientes
+select * from Personas
+Select * From Planes
+select * from Planes_Asignados
+
+select p.Nombre, p.Apellido, c.Cliente_ID, p.Nro_documento, pa.Estado
+from Personas p
+left join Clientes as c
+on p.Persona_ID = c.Persona_ID
+left join Planes_Asignados as pa
+on pa.Cliente_ID = c.Cliente_ID
+where p.Nro_documento = '41852963'
+and pa.Estado = 'A'
+
+/*  Fin Pruebas  */

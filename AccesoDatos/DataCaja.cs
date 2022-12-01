@@ -105,12 +105,11 @@ namespace AccesoDatos
                             begin
                                 select max(Importe_Final) as Resultado from Cajas 
                                 where Importe_Final != null or Importe_Final != 0 
-                                and Fecha = @Fecha)
+                                and Fecha = @Fecha
                             end"
             ;
 
-            SqlParameter fecha = new SqlParameter("@Fecha", Fecha);
-            
+            SqlParameter fecha = new SqlParameter("@Fecha", Fecha);            
             SqlCommand cmd = new SqlCommand(query, conexion);
             cmd.Parameters.Add(fecha);
 
@@ -150,13 +149,11 @@ namespace AccesoDatos
         {
             /*Este método es tipo int. Ya lo vimos antes.*/
             int resultado = -1;
-            string query = @"insert into Cajas values(@Empleado_ID_Apertura,
-                                                      @Fecha, 
-                                                      @Importe_Inicial)"
+            string query = @"exec sp_abrir_caja @Empleado_ID_Apertura, @Fecha, @Importe_Inicial"
             ;
 
             SqlParameter empleado_Id = new SqlParameter("@Empleado_ID_Apertura", caja.Empleado_ID_Apertura);
-            SqlParameter fecha = new SqlParameter("@Empleado_ID", caja.Fecha);
+            SqlParameter fecha = new SqlParameter("@Fecha", caja.Fecha);
             SqlParameter importe_Inicial = new SqlParameter("@Importe_Inicial", caja.Importe_Inicial);
             
             SqlCommand cmd = new SqlCommand(query, conexion);
@@ -243,7 +240,7 @@ namespace AccesoDatos
                             on Personas.Persona_ID = Empleados.Persona_ID
                         where Cajas.Caja_ID like @Parametro 
                             or Cajas.Fecha like @Parametro
-                            or Detalles_Cajas.Fecha = @Parametro
+                            or Detalles_Cajas.Fecha like @Parametro
                             or Personas.Apellido like @Parametro
                             or Detalles_Cajas.Motivo like @Parametro
                         order by Fecha asc"
