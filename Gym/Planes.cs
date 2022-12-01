@@ -758,6 +758,11 @@ namespace Gym
                     AsigarlePlanAlCliente();
                     //Actualizar planes
                     cmbPlanesActivos_SelectionChangeCommitted(sender, e);
+                    string nombre = lblNombre.Text;
+                    int contador = nombre.Length;
+                    nombre = nombre.Substring(8, contador);
+                    string plan = cmbPlanesActivos.SelectedItem.ToString();
+                    MessageBox.Show($"Se asignó correctamente el plan: {plan}, para el alumno: {nombre}", "Asignación de Planes");
                 }
             }
         }

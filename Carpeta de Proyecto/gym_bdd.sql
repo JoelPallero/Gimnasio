@@ -623,6 +623,27 @@ order by a.Fecha asc
 
 go
 
+create procedure sp_Buscar_Listado_Asistencia_Total @Parametro nvarchar
+as
+begin
+select distinct(c.Cliente_ID) as Cliente_ID, p.Nombre, p.Apellido, p.Nro_documento, pl.Nombre, a.Estado
+from Asistencias as a
+inner join Clientes as c
+on c.Cliente_ID = a.Cliente_ID
+inner join Personas as p
+on c.Persona_ID = p.Persona_ID
+inner join Planes_Asignados pa
+on a.Plan_Asignado_ID = pa.Plan_Asignado_ID
+inner join Planes pl
+on pl.Plan_ID = pa.Plan_ID
+where p.Nombre like @Parametro
+or p.Apellido like @Parametro
+or a.Fecha like @Parametro
+or pl.Nombre like @Parametro
+end
+
+go
+
 create procedure sp_get_cajas
 as
 select c.Caja_ID, c.Fecha, c.Importe_Inicial, c.Importe_Final,
@@ -639,17 +660,6 @@ on p.Persona_ID = em.Persona_ID
 order by c.Fecha asc
 
 go
-
-/* queries para realizar registros */
-
-create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Inicial decimal
-as
-insert into Cajas values(@Empleado_ID_Apertura, @Fecha, @Importe_Inicial, null, null)
-
-
-go
-
-/* - - */
 
 
 create procedure sp_Cargar_Presentes @Plan_ID int, @Fecha date
@@ -711,27 +721,6 @@ end
 
 go
 
-create procedure sp_Buscar_Listado_Asistencia_Total @Parametro nvarchar
-as
-begin
-select distinct(c.Cliente_ID) as Cliente_ID, p.Nombre, p.Apellido, p.Nro_documento, pl.Nombre, a.Estado
-from Asistencias as a
-inner join Clientes as c
-on c.Cliente_ID = a.Cliente_ID
-inner join Personas as p
-on c.Persona_ID = p.Persona_ID
-inner join Planes_Asignados pa
-on a.Plan_Asignado_ID = pa.Plan_Asignado_ID
-inner join Planes pl
-on pl.Plan_ID = pa.Plan_ID
-where p.Nombre like @Parametro
-or p.Apellido like @Parametro
-or a.Fecha like @Parametro
-or pl.Nombre like @Parametro
-end
-
-go
-
 
 create procedure sp_Buscar_Cliente_Por_ID @Plan_ID int, @Cliente_ID int
 as
@@ -772,6 +761,17 @@ Order by Personas.Fecha_Alta asc
 end
 
 go
+
+/* queries para realizar registros */
+
+create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Inicial decimal
+as
+insert into Cajas values(@Empleado_ID_Apertura, @Fecha, @Importe_Inicial, null, null)
+
+
+go
+
+/* - - */
 
 
 

@@ -217,10 +217,29 @@ namespace Gym
             string fechaString = fecha;
             string horaString;
 
-            //Estraer horas
-            string shora = fechaString.Substring(11, 2);
+            //verificar horario de 24hs
+            string horario = fechaString.Substring(20, 5);
+
+            string shora;
+            string sminutos;
+
+            if (horario == "a.m.")
+            {
+                //Estraer horas
+                shora = fechaString.Substring(11, 2);
+            }
+            else
+            {
+                //Estraer horas
+                int hora = Convert.ToInt32(fechaString.Substring(11, 2));
+                if (hora <= 11)
+                {
+                    hora += 12;
+                }
+                shora = hora.ToString();
+            }
             //Estraer minutos
-            string sminutos = fechaString.Substring(14, 2);
+            sminutos = fechaString.Substring(14, 2);
 
             horaString = $"{shora}:{sminutos}";
             return horaString;
