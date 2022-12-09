@@ -178,6 +178,7 @@ namespace Gym
             this.btnCerrar.TabIndex = 85;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = false;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // label3
             // 

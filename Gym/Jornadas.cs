@@ -51,6 +51,7 @@ namespace Gym
         private int contadorJornadas;
         private bool esEmpleado;
         private bool darleLaBaja;
+        private string hora;
 
         #endregion
 
@@ -902,6 +903,104 @@ namespace Gym
         private void txtHastaLunes_KeyPress(object sender, KeyPressEventArgs e)
         {
             _restricciones.Horarios(e);
+        }
+
+
+        private string AgregarColon(string texto)
+        {
+            //verificamos si el texto ingresado hasta el momento tiene 2 caracteres
+            //si es así, se le agregan los 2 puntos, para evitar ponerlo a cada momento
+            //cuando están poniendo los horarios.
+            if (texto.Length == 2)
+            {
+                texto += ":";
+            }
+
+            return texto;
+        }
+
+        private void txtDesdeLunes_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtDesdeLunes.Text;
+            txtDesdeLunes.Text = AgregarColon(hora);
+            txtDesdeLunes.Select(txtDesdeLunes.Text.Length, 0);
+        }
+
+        private void txtHastaLunes_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtHastaLunes.Text;
+            txtHastaLunes.Text = AgregarColon(hora);
+            txtHastaLunes.Select(txtHastaLunes.Text.Length, 0);
+        }
+
+        private void txtDesdeMartes_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtDesdeMartes.Text;
+            txtDesdeMartes.Text = AgregarColon(hora);
+            txtDesdeMartes.Select(txtDesdeMartes.Text.Length, 0);
+        }
+
+        private void txtHastaMartes_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtHastaMartes.Text;
+            txtHastaMartes.Text = AgregarColon(hora);
+            txtHastaMartes.Select(txtHastaMartes.Text.Length, 0);
+        }
+
+        private void txtDesdeMiercoles_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtDesdeMiercoles.Text;
+            txtDesdeMiercoles.Text = AgregarColon(hora);
+            txtDesdeMiercoles.Select(txtDesdeMiercoles.Text.Length, 0);
+        }
+
+        private void txtHastaMiercoles_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtHastaMiercoles.Text;
+            txtHastaMiercoles.Text = AgregarColon(hora);
+            txtHastaMiercoles.Select(txtHastaMiercoles.Text.Length, 0);
+        }
+
+        private void txtDesdeJueves_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtDesdeJueves.Text;
+            txtDesdeJueves.Text = AgregarColon(hora);
+            txtDesdeJueves.Select(txtDesdeJueves.Text.Length, 0);
+        }
+
+        private void txtHastaJueves_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtHastaJueves.Text;
+            txtHastaJueves.Text = AgregarColon(hora);
+            txtHastaJueves.Select(txtHastaJueves.Text.Length, 0);
+        }
+
+        private void txtDesdeViernes_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtDesdeViernes.Text;
+            txtDesdeViernes.Text = AgregarColon(hora);
+            txtDesdeViernes.Select(txtDesdeViernes.Text.Length, 0);
+        }
+
+        private void txtHastaViernes_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtHastaViernes.Text;
+            txtHastaViernes.Text = AgregarColon(hora);
+            txtHastaViernes.Select(txtHastaViernes.Text.Length, 0);
+        }
+
+        private void txtDesdeSabado_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtDesdeSabado.Text;
+            txtDesdeSabado.Text = AgregarColon(hora);
+            txtDesdeSabado.Select(txtDesdeSabado.Text.Length, 0);
+        }
+
+        private void txtHastaSabado_KeyUp(object sender, KeyEventArgs e)
+        {
+            hora = txtHastaSabado.Text;
+            txtHastaSabado.Text = AgregarColon(hora);
+            txtHastaSabado.Select(txtHastaSabado.Text.Length, 0);
         }
 
         #endregion

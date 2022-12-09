@@ -95,7 +95,7 @@ namespace AccesoDatos
             SqlCommand cmd = new SqlCommand(query, conexion);
 
             cmd.Parameters.Add(estado);
-            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(plan_ID);
 
             try
             {

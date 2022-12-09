@@ -46,5 +46,10 @@ namespace BussinessLayer
         {
             return _dataCaja.GetLastCajaID(caja);
         }
+
+        public int CerrarCaja(Cajas caja)
+        {
+            return _dataCaja.CerrarCaja(caja);
+        }
     }
 }

@@ -7,3 +7,12 @@ G:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\obj\Debug\AccesoDatos.cspro
 G:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\obj\Debug\AccesoDatos.csproj.CopyComplete
 G:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\obj\Debug\AccesoDatos.dll
 G:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\obj\Debug\AccesoDatos.pdb
+F:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\bin\Debug\AccesoDatos.dll
+F:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\bin\Debug\AccesoDatos.pdb
+F:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\bin\Debug\Entities.dll
+F:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\bin\Debug\Entities.pdb
+F:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\obj\Debug\AccesoDatos.csproj.AssemblyReference.cache
+F:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
+F:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\obj\Debug\AccesoDatos.csproj.CopyComplete
+F:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\obj\Debug\AccesoDatos.dll
+F:\Programacion\GitHub\Gimnasio\Gimnasio\AccesoDatos\obj\Debug\AccesoDatos.pdb

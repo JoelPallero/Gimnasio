@@ -19,9 +19,7 @@ namespace AccesoDatos
         public DataSet ConsultarSaldos(Detalles_Cajas _detalles_Cajas)
         {
             /*Vamos a realizar la consulta correspondiente, siempre con la parametrización*/
-            string query = @"select sum(Importe_Ingreso) as Ingreso, sum(Importe_Egreso) as Egreso, sum(Importe_Ingreso - Importe_Egreso) as Total
-                            From Detalles_Cajas
-                            where Caja_ID = @Caja_ID"
+            string query = @"sp_Calcular_Importes @Caja_ID"
             ;
 
             SqlParameter caja_ID = new SqlParameter("@Caja_ID", _detalles_Cajas.Caja_ID);
@@ -57,6 +55,40 @@ namespace AccesoDatos
             }
             // por último, retornamos el dataset.
             return ds;
+        }
+
+        public int CerrarCaja(Cajas caja)
+        {
+            int resultado = -1;
+            string query = @"sp_Cerrar_Caja @Empleado_ID_Cierre, @Fecha_Cierre, @Importe_Final, @Caja_ID";
+
+            SqlParameter estado = new SqlParameter("@Empleado_ID_Cierre", caja.Empleado_ID_Cierre);
+            SqlParameter fecha_Cierre = new SqlParameter("@Fecha_Cierre", caja.Fecha_Cierre);
+            SqlParameter importe_Final = new SqlParameter("@Importe_Final", caja.Importe_Final);
+            SqlParameter caja_ID = new SqlParameter("@Caja_ID", caja.Caja_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(fecha_Cierre);
+            cmd.Parameters.Add(importe_Final);
+            cmd.Parameters.Add(caja_ID);
+
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return resultado;
         }
 
         public Cajas GetLastCajaID(Cajas caja)
@@ -101,11 +133,11 @@ namespace AccesoDatos
 
             string query = @"if exists (select max(Importe_Final) from Cajas 
                                 where Importe_Final != null or Importe_Final != 0 
-                                and Fecha = @Fecha)
+                                and Fecha_Apertura = @Fecha)
                             begin
                                 select max(Importe_Final) as Resultado from Cajas 
                                 where Importe_Final != null or Importe_Final != 0 
-                                and Fecha = @Fecha
+                                and Fecha_Apertura = @Fecha
                             end"
             ;
 
@@ -153,7 +185,7 @@ namespace AccesoDatos
             ;
 
             SqlParameter empleado_Id = new SqlParameter("@Empleado_ID_Apertura", caja.Empleado_ID_Apertura);
-            SqlParameter fecha = new SqlParameter("@Fecha", caja.Fecha);
+            SqlParameter fecha = new SqlParameter("@Fecha", caja.Fecha_Apertura);
             SqlParameter importe_Inicial = new SqlParameter("@Importe_Inicial", caja.Importe_Inicial);
             
             SqlCommand cmd = new SqlCommand(query, conexion);
@@ -228,23 +260,7 @@ namespace AccesoDatos
             }
             else
             {
-                query = @"select Cajas.Caja_ID, Cajas.Fecha, Cajas.Importe_Inicial, Cajas.Importe_Final,
-                            Detalles_Cajas.Importe_Ingreso, Detalles_Cajas.Importe_Egreso, Detalles_Cajas.Motivo, 
-                            Personas.Apellido
-                        from Detalles_Cajas
-                        inner join Cajas
-                            on Cajas.Caja_ID = Detalles_Cajas.Caja_ID
-                        inner join Empleados
-                            on Empleados.Empleado_ID = Detalles_Cajas.Empleado_ID
-                        inner join Personas
-                            on Personas.Persona_ID = Empleados.Persona_ID
-                        where Cajas.Caja_ID like @Parametro 
-                            or Cajas.Fecha like @Parametro
-                            or Detalles_Cajas.Fecha like @Parametro
-                            or Personas.Apellido like @Parametro
-                            or Detalles_Cajas.Motivo like @Parametro
-                        order by Fecha asc"
-                ;                
+                query = @"sp_GetCajas_Y_Detalles @Parametro";                
             }
             SqlCommand cmd = new SqlCommand(query, conexion)
             {
@@ -278,14 +294,6 @@ namespace AccesoDatos
             }
             return ds;
         }
-
-        #endregion
-
-        #region Detalles de Caja
-
-        #endregion
-
-        #region Cuotas de facturación
 
         #endregion
     }

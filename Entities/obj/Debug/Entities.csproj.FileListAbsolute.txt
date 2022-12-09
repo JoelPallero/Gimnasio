@@ -3,3 +3,9 @@ G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\bin\Debug\Entities.pdb
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.dll
 G:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.pdb
+F:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\bin\Debug\Entities.dll
+F:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\bin\Debug\Entities.pdb
+F:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.csproj.AssemblyReference.cache
+F:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+F:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.dll
+F:\Programacion\GitHub\Gimnasio\Gimnasio\Entities\obj\Debug\Entities.pdb

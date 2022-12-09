@@ -9,3 +9,14 @@ G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer
 G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.csproj.CopyComplete
 G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.dll
 G:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.pdb
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\BussinessLayer.dll
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\BussinessLayer.pdb
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\AccesoDatos.dll
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\Entities.dll
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\AccesoDatos.pdb
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\bin\Debug\Entities.pdb
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.csproj.AssemblyReference.cache
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.csproj.CoreCompileInputs.cache
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.csproj.CopyComplete
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.dll
+F:\Programacion\GitHub\Gimnasio\Gimnasio\BussinessLayer\obj\Debug\BussinessLayer.pdb

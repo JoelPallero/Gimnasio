@@ -647,7 +647,7 @@ go
 
 create procedure sp_get_cajas
 as
-select c.Caja_ID, c.Fecha_Apertura, c.Importe_Inicial, c.Importe_Final,
+select c.Caja_ID, c.Fecha, c.Importe_Inicial, c.Importe_Final,
 dc.Importe_Ingreso, dc.Importe_Egreso, dc.Motivo, 
 p.Apellido
 from Cajas as c
@@ -804,7 +804,7 @@ go
 
 create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Inicial decimal
 as
-insert into Cajas (Empleado_ID_Apertura, Fecha_Apertura, Importe_Inicial) values(@Empleado_ID_Apertura, @Fecha, @Importe_Inicial)
+insert into Cajas values(@Empleado_ID_Apertura, @Fecha, @Importe_Inicial, null, null)
 
 go
 

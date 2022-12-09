@@ -32,12 +32,14 @@ namespace Gym
         private int personaLogueada;
         private decimal ingreso;
         private decimal egreso;
+        private decimal importeFinalCaja = -1;
         private DataSet DsSaldosActuales;
         private DataSet DsCajas;
         private int idCajaAbierta;
         private string buscar;
         private bool cajaAbierta;
         private bool primeraCaja;
+
 
 
         #endregion
@@ -121,6 +123,48 @@ namespace Gym
         {
             lblDiferenciaFinal.Text = Convert.ToString(Convert.ToDecimal(txtImporteFinal.Text) - Convert.ToDecimal(lblTotal.Text));
         }
+        private void VerificarImportes(KeyPressEventArgs e, string _importe)
+        {
+            string importe = _importe.ToString();
+            _restricciones.SoloNumeros(e, importe);
+        }
+        private bool VerificarBoxes()
+        {
+            bool estaVacio;
+
+            if (string.IsNullOrEmpty(txtImporteFinal.Text) || Convert.ToInt32(txtImporteFinal.Text) < 0)
+            {
+                estaVacio = true;
+            }
+            else
+            {
+                estaVacio = false;
+            }
+
+
+            return estaVacio;
+        }
+        private void VerificarimportesFinales()
+        {
+            DialogResult result = MessageBox.Show($"El importe final es de {importeFinalCaja}. ¿Es correcto? De ser correcto, presione \"Aceptar\", " +
+                $"de lo contrario presione \"Cancelar\" y reingrese el importe final", "Verificar Importe de Cierre de Caja");
+
+            if (result == DialogResult.OK)
+            {
+                CerrarCaja();
+            }
+        }
+
+        private void CerrarCaja()
+        {
+            _caja.Caja_ID = idCajaAbierta;
+            _caja.Empleado_ID_Cierre = personaLogueada;
+            _caja.Fecha_Cierre = DateTime.Now;
+            _caja.Importe_Final = Convert.ToDecimal(lblTotal.Text);
+
+            _bussinessCaja.CerrarCaja(_caja);
+
+        }
 
         #endregion
 
@@ -135,7 +179,7 @@ namespace Gym
             {
                 _caja.Importe_Inicial = Convert.ToDecimal(txtImporteEfectivo.Text);
                 _caja.Empleado_ID_Apertura = personaLogueada;
-                _caja.Fecha = DateTime.Now;
+                _caja.Fecha_Apertura = DateTime.Now;
 
                 //Abro la caja del día
                 _bussinessCaja.AbrirCaja(_caja);
@@ -156,7 +200,7 @@ namespace Gym
         private void txtImporteEfectivo_KeyPress(object sender, KeyPressEventArgs e)
         {
             string importe = txtImporteEfectivo.Text;
-            _restricciones.SoloNumeros(e, importe);
+            VerificarImportes(e, importe);
         }
 
         private void txtBuscarCajas_KeyPress(object sender, KeyPressEventArgs e)
@@ -169,9 +213,33 @@ namespace Gym
         }
         private void txtImporteFinal_KeyPress(object sender, KeyPressEventArgs e)
         {
+            string importe = txtImporteFinal.Text;
+            importeFinalCaja = Convert.ToDecimal(importe);
+            VerificarImportes(e, importe);
             if (e.KeyChar == (char)Keys.Enter)
             {
                 MostrarDiferencia();
+            }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            bool estaVacio = VerificarBoxes();
+            if (estaVacio)
+            {
+                if (importeFinalCaja == -1)
+                {
+                    MessageBox.Show("Primero debe ingresar el importe de cierre en el cuadro de texto correspondiente.", "Importe final no registrado");
+                }
+                else
+                {
+                    VerificarimportesFinales();
+                }
+            }
+            else
+            {
+                importeFinalCaja = Convert.ToDecimal(txtImporteFinal.Text);
+                VerificarimportesFinales();
             }
         }
     }
