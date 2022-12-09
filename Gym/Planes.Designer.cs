@@ -30,11 +30,11 @@ namespace Gym
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle73 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuPlanes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnEditarPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEliminarPlan = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +67,7 @@ namespace Gym
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.btnAltaPlan = new System.Windows.Forms.Button();
             this.gpDatosPlan = new System.Windows.Forms.GroupBox();
-            this.txtImporte = new System.Windows.Forms.TextBox();
+            this.txtCostoMensual = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
@@ -149,14 +149,14 @@ namespace Gym
             // 
             this.dtgvPlanes.AllowUserToAddRows = false;
             this.dtgvPlanes.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvPlanes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvPlanes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dtgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvPlanes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Plan_ID,
@@ -169,14 +169,14 @@ namespace Gym
             this.dtgvPlanes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvPlanes.Name = "dtgvPlanes";
             this.dtgvPlanes.ReadOnly = true;
-            dataGridViewCellStyle73.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle73.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle73.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle73.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle73.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle73.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle73.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvPlanes.RowHeadersDefaultCellStyle = dataGridViewCellStyle73;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvPlanes.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dtgvPlanes.RowHeadersVisible = false;
             this.dtgvPlanes.RowHeadersWidth = 51;
             this.dtgvPlanes.RowTemplate.Height = 29;
@@ -196,8 +196,8 @@ namespace Gym
             // Nombre
             // 
             this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle67;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle7;
             this.Nombre.Frozen = true;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.MinimumWidth = 6;
@@ -209,8 +209,8 @@ namespace Gym
             // Profesor_n
             // 
             this.Profesor_n.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Profesor_n.DefaultCellStyle = dataGridViewCellStyle71;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Profesor_n.DefaultCellStyle = dataGridViewCellStyle8;
             this.Profesor_n.Frozen = true;
             this.Profesor_n.HeaderText = "Profesor";
             this.Profesor_n.MinimumWidth = 6;
@@ -221,8 +221,8 @@ namespace Gym
             // Estado
             // 
             this.Estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Estado.DefaultCellStyle = dataGridViewCellStyle72;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Estado.DefaultCellStyle = dataGridViewCellStyle9;
             this.Estado.Frozen = true;
             this.Estado.HeaderText = "Estado del Plan";
             this.Estado.MinimumWidth = 6;
@@ -488,7 +488,7 @@ namespace Gym
             // 
             // gpDatosPlan
             // 
-            this.gpDatosPlan.Controls.Add(this.txtImporte);
+            this.gpDatosPlan.Controls.Add(this.txtCostoMensual);
             this.gpDatosPlan.Controls.Add(this.label26);
             this.gpDatosPlan.Controls.Add(this.label27);
             this.gpDatosPlan.Controls.Add(this.dtpFechaInicio);
@@ -509,14 +509,14 @@ namespace Gym
             this.gpDatosPlan.TabStop = false;
             this.gpDatosPlan.Text = "Datos de Plan";
             // 
-            // txtImporte
+            // txtCostoMensual
             // 
-            this.txtImporte.ForeColor = System.Drawing.Color.Black;
-            this.txtImporte.Location = new System.Drawing.Point(19, 104);
-            this.txtImporte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtImporte.Name = "txtImporte";
-            this.txtImporte.Size = new System.Drawing.Size(156, 23);
-            this.txtImporte.TabIndex = 1;
+            this.txtCostoMensual.ForeColor = System.Drawing.Color.Black;
+            this.txtCostoMensual.Location = new System.Drawing.Point(19, 104);
+            this.txtCostoMensual.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCostoMensual.Name = "txtCostoMensual";
+            this.txtCostoMensual.Size = new System.Drawing.Size(156, 23);
+            this.txtCostoMensual.TabIndex = 1;
             // 
             // label26
             // 
@@ -1034,7 +1034,7 @@ namespace Gym
         private System.Windows.Forms.TextBox txtHastaLunes;
         private System.Windows.Forms.TextBox txtDesdeLunes;
         private System.Windows.Forms.GroupBox gpDatosPlan;
-        private System.Windows.Forms.TextBox txtImporte;
+        private System.Windows.Forms.TextBox txtCostoMensual;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.DateTimePicker dtpFechaInicio;

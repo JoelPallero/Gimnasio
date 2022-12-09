@@ -46,9 +46,9 @@ namespace BussinessLayer
             return _dataPlanes.EditarCupoRestante(planes);
         }
 
-        public DataSet GetPlanesActuales(Planes planes, string buscar)
+        public DataSet GetPlanesActuales(string buscar)
         {
-            return _dataPlanes.GetPlanesActuales(planes, buscar);
+            return _dataPlanes.GetPlanesActuales(buscar);
         }
         public Planes GetLastID(Planes planes)
         {
@@ -68,6 +68,16 @@ namespace BussinessLayer
         public int EliminarPlan(Planes planes)
         {
             return _dataPlanes.EliminarPlan(planes);
+        }
+
+        public Planes GetPlanUnico(Planes planes)
+        {
+            return _dataPlanes.GetPlanUnico(planes);
+        }
+
+        public int EditarPlan(Planes planes)
+        {
+            return _dataPlanes.EditarPlan(planes);
         }
     }
 }

@@ -800,6 +800,27 @@ end
 
 go
 
+create procedure sp_cargar_Plan_unico @Estado nvarchar, @Profesor nvarchar, @Parametro nvarchar
+as begin
+select pl.Plan_ID, pl.Nombre as Nombre_Planes, p.Nombre as Nombre_Empleado, replace(pl.Estado, 'A', 'Activo') as Estado
+from Planes as pl
+inner join Empleados em
+on em.Empleado_ID = pl.Empleado_ID
+inner join Personas as p
+on p.Persona_ID = em.Persona_ID
+inner join Tipos_Empleados as tp
+on em.Tipo_Empleado_ID = tp.Tipo_Empleado_ID
+where pl.Estado = @Estado
+and tp.Tipo = @Profesor
+or pl.Estado = (select replace(pl.Estado, 'I', 'Inactivo') as Estado)
+and pl.Nombre Like @Parametro
+or p.Nombre like @Parametro
+or pl.Estado like @Parametro
+end
+
+
+go
+
 /* queries para realizar registros */
 
 create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Inicial decimal
@@ -823,9 +844,6 @@ end
 
 
 /*  Pruebas  */
-
-
-
 
 
 /*  Fin Pruebas  */

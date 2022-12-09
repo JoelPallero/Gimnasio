@@ -17,11 +17,15 @@ namespace AccesoDatos
             /*traeremos todas las jornadas activas*/
             string query = @"select * from Jornadas_Planes 
                             where Plan_ID = @Plan_ID
-                            and Estado = 'A'";
+                            and Estado = @Estado";
 
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", jornadas_Planes.Plan_ID);
+            SqlParameter estado = new SqlParameter("@Estado", "A");
+
             SqlCommand cmd = new SqlCommand(query, conexion);
+
             cmd.Parameters.Add(plan_ID);
+            cmd.Parameters.Add(estado);
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -89,21 +93,21 @@ namespace AccesoDatos
                             Desde_Hora = @Desde_Hora,
                             Hasta_Hora = @Hasta_Hora,
                             Estado = @Estado
-                            where Jornada_Empleado_ID = @jornada";
+                            where Jornada_Plan_ID = @jornada";
 
             SqlParameter jornada = new SqlParameter("@jornada", jornadas_Planes.Jornada_Plan_ID);
             SqlParameter dia = new SqlParameter("@dia", jornadas_Planes.Dia);
-            SqlParameter Desde_Hora = new SqlParameter("@Desde_Hora", jornadas_Planes.Desde_Hora);
-            SqlParameter Hasta_Hora = new SqlParameter("@Hasta_Hora", jornadas_Planes.Hasta_Hora);
-            SqlParameter Estado = new SqlParameter("@Estado", jornadas_Planes.Estado);
+            SqlParameter desde_Hora = new SqlParameter("@Desde_Hora", jornadas_Planes.Desde_Hora);
+            SqlParameter hasta_Hora = new SqlParameter("@Hasta_Hora", jornadas_Planes.Hasta_Hora);
+            SqlParameter estado = new SqlParameter("@Estado", jornadas_Planes.Estado);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
             cmd.Parameters.Add(jornada);
             cmd.Parameters.Add(dia);
-            cmd.Parameters.Add(Desde_Hora);
-            cmd.Parameters.Add(Hasta_Hora);
-            cmd.Parameters.Add(Estado);
+            cmd.Parameters.Add(desde_Hora);
+            cmd.Parameters.Add(hasta_Hora);
+            cmd.Parameters.Add(estado);
 
             try
             {

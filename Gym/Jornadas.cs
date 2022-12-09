@@ -438,9 +438,7 @@ namespace Gym
                 }
             }
         }
-
-
-        private void CrearJornadaEmpleado()
+        private void JornadasManagement()
         {
             //Acá editamos
             if (cargarJornada)
@@ -819,7 +817,7 @@ namespace Gym
             }
             else
             {
-                CrearJornadaEmpleado();
+                JornadasManagement();
                 this.Close();
             }
             

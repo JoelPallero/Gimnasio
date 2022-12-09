@@ -184,7 +184,7 @@ namespace AccesoDatos
             return dt;
         }
 
-        public DataSet GetPlanesActuales(Planes planes, string buscar)
+        public DataSet GetPlanesActuales(string buscar)
         {
             string query;
 
@@ -194,20 +194,7 @@ namespace AccesoDatos
             }
             else
             {
-                query = @"select Planes.Plan_ID, Planes.Nombre as Nombre_Planes, Personas.Nombre as Nombre_Empleado, replace(Planes.Estado, 'A', 'Activo') as Estado
-                        from Planes
-                        inner join Empleados
-                        on Empleados.Empleado_ID = Planes.Empleado_ID
-                        inner join Personas
-                        on Personas.Persona_ID = Empleados.Persona_ID
-                        inner join Tipos_Empleados
-                        on Empleados.Tipo_Empleado_ID = Tipos_Empleados.Tipo_Empleado_ID
-                        where Planes.Estado = @Estado
-                        and Tipos_Empleados.Tipo = @Profesor
-                        or Planes.Estado = (select replace(Planes.Estado, 'I', 'Inactivo') as Estado)
-                        and Planes.Nombre Like @Parametro
-                        or Personas.Nombre like @Parametro
-                        or Planes.Estado like @Parametro";
+                query = @"sp_cargar_Plan_unico @Estado, @Profesor, @Parametro";
             }
             SqlParameter estado = new SqlParameter("@Estado", "A");
             SqlParameter profesor = new SqlParameter("@Profesor", "Profesor");
@@ -463,6 +450,93 @@ namespace AccesoDatos
                 cmd.Dispose();
             }
             return planes;
+        }
+
+        public Planes GetPlanUnico(Planes planes)
+        {
+            string query = @"select * from Planes where Plan_ID = @Plan_ID";
+
+            SqlParameter plan_Id = new SqlParameter("@Plan_ID", planes.Plan_ID);
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(plan_Id);
+
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    planes.Plan_ID = int.Parse(reader["Plan_ID"].ToString());
+                    planes.Nombre = reader["Nombre"].ToString();
+                    planes.Importe_Plan = decimal.Parse(reader["Importe_Plan"].ToString());
+                    planes.Duracion = int.Parse(reader["Duracion"].ToString());
+                    planes.Cupo_Total = int.Parse(reader["Cupo_Total"].ToString());
+                    planes.Fecha_Inicio = Convert.ToDateTime(reader["Fecha_Inicio"]);
+                    planes.Empleado_ID = int.Parse(reader["Empleado_ID"].ToString());
+                }
+                reader.Close();
+                cmd.ExecuteReader();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return planes;
+
+        }
+
+        public int EditarPlan(Planes planes)
+        {
+            int resultado = -1;
+            string query = @"update Planes set Nombre = @Nombre,
+                                                Importe_Plan = @Importe_Plan,
+                                                Duracion = @Duracion,
+                                                Cupo_Total = @Cupo_Total,
+                                                Fecha_Inicio = @Fecha_Inicio,
+                                                Empleado_ID = @Empleado_ID
+                            where Plan_ID = @Plan_ID"
+            ;
+
+            SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
+            SqlParameter nombre = new SqlParameter("@Nombre", planes.Nombre);
+            SqlParameter importe_Plan = new SqlParameter("@Importe_Plan", planes.Importe_Plan);
+            SqlParameter duracion = new SqlParameter("@Duracion", planes.Duracion);
+            SqlParameter cupo_Total = new SqlParameter("@Cupo_Total", planes.Cupo_Total);
+            SqlParameter fecha_Inicio = new SqlParameter("@Fecha_Inicio", planes.Fecha_Inicio);
+            SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", planes.Empleado_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(plan_ID);
+            cmd.Parameters.Add(nombre);
+            cmd.Parameters.Add(importe_Plan);
+            cmd.Parameters.Add(duracion);
+            cmd.Parameters.Add(cupo_Total);
+            cmd.Parameters.Add(fecha_Inicio);
+            cmd.Parameters.Add(empleado_ID);
+
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return resultado;
         }
     }
 }
