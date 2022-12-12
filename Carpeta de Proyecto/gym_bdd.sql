@@ -599,14 +599,6 @@ or pl.Estado = (select replace(pl.Estado, 'I', 'Inactivo') as Estado)
 
 go
 
-create procedure sp_Get_Last_Caja_ID
-as
-select Caja_ID from Cajas
-where Caja_ID = (select max(Caja_ID) from Cajas)
-and Importe_Final = null
-
-go
-
 create procedure sp_get_Asistencias_diarias
 as
 select c.Cliente_ID, pe.Nombre, pe.Apellido, pe.Nro_documento, pl.Nombre, a.Estado
@@ -766,15 +758,12 @@ go
 create procedure sp_Calcular_Importes @Caja_ID int
 as
 begin
-select  sum(dc.Importe_Ingreso) as Ingreso, 
-		sum(dc.Importe_Egreso) as Egreso, 
-		sum(dc.Importe_Ingreso - Importe_Egreso) as Total
-From Detalles_Cajas dc
-inner join Cajas as c
-on dc.Caja_ID = c.Caja_ID
-where dc.Caja_ID = @Caja_ID
-and c.Fecha_Apertura = GETDATE()
+select Importe_Inicial from Cajas where Caja_ID = @Caja_ID and Fecha_Apertura = GETDATE();
+select sum(Importe_Ingreso) as Importe_Ingreso from Detalles_Cajas where Caja_ID = @Caja_ID;
+select sum(Importe_Egreso) as Importe_Egreso from Detalles_Cajas where Caja_ID = @Caja_ID;
+select sum(Importe_Ingreso - Importe_Egreso) as Total from Detalles_Cajas where Caja_ID = @Caja_ID;
 end
+
 
 go
 
@@ -844,6 +833,19 @@ end
 
 
 /*  Pruebas  */
+
+
+select max(Caja_ID) as Caja_ID from Cajas where Fecha_Apertura like GETDATE() and Importe_Final != null
+
+
+if exists (select max(Importe_Final) from Cajas 
+where Importe_Final != null
+and Fecha_Apertura = GETDATE())
+begin
+select max(Importe_Final) as Resultado from Cajas 
+where Importe_Final != null 
+and Fecha_Apertura = GETDATE()
+end
 
 
 /*  Fin Pruebas  */

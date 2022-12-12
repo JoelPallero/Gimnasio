@@ -29,11 +29,11 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBuscarCajas = new System.Windows.Forms.TextBox();
             this.gbAperturaCaja = new System.Windows.Forms.GroupBox();
             this.txtObservacionesCaja = new System.Windows.Forms.TextBox();
@@ -41,11 +41,9 @@ namespace Gym
             this.btnAbrirCaja = new System.Windows.Forms.Button();
             this.txtImporteEfectivo = new System.Windows.Forms.TextBox();
             this.gbCierreCaja = new System.Windows.Forms.GroupBox();
-            this.lblDiferenciaFinal = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtImporteFinal = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,6 +60,12 @@ namespace Gym
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblDiferencia = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblImporteInicial = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.gbAperturaCaja.SuspendLayout();
             this.gbCierreCaja.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -140,11 +144,13 @@ namespace Gym
             // 
             // gbCierreCaja
             // 
-            this.gbCierreCaja.Controls.Add(this.lblDiferenciaFinal);
+            this.gbCierreCaja.Controls.Add(this.label5);
+            this.gbCierreCaja.Controls.Add(this.label7);
+            this.gbCierreCaja.Controls.Add(this.lblDiferencia);
+            this.gbCierreCaja.Controls.Add(this.label9);
             this.gbCierreCaja.Controls.Add(this.btnCerrar);
             this.gbCierreCaja.Controls.Add(this.label3);
             this.gbCierreCaja.Controls.Add(this.txtImporteFinal);
-            this.gbCierreCaja.Controls.Add(this.label5);
             this.gbCierreCaja.Enabled = false;
             this.gbCierreCaja.Location = new System.Drawing.Point(365, 11);
             this.gbCierreCaja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -155,26 +161,16 @@ namespace Gym
             this.gbCierreCaja.TabStop = false;
             this.gbCierreCaja.Text = "Cierre de Caja";
             // 
-            // lblDiferenciaFinal
-            // 
-            this.lblDiferenciaFinal.AutoSize = true;
-            this.lblDiferenciaFinal.Location = new System.Drawing.Point(102, 82);
-            this.lblDiferenciaFinal.Name = "lblDiferenciaFinal";
-            this.lblDiferenciaFinal.Size = new System.Drawing.Size(13, 15);
-            this.lblDiferenciaFinal.TabIndex = 102;
-            this.lblDiferenciaFinal.Text = "0";
-            this.lblDiferenciaFinal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // btnCerrar
             // 
             this.btnCerrar.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnCerrar.FlatAppearance.BorderSize = 0;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCerrar.Location = new System.Drawing.Point(133, 114);
+            this.btnCerrar.Location = new System.Drawing.Point(196, 114);
             this.btnCerrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(169, 33);
+            this.btnCerrar.Size = new System.Drawing.Size(106, 33);
             this.btnCerrar.TabIndex = 85;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = false;
@@ -198,19 +194,10 @@ namespace Gym
             this.txtImporteFinal.TabIndex = 96;
             this.txtImporteFinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtImporteFinal_KeyPress);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 82);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 15);
-            this.label5.TabIndex = 92;
-            this.label5.Text = "Diferencia:";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(483, 36);
+            this.label6.Location = new System.Drawing.Point(529, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 15);
             this.label6.TabIndex = 98;
@@ -219,7 +206,7 @@ namespace Gym
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(546, 36);
+            this.lblTotal.Location = new System.Drawing.Point(570, 37);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(13, 15);
             this.lblTotal.TabIndex = 99;
@@ -229,7 +216,7 @@ namespace Gym
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 36);
+            this.label4.Location = new System.Drawing.Point(213, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 15);
             this.label4.TabIndex = 90;
@@ -238,7 +225,7 @@ namespace Gym
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(260, 36);
+            this.label1.Location = new System.Drawing.Point(364, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 15);
             this.label1.TabIndex = 91;
@@ -247,7 +234,7 @@ namespace Gym
             // lblIngresos
             // 
             this.lblIngresos.AutoSize = true;
-            this.lblIngresos.Location = new System.Drawing.Point(144, 36);
+            this.lblIngresos.Location = new System.Drawing.Point(273, 37);
             this.lblIngresos.Name = "lblIngresos";
             this.lblIngresos.Size = new System.Drawing.Size(13, 15);
             this.lblIngresos.TabIndex = 93;
@@ -257,7 +244,7 @@ namespace Gym
             // lblEgresos
             // 
             this.lblEgresos.AutoSize = true;
-            this.lblEgresos.Location = new System.Drawing.Point(358, 36);
+            this.lblEgresos.Location = new System.Drawing.Point(420, 37);
             this.lblEgresos.Name = "lblEgresos";
             this.lblEgresos.Size = new System.Drawing.Size(13, 15);
             this.lblEgresos.TabIndex = 94;
@@ -266,6 +253,8 @@ namespace Gym
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblImporteInicial);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.lblTotal);
             this.groupBox2.Controls.Add(this.label4);
@@ -285,14 +274,14 @@ namespace Gym
             // 
             this.dtgvCajas.AllowUserToAddRows = false;
             this.dtgvCajas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvCajas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCajas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dtgvCajas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCajas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Caja_ID,
@@ -308,14 +297,14 @@ namespace Gym
             this.dtgvCajas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvCajas.Name = "dtgvCajas";
             this.dtgvCajas.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvCajas.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCajas.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dtgvCajas.RowHeadersVisible = false;
             this.dtgvCajas.RowHeadersWidth = 51;
             this.dtgvCajas.RowTemplate.Height = 29;
@@ -334,8 +323,8 @@ namespace Gym
             // Apertura
             // 
             this.Apertura.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Apertura.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Apertura.DefaultCellStyle = dataGridViewCellStyle17;
             this.Apertura.Frozen = true;
             this.Apertura.HeaderText = "Fecha";
             this.Apertura.MinimumWidth = 6;
@@ -347,8 +336,8 @@ namespace Gym
             // ImporteInicial
             // 
             this.ImporteInicial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ImporteInicial.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ImporteInicial.DefaultCellStyle = dataGridViewCellStyle18;
             this.ImporteInicial.Frozen = true;
             this.ImporteInicial.HeaderText = "Apertura Caja";
             this.ImporteInicial.MinimumWidth = 6;
@@ -358,8 +347,8 @@ namespace Gym
             // 
             // ImporteFinal
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ImporteFinal.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ImporteFinal.DefaultCellStyle = dataGridViewCellStyle19;
             this.ImporteFinal.Frozen = true;
             this.ImporteFinal.HeaderText = "Cierre Caja";
             this.ImporteFinal.MinimumWidth = 6;
@@ -394,6 +383,63 @@ namespace Gym
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.Width = 84;
+            // 
+            // lblDiferencia
+            // 
+            this.lblDiferencia.AutoSize = true;
+            this.lblDiferencia.Location = new System.Drawing.Point(138, 91);
+            this.lblDiferencia.Name = "lblDiferencia";
+            this.lblDiferencia.Size = new System.Drawing.Size(13, 15);
+            this.lblDiferencia.TabIndex = 104;
+            this.lblDiferencia.Text = "0";
+            this.lblDiferencia.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 91);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(63, 15);
+            this.label9.TabIndex = 103;
+            this.label9.Text = "Diferencia:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(138, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(13, 15);
+            this.label5.TabIndex = 106;
+            this.label5.Text = "0";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 67);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(122, 15);
+            this.label7.TabIndex = 105;
+            this.label7.Text = "Importe Final en Caja:";
+            // 
+            // lblImporteInicial
+            // 
+            this.lblImporteInicial.AutoSize = true;
+            this.lblImporteInicial.Location = new System.Drawing.Point(118, 37);
+            this.lblImporteInicial.Name = "lblImporteInicial";
+            this.lblImporteInicial.Size = new System.Drawing.Size(13, 15);
+            this.lblImporteInicial.TabIndex = 104;
+            this.lblImporteInicial.Text = "0";
+            this.lblImporteInicial.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(26, 37);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 15);
+            this.label8.TabIndex = 103;
+            this.label8.Text = "Importe Inicial:";
             // 
             // Cajas
             // 
@@ -431,7 +477,6 @@ namespace Gym
         private System.Windows.Forms.Button btnAbrirCaja;
         private System.Windows.Forms.TextBox txtImporteEfectivo;
         private System.Windows.Forms.GroupBox gbCierreCaja;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblIngresos;
@@ -443,7 +488,6 @@ namespace Gym
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.DataGridView dtgvCajas;
-        private System.Windows.Forms.Label lblDiferenciaFinal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Caja_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apertura;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImporteInicial;
@@ -452,5 +496,11 @@ namespace Gym
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Label lblDiferencia;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblImporteInicial;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -56,6 +56,7 @@
     <Compile Include="Planes_Asignados.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registros_Logs.cs" />
+    <Compile Include="SaldosActualizados.cs" />
     <Compile Include="Tipos_Documentos.cs" />
     <Compile Include="Tipos_Empleados.cs" />
     <Compile Include="Tipos_Sexos.cs" />

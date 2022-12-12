@@ -16,9 +16,9 @@ namespace BussinessLayer
         {
             _dataCaja = new DataCaja();
         }
-        public DataSet ConsultarSaldos(Detalles_Cajas _detalles_Cajas)
+        public SaldosActualizados ConsultarSaldos(Detalles_Cajas _detalles_Cajas, SaldosActualizados saldos)
         {
-            return _dataCaja.ConsultarSaldos(_detalles_Cajas);
+            return _dataCaja.ConsultarSaldos(_detalles_Cajas, saldos);
         }
 
         public int AbrirCaja(Cajas caja)

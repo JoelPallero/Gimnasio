@@ -16,33 +16,30 @@ namespace AccesoDatos
          Este es te dipo DATASET porque necesitamos hacer un estilo de matriz
         para poder luego acomodar los datos de este dataset en un datagridview 
         para que se puedan visualizar los datos encuadrados y ordenados*/
-        public DataSet ConsultarSaldos(Detalles_Cajas _detalles_Cajas)
+        public SaldosActualizados ConsultarSaldos(Detalles_Cajas _detalles_Cajas, SaldosActualizados saldos)
         {
             /*Vamos a realizar la consulta correspondiente, siempre con la parametrización*/
-            string query = @"sp_Calcular_Importes @Caja_ID"
-            ;
+            string query = @"sp_Calcular_Importes @Caja_ID";
 
             SqlParameter caja_ID = new SqlParameter("@Caja_ID", _detalles_Cajas.Caja_ID);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
             cmd.Parameters.Add(caja_ID);
 
-            /*Vamos a crear un nuevo objeto tipo DataAdapter y otro tipo DataSet
-             * El primero es para poder adaptar al DS los datos tal cual los solicitamos*/
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataSet ds = new DataSet();
-
             try
             {
-                /*Acá cambia ligeramente por el tipo de adaptación que debemos hacer
-                 Como siempre abrimos la conexión*/
                 OpenConnection();
-                //ejecutamos el comando
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    saldos.Importe_Inicial = decimal.Parse(reader["Importe_Inicial"].ToString());
+                    saldos.Importe_Ingreso = decimal.Parse(reader["Importe_Ingreso"].ToString());
+                    saldos.Importe_Egreso = decimal.Parse(reader["Importe_Egreso"].ToString());
+                    saldos.Total = decimal.Parse(reader["Total"].ToString()) + saldos.Importe_Inicial;
+                }
+                reader.Close();
                 cmd.ExecuteNonQuery();
-                /*Y el resultado se lo entregamos al DA
-                 El cual luego, lo va a adaptar en el dataset*/
-                da.SelectCommand = cmd;
-                da.Fill(ds);
             }
             catch (Exception)
             {
@@ -53,8 +50,8 @@ namespace AccesoDatos
                 CloseConnection();
                 cmd.Dispose();
             }
-            // por último, retornamos el dataset.
-            return ds;
+
+            return saldos;
         }
 
         public int CerrarCaja(Cajas caja)
@@ -215,7 +212,8 @@ namespace AccesoDatos
             /*Siempre que el método sea un objeto de la entidad, solo vamos a poder traer 1 entidad por consulta
              Por lo que, al no ser muchos datos o una lista. Lo único que traemos acá es la consulta de 1 tabla
             Y solo 1 dato por propiedad de la entidad*/
-            string query = @"sp_Get_Last_Caja_ID";
+            string query = @"select max(Caja_ID) as Caja_ID from Cajas";
+
             SqlCommand cmd = new SqlCommand(query, conexion);
 
             try

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entities;
 
 namespace Gym
 {
@@ -24,6 +25,7 @@ namespace Gym
         //Entidades
         private readonly Entities.Cajas _caja;
         private readonly Entities.Detalles_Cajas _detalles_Cajas;
+        private readonly SaldosActualizados _saldos_Acutalizados;
 
 
         #endregion
@@ -33,7 +35,6 @@ namespace Gym
         private decimal ingreso;
         private decimal egreso;
         private decimal importeFinalCaja = -1;
-        private DataSet DsSaldosActuales;
         private DataSet DsCajas;
         private int idCajaAbierta;
         private string buscar;
@@ -52,6 +53,7 @@ namespace Gym
             _bussinessCaja = new BussinessCaja();
             _caja = new Entities.Cajas();
             _detalles_Cajas = new Entities.Detalles_Cajas();
+            _saldos_Acutalizados = new SaldosActualizados();
             personaLogueada = idPersonaLog;
             VerificarCajaAbierta();
             ActualizacionDeImportes();
@@ -87,17 +89,13 @@ namespace Gym
             //Falta tener en cuenta el importe de ingreso que se registra en caja
             //cuando se abre la caja.
             _detalles_Cajas.Caja_ID = idCajaAbierta;
-            DsSaldosActuales = _bussinessCaja.ConsultarSaldos(_detalles_Cajas);
-            if (DsSaldosActuales.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in DsSaldosActuales.Tables[0].Rows)
-                {
-                    lblIngresos.Text = dr[0].ToString();
-                    lblEgresos.Text = dr[1].ToString();
-                    lblTotal.Text = dr[2].ToString();
-                    break;
-                }
-            }
+            _bussinessCaja.ConsultarSaldos(_detalles_Cajas, _saldos_Acutalizados);
+
+            lblImporteInicial.Text = _saldos_Acutalizados.Importe_Inicial.ToString();
+            lblIngresos.Text = _saldos_Acutalizados.Importe_Ingreso.ToString();
+            lblEgresos.Text = _saldos_Acutalizados.Importe_Egreso.ToString();
+            lblTotal.Text = _saldos_Acutalizados.Total.ToString();
+            
         }
 
         private void GetDetallesCajas()
@@ -121,7 +119,7 @@ namespace Gym
         }
         private void MostrarDiferencia()
         {
-            lblDiferenciaFinal.Text = Convert.ToString(Convert.ToDecimal(txtImporteFinal.Text) - Convert.ToDecimal(lblTotal.Text));
+            lblImporteInicial.Text = Convert.ToString(Convert.ToDecimal(txtImporteFinal.Text) - Convert.ToDecimal(lblTotal.Text));
         }
         private void VerificarImportes(KeyPressEventArgs e, string _importe)
         {
@@ -186,8 +184,7 @@ namespace Gym
                 cajaAbierta = true;
 
                 //consultamos el último ID
-                _bussinessCaja.ConsultarIDCajaAbierta(_caja);
-                idCajaAbierta = _caja.Caja_ID;
+                GetLastCajaID();
 
                 //Actualizamos los datos para que se muestren los detalles de cada día.
                 GetDetallesCajas();
@@ -214,10 +211,10 @@ namespace Gym
         private void txtImporteFinal_KeyPress(object sender, KeyPressEventArgs e)
         {
             string importe = txtImporteFinal.Text;
-            importeFinalCaja = Convert.ToDecimal(importe);
             VerificarImportes(e, importe);
             if (e.KeyChar == (char)Keys.Enter)
             {
+                importeFinalCaja = Convert.ToDecimal(importe);
                 MostrarDiferencia();
             }
         }
