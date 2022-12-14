@@ -819,11 +819,11 @@ end
 
 go
 
-create procedure sp_Get_Last_Caja_ID
+create procedure sp_Get_Last_Caja_ID @Fecha date
 as begin
 select max(Caja_ID) as Caja_ID from Cajas 
 where Caja_Abierta = 1
-and Fecha_Apertura = getdate()
+and Fecha_Apertura = @Fecha
 end
 
 go
@@ -837,7 +837,7 @@ values(@Empleado_ID_Apertura, @Fecha, @Fecha, @Importe_Apertura, @Caja_Abierta)
 
 go
 
-create procedure sp_Cerrar_Caja @Empleado_ID_Cierre int, @Fecha_Cierre DateTime, @Importe_Cierre decimal, @Caja_ID int, @Caja_Abierta bit
+create procedure sp_Cerrar_Caja @Empleado_ID_Cierre int, @Fecha_Cierre DateTime, @Importe_Cierre decimal, @Importe_Cierre_Caja decimal, @Caja_ID int, @Caja_Abierta bit
 as
 begin
 update Cajas set 
@@ -845,6 +845,7 @@ Empleado_ID_Cierre = @Empleado_ID_Cierre,
 Fecha_Cierre = @Fecha_Cierre,
 Hora_Cierre = @Fecha_Cierre,
 Importe_Cierre = @Importe_Cierre,
+Importe_Cierre_Caja = @Importe_Cierre_Caja,
 Caja_Abierta = @Caja_Abierta
 where Caja_ID = @Caja_ID
 end
@@ -852,13 +853,15 @@ end
 /* - - */
 
 
-select Caja_Abierta from Cajas 
-where Caja_ID = (select max(Caja_ID) from Cajas)
-
-
 /*  Pruebas  */
+
+select max(Caja_ID) as Caja_ID from Cajas 
+where Fecha_Apertura = getdate()
+and Caja_Abierta = 1
 
 
 select * from Cajas
+
+exec sp_Get_Last_Caja_ID
 
 /*  Fin Pruebas  */

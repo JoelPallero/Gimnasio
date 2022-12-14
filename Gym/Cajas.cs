@@ -113,13 +113,12 @@ namespace Gym
                 //Y por cada fila que haya en el dataset
                 foreach (DataRow dr in DsCajas.Tables[0].Rows)
                 {
-                    dtgvCajas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], dr[5], dr[6], dr[7]);
+                    string fecha = dr[1].ToString();
+                    fecha = fecha.Substring(0, fecha.Length - 8);
+
+                    dtgvCajas.Rows.Add(dr[0].ToString(), fecha, dr[2], dr[3], dr[4], dr[5]);
                 }
             }
-        }
-        private void MostrarDiferencia()
-        {
-            lblImporteInicial.Text = Convert.ToString(Convert.ToDecimal(txtImporteFinal.Text) - Convert.ToDecimal(lblTotal.Text));
         }
         private void VerificarImportes(KeyPressEventArgs e, string _importe)
         {
@@ -159,6 +158,8 @@ namespace Gym
             _caja.Empleado_ID_Cierre = personaLogueada;
             _caja.Fecha_Cierre = DateTime.Now;
             _caja.Importe_Cierre = Convert.ToDecimal(lblTotal.Text);
+            _caja.Importe_Cierre_Caja = importeFinalCaja;
+            _caja.Caja_Abierta = false;
 
             _bussinessCaja.CerrarCaja(_caja);
 
@@ -209,14 +210,18 @@ namespace Gym
                 GetDetallesCajas();
             }
         }
+
+
         private void txtImporteFinal_KeyPress(object sender, KeyPressEventArgs e)
         {
+            ActualizacionDeImportes();
             string importe = txtImporteFinal.Text;
             VerificarImportes(e, importe);
             if (e.KeyChar == (char)Keys.Enter)
             {
                 importeFinalCaja = Convert.ToDecimal(importe);
-                MostrarDiferencia();
+                lblImporteCajaFinal.Text = txtImporteFinal.Text;
+                lblDiferencia.Text = Convert.ToString(Convert.ToDecimal(lblImporteCajaFinal.Text) - Convert.ToDecimal(lblTotal.Text));
             }
         }
 
@@ -225,19 +230,33 @@ namespace Gym
             bool estaVacio = VerificarBoxes();
             if (estaVacio)
             {
-                if (importeFinalCaja == -1)
-                {
-                    MessageBox.Show("Primero debe ingresar el importe de cierre en el cuadro de texto correspondiente.", "Importe final no registrado");
-                }
-                else
-                {
-                    VerificarimportesFinales();
-                }
+                MessageBox.Show("Primero debe ingresar el importe de cierre en el cuadro de texto correspondiente.", "Importe final faltante");
             }
             else
             {
                 importeFinalCaja = Convert.ToDecimal(txtImporteFinal.Text);
-                VerificarimportesFinales();
+                decimal total = Convert.ToDecimal(lblTotal.Text);
+                decimal suma = importeFinalCaja - total;
+
+                DialogResult result = MessageBox.Show(
+                    $"Verifique si los montos son correctos:\n" +
+                    $"Importe en Caja: ${importeFinalCaja}.\n" +
+                    $"Importe registrado en el sistema: ${total}.\n" +
+                    $"Diferencia: {suma}.\n" +
+                    "Si estos importes son correctos, seleccione 'Aceptar', de lo contrario elija 'Cancelar'." +
+                    "Recuerde que estos importes no pueden modificarse una vez que elija 'Aceptar'.",
+                    "Leer bien - Cierre de Caja",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Exclamation);
+                if (result == DialogResult.OK)
+                {
+                    //Cerramos la caja.
+                    CerrarCaja();
+                    VerificarCajaAbierta();
+                    ActualizacionDeImportes();
+                    GetDetallesCajas();
+                    MessageBox.Show("Ha cerrado la caja con éxito!", "Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
     }

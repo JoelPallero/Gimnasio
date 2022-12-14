@@ -16,5 +16,6 @@ namespace Entities
         public DateTime Fecha_Cierre { get; set; }
         public DateTime Hora_Cierre { get; set; }
         public decimal Importe_Cierre { get; set; }
+        public decimal Importe_Cierre_Caja { get; set; }
     }
 }

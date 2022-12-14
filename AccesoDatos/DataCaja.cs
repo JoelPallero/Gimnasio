@@ -19,7 +19,7 @@ namespace AccesoDatos
         public SaldosActualizados ConsultarSaldos(Detalles_Cajas _detalles_Cajas, SaldosActualizados saldos)
         {
             /*Vamos a realizar la consulta correspondiente, siempre con la parametrización*/
-            string query = @"sp_Calcular_Importes @Caja_ID";
+            string query = @"exec sp_Calcular_Importes @Caja_ID";
 
             SqlParameter caja_ID = new SqlParameter("@Caja_ID", _detalles_Cajas.Caja_ID);
 
@@ -57,11 +57,12 @@ namespace AccesoDatos
         public int CerrarCaja(Cajas caja)
         {
             int resultado = -1;
-            string query = @"sp_Cerrar_Caja @Empleado_ID_Cierre, @Fecha_Cierre, @Importe_Cierre, @Caja_ID, @Caja_Abierta";
+            string query = @"exec sp_Cerrar_Caja @Empleado_ID_Cierre, @Fecha_Cierre, @Importe_Cierre, @Importe_Cierre_Caja, @Caja_ID, @Caja_Abierta";
 
             SqlParameter estado = new SqlParameter("@Empleado_ID_Cierre", caja.Empleado_ID_Cierre);
             SqlParameter fecha_Cierre = new SqlParameter("@Fecha_Cierre", caja.Fecha_Cierre);
-            SqlParameter Importe_Cierre = new SqlParameter("@Importe_Cierre", caja.Importe_Cierre);
+            SqlParameter importe_Cierre = new SqlParameter("@Importe_Cierre", caja.Importe_Cierre);
+            SqlParameter importe_Cierre_Caja = new SqlParameter("@Importe_Cierre_Caja", caja.Importe_Cierre_Caja);
             SqlParameter caja_ID = new SqlParameter("@Caja_ID", caja.Caja_ID);
             SqlParameter caja_Abierta = new SqlParameter("@Caja_Abierta", caja.Caja_Abierta);
 
@@ -69,7 +70,8 @@ namespace AccesoDatos
 
             cmd.Parameters.Add(estado);
             cmd.Parameters.Add(fecha_Cierre);
-            cmd.Parameters.Add(Importe_Cierre);
+            cmd.Parameters.Add(importe_Cierre);
+            cmd.Parameters.Add(importe_Cierre_Caja);
             cmd.Parameters.Add(caja_ID);
             cmd.Parameters.Add(caja_Abierta);
 
@@ -92,9 +94,14 @@ namespace AccesoDatos
 
         public Cajas GetLastCajaID(Cajas caja)
         {
-            string query = "exec sp_Get_Last_Caja_ID";
+            string query = "exec sp_Get_Last_Caja_ID @Fecha";
+
+            SqlParameter fecha = new SqlParameter("@Fecha", DateTime.Now);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(fecha);
+
             try
             {
                 OpenConnection();
@@ -102,13 +109,13 @@ namespace AccesoDatos
 
                 if (reader.Read())
                 {
-                    if (!string.IsNullOrEmpty(reader["Caja_ID"].ToString()))
+                    if (string.IsNullOrEmpty(reader["Caja_ID"].ToString()))
                     {
-                        caja.Caja_ID = int.Parse(reader["Caja_ID"].ToString());
+                        caja.Caja_ID = -1;
                     }
                     else
                     {
-                        caja.Caja_ID = -1;
+                        caja.Caja_ID = int.Parse(reader["Caja_ID"].ToString());
                     }
                 }
                 reader.Close();
@@ -248,11 +255,11 @@ namespace AccesoDatos
             string query;
             if (string.IsNullOrEmpty(buscar))
             {
-                 query = @"sp_get_cajas";
+                 query = @"exec sp_get_cajas";
             }
             else
             {
-                query = @"sp_GetCajas_Y_Detalles @Parametro";                
+                query = @"exec sp_Get_Cajas_Y_Detalles @Parametro";                
             }
             SqlCommand cmd = new SqlCommand(query, conexion)
             {
