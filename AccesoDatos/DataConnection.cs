@@ -15,7 +15,7 @@ namespace AccesoDatos
         Ya que acá se encuentra la cadena de conexión a la base de datos, y los métodos para abrir y cerrar la conexión a la misma.
          */
         public SqlConnection conexion;
-        public string CadenaDeConexion = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=gym;Data Source=DESKTOP-UIP7FUB";
+        public string CadenaDeConexion = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=gym;Data Source=.";
         public DataConnection()
         {
             conexion = new SqlConnection(CadenaDeConexion);

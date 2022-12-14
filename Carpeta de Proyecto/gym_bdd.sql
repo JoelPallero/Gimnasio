@@ -1,8 +1,15 @@
+use pruebas 
+
+go
+
+drop database gym
+
+go
+
 create database gym
 go
 
 use gym
-
 go
 
 /* Tablas Maestras */
@@ -49,7 +56,6 @@ Persona_ID int not null,
 Estado nvarchar(1) not null
 )
 
-
 go
 
 create table Asistencias(
@@ -79,11 +85,15 @@ go
 create table Cajas(
 Caja_ID int primary key identity (0, 1),
 Empleado_ID_Apertura int not null,
-Fecha_Apertura datetime not null,
-Fecha_Cierre datetime null,
-Importe_Inicial decimal(18,0) not null,
+Fecha_Apertura date not null,
+Hora_Apertura time null,
+Importe_Apertura decimal(18,0) not null,
+Caja_Abierta bit not null,
 Empleado_ID_Cierre int null,
-Importe_Final decimal(18,0) null,
+Fecha_Cierre date null,
+Hora_Cierre time null,
+Importe_Cierre decimal(18,0) null,
+Importe_Cierre_Caja decimal (18, 0) null
 )
 
 go
@@ -367,7 +377,7 @@ add CONSTRAINT FK_Cuotas_Plan_Asignado FOREIGN KEY (Plan_Asignado_ID)
 REFERENCES Planes_Asignados (Plan_Asignado_ID)
 
 go
-use gym
+
 alter table Cuotas
 add CONSTRAINT FK_Cuotas_Clientes FOREIGN KEY (Cliente_ID) 
 REFERENCES Clientes (Cliente_ID)
@@ -639,7 +649,7 @@ go
 
 create procedure sp_get_cajas
 as
-select c.Caja_ID, c.Fecha_Apertura, c.Importe_Inicial, c.Importe_Final,
+select c.Caja_ID, c.Fecha_Apertura, c.Importe_Apertura, c.Importe_Cierre,
 dc.Importe_Ingreso, dc.Importe_Egreso, dc.Motivo, 
 p.Apellido
 from Cajas as c
@@ -758,7 +768,7 @@ go
 create procedure sp_Calcular_Importes @Caja_ID int
 as
 begin
-select Importe_Inicial from Cajas where Caja_ID = @Caja_ID and Fecha_Apertura = GETDATE();
+select Importe_Apertura from Cajas where Caja_ID = @Caja_ID and Fecha_Apertura = GETDATE();
 select sum(Importe_Ingreso) as Importe_Ingreso from Detalles_Cajas where Caja_ID = @Caja_ID;
 select sum(Importe_Egreso) as Importe_Egreso from Detalles_Cajas where Caja_ID = @Caja_ID;
 select sum(Importe_Ingreso - Importe_Egreso) as Total from Detalles_Cajas where Caja_ID = @Caja_ID;
@@ -767,25 +777,25 @@ end
 
 go
 
-create procedure sp_GetCajas_Y_Detalles @Parametro nvarchar
-as 
-begin
-select c.Caja_ID, c.Fecha_Apertura, c.Importe_Inicial, c.Importe_Final,
-    dc.Importe_Ingreso, dc.Importe_Egreso, dc.Motivo, 
-    p.Apellido
-from Detalles_Cajas as dc
-inner join Cajas as c
-    on c.Caja_ID = dc.Caja_ID
-inner join Empleados as em
-    on em.Empleado_ID = dc.Empleado_ID
-inner join Personas as p
-    on p.Persona_ID = em.Persona_ID
-where c.Caja_ID like @Parametro 
-    or c.Fecha_Apertura like @Parametro
-    or p.Apellido like @Parametro
-    or dc.Motivo like @Parametro
-order by c.Fecha_Apertura desc
-end
+--create procedure sp_GetCajas_Y_Detalles @Parametro nvarchar
+--as 
+--begin
+--select c.Caja_ID, c.Fecha_Apertura, c.Importe_Apertura, c.Importe_Cierre,
+--    dc.Importe_Ingreso, dc.Importe_Egreso, dc.Motivo, 
+--    p.Apellido
+--from Detalles_Cajas as dc
+--inner join Cajas as c
+--    on c.Caja_ID = dc.Caja_ID
+--inner join Empleados as em
+--    on em.Empleado_ID = dc.Empleado_ID
+--inner join Personas as p
+--    on p.Persona_ID = em.Persona_ID
+--where c.Caja_ID like @Parametro 
+--    or c.Fecha_Apertura like @Parametro
+--    or p.Apellido like @Parametro
+--    or dc.Motivo like @Parametro
+--order by c.Fecha_Apertura desc
+--end
 
 go
 
@@ -807,45 +817,48 @@ or p.Nombre like @Parametro
 or pl.Estado like @Parametro
 end
 
+go
+
+create procedure sp_Get_Last_Caja_ID
+as begin
+select max(Caja_ID) as Caja_ID from Cajas 
+where Caja_Abierta = 1
+and Fecha_Apertura = getdate()
+end
 
 go
 
 /* queries para realizar registros */
 
-create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Inicial decimal
+create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Apertura decimal, @Caja_Abierta bit
 as
-insert into Cajas (Empleado_ID_Apertura, Fecha_Apertura, Importe_Inicial) values(@Empleado_ID_Apertura, @Fecha, @Importe_Inicial)
+insert into Cajas (Empleado_ID_Apertura, Fecha_Apertura, Hora_Apertura, Importe_Apertura, Caja_Abierta) 
+values(@Empleado_ID_Apertura, @Fecha, @Fecha, @Importe_Apertura, @Caja_Abierta)
 
 go
 
-create procedure sp_Cerrar_Caja @Empleado_ID_Cierre int, @Fecha_Cierre DateTime, @Importe_Final decimal, @Caja_ID int
+create procedure sp_Cerrar_Caja @Empleado_ID_Cierre int, @Fecha_Cierre DateTime, @Importe_Cierre decimal, @Caja_ID int, @Caja_Abierta bit
 as
 begin
 update Cajas set 
 Empleado_ID_Cierre = @Empleado_ID_Cierre,
 Fecha_Cierre = @Fecha_Cierre,
-Importe_Final = @Importe_Final
+Hora_Cierre = @Fecha_Cierre,
+Importe_Cierre = @Importe_Cierre,
+Caja_Abierta = @Caja_Abierta
 where Caja_ID = @Caja_ID
 end
 
 /* - - */
 
 
+select Caja_Abierta from Cajas 
+where Caja_ID = (select max(Caja_ID) from Cajas)
+
 
 /*  Pruebas  */
 
 
-select max(Caja_ID) as Caja_ID from Cajas where Fecha_Apertura like GETDATE() and Importe_Final != null
-
-
-if exists (select max(Importe_Final) from Cajas 
-where Importe_Final != null
-and Fecha_Apertura = GETDATE())
-begin
-select max(Importe_Final) as Resultado from Cajas 
-where Importe_Final != null 
-and Fecha_Apertura = GETDATE()
-end
-
+select * from Cajas
 
 /*  Fin Pruebas  */

@@ -158,7 +158,7 @@ namespace Gym
             _caja.Caja_ID = idCajaAbierta;
             _caja.Empleado_ID_Cierre = personaLogueada;
             _caja.Fecha_Cierre = DateTime.Now;
-            _caja.Importe_Final = Convert.ToDecimal(lblTotal.Text);
+            _caja.Importe_Cierre = Convert.ToDecimal(lblTotal.Text);
 
             _bussinessCaja.CerrarCaja(_caja);
 
@@ -166,7 +166,7 @@ namespace Gym
 
         #endregion
 
-        private void txtImporteEfectivo_Click(object sender, EventArgs e)
+        private void btnAbrirCaja_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtImporteEfectivo.Text))
             {
@@ -175,9 +175,10 @@ namespace Gym
             }
             else
             {
-                _caja.Importe_Inicial = Convert.ToDecimal(txtImporteEfectivo.Text);
+                _caja.Importe_Apertura = Convert.ToDecimal(txtImporteEfectivo.Text);
                 _caja.Empleado_ID_Apertura = personaLogueada;
                 _caja.Fecha_Apertura = DateTime.Now;
+                _caja.Caja_Abierta = true;
 
                 //Abro la caja del día
                 _bussinessCaja.AbrirCaja(_caja);
