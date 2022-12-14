@@ -13,7 +13,7 @@ namespace AccesoDatos
     {
         public DataTable GetPlanes(Planes planes)
         {
-            string query = @"sp_cargar_planes";
+            string query = @"exec sp_cargar_planes";
 
             SqlCommand cmd = new SqlCommand(query, conexion);
             DataTable dt = new DataTable();
@@ -37,7 +37,6 @@ namespace AccesoDatos
             }
             return dt;
         }
-
         public DataTable GetPlanesParaAsistencia(Planes planes, string diaDeLaSemana)
         {
             string query = @"select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
@@ -79,7 +78,6 @@ namespace AccesoDatos
             }
             return dt;
         }
-
         public int EliminarPlan(Planes planes)
         {
             int resultado = -1;
@@ -113,7 +111,6 @@ namespace AccesoDatos
             }
             return resultado;
         }
-
         public DataTable GetPlanesConFecha(Planes planes, string diaDeLaSemana, string fecha)
         {
             string query = @"";
@@ -149,10 +146,9 @@ namespace AccesoDatos
             }
             return dt;
         }
-
         public DataTable GetAlumnoPresentes(Planes planes, DateTime fechaPresente)
         {
-            string query = @"sp_Cargar_Presentes @Plan_ID, @Fecha";
+            string query = @"exec sp_Cargar_Presentes @Plan_ID, @Fecha";
 
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
             SqlParameter fecha = new SqlParameter("@Fecha", fechaPresente);
@@ -183,18 +179,17 @@ namespace AccesoDatos
             }
             return dt;
         }
-
         public DataSet GetPlanesActuales(string buscar)
         {
             string query;
 
             if (string.IsNullOrEmpty(buscar))
             {
-                query = "sp_cargar_planes_Actuales";
+                query = "exec sp_cargar_planes_Actuales";
             }
             else
             {
-                query = @"sp_cargar_Plan_unico @Estado, @Profesor, @Parametro";
+                query = @"exec sp_cargar_Plan_unico @Estado, @Profesor, @Parametro";
             }
             SqlParameter estado = new SqlParameter("@Estado", "A");
             SqlParameter profesor = new SqlParameter("@Profesor", "Profesor");
@@ -234,10 +229,9 @@ namespace AccesoDatos
             }
             return ds;
         }
-
         public DataTable GetAlumnoPorClase(Planes planes, DateTime fechaPresente)
         {
-            string query = "sp_Cargar_Ausentes @Plan_ID, @Fecha";
+            string query = "exec sp_Cargar_Ausentes @Plan_ID, @Fecha";
 
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
             SqlParameter fecha = new SqlParameter("@Fecha", fechaPresente);
@@ -268,7 +262,6 @@ namespace AccesoDatos
             }
             return dt;
         }
-
         public Planes GetDatoPlan(Planes planes)
         {
             string query = @"select Plan_ID, Importe_Plan, 
@@ -451,7 +444,6 @@ namespace AccesoDatos
             }
             return planes;
         }
-
         public Planes GetPlanUnico(Planes planes)
         {
             string query = @"select * from Planes where Plan_ID = @Plan_ID";
@@ -491,7 +483,6 @@ namespace AccesoDatos
             return planes;
 
         }
-
         public int EditarPlan(Planes planes)
         {
             int resultado = -1;
@@ -537,6 +528,47 @@ namespace AccesoDatos
                 cmd.Dispose();
             }
             return resultado;
+        }
+        public DataTable GetPlanesParaPago(string buscar)
+        {
+            string query = @"exec sp_Planes_Cliente_Para_Pago @Documento, @Estado";
+
+            SqlParameter estado = new SqlParameter("@Estado", "A");
+
+
+            SqlCommand cmd = new SqlCommand(query, conexion)
+            {
+                CommandType = CommandType.Text
+            };
+
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(new SqlParameter()
+            {
+                ParameterName = "@Documento",
+                SqlDbType = SqlDbType.NVarChar,
+                Value = string.Format("%{0}%", buscar)
+            });
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar tipos de documentos", e);
+            }
+            finally
+            {
+                conexion.Close();
+                cmd.Dispose();
+            }
+            return dt;
         }
     }
 }

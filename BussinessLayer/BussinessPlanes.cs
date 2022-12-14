@@ -26,7 +26,11 @@ namespace BussinessLayer
             DataTable dt = _dataPlanes.GetPlanesParaAsistencia(planes, diaDeLaSemana);
             return dt;
         }
-
+        public DataTable GetPlanesParaPago(string buscar)
+        {
+            DataTable dt = _dataPlanes.GetPlanesParaPago(buscar);
+            return dt;
+        }
         public DataTable GetPlanesConFecha(Planes planes, string diaDeLaSemana, string fecha)
         {
             DataTable dt = _dataPlanes.GetPlanesConFecha(planes, diaDeLaSemana, fecha);

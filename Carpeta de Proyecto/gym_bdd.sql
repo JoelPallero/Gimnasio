@@ -777,25 +777,18 @@ end
 
 go
 
---create procedure sp_GetCajas_Y_Detalles @Parametro nvarchar
---as 
---begin
---select c.Caja_ID, c.Fecha_Apertura, c.Importe_Apertura, c.Importe_Cierre,
---    dc.Importe_Ingreso, dc.Importe_Egreso, dc.Motivo, 
---    p.Apellido
---from Detalles_Cajas as dc
---inner join Cajas as c
---    on c.Caja_ID = dc.Caja_ID
---inner join Empleados as em
---    on em.Empleado_ID = dc.Empleado_ID
---inner join Personas as p
---    on p.Persona_ID = em.Persona_ID
---where c.Caja_ID like @Parametro 
---    or c.Fecha_Apertura like @Parametro
---    or p.Apellido like @Parametro
---    or dc.Motivo like @Parametro
---order by c.Fecha_Apertura desc
---end
+create procedure sp_Get_Cajas_Y_Detalles @Parametro nvarchar
+as 
+begin
+select Caja_ID, Fecha_Apertura, Importe_Apertura, 
+Importe_Cierre_Caja, Importe_Cierre, sum(Importe_Cierre_Caja - Importe_Cierre) as Diferencia
+from Cajas
+where Caja_ID like @Parametro 
+    or Fecha_Apertura like @Parametro
+group by Caja_ID, Fecha_Apertura, Importe_Apertura, Importe_Cierre_Caja,
+Importe_Cierre
+order by Fecha_Apertura desc
+end
 
 go
 
@@ -828,6 +821,19 @@ end
 
 go
 
+
+create procedure sp_Planes_Cliente_Para_Pago @Documento nvarchar, @Estado nvarchar
+as begin
+select pl.Plan_ID, pl.Nombre
+from Planes as pl
+inner join Personas as pe
+on pl.Persona_ID = pe.Persona_ID
+where pe.Nro_documento like @Documento
+and pl.Estado = @Estado
+end
+
+go
+
 /* queries para realizar registros */
 
 create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Apertura decimal, @Caja_Abierta bit
@@ -855,13 +861,5 @@ end
 
 /*  Pruebas  */
 
-select max(Caja_ID) as Caja_ID from Cajas 
-where Fecha_Apertura = getdate()
-and Caja_Abierta = 1
-
-
-select * from Cajas
-
-exec sp_Get_Last_Caja_ID
 
 /*  Fin Pruebas  */
