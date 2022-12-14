@@ -102,16 +102,16 @@ namespace Gym
                     lblMail.Text += dr[6].ToString();
                     break;
                 }
-                int i = 0;
-                foreach (DataRow dr in DsClienteDatos.Tables[0].Rows)
-                {
-                    lblPlanesAsignadosCliente.Text += dr[7].ToString();
-                    i++;
-                    if ((i + 1) <= DsClienteDatos.Tables[0].Rows.Count)
-                    {
-                        lblPlanesAsignadosCliente.Text += ", ";
-                    }
-                }
+                //int i = 0;
+                //foreach (DataRow dr in DsClienteDatos.Tables[0].Rows)
+                //{
+                //    lblPlanesAsignadosCliente.Text += dr[7].ToString();
+                //    i++;
+                //    if ((i + 1) <= DsClienteDatos.Tables[0].Rows.Count)
+                //    {
+                //        lblPlanesAsignadosCliente.Text += ", ";
+                //    }
+                //}
                 camposVacios = false;
             }
             else
@@ -129,6 +129,15 @@ namespace Gym
             cmbPlanesPagaPago.DataSource = DtPlanesCliente;
             cmbPlanesPagaPago.DisplayMember = "Nombre";
             cmbPlanesPagaPago.ValueMember = "Plan_ID";
+        }
+
+        private void CostoPlan(string idPlan)
+        {
+            int id = Convert.ToInt32(idPlan);
+            _planes.Plan_ID = id;
+            _bussinessPlanes.GetCostoPlan(_planes);
+            txtImporte.Text = "$" + _planes.Importe_Plan.ToString();
+            txtImporte.ForeColor = Color.Black;
         }
 
         private void ResetControlsCliente()
@@ -240,18 +249,25 @@ namespace Gym
                     $"¿Es correcto?", "Registro de Movimientos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
                 {
+                    _detalles_Cajas.Caja_ID = idCajaAbierta;
+                    _detalles_Cajas.Empleado_ID = personaLogueada;
+                    _detalles_Cajas.Observaciones = Convert.ToString(txtObservaciones.Text);
+
                     if (rbCobro.Checked)
                     {
                         _detalles_Cajas.Importe_Ingreso = Convert.ToDecimal(txtImporte.Text);
+                        _detalles_Cajas.Plan_Asignado_ID = Convert.ToInt32(cmbPlanesPagaPago.SelectedValue);
+                        _bussinessCaja.RegistrarCobro(_detalles_Cajas);
                     }
                     else
                     {
                         _detalles_Cajas.Importe_Egreso = Convert.ToDecimal(txtImporte.Text);
-                        _detalles_Cajas.Plan_Asignado_ID = Convert.ToInt32(cmbPlanesPagaPago.SelectedValue);
+                        _bussinessCaja.RegistrarPago(_detalles_Cajas);
                     }
 
-                    _detalles_Cajas.Observaciones = Convert.ToString(txtObservaciones.Text);
-                    _detalles_Cajas.Caja_ID = idCajaAbierta;
+                    MessageBox.Show($"Se registró correctamente el {tipoMovimiento} de ${importe}.",
+                        "Registro de Movimientos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
                 }
             }
             else
@@ -266,24 +282,21 @@ namespace Gym
         {
             if (rbCobro.Checked)
             {
-                cmbPlanesPagaPago.Enabled = false;
+                cmbPlanesPagaPago.Enabled = true;
             }
             else
             {
-                cmbPlanesPagaPago.Enabled = true;
+                cmbPlanesPagaPago.Enabled = false;
+                txtImporte.Text = "Importe $";
+                txtImporte.ForeColor = Color.DimGray;
             }
+
         }
 
-        private void rbPagar_CheckedChanged(object sender, EventArgs e)
+        private void cmbPlanesPagaPago_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (rbPago.Checked)
-            {
-                cmbPlanesPagaPago.Enabled = false;
-            }
-            else
-            {
-                cmbPlanesPagaPago.Enabled = true;
-            }
+            string idPlan = Convert.ToString(cmbPlanesPagaPago.SelectedValue);
+            CostoPlan(idPlan);
         }
     }
 }

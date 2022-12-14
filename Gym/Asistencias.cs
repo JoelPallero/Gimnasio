@@ -261,16 +261,16 @@ namespace Gym
                     lblMail.Text += dr[6].ToString();
                     break;
                 }
-                int i = 0;
-                foreach (DataRow dr in DsClienteAsistencia.Tables[0].Rows)
-                {
-                    lblPlanActual.Text += dr[7].ToString();
-                    i++;
-                    if ((i + 1) <= DsClienteAsistencia.Tables[0].Rows.Count)
-                    {
-                        lblPlanActual.Text += ", ";
-                    }
-                }
+                //int i = 0;
+                //foreach (DataRow dr in DsClienteAsistencia.Tables[0].Rows)
+                //{
+                //    lblPlanActual.Text += dr[7].ToString();
+                //    i++;
+                //    if ((i + 1) <= DsClienteAsistencia.Tables[0].Rows.Count)
+                //    {
+                //        lblPlanActual.Text += ", ";
+                //    }
+                //}
                 camposVacios = false;
                 btnAsignarPlan.Enabled = true;
             }
@@ -459,7 +459,7 @@ namespace Gym
             else
             {
                 string nombre = lblNombreCliente.Text;
-                nombre = nombre.Substring(8, nombre.Length);
+                nombre = nombre.Substring(8, nombre.Length - 8);
                 MessageBox.Show($"Asistencia registrada correctamente para {nombre.ToString()}, el día de la fecha.",
                            "Asistencia OK.", MessageBoxButtons.OKCancel);
             }

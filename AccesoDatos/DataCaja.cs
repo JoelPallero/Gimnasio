@@ -294,6 +294,96 @@ namespace AccesoDatos
             return ds;
         }
 
+        public int RegistrarCobro(Detalles_Cajas detalles_Cajas)
+        {
+            int resultado = -1;
+            string query = @"insert into Detalles_Cajas (Caja_ID, 
+                                                         Empleado_ID,
+                                                         Importe_Ingreso,
+                                                         Plan_Asignado_ID,
+                                                         Observaciones)
+                                                 values (@Caja_ID, 
+                                                         @Empleado_ID,
+                                                         @Importe_Ingreso,
+                                                         @Plan_Asignado_ID,
+                                                         Observaciones)"
+            ;
+
+            SqlParameter caja_ID = new SqlParameter("@Caja_ID", detalles_Cajas.Caja_ID);
+            SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", detalles_Cajas.Empleado_ID);
+            SqlParameter importe_Ingreso = new SqlParameter("@Importe_Ingreso", detalles_Cajas.Importe_Ingreso);
+            SqlParameter plan_Asignado_ID = new SqlParameter("@Plan_Asignado_ID", detalles_Cajas.Plan_Asignado_ID);
+            SqlParameter observaciones = new SqlParameter("@Observaciones", detalles_Cajas.Observaciones);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(caja_ID);
+            cmd.Parameters.Add(empleado_ID);
+            cmd.Parameters.Add(importe_Ingreso);
+            cmd.Parameters.Add(plan_Asignado_ID);
+            cmd.Parameters.Add(observaciones);
+
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return resultado;
+        }
+
+        public int RegistrarPago(Detalles_Cajas detalles_Cajas)
+        {
+            int resultado = -1;
+            string query = @"insert into Detalles_Cajas (Caja_ID, 
+                                                         Empleado_ID,
+                                                         Importe_Egreso,
+                                                         Observaciones)
+                                                 values (@Caja_ID, 
+                                                         @Empleado_ID,
+                                                         @Importe_Egreso,
+                                                         Observaciones)"
+            ;
+
+            SqlParameter caja_ID = new SqlParameter("@Caja_ID", detalles_Cajas.Caja_ID);
+            SqlParameter empleado_ID = new SqlParameter("@Empleado_ID", detalles_Cajas.Empleado_ID);
+            SqlParameter importe_Egreso = new SqlParameter("@Importe_Egreso", detalles_Cajas.Importe_Egreso);
+            SqlParameter observaciones = new SqlParameter("@Observaciones", detalles_Cajas.Observaciones);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(caja_ID);
+            cmd.Parameters.Add(empleado_ID);
+            cmd.Parameters.Add(importe_Egreso);
+            cmd.Parameters.Add(observaciones);
+
+            try
+            {
+                OpenConnection();
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return resultado;
+        }
+
+
+
         #endregion
     }
 }

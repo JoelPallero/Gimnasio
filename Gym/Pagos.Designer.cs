@@ -32,6 +32,8 @@ namespace Gym
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.DtgvDetalleFacturación = new System.Windows.Forms.DataGridView();
             this.GbImporteACobrar = new System.Windows.Forms.GroupBox();
+            this.cmbPlanesPagaPago = new System.Windows.Forms.ComboBox();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.rbPago = new System.Windows.Forms.RadioButton();
             this.rbCobro = new System.Windows.Forms.RadioButton();
             this.txtImporte = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@ namespace Gym
             this.lblDocumento = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtBuscarClase = new System.Windows.Forms.TextBox();
-            this.txtObservaciones = new System.Windows.Forms.TextBox();
-            this.cmbPlanesPagaPago = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DtgvDetalleFacturación)).BeginInit();
             this.GbImporteACobrar.SuspendLayout();
             this.GbDatosClienteSaldos.SuspendLayout();
@@ -92,6 +92,27 @@ namespace Gym
             this.GbImporteACobrar.TabStop = false;
             this.GbImporteACobrar.Text = "Importes a cobrar";
             // 
+            // cmbPlanesPagaPago
+            // 
+            this.cmbPlanesPagaPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlanesPagaPago.FormattingEnabled = true;
+            this.cmbPlanesPagaPago.Location = new System.Drawing.Point(123, 35);
+            this.cmbPlanesPagaPago.Name = "cmbPlanesPagaPago";
+            this.cmbPlanesPagaPago.Size = new System.Drawing.Size(223, 28);
+            this.cmbPlanesPagaPago.TabIndex = 60;
+            this.cmbPlanesPagaPago.SelectionChangeCommitted += new System.EventHandler(this.cmbPlanesPagaPago_SelectionChangeCommitted);
+            // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.ForeColor = System.Drawing.Color.DimGray;
+            this.txtObservaciones.Location = new System.Drawing.Point(368, 35);
+            this.txtObservaciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(289, 65);
+            this.txtObservaciones.TabIndex = 59;
+            this.txtObservaciones.Text = "Observaciones";
+            // 
             // rbPago
             // 
             this.rbPago.AutoSize = true;
@@ -101,7 +122,6 @@ namespace Gym
             this.rbPago.TabIndex = 58;
             this.rbPago.Text = "Pago";
             this.rbPago.UseVisualStyleBackColor = true;
-            this.rbPago.CheckedChanged += new System.EventHandler(this.rbPagar_CheckedChanged);
             // 
             // rbCobro
             // 
@@ -118,8 +138,7 @@ namespace Gym
             // 
             // txtImporte
             // 
-            this.txtImporte.Enabled = false;
-            this.txtImporte.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtImporte.ForeColor = System.Drawing.Color.DimGray;
             this.txtImporte.Location = new System.Drawing.Point(123, 73);
             this.txtImporte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtImporte.Name = "txtImporte";
@@ -225,27 +244,6 @@ namespace Gym
             this.txtBuscarClase.Size = new System.Drawing.Size(297, 27);
             this.txtBuscarClase.TabIndex = 27;
             this.txtBuscarClase.Text = "Buscar Movimientos";
-            // 
-            // txtObservaciones
-            // 
-            this.txtObservaciones.Enabled = false;
-            this.txtObservaciones.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtObservaciones.Location = new System.Drawing.Point(368, 35);
-            this.txtObservaciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(289, 65);
-            this.txtObservaciones.TabIndex = 59;
-            this.txtObservaciones.Text = "Observaciones";
-            // 
-            // cmbPlanesPagaPago
-            // 
-            this.cmbPlanesPagaPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPlanesPagaPago.FormattingEnabled = true;
-            this.cmbPlanesPagaPago.Location = new System.Drawing.Point(123, 35);
-            this.cmbPlanesPagaPago.Name = "cmbPlanesPagaPago";
-            this.cmbPlanesPagaPago.Size = new System.Drawing.Size(223, 28);
-            this.cmbPlanesPagaPago.TabIndex = 60;
             // 
             // Pagos
             // 

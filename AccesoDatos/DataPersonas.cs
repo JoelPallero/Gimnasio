@@ -350,20 +350,15 @@ namespace AccesoDatos
                                 FROM Personas
 								inner join Clientes
 								on Clientes.Persona_ID = Personas.Persona_ID
-                                where Nro_Documento LIKE @query"
+                                where Nro_Documento = @Documento"
             ;
 
-            SqlCommand cmd = new SqlCommand(query, conexion)
-            {
-                CommandType = CommandType.Text
-            };
 
-            cmd.Parameters.Add(new SqlParameter()
-            {
-                ParameterName = "@query",
-                SqlDbType = SqlDbType.NVarChar,
-                Value = string.Format("%{0}%", buscar)
-            });
+            SqlParameter documento = new SqlParameter("@Documento", buscar);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(documento);
 
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -385,7 +380,6 @@ namespace AccesoDatos
                 cmd.Dispose();
             }
             return ds;
-
         }
 
         #endregion

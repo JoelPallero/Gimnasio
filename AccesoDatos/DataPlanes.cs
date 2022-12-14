@@ -570,5 +570,37 @@ namespace AccesoDatos
             }
             return dt;
         }
+
+        public Planes GetCostoPlan(Planes planes)
+        {
+            string query = "select Importe_Plan from Planes where Plan_ID = @Plan_ID";
+            SqlParameter plan_ID = new SqlParameter("@Plan_ID", planes.Plan_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            cmd.Parameters.Add(plan_ID);
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    planes.Importe_Plan = decimal.Parse(reader["Importe_Plan"].ToString());
+                }
+                reader.Close();
+                cmd.ExecuteReader();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return planes;
+        }
     }
 }

@@ -982,7 +982,6 @@ namespace Gym
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Planes";
             this.Text = "planes";
-            this.Load += new System.EventHandler(this.Planes_Load);
             this.menuPlanes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPlanes)).EndInit();
             this.tabControl2.ResumeLayout(false);

@@ -241,7 +241,7 @@ Estado varchar(8) not null
 
 go
 
-insert into Tipos_Sexos values ('Mdesculino', 'Activo')
+insert into Tipos_Sexos values ('Masculino', 'Activo')
 insert into Tipos_Sexos values ('Femenino', 'Activo')
 insert into Tipos_Sexos values ('Otros', 'Activo')
 
@@ -860,6 +860,7 @@ end
 
 
 /*  Pruebas  */
+
 
 
 /*  Fin Pruebas  */

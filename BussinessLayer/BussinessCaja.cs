@@ -51,5 +51,15 @@ namespace BussinessLayer
         {
             return _dataCaja.CerrarCaja(caja);
         }
+
+        public int RegistrarCobro(Detalles_Cajas detalles_Cajas)
+        {
+            return _dataCaja.RegistrarCobro(detalles_Cajas);
+        }
+
+        public int RegistrarPago(Detalles_Cajas detalles_Cajas)
+        {
+            return _dataCaja.RegistrarPago(detalles_Cajas);
+        }
     }
 }

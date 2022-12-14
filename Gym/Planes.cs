@@ -60,7 +60,7 @@ namespace Gym
         private int pSabadoId = -1;
         private int idJornada;
         private int check;
-        private bool esAlta;
+        private bool esAlta = true;
         private bool cargarJornada;
         private int idPlanAEditar;
         private string hora;
@@ -73,6 +73,7 @@ namespace Gym
         public Planes(int idPersonaLog)
         {
             InitializeComponent();
+
             _bussinessPlanes = new BussinessPlanes();
             _bussinesClientes = new BussinessClientes();
             _bussinesPersonas = new BussinessPersonas();
@@ -92,9 +93,7 @@ namespace Gym
 
             personaLogueada = idPersonaLog;
             btnAsignarPlan.Enabled = false;
-        }
-        private void Planes_Load(object sender, EventArgs e)
-        {
+
             BuscarPlanes();
             BuscarProfesores();
             CargarPlanes();
@@ -148,8 +147,6 @@ namespace Gym
                     lblMail.Text += dr[6].ToString();
                     break;
                 }
-                camposVacios = false;
-                btnAsignarPlan.Enabled = true;
             }
             else
             {
@@ -612,6 +609,7 @@ namespace Gym
                 //Una vez dado de alta, actualizamos la lista.
                 CargarPlanes();
                 ResetControlsAltaPlan();
+                esAlta = true;
             }
         }
 
@@ -697,12 +695,14 @@ namespace Gym
                 {
                     //Asignarle el plan.
                     AsigarlePlanAlCliente();
+
                     //Actualizar planes
                     cmbPlanesActivos_SelectionChangeCommitted(sender, e);
-                    string nombre = lblNombre.Text;
-                    int contador = nombre.Length;
-                    nombre = nombre.Substring(8, contador);
-                    string plan = cmbPlanesActivos.SelectedItem.ToString();
+
+                    string lblnombre = lblNombre.Text;
+                    string nombre = lblnombre.Substring(8, lblnombre.Length - 8);
+                    string plan = Convert.ToString(cmbPlanesActivos.Text);
+
                     MessageBox.Show($"Se asignó correctamente el plan: {plan}, para el alumno: {nombre}", "Asignación de Planes");
                 }
             }
