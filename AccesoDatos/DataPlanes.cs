@@ -529,43 +529,36 @@ namespace AccesoDatos
             }
             return resultado;
         }
-        public DataTable GetPlanesParaPago(string buscar)
+        public DataTable GetPlanesParaPago(int Cliente_ID)
         {
-            string query = @"exec sp_Planes_Cliente_Para_Pago @Documento, @Estado";
+
+            string query = @"exec sp_Buscar_Planes_Asignados_Cliente @Estado, @Cliente_ID";
 
             SqlParameter estado = new SqlParameter("@Estado", "A");
+            SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", Cliente_ID);
 
-
-            SqlCommand cmd = new SqlCommand(query, conexion)
-            {
-                CommandType = CommandType.Text
-            };
+            SqlCommand cmd = new SqlCommand(query, conexion);
 
             cmd.Parameters.Add(estado);
-            cmd.Parameters.Add(new SqlParameter()
-            {
-                ParameterName = "@Documento",
-                SqlDbType = SqlDbType.NVarChar,
-                Value = string.Format("%{0}%", buscar)
-            });
+            cmd.Parameters.Add(cliente_ID);
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter();
 
             try
             {
-                conexion.Open();
+                OpenConnection();
                 cmd.ExecuteNonQuery();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
             }
             catch (Exception e)
             {
-                throw new Exception("Error al listar tipos de documentos", e);
+                throw new Exception("Error al listar Planes", e);
             }
             finally
             {
-                conexion.Close();
+                CloseConnection();
                 cmd.Dispose();
             }
             return dt;

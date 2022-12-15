@@ -200,7 +200,7 @@ namespace AccesoDatos
             /*Acá se filtran las asistencias diarias de los clientes
              También como parámetro de busqueda, el argumento recibido.
              */
-            string query = @"sp_Buscar_Cliente_Por_ID @Plan_ID, @Cliente_ID"
+            string query = @"exec sp_Buscar_Cliente_Por_ID @Plan_ID, @Cliente_ID"
             ;
             SqlParameter plan_ID = new SqlParameter("@Plan_ID", _planesAsignados.Plan_ID);
             SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", _planesAsignados.Cliente_ID);

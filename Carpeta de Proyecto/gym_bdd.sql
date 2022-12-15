@@ -834,6 +834,18 @@ end
 
 go
 
+create procedure sp_Buscar_Planes_Asignados_Cliente @Estado nvarchar, @Cliente_ID int
+as begin
+Select pl.Nombre
+from Planes_Asignados as pa
+inner join Planes as pl
+on pl.Plan_ID = pa.Plan_ID
+where pl.Estado = @Estado
+and pa.Cliente_ID = @Cliente_ID
+end
+
+go
+
 /* queries para realizar registros */
 
 create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Apertura decimal, @Caja_Abierta bit
@@ -864,3 +876,5 @@ end
 
 
 /*  Fin Pruebas  */
+
+

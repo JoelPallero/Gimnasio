@@ -83,7 +83,6 @@ namespace AccesoDatos
             }
             return resultado;
         }
-
         public int EliminarAsignacion(Planes_Asignados planes_Asignados, string NombrePlan)
         {
             int resultado = -1;
@@ -114,6 +113,78 @@ namespace AccesoDatos
                 cmd.Dispose();
             }
             return resultado;
+        }
+        public DataSet BuscarPlanesAsignados(int Cliente_ID)
+        {
+            string query = @"exec sp_Buscar_Planes_Asignados_Cliente @Estado, @Cliente_ID";
+
+            SqlParameter estado = new SqlParameter("@Estado", "A");
+            SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", Cliente_ID);
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(estado);
+            cmd.Parameters.Add(cliente_ID);
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                OpenConnection();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar Planes", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return ds;
+        }
+        public bool BuscarDuplicidad(int idplan, int Cliente_ID)
+        {
+            bool duplicidad = false;
+            string query = @"select Estado from Planes_Asignados where Plan_ID = @Plan_ID and Cliente_ID = @Cliente_ID and Estado = @Estado";
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+
+            try
+            {
+                OpenConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    //Si el importe aparece, significa que la ultima caja abierta
+                    //está cerrada
+                    string resultado = (reader["Estado"]).ToString();
+                    if (resultado == "A")
+                    {
+                        duplicidad = true;
+                    }
+                    else
+                    {
+                        duplicidad = false;
+                    }
+                }
+                reader.Close();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return duplicidad;
         }
     }
 }

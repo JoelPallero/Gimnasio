@@ -39,7 +39,7 @@ namespace Gym
         private DataSet DsClienteAsistencia;
         private DataSet DsAsistencias;
         private DataTable DtPlanes;
-        private DataTable DtPlanesAsignados;
+        private DataSet DsPlanesAsignados;
         private DataTable dtAlumnosTotales;
         private DataTable dtAlumnosPresentes;
         private bool camposVacios = true;
@@ -77,7 +77,6 @@ namespace Gym
 
             btnAsignarPlan.Enabled = false;
         }
-
 
         //Si no busco un cliente enparticular, debería poder tmb cargar los planes del día
         //y buscar el listado de alumnos por plan.
@@ -172,9 +171,13 @@ namespace Gym
         }
         private void BuscarDatosCliente()
         {
-            DsClienteAsistencia = _bussinesClientes.BuscarClienteAsistencia(buscar);
+            DsClienteAsistencia = _bussinesClientes.BuscarClienteAsistencia(buscar);            
             AcomodarDatos();
+            DsPlanesAsignados = _bussinesPlanesAsignados.BuscarPlanesAsignados(cliente_ID);
+            AcomodarPlanesAsignados();
         }
+
+
         private void BuscarPlanesParaAsistenciaAlumnos()
         {
             diaDeLaSemana = Normalizar(diaDeLaSemana);
@@ -261,16 +264,6 @@ namespace Gym
                     lblMail.Text += dr[6].ToString();
                     break;
                 }
-                //int i = 0;
-                //foreach (DataRow dr in DsClienteAsistencia.Tables[0].Rows)
-                //{
-                //    lblPlanActual.Text += dr[7].ToString();
-                //    i++;
-                //    if ((i + 1) <= DsClienteAsistencia.Tables[0].Rows.Count)
-                //    {
-                //        lblPlanActual.Text += ", ";
-                //    }
-                //}
                 camposVacios = false;
                 btnAsignarPlan.Enabled = true;
             }
@@ -280,6 +273,20 @@ namespace Gym
                     "Por favor, intente de nuevo, o haga primero el registro del cliente.",
                     "Datos no encontrados");
                 camposVacios = true;
+            }
+        }
+
+        private void AcomodarPlanesAsignados()
+        {
+            int i = 0;
+            foreach (DataRow dr in DsPlanesAsignados.Tables[0].Rows)
+            {
+                lblPlanActual.Text += dr[0].ToString();
+                i++;
+                if ((i + 1) <= DsPlanesAsignados.Tables[0].Rows.Count)
+                {
+                    lblPlanActual.Text += ", ";
+                }
             }
         }
         private void ColocarAsistencia()

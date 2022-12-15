@@ -31,5 +31,20 @@ namespace BussinessLayer
             return _dataPlanesAsignados.EliminarAsignacion(planes_Asignados, nombrePlan);
         }
 
+        public DataSet BuscarPlanesAsignados(int Cliente_ID)
+        {
+            return _dataPlanesAsignados.BuscarPlanesAsignados(Cliente_ID);
+        }
+
+        public DataTable BuscarPlanesAsignadosParaPagar(int cliente_ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool BuscarDuplicidad(int idplan, int Cliente_ID)
+        {
+            var duplicidad = _dataPlanesAsignados.BuscarDuplicidad(idplan, Cliente_ID);
+            return duplicidad;
+        }
     }
 }

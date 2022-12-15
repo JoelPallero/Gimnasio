@@ -102,16 +102,6 @@ namespace Gym
                     lblMail.Text += dr[6].ToString();
                     break;
                 }
-                //int i = 0;
-                //foreach (DataRow dr in DsClienteDatos.Tables[0].Rows)
-                //{
-                //    lblPlanesAsignadosCliente.Text += dr[7].ToString();
-                //    i++;
-                //    if ((i + 1) <= DsClienteDatos.Tables[0].Rows.Count)
-                //    {
-                //        lblPlanesAsignadosCliente.Text += ", ";
-                //    }
-                //}
                 camposVacios = false;
             }
             else
@@ -123,9 +113,9 @@ namespace Gym
             }
         }
 
-        private void BuscarPlanesParaPagoAlumnos(string buscar)
+        private void BuscarPlanesParaPagoAlumnos()
         {
-            DtPlanesCliente = _bussinessPlanes.GetPlanesParaPago(buscar);
+            DtPlanesCliente = _bussinessPlanes.GetPlanesParaPago(cliente_ID);
             cmbPlanesPagaPago.DataSource = DtPlanesCliente;
             cmbPlanesPagaPago.DisplayMember = "Nombre";
             cmbPlanesPagaPago.ValueMember = "Plan_ID";
@@ -208,7 +198,7 @@ namespace Gym
                     {
                         ResetControlsCliente();
                         MostrarCliente();
-                        BuscarPlanesParaPagoAlumnos(buscar);
+                        BuscarPlanesParaPagoAlumnos();
                         datosVacios = true;
                     }
                 }

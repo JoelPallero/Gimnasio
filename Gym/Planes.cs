@@ -42,6 +42,7 @@ namespace Gym
         private DataSet DsClienteDatos;
         private DataSet DsPlanesAsignados;
         private DataSet DsPlanes;
+        private DataTable DtPlanesAsignados;
         private DataTable DtJornadaDePlan;
         private DataTable DtProfesores;
         private DataTable DtPlanes;
@@ -65,6 +66,7 @@ namespace Gym
         private int idPlanAEditar;
         private string hora;
         private bool contenidoIncorrecto = false;
+        private bool duplicidad = false;
 
 
         #endregion
@@ -159,6 +161,22 @@ namespace Gym
         {
             DsClienteDatos = _bussinesPersonas.GetPersonaPlan(buscar, _personas);
             AcomodarDatos();
+            DsPlanesAsignados = _bussinesPlanesAsignados.BuscarPlanesAsignados(cliente_ID);
+            //DtPlanesAsignados = _bussinesPlanesAsignados.BuscarPlanesAsignadosParaPagar(cliente_ID);
+            AcomodarPlanesAsignados();
+        }
+        private void AcomodarPlanesAsignados()
+        {
+            int i = 0;
+            foreach (DataRow dr in DsPlanesAsignados.Tables[0].Rows)
+            {
+                lblPlanesAsignadosCliente.Text += dr[0].ToString();
+                i++;
+                if ((i + 1) <= DsPlanesAsignados.Tables[0].Rows.Count)
+                {
+                    lblPlanesAsignadosCliente.Text += ", ";
+                }
+            }
         }
 
         private void AsigarlePlanAlCliente()
@@ -527,6 +545,12 @@ namespace Gym
             }
         }
 
+        private void ComprobarDuplicidadDePlan()
+        {
+            int idplan = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
+            duplicidad = _bussinesPlanesAsignados.BuscarDuplicidad(idplan, cliente_ID);
+        }
+
         #endregion
 
         #region Eventos Keypress
@@ -687,23 +711,31 @@ namespace Gym
             }
             else
             {
-                if (Convert.ToInt32(lblCuposRestantes.Text) == 0 && Convert.ToInt32(lblCuposTotales.Text) > 0)
+                ComprobarDuplicidadDePlan();
+                if (duplicidad)
                 {
-                    MessageBox.Show("No hay cupos disponibles para esta clase.");
+                    MessageBox.Show("Este plan ya está asignado al cliente. Por favor, seleccione otro plan", "Duplicidad encontrada");
                 }
                 else
                 {
-                    //Asignarle el plan.
-                    AsigarlePlanAlCliente();
+                    if (Convert.ToInt32(lblCuposRestantes.Text) == 0 && Convert.ToInt32(lblCuposTotales.Text) > 0)
+                    {
+                        MessageBox.Show("No hay cupos disponibles para esta clase.");
+                    }
+                    else
+                    {
+                        //Asignarle el plan.
+                        AsigarlePlanAlCliente();
 
-                    //Actualizar planes
-                    cmbPlanesActivos_SelectionChangeCommitted(sender, e);
+                        //Actualizar planes
+                        cmbPlanesActivos_SelectionChangeCommitted(sender, e);
 
-                    string lblnombre = lblNombre.Text;
-                    string nombre = lblnombre.Substring(8, lblnombre.Length - 8);
-                    string plan = Convert.ToString(cmbPlanesActivos.Text);
+                        string lblnombre = lblNombre.Text;
+                        string nombre = lblnombre.Substring(8, lblnombre.Length - 8);
+                        string plan = Convert.ToString(cmbPlanesActivos.Text);
 
-                    MessageBox.Show($"Se asignó correctamente el plan: {plan}, para el alumno: {nombre}", "Asignación de Planes");
+                        MessageBox.Show($"Se asignó correctamente el plan: {plan}, para el alumno: {nombre}", "Asignación de Planes");
+                    }
                 }
             }
         }
