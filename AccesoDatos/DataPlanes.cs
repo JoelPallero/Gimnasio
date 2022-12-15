@@ -37,7 +37,7 @@ namespace AccesoDatos
             }
             return dt;
         }
-        public DataTable GetPlanesParaAsistencia(Planes planes, string diaDeLaSemana)
+        public DataTable GetPlanesParaAsistencia(string diaDeLaSemana)
         {
             string query = @"select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
                             from Planes
@@ -111,18 +111,21 @@ namespace AccesoDatos
             }
             return resultado;
         }
-        public DataTable GetPlanesConFecha(Planes planes, string diaDeLaSemana, string fecha)
+        public DataTable GetPlanesConFecha(string diaDeLaSemana, DateTime Fecha)
         {
-            string query = @"";
+            //traigo los planes que corresponden al día en el que nos encontramos
+            string query = @"sp_Get_Planes_Del_Dia @Estado, @Fecha, @Todos, @Dia";
 
             SqlParameter estado = new SqlParameter("@Estado", "A");
-            SqlParameter todos = new SqlParameter("@Todos", fecha);
-            SqlParameter DiaDeLaSemana = new SqlParameter("@diaDeLaSemana", diaDeLaSemana);
+            SqlParameter fecha = new SqlParameter("@Fecha", Fecha);
+            SqlParameter todos = new SqlParameter("@Todos", "Todos");
+            SqlParameter dia = new SqlParameter("@Dia", diaDeLaSemana);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
-            cmd.Parameters.Add(estado);
+
+            cmd.Parameters.Add(fecha);
             cmd.Parameters.Add(todos);
-            cmd.Parameters.Add(DiaDeLaSemana);
+            cmd.Parameters.Add(dia);
 
 
             DataTable dt = new DataTable();

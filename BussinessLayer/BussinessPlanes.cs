@@ -21,9 +21,9 @@ namespace BussinessLayer
             return _dataPlanes.GetPlanes(planes);
         }
 
-        public DataTable GetPlanesParaAsistencia(Planes planes, string diaDeLaSemana)
+        public DataTable GetPlanesParaAsistencia(string diaDeLaSemana)
         {
-            return _dataPlanes.GetPlanesParaAsistencia(planes, diaDeLaSemana);
+            return _dataPlanes.GetPlanesParaAsistencia(diaDeLaSemana);
             
         }
         public DataTable GetPlanesParaPago(int cliente_ID)
@@ -31,9 +31,9 @@ namespace BussinessLayer
             DataTable dt = _dataPlanes.GetPlanesParaPago(cliente_ID);
             return dt;
         }
-        public DataTable GetPlanesConFecha(Planes planes, string diaDeLaSemana, string fecha)
+        public DataTable GetPlanesConFecha(string diaDeLaSemana, DateTime fecha)
         {
-            DataTable dt = _dataPlanes.GetPlanesConFecha(planes, diaDeLaSemana, fecha);
+            DataTable dt = _dataPlanes.GetPlanesConFecha(diaDeLaSemana, fecha);
             return dt;
         }
         public Planes GetDatoPlan(Planes planes)

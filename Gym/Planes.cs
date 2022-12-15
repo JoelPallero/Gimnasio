@@ -59,12 +59,12 @@ namespace Gym
         private int pViernesId = -1;
         private int pSabadoId = -1;
         private int idPlanAEditar = -1;
-        private int idJornada = -1;
         private int idLasPlanParaJornada;
         private int check;
 
         private bool todosChk;
-        private bool esAlta = true;
+        private bool esAltaPlan = true;
+        private bool esAltaJornada = true;
         private bool contenidoIncorrecto = false;
         private bool duplicidad = false;
         private bool camposVacios = false;
@@ -320,15 +320,15 @@ namespace Gym
                                 break;
                         }
                         _jornadasPlanes.Estado = "A";
-                        if (idPlanAEditar != -1)
-                        {
-                            _jornadasPlanes.Plan_ID = idPlanAEditar;
-                            _bussinessJornadas.EditarJornadaPlan(_jornadasPlanes);
-                        }
-                        else
+                        if (esAltaJornada)
                         {
                             _jornadasPlanes.Plan_ID = idLasPlanParaJornada;
                             _bussinessJornadas.AltaJornadaPlan(_jornadasPlanes);
+                        }
+                        else
+                        {
+                            _jornadasPlanes.Plan_ID = idPlanAEditar;
+                            _bussinessJornadas.EditarJornadaPlan(_jornadasPlanes);
                         }
                         desde = string.Empty;
                         hasta = string.Empty;
@@ -350,15 +350,15 @@ namespace Gym
                 AsignacionHoras();
 
                 _jornadasPlanes.Estado = "A";
-                if (idJornada != -1)
-                {
-                    _jornadasPlanes.Plan_ID = idPlanAEditar;
-                    _bussinessJornadas.EditarJornadaPlan(_jornadasPlanes);
-                }
-                else
+                if (esAltaJornada)
                 {
                     _jornadasPlanes.Plan_ID = idLasPlanParaJornada;
                     _bussinessJornadas.AltaJornadaPlan(_jornadasPlanes);
+                }
+                else
+                {
+                    _jornadasPlanes.Plan_ID = idPlanAEditar;
+                    _bussinessJornadas.EditarJornadaPlan(_jornadasPlanes);
                 }
                 desde = string.Empty;
                 hasta = string.Empty;
@@ -370,6 +370,7 @@ namespace Gym
                 GuardarJornada();
 
             }
+            esAltaPlan = true;
         }
 
         private void GetJornadaDePlan()
@@ -625,7 +626,7 @@ namespace Gym
             }
             else
             {
-                if (esAlta)
+                if (esAltaPlan)
                 {
                     RegistrarNuevoPlan();
                     _bussinessPlanes.GetLastID(_planes);
@@ -647,7 +648,7 @@ namespace Gym
                 ResetControlsAltaPlan();
 
                 idPlanAEditar = -1;
-                esAlta = true;
+                esAltaPlan = true;
             }
         }
 
@@ -1275,7 +1276,7 @@ namespace Gym
 
         private void btnEditarPlan_Click(object sender, EventArgs e)
         {
-            esAlta = false;
+            esAltaPlan = false;
             idPlanAEditar = Convert.ToInt32(dtgvPlanes.CurrentRow.Cells[0].Value);
             CargarPlanParaEdicion();
             GetJornadaPlan();
@@ -1309,10 +1310,11 @@ namespace Gym
             {
                 //cargo la jornada en los textbox correspondientes
                 CargarJornada();
+                esAltaJornada = false;
             }
             else
             {
-                idJornada = -1;
+                esAltaJornada = true;
             }
         }
 

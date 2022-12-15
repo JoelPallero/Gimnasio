@@ -47,6 +47,7 @@ namespace Gym
         private int planSeleccionado;
         private string diaDeLaSemana;
         private string fechaBusqueda;
+        private DateTime fechaBusquedaPlan;
         private bool listadoCargado = false;
 
         #endregion
@@ -68,7 +69,7 @@ namespace Gym
             _planesAsignados = new Entities.Planes_Asignados();
 
             _restricciones = new Restricciones();
-            EstablecerFecha();
+            //EstablecerFecha();
             BuscarPlanes();
             buscarAsistenciasDiarias();
 
@@ -93,12 +94,23 @@ namespace Gym
         private void BuscarPlanesAsistenchaConFecha()
         {
             diaDeLaSemana = Normalizar(diaDeLaSemana);
-            _planes.Estado = "A";
-            DtPlanes = _bussinessPlanes.GetPlanesConFecha(_planes, diaDeLaSemana, fechaBusqueda);
+
+            DtPlanes = _bussinessPlanes.GetPlanesConFecha(diaDeLaSemana, fechaBusquedaPlan);
             cmbClasesParaAsistencia.DataSource = DtPlanes;
             cmbClasesParaAsistencia.DisplayMember = "Nombre";
             cmbClasesParaAsistencia.ValueMember = "Plan_ID";
         }
+
+
+        private void BuscarPlanesParaAsistenciaAlumnos()
+        {
+            diaDeLaSemana = Normalizar(diaDeLaSemana);
+            DtPlanes = _bussinessPlanes.GetPlanesParaAsistencia(diaDeLaSemana);
+            cmbClasesParaAsistencia.DataSource = DtPlanes;
+            cmbClasesParaAsistencia.DisplayMember = "Nombre";
+            cmbClasesParaAsistencia.ValueMember = "Plan_ID";
+        }
+
         private void GetJornadaDePlan()
         {
             bool esEmpleado = false;
@@ -193,15 +205,6 @@ namespace Gym
         }
 
 
-        private void BuscarPlanesParaAsistenciaAlumnos()
-        {
-            diaDeLaSemana = Normalizar(diaDeLaSemana);
-            _planes.Estado = "A";
-            DtPlanes = _bussinessPlanes.GetPlanesParaAsistencia(_planes, diaDeLaSemana);
-            cmbClasesParaAsistencia.DataSource = DtPlanes;
-            cmbClasesParaAsistencia.DisplayMember = "Nombre";
-            cmbClasesParaAsistencia.ValueMember = "Plan_ID";
-        }
 
         private string Normalizar(string strDato)
         {
@@ -569,7 +572,7 @@ namespace Gym
         private void dtFechabusqueda_ValueChanged(object sender, EventArgs e)
         {
             diaDeLaSemana = GetDiaDeLaSemana(dtFechabusqueda.Value.ToString());
-            fechaBusqueda = dtFechabusqueda.Value.ToString();
+            fechaBusquedaPlan = dtFechabusqueda.Value;
             BuscarPlanesAsistenchaConFecha();
         }
     }

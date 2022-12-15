@@ -865,6 +865,20 @@ end
 
 go
 
+create procedure sp_Get_Planes_Del_Dia @Estado nvarchar, @Fecha date, @Todos nvarchar, @Dia nvarchar
+as begin
+select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
+from Planes
+inner join Jornadas_Planes
+on Jornadas_Planes.Jornada_Plan_ID = Planes.Plan_ID
+where cast(@Fecha as date) >= Planes.Fecha_Inicio
+and Planes.Estado = @Estado
+and Jornadas_Planes.Dia = @Todos
+or Jornadas_Planes.Dia = @Dia
+end
+
+go
+
 /* queries para realizar registros */
 
 create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Apertura decimal, @Caja_Abierta bit
@@ -892,17 +906,39 @@ end
 
 /*  Pruebas  */
 
-select pl.Nombre, pl.Plan_ID 
-from Planes as pl
-left join Planes_Asignados as pa
-on pa.Plan_ID = pl.Plan_ID
-left join Jornadas_Planes as jp
-on jp.Plan_ID = pl.Plan_ID
-where pa.Estado = @Estado
-and jp.Dia = 'Lunes'
+
+Declare @Todos nvarchar
+Declare @Dia nvarchar
+
+
+set @Todos = 'Todos'
+set @Dia = 'Jueves'
+
+--exec sp_Get_Planes_Del_Dia @Fecha, @Todos, @Dia
+
+--select pl.Nombre, pl.Plan_ID, pl.Fecha_Inicio
+--from Planes as pl
+--inner join Jornadas_Planes as jp
+--on jp.Jornada_Plan_ID = pl.Plan_ID
+--where pl.Fecha_Inicio > @Fecha
+--and jp.Dia = @Dia
+--or jp.Dia = @Todos
+
+
+set dateformat dmy
+Declare @Fecha date
+set @Fecha = '20/12/2022'
+
+select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
+from Planes
+inner join Jornadas_Planes
+on Jornadas_Planes.Jornada_Plan_ID = Planes.Plan_ID
+where cast(@Fecha as date) >= Planes.Fecha_Inicio
+and Jornadas_Planes.Dia = @Todos
+or Jornadas_Planes.Dia = @Dia
+
 
 
 select * from Jornadas_Planes
-select * from Jornadas_Empleados
 
 /*  Fin Pruebas  */
