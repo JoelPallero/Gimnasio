@@ -191,8 +191,10 @@ namespace AccesoDatos
             {
                 query = @"exec sp_cargar_Plan_unico @Estado, @Profesor, @Parametro";
             }
+
             SqlParameter estado = new SqlParameter("@Estado", "A");
             SqlParameter profesor = new SqlParameter("@Profesor", "Profesor");
+            //SqlParameter profesor = new SqlParameter("@Profesor", "Profesor");
 
             SqlCommand cmd = new SqlCommand(query, conexion)
             {
@@ -201,6 +203,7 @@ namespace AccesoDatos
 
             cmd.Parameters.Add(estado);
             cmd.Parameters.Add(profesor);
+
             cmd.Parameters.Add(new SqlParameter()
             {
                 ParameterName = "@Parametro",
@@ -220,7 +223,7 @@ namespace AccesoDatos
             }
             catch (Exception e)
             {
-                throw new Exception("Error al listar tipos de documentos", e);
+                throw new Exception("Error al listar planes", e);
             }
             finally
             {

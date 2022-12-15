@@ -8,6 +8,7 @@ namespace Entities
 {
     public class SaldosActualizados
     {
+        public int Caja_ID { get; set; }
         public decimal Importe_Inicial { get; set; }
         public decimal Importe_Ingreso { get; set; }
         public decimal Importe_Egreso { get; set; }

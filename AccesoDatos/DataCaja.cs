@@ -16,12 +16,12 @@ namespace AccesoDatos
          Este es te dipo DATASET porque necesitamos hacer un estilo de matriz
         para poder luego acomodar los datos de este dataset en un datagridview 
         para que se puedan visualizar los datos encuadrados y ordenados*/
-        public SaldosActualizados ConsultarSaldos(Detalles_Cajas _detalles_Cajas, SaldosActualizados saldos)
+        public SaldosActualizados ConsultarSaldos(SaldosActualizados saldos)
         {
             /*Vamos a realizar la consulta correspondiente, siempre con la parametrización*/
             string query = @"exec sp_Calcular_Importes @Caja_ID";
 
-            SqlParameter caja_ID = new SqlParameter("@Caja_ID", _detalles_Cajas.Caja_ID);
+            SqlParameter caja_ID = new SqlParameter("@Caja_ID", saldos.Caja_ID);
 
             SqlCommand cmd = new SqlCommand(query, conexion);
             cmd.Parameters.Add(caja_ID);
@@ -34,8 +34,22 @@ namespace AccesoDatos
                 if (reader.Read())
                 {
                     saldos.Importe_Inicial = decimal.Parse(reader["Importe_Apertura"].ToString());
-                    saldos.Importe_Ingreso = decimal.Parse(reader["Ingreso"].ToString());
-                    saldos.Importe_Egreso = decimal.Parse(reader["Egreso"].ToString());
+                    if (string.IsNullOrEmpty(reader["Ingreso"].ToString()))
+                    {
+                        saldos.Importe_Ingreso = 0;
+                    }
+                    else
+                    {
+                        saldos.Importe_Ingreso = decimal.Parse(reader["Ingreso"].ToString());
+                    }
+                    if (string.IsNullOrEmpty(reader["Egreso"].ToString()))
+                    {
+                        saldos.Importe_Egreso = 0;
+                    }
+                    else
+                    {
+                        saldos.Importe_Egreso = decimal.Parse(reader["Egreso"].ToString());
+                    }
                     saldos.Total = saldos.Importe_Ingreso - saldos.Importe_Egreso + saldos.Importe_Inicial;
                 }
                 reader.Close();
@@ -255,16 +269,18 @@ namespace AccesoDatos
             string query;
             if (string.IsNullOrEmpty(buscar))
             {
-                 query = @"exec sp_get_cajas";
+                query = @"exec sp_get_cajas";
             }
             else
             {
                 query = @"exec sp_Get_Cajas_Y_Detalles @Parametro";                
             }
+
             SqlCommand cmd = new SqlCommand(query, conexion)
             {
                 CommandType = CommandType.Text
             };
+
             cmd.Parameters.Add(new SqlParameter()
             {
                 ParameterName = "@Parametro",
@@ -277,18 +293,18 @@ namespace AccesoDatos
 
             try
             {
-                OpenConnection();
+                conexion.Open();
                 cmd.ExecuteNonQuery();
                 da.SelectCommand = cmd;
                 da.Fill(ds);
             }
             catch (Exception e)
             {
-                throw new Exception("Error al listar Clientes", e);
+                throw new Exception("Error al listar las clases", e);
             }
             finally
             {
-                CloseConnection();
+                conexion.Close();
                 cmd.Dispose();
             }
             return ds;

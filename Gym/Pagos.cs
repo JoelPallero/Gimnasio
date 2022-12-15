@@ -178,19 +178,54 @@ namespace Gym
         }
         private void TxtImporte_Enter(object sender, EventArgs e)
         {
-            if (txtBuscarCliente.Text == "Importe $")
+            if (txtImporte.Text == "Importe $")
             {
-                txtBuscarCliente.Text = string.Empty;
-                txtBuscarCliente.ForeColor = Color.Black;
+                txtImporte.Text = string.Empty;
+                txtImporte.ForeColor = Color.Black;
             }
         }
 
         private void TxtImporte_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBuscarCliente.Text))
+            if (string.IsNullOrEmpty(txtImporte.Text))
             {
-                txtBuscarCliente.Text = "Importe $";
-                txtBuscarCliente.ForeColor = Color.DimGray;
+                txtImporte.Text = "Importe $";
+                txtImporte.ForeColor = Color.DimGray;
+            }
+        }
+
+        private void txtBuscarMovimiento_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscarMovimiento.Text == "Buscar Movimientos")
+            {
+                txtBuscarMovimiento.Text = string.Empty;
+                txtBuscarMovimiento.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtBuscarMovimiento_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBuscarMovimiento.Text))
+            {
+                txtBuscarMovimiento.Text = "Buscar Movimientos";
+                txtBuscarMovimiento.ForeColor = Color.DimGray;
+            }
+        }
+        private void txtObservaciones_Enter(object sender, EventArgs e)
+        {
+            if (txtObservaciones.Text == "Observaciones")
+            {
+                txtObservaciones.Text = string.Empty;
+                txtObservaciones.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtObservaciones_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtObservaciones.Text))
+            {
+                txtObservaciones.Text = "Observaciones";
+                txtObservaciones.ForeColor = Color.DimGray;
             }
         }
 
@@ -323,5 +358,6 @@ namespace Gym
                 CargarDetalles();
             }
         }
+
     }
 }

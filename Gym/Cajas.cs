@@ -25,7 +25,7 @@ namespace Gym
         //Entidades
         private readonly Entities.Cajas _caja;
         private readonly Entities.Detalles_Cajas _detalles_Cajas;
-        private readonly SaldosActualizados _saldos_Acutalizados;
+        private readonly SaldosActualizados _saldos_Actualizados;
 
 
         #endregion
@@ -53,7 +53,7 @@ namespace Gym
             _bussinessCaja = new BussinessCaja();
             _caja = new Entities.Cajas();
             _detalles_Cajas = new Entities.Detalles_Cajas();
-            _saldos_Acutalizados = new SaldosActualizados();
+            _saldos_Actualizados = new SaldosActualizados();
             personaLogueada = idPersonaLog;
             VerificarCajaAbierta();
             ActualizacionDeImportes();
@@ -88,13 +88,13 @@ namespace Gym
         {
             //Falta tener en cuenta el importe de ingreso que se registra en caja
             //cuando se abre la caja.
-            _detalles_Cajas.Caja_ID = idCajaAbierta;
-            _bussinessCaja.ConsultarSaldos(_detalles_Cajas, _saldos_Acutalizados);
+            _saldos_Actualizados.Caja_ID = idCajaAbierta;
+            _bussinessCaja.ConsultarSaldos(_saldos_Actualizados);
 
-            lblImporteInicial.Text = _saldos_Acutalizados.Importe_Inicial.ToString();
-            lblIngresos.Text = _saldos_Acutalizados.Importe_Ingreso.ToString();
-            lblEgresos.Text = _saldos_Acutalizados.Importe_Egreso.ToString();
-            lblTotal.Text = _saldos_Acutalizados.Total.ToString();
+            lblImporteInicial.Text = _saldos_Actualizados.Importe_Inicial.ToString();
+            lblIngresos.Text = _saldos_Actualizados.Importe_Ingreso.ToString();
+            lblEgresos.Text = _saldos_Actualizados.Importe_Egreso.ToString();
+            lblTotal.Text = _saldos_Actualizados.Total.ToString();
             
         }
 

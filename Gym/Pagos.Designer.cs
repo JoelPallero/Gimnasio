@@ -29,11 +29,11 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.GbImporteACobrar = new System.Windows.Forms.GroupBox();
             this.cmbPlanesPagaPago = new System.Windows.Forms.ComboBox();
@@ -110,6 +110,8 @@ namespace Gym
             this.txtObservaciones.Size = new System.Drawing.Size(289, 65);
             this.txtObservaciones.TabIndex = 59;
             this.txtObservaciones.Text = "Observaciones";
+            this.txtObservaciones.Enter += new System.EventHandler(this.txtObservaciones_Enter);
+            this.txtObservaciones.Leave += new System.EventHandler(this.txtObservaciones_Leave);
             // 
             // rbPago
             // 
@@ -242,20 +244,22 @@ namespace Gym
             this.txtBuscarMovimiento.Size = new System.Drawing.Size(297, 23);
             this.txtBuscarMovimiento.TabIndex = 27;
             this.txtBuscarMovimiento.Text = "Buscar Movimientos";
+            this.txtBuscarMovimiento.Enter += new System.EventHandler(this.txtBuscarMovimiento_Enter);
             this.txtBuscarMovimiento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarClase_KeyPress);
+            this.txtBuscarMovimiento.Leave += new System.EventHandler(this.txtBuscarMovimiento_Leave);
             // 
             // dtgvDetalles
             // 
             this.dtgvDetalles.AllowUserToAddRows = false;
             this.dtgvDetalles.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.dtgvDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvDetalles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Detalle_Caja_ID,
@@ -267,14 +271,14 @@ namespace Gym
             this.dtgvDetalles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvDetalles.Name = "dtgvDetalles";
             this.dtgvDetalles.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvDetalles.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvDetalles.RowHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.dtgvDetalles.RowHeadersVisible = false;
             this.dtgvDetalles.RowHeadersWidth = 51;
             this.dtgvDetalles.RowTemplate.Height = 29;
@@ -294,8 +298,8 @@ namespace Gym
             // Ingreso
             // 
             this.Ingreso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Ingreso.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Ingreso.DefaultCellStyle = dataGridViewCellStyle22;
             this.Ingreso.Frozen = true;
             this.Ingreso.HeaderText = "Importe de Ingreso";
             this.Ingreso.MinimumWidth = 6;
@@ -307,8 +311,8 @@ namespace Gym
             // Egreso
             // 
             this.Egreso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Egreso.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Egreso.DefaultCellStyle = dataGridViewCellStyle23;
             this.Egreso.Frozen = true;
             this.Egreso.HeaderText = "Importe de Egreso";
             this.Egreso.MinimumWidth = 6;
@@ -319,8 +323,8 @@ namespace Gym
             // Observaciones
             // 
             this.Observaciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Observaciones.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Observaciones.DefaultCellStyle = dataGridViewCellStyle24;
             this.Observaciones.Frozen = true;
             this.Observaciones.HeaderText = "Observaciones";
             this.Observaciones.MinimumWidth = 6;

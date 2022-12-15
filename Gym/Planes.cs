@@ -556,6 +556,10 @@ namespace Gym
         private void txtBuscarClase_KeyPress(object sender, KeyPressEventArgs e)
         {
             buscar = txtBuscarClase.Text;
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                CargarPlanes();
+            }
         }
         private void txtBuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
         {

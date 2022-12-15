@@ -105,25 +105,24 @@ Plan_Asignado_ID int null,
 Empleado_ID int not null,
 Importe_Ingreso decimal (18, 0) null,
 Importe_Egreso decimal (18, 0) null,
-Motivo nvarchar(50) null,
 Observaciones nvarchar(200) null,
 )
 
 go
 
---Se complica realizar un inner join de las cuotas,
---debido a los ID. Por lo que se va a modificar y este 
---ID de persona, va a corresponder al cliente.
-create table Cuotas(
-Cuota_ID int primary key identity (0, 1),
-Plan_Asignado_ID int not null,
-Empleado_ID int not null,
-Cliente_ID int not null,
-Detalle_Caja_ID int null,
-Importe_Cuota decimal(18, 0) not null,
-Saldo decimal(18, 0) not null,
-Vto_Cuota date not null
-)
+----Se complica realizar un inner join de las cuotas,
+----debido a los ID. Por lo que se va a modificar y este 
+----ID de persona, va a corresponder al cliente.
+--create table Cuotas(
+--Cuota_ID int primary key identity (0, 1),
+--Plan_Asignado_ID int not null,
+--Empleado_ID int not null,
+--Cliente_ID int not null,
+--Detalle_Caja_ID int null,
+--Importe_Cuota decimal(18, 0) not null,
+--Saldo decimal(18, 0) not null,
+--Vto_Cuota date not null
+--)
 
 go
 
@@ -162,17 +161,17 @@ go
 -- Para eso creo una tabla que sea de la facturación.
 -- Se genera de manera automática a principio de mes
 -- Y el programa va a saber así si hay una cuota vencida o pendiente de pago.
-create table Facturas_Clientes(
-Factura_Cliente_ID int primary key identity (0, 1),
-Plan_Asignado_ID int not null,
-Empleado_ID int not null,
-Importe decimal(18, 0) not null,
-Fecha_Emision date not null,
-Fecha_Vencimiento date not null,
-Saldo decimal (18, 0) not null --Acá se le agregaría la facturación anterior.
-)
+--create table Facturas_Clientes(
+--Factura_Cliente_ID int primary key identity (0, 1),
+--Plan_Asignado_ID int not null,
+--Empleado_ID int not null,
+--Importe decimal(18, 0) not null,
+--Fecha_Emision date not null,
+--Fecha_Vencimiento date not null,
+--Saldo decimal (18, 0) not null --Acá se le agregaría la facturación anterior.
+--)
 
-go
+--go
 
 /* Jornadas */
 
@@ -372,29 +371,29 @@ go
 
 /* Cuotas */ 
 
-alter table Cuotas
-add CONSTRAINT FK_Cuotas_Plan_Asignado FOREIGN KEY (Plan_Asignado_ID) 
-REFERENCES Planes_Asignados (Plan_Asignado_ID)
+--alter table Cuotas
+--add CONSTRAINT FK_Cuotas_Plan_Asignado FOREIGN KEY (Plan_Asignado_ID) 
+--REFERENCES Planes_Asignados (Plan_Asignado_ID)
 
-go
+--go
 
-alter table Cuotas
-add CONSTRAINT FK_Cuotas_Clientes FOREIGN KEY (Cliente_ID) 
-REFERENCES Clientes (Cliente_ID)
+--alter table Cuotas
+--add CONSTRAINT FK_Cuotas_Clientes FOREIGN KEY (Cliente_ID) 
+--REFERENCES Clientes (Cliente_ID)
 
-go
+--go
 
-alter table Cuotas
-add CONSTRAINT FK_Cuotas_Empleados FOREIGN KEY (Empleado_ID) 
-REFERENCES Empleados (Empleado_ID)
+--alter table Cuotas
+--add CONSTRAINT FK_Cuotas_Empleados FOREIGN KEY (Empleado_ID) 
+--REFERENCES Empleados (Empleado_ID)
 
-go
+--go
 
-alter table Cuotas
-add CONSTRAINT FK_Nombre_Detalles_Cajas FOREIGN KEY (Detalle_Caja_ID) 
-REFERENCES Detalles_Cajas (Detalle_Caja_ID)
+--alter table Cuotas
+--add CONSTRAINT FK_Nombre_Detalles_Cajas FOREIGN KEY (Detalle_Caja_ID) 
+--REFERENCES Detalles_Cajas (Detalle_Caja_ID)
 
-go
+--go
 
 /* Planes */
 
@@ -900,7 +899,6 @@ end
 
 
 /*  Pruebas  */
-
 
 
 

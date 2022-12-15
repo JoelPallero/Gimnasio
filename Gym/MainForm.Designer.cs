@@ -104,7 +104,7 @@ namespace Gym
             this.btnLogout.Location = new System.Drawing.Point(0, 645);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(194, 55);
+            this.btnLogout.Size = new System.Drawing.Size(250, 55);
             this.btnLogout.TabIndex = 47;
             this.btnLogout.Text = "Cerrar Sesión";
             this.btnLogout.UseVisualStyleBackColor = false;
@@ -347,6 +347,7 @@ namespace Gym
             this.btnConfiguracion.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnConfiguracion.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConfiguracion.BackgroundImage")));
             this.btnConfiguracion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfiguracion.Enabled = false;
             this.btnConfiguracion.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnConfiguracion.FlatAppearance.BorderSize = 0;
             this.btnConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
@@ -360,6 +361,7 @@ namespace Gym
             this.btnConfiguracion.Size = new System.Drawing.Size(50, 50);
             this.btnConfiguracion.TabIndex = 61;
             this.btnConfiguracion.UseVisualStyleBackColor = false;
+            this.btnConfiguracion.Visible = false;
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
             // lblBienvenido
@@ -379,7 +381,6 @@ namespace Gym
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 700);
             this.Controls.Add(this.lblBienvenido);
-            this.Controls.Add(this.btnConfiguracion);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.focoEmpleados);
@@ -399,6 +400,7 @@ namespace Gym
             this.Controls.Add(this.windowboxMain);
             this.Controls.Add(this.titleboxMain);
             this.Controls.Add(this.menuboxMain);
+            this.Controls.Add(this.btnConfiguracion);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
