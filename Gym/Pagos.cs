@@ -35,6 +35,7 @@ namespace Gym
         private int idCajaAbierta;
         private string buscar;
         private DataSet DsClienteDatos;
+        private DataSet DsDetalle;
         private DataTable DtPlanesCliente;
         private bool datosVacios = false;
         private bool camposVacios;
@@ -61,10 +62,26 @@ namespace Gym
             _detalles_Cajas = new Detalles_Cajas();
 
             VerificarCajaAbierta();
+            CargarDetalles();
         }
 
 
         #region Metodos
+
+        private void CargarDetalles()
+        {
+            dtgvDetalles.Rows.Clear();
+            DsDetalle = _bussinessCaja.GetDetalles(buscar);
+            buscar = string.Empty;
+
+            if (DsDetalle.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in DsDetalle.Tables[0].Rows)
+                {
+                    dtgvDetalles.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3]);
+                }
+            }
+        }
 
         private void VerificarCajaAbierta()
         {
@@ -229,13 +246,21 @@ namespace Gym
         {
             if (cajaAbierta)
             {
-                decimal importe = Convert.ToDecimal(txtImporte.Text);
+                //nromalizamos el importe porque tiene el signo $
+                string strImporte = txtImporte.Text;
+                strImporte = strImporte.Substring(1, strImporte.Length - 1);
+                decimal importe = Convert.ToDecimal(strImporte);
+
+                //traemos el nombre
+                string nombre = lblNombre.Text;
+                nombre = nombre.Substring(8, nombre.Length - 8);
+
                 string tipoMovimiento;
 
                 if (rbCobro.Checked) tipoMovimiento = "Cobro";
                 else tipoMovimiento = "Pago";
 
-                DialogResult result = MessageBox.Show($"Va a registrar un {tipoMovimiento} de ${importe}.\n" +
+                DialogResult result = MessageBox.Show($"Va a registrar un {tipoMovimiento} de ${importe}, para el alumno {nombre}.\n" +
                     $"¿Es correcto?", "Registro de Movimientos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
                 {
@@ -245,7 +270,7 @@ namespace Gym
 
                     if (rbCobro.Checked)
                     {
-                        _detalles_Cajas.Importe_Ingreso = Convert.ToDecimal(txtImporte.Text);
+                        _detalles_Cajas.Importe_Ingreso = importe;
                         _detalles_Cajas.Plan_Asignado_ID = Convert.ToInt32(cmbPlanesPagaPago.SelectedValue);
                         _bussinessCaja.RegistrarCobro(_detalles_Cajas);
                     }
@@ -258,6 +283,7 @@ namespace Gym
                     MessageBox.Show($"Se registró correctamente el {tipoMovimiento} de ${importe}.",
                         "Registro de Movimientos", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
+                    CargarDetalles();
                 }
             }
             else
@@ -287,6 +313,15 @@ namespace Gym
         {
             string idPlan = Convert.ToString(cmbPlanesPagaPago.SelectedValue);
             CostoPlan(idPlan);
+        }
+
+        private void txtBuscarClase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            buscar = txtBuscarMovimiento.Text;
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                CargarDetalles();
+            }
         }
     }
 }

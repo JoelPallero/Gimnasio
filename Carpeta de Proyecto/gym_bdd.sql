@@ -768,10 +768,12 @@ go
 create procedure sp_Calcular_Importes @Caja_ID int
 as
 begin
-select Importe_Apertura from Cajas where Caja_ID = @Caja_ID and Fecha_Apertura = GETDATE();
-select sum(Importe_Ingreso) as Importe_Ingreso from Detalles_Cajas where Caja_ID = @Caja_ID;
-select sum(Importe_Egreso) as Importe_Egreso from Detalles_Cajas where Caja_ID = @Caja_ID;
-select sum(Importe_Ingreso - Importe_Egreso) as Total from Detalles_Cajas where Caja_ID = @Caja_ID;
+select c.Importe_Apertura, sum(dc.Importe_Ingreso) as Ingreso, sum(dc.Importe_Egreso) as Egreso
+from Cajas as c
+inner join Detalles_Cajas as dc
+on dc.Caja_ID = c.Caja_ID
+where c.Caja_ID = @Caja_ID
+group by c.Importe_Apertura, dc.Importe_Ingreso, dc.Importe_Egreso
 end
 
 
@@ -846,6 +848,32 @@ end
 
 go
 
+create procedure sp_Detalle_Caja_Diario
+as begin
+select dc.Detalle_Caja_ID, dc.Importe_Ingreso, dc.Importe_Egreso, dc.Observaciones 
+From Detalles_Cajas as dc
+inner join Cajas as ca
+on ca.Caja_ID = dc.Caja_ID
+where ca.Caja_Abierta = 1
+end
+
+go
+
+create procedure sp_Detalle_Caja_Diario_Con_Parametro @Parametro nvarchar
+as begin
+select dc.Detalle_Caja_ID, dc.Importe_Ingreso, dc.Importe_Egreso, dc.Observaciones 
+From Detalles_Cajas as dc
+inner join Cajas as ca
+on ca.Caja_ID = dc.Caja_ID
+where ca.Caja_Abierta = 1
+and ca.Fecha_Apertura like @Parametro
+or dc.Importe_Ingreso like @Parametro
+or dc.Importe_Egreso like @Parametro
+or dc.Observaciones like @Parametro
+end
+
+go
+
 /* queries para realizar registros */
 
 create procedure sp_abrir_caja @Empleado_ID_Apertura int, @Fecha datetime, @Importe_Apertura decimal, @Caja_Abierta bit
@@ -875,6 +903,5 @@ end
 
 
 
+
 /*  Fin Pruebas  */
-
-

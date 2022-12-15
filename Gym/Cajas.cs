@@ -214,9 +214,10 @@ namespace Gym
 
         private void txtImporteFinal_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ActualizacionDeImportes();
             string importe = txtImporteFinal.Text;
+            ActualizacionDeImportes();
             VerificarImportes(e, importe);
+
             if (e.KeyChar == (char)Keys.Enter)
             {
                 importeFinalCaja = Convert.ToDecimal(importe);

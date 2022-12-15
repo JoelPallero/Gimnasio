@@ -152,7 +152,15 @@ namespace AccesoDatos
             bool duplicidad = false;
             string query = @"select Estado from Planes_Asignados where Plan_ID = @Plan_ID and Cliente_ID = @Cliente_ID and Estado = @Estado";
 
+            SqlParameter plan_ID = new SqlParameter("@Plan_ID", idplan);
+            SqlParameter cliente_ID = new SqlParameter("@Cliente_ID", Cliente_ID);
+            SqlParameter estado = new SqlParameter("@Estado", "A");
+
             SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.Add(plan_ID);
+            cmd.Parameters.Add(cliente_ID);
+            cmd.Parameters.Add(estado);
 
             try
             {

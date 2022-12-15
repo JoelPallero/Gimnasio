@@ -36,7 +36,7 @@ namespace AccesoDatos
                     saldos.Importe_Inicial = decimal.Parse(reader["Importe_Apertura"].ToString());
                     saldos.Importe_Ingreso = decimal.Parse(reader["Importe_Ingreso"].ToString());
                     saldos.Importe_Egreso = decimal.Parse(reader["Importe_Egreso"].ToString());
-                    saldos.Total = decimal.Parse(reader["Total"].ToString()) + saldos.Importe_Inicial;
+                    saldos.Total = saldos.Importe_Ingreso - saldos.Importe_Egreso + saldos.Importe_Inicial;
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -306,7 +306,7 @@ namespace AccesoDatos
                                                          @Empleado_ID,
                                                          @Importe_Ingreso,
                                                          @Plan_Asignado_ID,
-                                                         Observaciones)"
+                                                         @Observaciones)"
             ;
 
             SqlParameter caja_ID = new SqlParameter("@Caja_ID", detalles_Cajas.Caja_ID);
@@ -380,6 +380,50 @@ namespace AccesoDatos
                 cmd.Dispose();
             }
             return resultado;
+        }
+
+        public DataSet GetDetallesDiarios(string buscar)
+        {
+            string query;
+            if (string.IsNullOrEmpty(buscar))
+            {
+                query = @"exec sp_Detalle_Caja_Diario";
+            }
+            else
+            {
+                query = @"exec sp_Detalle_Caja_Diario_Con_Parametro @Parametro";
+            }
+            SqlCommand cmd = new SqlCommand(query, conexion)
+            {
+                CommandType = CommandType.Text
+            };
+            cmd.Parameters.Add(new SqlParameter()
+            {
+                ParameterName = "@Parametro",
+                SqlDbType = SqlDbType.NVarChar,
+                Value = string.Format("%{0}%", buscar)
+            });
+
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            try
+            {
+                OpenConnection();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar Detalles de Caja", e);
+            }
+            finally
+            {
+                CloseConnection();
+                cmd.Dispose();
+            }
+            return ds;
         }
 
 

@@ -162,8 +162,8 @@ namespace Gym
             DsClienteDatos = _bussinesPersonas.GetPersonaPlan(buscar, _personas);
             AcomodarDatos();
             DsPlanesAsignados = _bussinesPlanesAsignados.BuscarPlanesAsignados(cliente_ID);
-            //DtPlanesAsignados = _bussinesPlanesAsignados.BuscarPlanesAsignadosParaPagar(cliente_ID);
             AcomodarPlanesAsignados();
+            btnAsignarPlan.Enabled = true;
         }
         private void AcomodarPlanesAsignados()
         {
@@ -244,7 +244,6 @@ namespace Gym
                 MessageBox.Show("El campo de horas, está mal registrado. Desde registrarse con este formato: ##:##", "Formato incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
 
         private void EditarPlanes()
         {

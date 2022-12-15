@@ -61,5 +61,10 @@ namespace BussinessLayer
         {
             return _dataCaja.RegistrarPago(detalles_Cajas);
         }
+
+        public DataSet GetDetalles(string buscar)
+        {
+            return _dataCaja.GetDetallesDiarios(buscar);
+        }
     }
 }
