@@ -201,33 +201,11 @@ namespace AccesoDatos
 
             if (string.IsNullOrEmpty(buscar))
             {
-                getBusqueda = @"sp_Cargar_Empleados_Desc";
+                getBusqueda = "exec sp_Cargar_Empleados_Desc";
             }
             else
             {
-                getBusqueda = @"SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
-	                                   Tipos_Empleados.Tipo, 
-                                       Estados_Empleados.Estado
-                                FROM Personas
-
-                                INNER JOIN Empleados
-                                ON Empleados.Persona_ID = Personas.Persona_ID
-                                and Empleados.Tipo_Empleado_ID != 0
-                                and Empleados.Tipo_Empleado_ID != 1
-
-                                INNER JOIN Tipos_Empleados
-                                ON Tipos_Empleados.Tipo_Empleado_ID = Empleados.Tipo_Empleado_ID
-
-                                INNER JOIN Estados_Empleados
-                                ON Estados_Empleados.Estado_Empleado_ID = Empleados.Estado_Empleado_ID
-                        
-                                where Personas.Nombre LIKE @query 
-                                    or Personas.Apellido LIKE @query
-                                    or Personas.Nro_Documento LIKE @query
-                                    or Tipos_Empleados.Tipo LIKE @query
-                                    or Estados_Empleados.Estado LIKE @query
-                                Order by Personas.Fecha_Alta desc"
-                ;
+                getBusqueda = "exec sp_Cargar_Empleados_Con_Parametro @Query";
             }
 
             SqlCommand cmd = new SqlCommand(getBusqueda, conexion)
@@ -237,7 +215,7 @@ namespace AccesoDatos
             
             cmd.Parameters.Add(new SqlParameter()
             {
-                ParameterName = "@query",
+                ParameterName = "@Query",
                 SqlDbType = SqlDbType.NVarChar,
                 Value = string.Format("%{0}%", buscar)
             });

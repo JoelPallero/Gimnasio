@@ -74,6 +74,7 @@ namespace Gym
             this.txtClave.Size = new System.Drawing.Size(211, 27);
             this.txtClave.TabIndex = 8;
             this.txtClave.UseSystemPasswordChar = true;
+            this.txtClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClave_KeyPress);
             // 
             // txtUsuario
             // 

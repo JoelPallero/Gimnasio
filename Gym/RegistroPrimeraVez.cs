@@ -163,7 +163,6 @@ namespace Gym
         #endregion
 
         #region Eventos Botones
-
         private void lblCancelar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             VerificarCamposVacios();
@@ -205,9 +204,14 @@ namespace Gym
                 }
             }
         }
-
+        private void txtClave_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                btnAceptar_Click(sender, e);
+            }
+        }
 
         #endregion
-
     }
 }

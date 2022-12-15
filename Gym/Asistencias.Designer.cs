@@ -118,7 +118,6 @@ namespace Gym
             this.dtFechabusqueda.Size = new System.Drawing.Size(127, 27);
             this.dtFechabusqueda.TabIndex = 2;
             this.dtFechabusqueda.Value = new System.DateTime(2022, 12, 15, 0, 0, 0, 0);
-            this.dtFechabusqueda.ValueChanged += new System.EventHandler(this.dtFechabusqueda_ValueChanged);
             this.dtFechabusqueda.MouseCaptureChanged += new System.EventHandler(this.dtFechabusqueda_MouseCaptureChanged);
             // 
             // listAlumnosPresentes

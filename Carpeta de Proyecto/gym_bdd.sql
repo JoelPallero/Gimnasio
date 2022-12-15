@@ -568,6 +568,30 @@ ORDER BY p.Fecha_Alta desc
 
 go
 
+create procedure sp_Cargar_Empleados_Con_Parametro @Query nvarchar
+as begin
+SELECT Personas.Persona_ID, Personas.Nombre, Personas.Apellido, Personas.Nro_Documento, 
+Tipos_Empleados.Tipo, 
+Estados_Empleados.Estado
+FROM Personas
+INNER JOIN Empleados
+ON Empleados.Persona_ID = Personas.Persona_ID
+and Empleados.Tipo_Empleado_ID != 0
+and Empleados.Tipo_Empleado_ID != 1
+INNER JOIN Tipos_Empleados
+ON Tipos_Empleados.Tipo_Empleado_ID = Empleados.Tipo_Empleado_ID
+INNER JOIN Estados_Empleados
+ON Estados_Empleados.Estado_Empleado_ID = Empleados.Estado_Empleado_ID                        
+where Personas.Nombre LIKE @Query 
+or Personas.Apellido LIKE @Query
+or Personas.Nro_Documento LIKE @Query
+or Tipos_Empleados.Tipo LIKE @Query
+or Estados_Empleados.Estado LIKE @Query
+Order by Personas.Fecha_Alta desc
+end
+
+go
+
 create procedure sp_last_Login
 as
 select Registro_Log_ID
@@ -641,7 +665,7 @@ go
 create procedure sp_get_cajas
 as
 select c.Caja_ID, c.Fecha_Apertura, c.Importe_Apertura, c.Importe_Cierre,
-dc.Importe_Ingreso, dc.Importe_Egreso, dc.Motivo, 
+dc.Importe_Ingreso, dc.Importe_Egreso,
 p.Apellido
 from Cajas as c
 left join Detalles_Cajas as dc
@@ -746,13 +770,13 @@ c.Estado
 FROM Personas as p
 INNER JOIN Clientes as c
 ON p.Persona_ID = c.Persona_ID
-where p.Nombre LIKE @query 
+where p.Nombre LIKE @query
 or p.Apellido LIKE @query
 or p.Nro_Documento LIKE @query
-or c.Estado LIKE @query
-and c.Estado = 'A'
+or c.Estado like @query
 Order by p.Fecha_Alta desc
 end
+
 
 go
 
@@ -905,40 +929,5 @@ end
 
 
 /*  Pruebas  */
-
-
-Declare @Todos nvarchar
-Declare @Dia nvarchar
-
-
-set @Todos = 'Todos'
-set @Dia = 'Jueves'
-
---exec sp_Get_Planes_Del_Dia @Fecha, @Todos, @Dia
-
---select pl.Nombre, pl.Plan_ID, pl.Fecha_Inicio
---from Planes as pl
---inner join Jornadas_Planes as jp
---on jp.Jornada_Plan_ID = pl.Plan_ID
---where pl.Fecha_Inicio > @Fecha
---and jp.Dia = @Dia
---or jp.Dia = @Todos
-
-
-set dateformat dmy
-Declare @Fecha date
-set @Fecha = '20/12/2022'
-
-select Planes.Plan_ID, Planes.Nombre, Jornadas_Planes.Dia
-from Planes
-inner join Jornadas_Planes
-on Jornadas_Planes.Jornada_Plan_ID = Planes.Plan_ID
-where cast(@Fecha as date) >= Planes.Fecha_Inicio
-and Jornadas_Planes.Dia = @Todos
-or Jornadas_Planes.Dia = @Dia
-
-
-
-select * from Jornadas_Planes
 
 /*  Fin Pruebas  */

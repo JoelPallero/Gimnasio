@@ -91,11 +91,6 @@ namespace Gym
 
         #region Métodos encapsulados
 
-        private void EstablecerFecha()
-        {
-            dtFechabusqueda.Value = DateTime.Now;
-        }
-
         private void BuscarPlanesAsistenchaConFecha()
         {
             diaDeLaSemana = Normalizar(diaDeLaSemana);
@@ -142,7 +137,6 @@ namespace Gym
             listAlumnosAusentes.DataSource = dtAlumnosTotales;
             listAlumnosAusentes.DisplayMember = "NombreCliente";
             listAlumnosAusentes.ValueMember = "Cliente_ID";
-
 
             //Alumnos presentes en la clase por fecha
             _planes.Plan_ID = Convert.ToInt32(cmbClasesParaAsistencia.SelectedValue);
@@ -451,11 +445,6 @@ namespace Gym
                     camposVacios = false;
                 }
             }
-
-            //if (cliente_ID != _planesAsignados.Cliente_ID)
-            //{
-                
-            //}
         }
         private void txtBuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -476,7 +465,6 @@ namespace Gym
                     {
                         BusquedaDeClientes();
                     }
-
                 }
             }
         }
@@ -588,11 +576,6 @@ namespace Gym
         }
 
         #endregion
-
-
-        private void dtFechabusqueda_ValueChanged(object sender, EventArgs e)
-        {
-        }
 
         private void dtFechabusqueda_MouseCaptureChanged(object sender, EventArgs e)
         {

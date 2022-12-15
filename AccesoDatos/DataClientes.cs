@@ -62,6 +62,7 @@ namespace AccesoDatos
             {
                 CommandType = CommandType.Text
             };
+
             cmd.Parameters.Add(new SqlParameter()
             {
                 ParameterName = "@query",
