@@ -1,11 +1,3 @@
-use pruebas 
-
-go
-
-drop database gym
-
-go
-
 create database gym
 go
 
@@ -179,8 +171,8 @@ create table Jornadas_Planes(
 Jornada_Plan_ID int primary key identity (0, 1),
 Plan_ID int not null,
 Dia nvarchar(10) not null,
-Desde_Hora datetime not null,
-Hasta_Hora datetime not null,
+Desde_Hora time not null,
+Hasta_Hora time not null,
 Estado nvarchar(1) not null
 )
 
@@ -900,6 +892,17 @@ end
 
 /*  Pruebas  */
 
+select pl.Nombre, pl.Plan_ID 
+from Planes as pl
+left join Planes_Asignados as pa
+on pa.Plan_ID = pl.Plan_ID
+left join Jornadas_Planes as jp
+on jp.Plan_ID = pl.Plan_ID
+where pa.Estado = @Estado
+and jp.Dia = 'Lunes'
 
+
+select * from Jornadas_Planes
+select * from Jornadas_Empleados
 
 /*  Fin Pruebas  */

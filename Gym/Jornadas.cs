@@ -169,6 +169,11 @@ namespace Gym
             }            
         }
 
+        private string EliminarMiliSegundos(string hora)
+        {
+            hora = hora.Substring(0, hora.Length - 3);
+            return hora;
+        }
 
         private void CargarJornada()
         {
@@ -182,55 +187,55 @@ namespace Gym
                         chkTodos.Checked = true;
                         //Este es el Id de la jornada que se carga
                         pTodosId = Convert.ToInt32(dr[0]);
-                        txtDesdeLunes.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[3].ToString()));
-                        txtHastaLunes.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[4].ToString()));
+                        txtDesdeLunes.Text = EliminarMiliSegundos(dr[3].ToString());
+                        txtHastaLunes.Text = EliminarMiliSegundos(dr[4].ToString());
                         txtDesdeLunes.ForeColor = Color.Black;
                         txtHastaLunes.ForeColor = Color.Black;
                         VerificarChk();
                         break;
                     case "Lunes":
-                        txtDesdeLunes.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[3].ToString())); Convert.ToString(dr[3]);
-                        txtHastaLunes.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[4].ToString()));
+                        txtDesdeLunes.Text = EliminarMiliSegundos(dr[3].ToString());
+                        txtHastaLunes.Text = EliminarMiliSegundos(dr[4].ToString());
                         txtDesdeLunes.ForeColor = Color.Black;
                         txtHastaLunes.ForeColor = Color.Black;
                         pLunesId = Convert.ToInt32(dr[0]);
                         chkLunes.Checked = true;
                         break;
                     case "Martes":
-                        txtDesdeMartes.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[3].ToString()));
-                        txtHastaMartes.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[4].ToString()));
+                        txtDesdeLunes.Text = EliminarMiliSegundos(dr[3].ToString());
+                        txtHastaLunes.Text = EliminarMiliSegundos(dr[4].ToString());
                         txtDesdeMartes.ForeColor = Color.Black;
                         txtHastaMartes.ForeColor = Color.Black;
                         pMartesId = Convert.ToInt32(dr[0]);
                         chkMartes.Checked = true;
                         break;
                     case "Miercoles":
-                        txtDesdeMiercoles.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[3].ToString()));
-                        txtHastaMiercoles.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[4].ToString()));
+                        txtDesdeLunes.Text = EliminarMiliSegundos(dr[3].ToString());
+                        txtHastaLunes.Text = EliminarMiliSegundos(dr[4].ToString());
                         txtDesdeMiercoles.ForeColor = Color.Black;
                         txtHastaMiercoles.ForeColor = Color.Black;
                         pMiercolesId = Convert.ToInt32(dr[0]);
                         chkMiercoles.Checked = true;
                         break;
                     case "Jueves":
-                        txtDesdeJueves.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[3].ToString()));
-                        txtHastaJueves.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[4].ToString()));
+                        txtDesdeLunes.Text = EliminarMiliSegundos(dr[3].ToString());
+                        txtHastaLunes.Text = EliminarMiliSegundos(dr[4].ToString());
                         txtDesdeJueves.ForeColor = Color.Black;
                         txtHastaJueves.ForeColor = Color.Black;
                         pJuevesId = Convert.ToInt32(dr[0]);
                         chkJueves.Checked = true;
                         break;
                     case "Viernes":
-                        txtDesdeViernes.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[3].ToString()));
-                        txtHastaViernes.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[4].ToString()));
+                        txtDesdeLunes.Text = EliminarMiliSegundos(dr[3].ToString());
+                        txtHastaLunes.Text = EliminarMiliSegundos(dr[4].ToString());
                         txtDesdeViernes.ForeColor = Color.Black;
                         txtHastaViernes.ForeColor = Color.Black;
                         pViernesId = Convert.ToInt32(dr[0]);
                         chkViernes.Checked = true;
                         break;
                     case "Sabado":
-                        txtDesdeSabado.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[3].ToString()));
-                        txtHastaSabado.Text = Convert.ToString(_metodosGenerales.ConvertirfechaAhora(dr[4].ToString()));
+                        txtDesdeLunes.Text = EliminarMiliSegundos(dr[3].ToString());
+                        txtHastaLunes.Text = EliminarMiliSegundos(dr[4].ToString());
                         txtDesdeSabado.ForeColor = Color.Black;
                         txtHastaSabado.ForeColor = Color.Black;
                         pSabadoId = Convert.ToInt32(dr[0]);

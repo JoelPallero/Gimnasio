@@ -66,10 +66,5 @@ namespace BussinessLayer
         }
 
         #endregion
-
-        #region General
-
-
-        #endregion
     }
 }

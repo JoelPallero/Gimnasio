@@ -3,6 +3,7 @@ using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -211,22 +212,9 @@ namespace Gym
         #endregion
 
         #region Conversión de horarios
-
-        public String ConvertirfechaAhora(string fecha)
-        {
-            string fechaString = fecha;
-            string horaString;
-
-            string shora = fechaString.Substring(11, 2);
-            string sminutos = sminutos = fechaString.Substring(14, 2);
-
-            horaString = $"{shora}:{sminutos}";
-            return horaString;
-        }
-
         public DateTime ConvertirHoraAfecha(string horario)
         {
-            string fechaString = "2020-10-27";
+            string fechaString = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture);
             string horaString = horario;
 
             //Extraer año del fechaString
@@ -248,8 +236,7 @@ namespace Gym
             int.TryParse(shora, out hora);
             int.TryParse(sminuto, out minuto);
 
-
-            DateTime fechaConHora = new DateTime(year, month, day, hora, minuto, 0);
+            DateTime fechaConHora = new DateTime(year, month, day, hora, minuto, 00);
 
             return fechaConHora;
         }

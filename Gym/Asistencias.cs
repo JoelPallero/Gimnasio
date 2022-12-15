@@ -68,7 +68,7 @@ namespace Gym
             _planesAsignados = new Entities.Planes_Asignados();
 
             _restricciones = new Restricciones();
-
+            EstablecerFecha();
             BuscarPlanes();
             buscarAsistenciasDiarias();
 
@@ -84,6 +84,21 @@ namespace Gym
         #endregion
 
         #region Métodos encapsulados
+
+        private void EstablecerFecha()
+        {
+            dtFechabusqueda.Value = DateTime.Now;
+        }
+
+        private void BuscarPlanesAsistenchaConFecha()
+        {
+            diaDeLaSemana = Normalizar(diaDeLaSemana);
+            _planes.Estado = "A";
+            DtPlanes = _bussinessPlanes.GetPlanesConFecha(_planes, diaDeLaSemana, fechaBusqueda);
+            cmbClasesParaAsistencia.DataSource = DtPlanes;
+            cmbClasesParaAsistencia.DisplayMember = "Nombre";
+            cmbClasesParaAsistencia.ValueMember = "Plan_ID";
+        }
         private void GetJornadaDePlan()
         {
             bool esEmpleado = false;
@@ -551,21 +566,11 @@ namespace Gym
         #endregion
 
 
-        private void BuscarPlanesAsistenchaConFecha()
-        {
-            diaDeLaSemana = Normalizar(diaDeLaSemana);
-            _planes.Estado = "A";
-            DtPlanes = _bussinessPlanes.GetPlanesConFecha(_planes, diaDeLaSemana, fechaBusqueda);
-            cmbClasesParaAsistencia.DataSource = DtPlanes;
-            cmbClasesParaAsistencia.DisplayMember = "Nombre";
-            cmbClasesParaAsistencia.ValueMember = "Plan_ID";
-        }
-
         private void dtFechabusqueda_ValueChanged(object sender, EventArgs e)
         {
-            //diaDeLaSemana = GetDiaDeLaSemana(dtFechabusqueda.Value.ToString());
-            //fechaBusqueda = dtFechabusqueda.Value.ToString();
-            //BuscarPlanesAsistenchaConFecha();
+            diaDeLaSemana = GetDiaDeLaSemana(dtFechabusqueda.Value.ToString());
+            fechaBusqueda = dtFechabusqueda.Value.ToString();
+            BuscarPlanesAsistenchaConFecha();
         }
     }
 }
