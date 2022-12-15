@@ -123,6 +123,7 @@ namespace AccesoDatos
 
             SqlCommand cmd = new SqlCommand(query, conexion);
 
+            cmd.Parameters.Add(estado);
             cmd.Parameters.Add(fecha);
             cmd.Parameters.Add(todos);
             cmd.Parameters.Add(dia);

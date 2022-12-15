@@ -29,13 +29,13 @@ namespace Gym
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.gbClienteAsistencia = new System.Windows.Forms.GroupBox();
             this.dtFechabusqueda = new System.Windows.Forms.DateTimePicker();
@@ -79,7 +79,7 @@ namespace Gym
             this.txtBuscarCliente.Location = new System.Drawing.Point(23, 77);
             this.txtBuscarCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
-            this.txtBuscarCliente.Size = new System.Drawing.Size(228, 21);
+            this.txtBuscarCliente.Size = new System.Drawing.Size(228, 25);
             this.txtBuscarCliente.TabIndex = 1;
             this.txtBuscarCliente.Text = "DNI";
             this.txtBuscarCliente.Enter += new System.EventHandler(this.txtBuscarCliente_Enter);
@@ -115,27 +115,28 @@ namespace Gym
             this.dtFechabusqueda.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechabusqueda.Location = new System.Drawing.Point(432, 29);
             this.dtFechabusqueda.Name = "dtFechabusqueda";
-            this.dtFechabusqueda.Size = new System.Drawing.Size(104, 23);
+            this.dtFechabusqueda.Size = new System.Drawing.Size(127, 27);
             this.dtFechabusqueda.TabIndex = 2;
             this.dtFechabusqueda.Value = new System.DateTime(2022, 12, 15, 0, 0, 0, 0);
             this.dtFechabusqueda.ValueChanged += new System.EventHandler(this.dtFechabusqueda_ValueChanged);
+            this.dtFechabusqueda.MouseCaptureChanged += new System.EventHandler(this.dtFechabusqueda_MouseCaptureChanged);
             // 
             // listAlumnosPresentes
             // 
             this.listAlumnosPresentes.FormattingEnabled = true;
-            this.listAlumnosPresentes.ItemHeight = 15;
+            this.listAlumnosPresentes.ItemHeight = 20;
             this.listAlumnosPresentes.Location = new System.Drawing.Point(433, 191);
             this.listAlumnosPresentes.Name = "listAlumnosPresentes";
-            this.listAlumnosPresentes.Size = new System.Drawing.Size(237, 79);
+            this.listAlumnosPresentes.Size = new System.Drawing.Size(237, 64);
             this.listAlumnosPresentes.TabIndex = 4;
             // 
             // listAlumnosAusentes
             // 
             this.listAlumnosAusentes.FormattingEnabled = true;
-            this.listAlumnosAusentes.ItemHeight = 15;
+            this.listAlumnosAusentes.ItemHeight = 20;
             this.listAlumnosAusentes.Location = new System.Drawing.Point(433, 85);
             this.listAlumnosAusentes.Name = "listAlumnosAusentes";
-            this.listAlumnosAusentes.Size = new System.Drawing.Size(237, 79);
+            this.listAlumnosAusentes.Size = new System.Drawing.Size(237, 64);
             this.listAlumnosAusentes.TabIndex = 3;
             this.listAlumnosAusentes.DoubleClick += new System.EventHandler(this.listAlumnos_DoubleClick);
             // 
@@ -145,7 +146,7 @@ namespace Gym
             this.cmbClasesParaAsistencia.FormattingEnabled = true;
             this.cmbClasesParaAsistencia.Location = new System.Drawing.Point(23, 32);
             this.cmbClasesParaAsistencia.Name = "cmbClasesParaAsistencia";
-            this.cmbClasesParaAsistencia.Size = new System.Drawing.Size(228, 23);
+            this.cmbClasesParaAsistencia.Size = new System.Drawing.Size(228, 28);
             this.cmbClasesParaAsistencia.TabIndex = 0;
             this.cmbClasesParaAsistencia.SelectionChangeCommitted += new System.EventHandler(this.cmbClasesParaAsistencia_SelectionChangeCommitted);
             // 
@@ -154,7 +155,7 @@ namespace Gym
             this.lblPlanActual.AutoSize = true;
             this.lblPlanActual.Location = new System.Drawing.Point(23, 237);
             this.lblPlanActual.Name = "lblPlanActual";
-            this.lblPlanActual.Size = new System.Drawing.Size(94, 15);
+            this.lblPlanActual.Size = new System.Drawing.Size(117, 20);
             this.lblPlanActual.TabIndex = 18;
             this.lblPlanActual.Text = "Clases Actuales: ";
             // 
@@ -178,7 +179,7 @@ namespace Gym
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Location = new System.Drawing.Point(23, 178);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(58, 15);
+            this.lblTelefono.Size = new System.Drawing.Size(74, 20);
             this.lblTelefono.TabIndex = 13;
             this.lblTelefono.Text = "Telefono: ";
             // 
@@ -187,7 +188,7 @@ namespace Gym
             this.lblMail.AutoSize = true;
             this.lblMail.Location = new System.Drawing.Point(23, 207);
             this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(36, 15);
+            this.lblMail.Size = new System.Drawing.Size(45, 20);
             this.lblMail.TabIndex = 11;
             this.lblMail.Text = "Mail: ";
             // 
@@ -196,7 +197,7 @@ namespace Gym
             this.lblNro_documento.AutoSize = true;
             this.lblNro_documento.Location = new System.Drawing.Point(23, 146);
             this.lblNro_documento.Name = "lblNro_documento";
-            this.lblNro_documento.Size = new System.Drawing.Size(33, 15);
+            this.lblNro_documento.Size = new System.Drawing.Size(42, 20);
             this.lblNro_documento.TabIndex = 9;
             this.lblNro_documento.Text = "DNI: ";
             // 
@@ -205,7 +206,7 @@ namespace Gym
             this.lblNombreCliente.AutoSize = true;
             this.lblNombreCliente.Location = new System.Drawing.Point(23, 116);
             this.lblNombreCliente.Name = "lblNombreCliente";
-            this.lblNombreCliente.Size = new System.Drawing.Size(57, 15);
+            this.lblNombreCliente.Size = new System.Drawing.Size(71, 20);
             this.lblNombreCliente.TabIndex = 7;
             this.lblNombreCliente.Text = "Nombre: ";
             // 
@@ -214,7 +215,7 @@ namespace Gym
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(429, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 15);
+            this.label2.Size = new System.Drawing.Size(75, 20);
             this.label2.TabIndex = 24;
             this.label2.Text = "Ausentes: ";
             // 
@@ -223,7 +224,7 @@ namespace Gym
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(429, 172);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 15);
+            this.label1.Size = new System.Drawing.Size(78, 20);
             this.label1.TabIndex = 23;
             this.label1.Text = "Presentes: ";
             // 
@@ -233,7 +234,7 @@ namespace Gym
             this.txtBuscarAsistencias.Location = new System.Drawing.Point(12, 413);
             this.txtBuscarAsistencias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBuscarAsistencias.Name = "txtBuscarAsistencias";
-            this.txtBuscarAsistencias.Size = new System.Drawing.Size(296, 23);
+            this.txtBuscarAsistencias.Size = new System.Drawing.Size(296, 27);
             this.txtBuscarAsistencias.TabIndex = 9;
             this.txtBuscarAsistencias.Text = "Buscar";
             this.txtBuscarAsistencias.Enter += new System.EventHandler(this.txtBuscarAsistencias_Enter);
@@ -263,7 +264,7 @@ namespace Gym
             this.lblVerJornadas.AutoSize = true;
             this.lblVerJornadas.Location = new System.Drawing.Point(325, 58);
             this.lblVerJornadas.Name = "lblVerJornadas";
-            this.lblVerJornadas.Size = new System.Drawing.Size(71, 15);
+            this.lblVerJornadas.Size = new System.Drawing.Size(91, 20);
             this.lblVerJornadas.TabIndex = 7;
             this.lblVerJornadas.TabStop = true;
             this.lblVerJornadas.Text = "Ver jornadas";
@@ -274,7 +275,7 @@ namespace Gym
             this.lblCuposTotales.AutoSize = true;
             this.lblCuposTotales.Location = new System.Drawing.Point(283, 58);
             this.lblCuposTotales.Name = "lblCuposTotales";
-            this.lblCuposTotales.Size = new System.Drawing.Size(19, 15);
+            this.lblCuposTotales.Size = new System.Drawing.Size(25, 20);
             this.lblCuposTotales.TabIndex = 22;
             this.lblCuposTotales.Text = "10";
             // 
@@ -283,7 +284,7 @@ namespace Gym
             this.lblCuposRestantes.AutoSize = true;
             this.lblCuposRestantes.Location = new System.Drawing.Point(252, 58);
             this.lblCuposRestantes.Name = "lblCuposRestantes";
-            this.lblCuposRestantes.Size = new System.Drawing.Size(19, 15);
+            this.lblCuposRestantes.Size = new System.Drawing.Size(25, 20);
             this.lblCuposRestantes.TabIndex = 21;
             this.lblCuposRestantes.Text = "10";
             this.lblCuposRestantes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -293,7 +294,7 @@ namespace Gym
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(23, 31);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(104, 15);
+            this.label12.Size = new System.Drawing.Size(131, 20);
             this.label12.TabIndex = 19;
             this.label12.Text = "Planes disponibles";
             // 
@@ -302,7 +303,7 @@ namespace Gym
             this.lblCostoMensual.AutoSize = true;
             this.lblCostoMensual.Location = new System.Drawing.Point(256, 22);
             this.lblCostoMensual.Name = "lblCostoMensual";
-            this.lblCostoMensual.Size = new System.Drawing.Size(98, 15);
+            this.lblCostoMensual.Size = new System.Drawing.Size(121, 20);
             this.lblCostoMensual.TabIndex = 17;
             this.lblCostoMensual.Text = "Costo mensual: $";
             // 
@@ -312,7 +313,7 @@ namespace Gym
             this.cmbPlanesActivos.FormattingEnabled = true;
             this.cmbPlanesActivos.Location = new System.Drawing.Point(23, 54);
             this.cmbPlanesActivos.Name = "cmbPlanesActivos";
-            this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 23);
+            this.cmbPlanesActivos.Size = new System.Drawing.Size(216, 28);
             this.cmbPlanesActivos.TabIndex = 6;
             this.cmbPlanesActivos.SelectionChangeCommitted += new System.EventHandler(this.cmbPlanesActivos_SelectionChangeCommitted);
             // 
@@ -336,7 +337,7 @@ namespace Gym
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(273, 58);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(12, 15);
+            this.label20.Size = new System.Drawing.Size(15, 20);
             this.label20.TabIndex = 23;
             this.label20.Text = "/";
             // 
@@ -344,14 +345,14 @@ namespace Gym
             // 
             this.dtgvAsistencias.AllowUserToAddRows = false;
             this.dtgvAsistencias.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvAsistencias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvAsistencias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvAsistencias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Persona_ID,
@@ -365,14 +366,14 @@ namespace Gym
             this.dtgvAsistencias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvAsistencias.Name = "dtgvAsistencias";
             this.dtgvAsistencias.ReadOnly = true;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvAsistencias.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvAsistencias.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dtgvAsistencias.RowHeadersVisible = false;
             this.dtgvAsistencias.RowHeadersWidth = 51;
             this.dtgvAsistencias.RowTemplate.Height = 29;
@@ -392,8 +393,8 @@ namespace Gym
             // Nombre
             // 
             this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle2;
             this.Nombre.Frozen = true;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.MinimumWidth = 6;
@@ -405,8 +406,8 @@ namespace Gym
             // Apellido
             // 
             this.Apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Apellido.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Apellido.DefaultCellStyle = dataGridViewCellStyle3;
             this.Apellido.Frozen = true;
             this.Apellido.HeaderText = "Apellido";
             this.Apellido.MinimumWidth = 6;
@@ -417,8 +418,8 @@ namespace Gym
             // Documento
             // 
             this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Documento.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Documento.DefaultCellStyle = dataGridViewCellStyle4;
             this.Documento.Frozen = true;
             this.Documento.HeaderText = "Documento";
             this.Documento.MinimumWidth = 6;
@@ -428,8 +429,8 @@ namespace Gym
             // 
             // Tipo_Empleado
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Tipo_Empleado.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Tipo_Empleado.DefaultCellStyle = dataGridViewCellStyle5;
             this.Tipo_Empleado.Frozen = true;
             this.Tipo_Empleado.HeaderText = "Clase";
             this.Tipo_Empleado.MinimumWidth = 6;
@@ -439,8 +440,8 @@ namespace Gym
             // 
             // Estado
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Estado.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Estado.DefaultCellStyle = dataGridViewCellStyle6;
             this.Estado.HeaderText = "Asistencia";
             this.Estado.MinimumWidth = 6;
             this.Estado.Name = "Estado";
@@ -450,7 +451,7 @@ namespace Gym
             // 
             // Asistencias
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(700, 650);

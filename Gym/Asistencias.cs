@@ -34,21 +34,27 @@ namespace Gym
 
         #region Variables 
 
-        private int idEmpleadoLogin;
-        private string buscar;
         private DataSet DsClienteAsistencia;
         private DataSet DsAsistencias;
-        private DataTable DtPlanes;
         private DataSet DsPlanesAsignados;
+
+        private DataTable DtPlanes;
         private DataTable dtAlumnosTotales;
         private DataTable dtAlumnosPresentes;
+
         private bool camposVacios = true;
+        private bool listadoCargado = false;
+        private bool duplicidad = false;
+
+        private int idEmpleadoLogin;
         private int cliente_ID;
         private int planSeleccionado;
+
+        private string buscar;
         private string diaDeLaSemana;
         private string fechaBusqueda;
+
         private DateTime fechaBusquedaPlan;
-        private bool listadoCargado = false;
 
         #endregion
 
@@ -69,7 +75,6 @@ namespace Gym
             _planesAsignados = new Entities.Planes_Asignados();
 
             _restricciones = new Restricciones();
-            //EstablecerFecha();
             BuscarPlanes();
             buscarAsistenciasDiarias();
 
@@ -378,6 +383,11 @@ namespace Gym
                    "Gestión en proceso", MessageBoxButtons.OKCancel);
             }
         }
+        private void ComprobarDuplicidadDePlan()
+        {
+            int idplan = Convert.ToInt32(cmbPlanesActivos.SelectedValue);
+            duplicidad = _bussinesPlanesAsignados.BuscarDuplicidad(idplan, cliente_ID);
+        }
 
         #endregion
 
@@ -508,6 +518,7 @@ namespace Gym
         }
         private void btnAsignarPlan_Click(object sender, EventArgs e)
         {
+
             if (camposVacios)
             {
                 MessageBox.Show("No hay cliente seleccionado para asignarle un plan." +
@@ -521,8 +532,18 @@ namespace Gym
                 }
                 else
                 {
-                    //Asignarle el plan.
-                    AsigarlePlanAlCliente();
+                    //Primero verifico que no haya duplicidad de planes.
+                    ComprobarDuplicidadDePlan();
+
+                    if (duplicidad)
+                    {
+                        MessageBox.Show("Este plan ya está asignado al cliente. Por favor, seleccione otro plan", "Duplicidad encontrada");
+                    }
+                    else
+                    {
+                        //Asignarle el plan.
+                        AsigarlePlanAlCliente();
+                    }
                 }
             }
         }
@@ -570,6 +591,10 @@ namespace Gym
 
 
         private void dtFechabusqueda_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void dtFechabusqueda_MouseCaptureChanged(object sender, EventArgs e)
         {
             diaDeLaSemana = GetDiaDeLaSemana(dtFechabusqueda.Value.ToString());
             fechaBusquedaPlan = dtFechabusqueda.Value;
