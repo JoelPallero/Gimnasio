@@ -34,8 +34,8 @@ namespace AccesoDatos
                 if (reader.Read())
                 {
                     saldos.Importe_Inicial = decimal.Parse(reader["Importe_Apertura"].ToString());
-                    saldos.Importe_Ingreso = decimal.Parse(reader["Importe_Ingreso"].ToString());
-                    saldos.Importe_Egreso = decimal.Parse(reader["Importe_Egreso"].ToString());
+                    saldos.Importe_Ingreso = decimal.Parse(reader["Ingreso"].ToString());
+                    saldos.Importe_Egreso = decimal.Parse(reader["Egreso"].ToString());
                     saldos.Total = saldos.Importe_Ingreso - saldos.Importe_Egreso + saldos.Importe_Inicial;
                 }
                 reader.Close();
